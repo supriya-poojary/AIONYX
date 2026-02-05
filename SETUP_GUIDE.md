@@ -1,7 +1,7 @@
-# AlgoMaster - Complete Setup & Usage Guide
+# Aionyx - Complete Setup & Usage Guide
 
 ## 🎯 Overview
-AlgoMaster is a comprehensive platform for learning Data Structures and Algorithms with:
+Aionyx is a comprehensive platform for learning Data Structures and Algorithms with:
 - **Light Theme** with animated purple and pink gradients
 - **Student Portal** for learning and practice
 - **Admin Dashboard** for content management

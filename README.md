@@ -1,6 +1,105 @@
 # 🎉 AIONYX - AI-Powered Algo Education Platform
 
+> **Master Algorithms. Ace Interviews. Get Hired.**
+>
+> **AIONYX** is a state-of-the-art, AI-driven educational ecosystem designed to master Data Structures and Algorithms. Built by engineers from top tech giants, it combines precision-engineered curricula with intelligent, adaptive learning paths to ensure success in technical interviews at FAANG and beyond.
+
 ## ✅ COMPLETE & READY TO USE
+
+---
+
+## ⚡ One-Minute Setup
+
+```bash
+# Terminal 1: Start Server
+cd "c:\Users\supri\Documents\ALGO Edu final\ALGO Edu"
+node server.js
+
+# Server runs on: http://localhost:3000
+```
+
+## 🔄 User Flows
+
+### Student Journey
+```
+1. Visit Homepage
+   ↓
+2. Click "Start Free"
+   ↓
+3. Sign up with name, email, password
+   ↓
+4. Auto redirect to Dashboard
+   ↓
+5. See all courses
+   ↓
+6. Click "Start" on any topic
+   ↓
+7. Start learning!
+```
+
+### Admin Journey
+```
+1. Visit /login-new.html
+   ↓
+2. Enter: admin@algomaster.com / admin123
+   ↓
+3. Auto redirect to Admin Dashboard
+   ↓
+4. Create topics (Arrays, Trees, etc)
+   ↓
+5. Add LeetCode problems to topics
+   ↓
+6. Monitor student progress
+```
+
+## 🔧 Troubleshooting
+
+### Server won't start?
+- Check if PostgreSQL is running
+- Run: `node database/setup.js`
+- Check `.env` file exists
+
+### Animations not working?
+- Clear browser cache (Ctrl+Shift+Delete)
+- Hard refresh (Ctrl+F5)
+- Check CSS file is loaded
+
+### Login not working?
+- Check server console for errors
+- Verify database connection
+- Try logout and login again
+
+### Forgot password?
+- Admin: Use `admin@algomaster.com` / `admin123`
+- Student: Sign up a new account
+
+## 💡 Tips
+
+1. **First Time?** Start at homepage and explore
+2. **As Admin?** Create a topic first, then add questions
+3. **As Student?** Sign up to access all courses
+4. **Tracking?** Student dashboard shows all progress
+5. **Mobile?** Everything works perfectly on mobile!
+
+---
+
+## 🎓 Student Guide
+
+### 🚀 Getting Started
+1. **Sign Up**: Navigate to `/student-signup-new.html` to create your account.
+2. **Login**: Use your credentials at `/student-login-new.html`.
+3. **Dashboard**: Upon login, you'll be directed to your personal dashboard.
+
+### 📚 Using the Platform
+- **Browse Courses**: View all available topics and courses.
+- **Track Progress**: Your dashboard shows completion percentages for each topic.
+- **Start Learning**: Click "Start" on any course to begin solving problems.
+
+### 🔥 Daily Streaks
+Consistency is key to mastering algorithms!
+- **How it works**: Solve at least one problem every day to keep your streak alive.
+- **Visual Indicator**: Look for the fire icon (🔥) on your dashboard to see your current streak count.
+- **Don't Break the Chain**: Miss a day, and your streak resets to zero. Keep the fire burning!
 
 ---
 
@@ -446,6 +545,7 @@ If you want to enhance further:
 
 This platform was architected and developed by:
 
+- **Aionyx** - *Concept & Vision*
 - **Supriya S Poojary** - *Frontend / Backend Developer*
 - **Akanksha** - *Frontend / Backend Developer*
 - **Akhila** - *Frontend Developer*
