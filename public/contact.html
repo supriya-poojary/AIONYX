@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us - AIONYX</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="css/theme.css">
+    <style>
+        .contact-hero {
+            padding: 160px 0 60px;
+            text-align: center;
+            background: radial-gradient(circle at top left, rgba(6, 182, 212, 0.1), transparent);
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1.5fr;
+            gap: 60px;
+            padding: 80px 0;
+            align-items: start;
+        }
+
+        .contact-info {
+            display: flex;
+            flex-direction: column;
+            gap: 40px;
+        }
+
+        .info-card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-lg);
+            padding: 30px;
+            display: flex;
+            gap: 20px;
+            transition: all 0.3s ease;
+        }
+
+        .info-card:hover {
+            transform: translateX(10px);
+            border-color: var(--primary);
+            box-shadow: var(--shadow-md);
+        }
+
+        .info-icon {
+            width: 50px;
+            height: 50px;
+            background: var(--primary-light);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.25rem;
+            flex-shrink: 0;
+        }
+
+        .info-content h4 {
+            margin-bottom: 8px;
+            font-size: 1.1rem;
+            color: var(--text-primary);
+        }
+
+        .info-content p {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        .contact-form-container {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-xl);
+            padding: 50px;
+            box-shadow: var(--shadow-xl);
+            position: relative;
+        }
+
+        .contact-form-container::before {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            right: -2px;
+            bottom: -2px;
+            background: linear-gradient(45deg, var(--primary), var(--secondary), var(--accent));
+            z-index: -1;
+            border-radius: inherit;
+            opacity: 0.3;
+        }
+
+        .office-section {
+            padding: 100px 0;
+            background: var(--background-secondary);
+            border-top: 1px solid var(--border);
+        }
+
+        .office-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+            margin-top: 50px;
+        }
+
+        .office-card {
+            padding: 40px;
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-lg);
+            text-align: center;
+        }
+
+        .office-card i {
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 20px;
+        }
+
+        .cta-banner {
+            padding: 80px 0;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            text-align: center;
+            color: white;
+            border-radius: var(--radius-xl);
+            margin: 100px 0;
+        }
+
+        .cta-banner h2 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        @media (max-width: 900px) {
+            .contact-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+
+            .contact-form-container {
+                padding: 30px;
+            }
+        }
+    </style>
+</head>
+
+<body class="dark-theme">
+    <nav class="navbar">
+        <a href="index.html" class="logo">
+            <i class="fas fa-code"></i>
+            <span class="logo-text">AIONYX</span>
+        </a>
+        <div class="nav-links">
+            <a href="courses.html" class="nav-item">Courses</a>
+            <a href="about.html" class="nav-item">About Us</a>
+            <a href="contact.html" class="nav-item">Contact</a>
+            <a href="student-login.html" class="nav-btn btn-login">Login</a>
+        </div>
+    </nav>
+
+    <header class="contact-hero section-reveal active">
+        <div class="container">
+            <h1 class="reveal-up active" style="font-size: 4rem; font-weight: 900;">Get in <span
+                    class="text-gradient">Touch</span></h1>
+            <p class="reveal-up active"
+                style="font-size: 1.25rem; color: var(--text-secondary); max-width: 800px; margin: 20px auto 0;">
+                We're here to help and answer any question you might have. We look forward to hearing from you!
+            </p>
+        </div>
+    </header>
+
+    <main class="container">
+        <div class="contact-grid">
+            <div class="contact-info">
+                <div class="section-reveal active reveal-left active">
+                    <h2 style="margin-bottom: 30px;">Connect With Us</h2>
+
+                    <div class="info-card">
+                        <div class="info-icon"><i class="fas fa-map-marker-alt"></i></div>
+                        <div class="info-content">
+                            <h4>Visit Our Office</h4>
+                            <p>C/O Sujatha, W/O Harish<br>Near Hygoli House Mala<br>Karkala, Karnataka, India - 574122
+                            </p>
+                            <a href="#"
+                                style="color: var(--primary); font-weight: 700; font-size: 0.9rem; display: block; margin-top: 10px;">Get
+                                Directions <i class="fas fa-external-link-alt" style="font-size: 0.8rem;"></i></a>
+                        </div>
+                    </div>
+
+                    <div class="info-card" style="margin-top: 20px;">
+                        <div class="info-icon"><i class="fas fa-envelope"></i></div>
+                        <div class="info-content">
+                            <h4>Email Us</h4>
+                            <p>nishan@algoorbit.in<br>We'll respond within 24 hours</p>
+                        </div>
+                    </div>
+
+                    <div class="info-card" style="margin-top: 20px;">
+                        <div class="info-icon"><i class="fas fa-phone-alt"></i></div>
+                        <div class="info-content">
+                            <h4>Call Us</h4>
+                            <p>+91 94821 19446<br>+91 93807 19446<br>Mon - Sat, 9AM - 6PM IST</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="contact-form-container section-reveal active reveal-right active">
+                <h3 style="margin-bottom: 10px; font-size: 1.75rem;">Send Us a Message</h3>
+                <p style="color: var(--text-secondary); margin-bottom: 30px;">Fill out the form below and we'll get back
+                    to you as soon as possible.</p>
+
+                <form id="contactForm">
+                    <div class="form-group">
+                        <label class="form-label">Your Full Name</label>
+                        <input type="text" name="name" class="form-input" placeholder="Enter your name" required>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label class="form-label">Your Email Address</label>
+                            <input type="email" name="email" class="form-input" placeholder="email@example.com"
+                                required>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Your Phone Number (Optional)</label>
+                            <input type="tel" name="phone" class="form-input" placeholder="+91 00000 00000">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">Select a Subject</label>
+                        <select name="subject" class="form-select">
+                            <option>General Inquiry</option>
+                            <option>Technical Support</option>
+                            <option>DSA Course Enrollment</option>
+                            <option>Business Partnership</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">Tell us about your project or inquiry...</label>
+                        <textarea name="message" class="form-textarea" placeholder="Type your message here..."
+                            style="min-height: 150px;" required></textarea>
+                    </div>
+
+                    <div id="formMessage"
+                        style="margin-bottom: 15px; padding: 12px; border-radius: 8px; display: none;"></div>
+
+                    <button type="submit" id="submitBtn" class="btn btn-primary"
+                        style="width: 100%; justify-content: center; padding: 18px; font-size: 1.1rem;">
+                        Send Message <i class="fas fa-paper-plane" style="margin-left: 10px;"></i>
+                    </button>
+                </form>
+
+                <script>
+                    document.getElementById('contactForm').addEventListener('submit', async (e) => {
+                        e.preventDefault();
+
+                        const formMessage = document.getElementById('formMessage');
+                        const submitBtn = document.getElementById('submitBtn');
+                        const formData = new FormData(e.target);
+
+                        const data = {
+                            name: formData.get('name'),
+                            email: formData.get('email'),
+                            phone: formData.get('phone'),
+                            subject: formData.get('subject'),
+                            message: formData.get('message')
+                        };
+
+                        // Disable button and show loading
+                        submitBtn.disabled = true;
+                        submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
+
+                        try {
+                            const response = await fetch('/api/contact', {
+                                method: 'POST',
+                                headers: {
+                                    'Content-Type': 'application/json'
+                                },
+                                body: JSON.stringify(data)
+                            });
+
+                            const result = await response.json();
+
+                            if (result.success) {
+                                formMessage.style.display = 'block';
+                                formMessage.style.background = 'rgba(16, 185, 129, 0.1)';
+                                formMessage.style.border = '1px solid rgba(16, 185, 129, 0.3)';
+                                formMessage.style.color = '#10b981';
+                                formMessage.innerHTML = '<i class="fas fa-check-circle"></i> ' + result.message;
+                                e.target.reset();
+                            } else {
+                                throw new Error(result.message);
+                            }
+                        } catch (error) {
+                            formMessage.style.display = 'block';
+                            formMessage.style.background = 'rgba(239, 68, 68, 0.1)';
+                            formMessage.style.border = '1px solid rgba(239, 68, 68, 0.3)';
+                            formMessage.style.color = '#ef4444';
+                            formMessage.innerHTML = '<i class="fas fa-exclamation-circle"></i> ' + (error.message || 'Failed to send message. Please try again.');
+                        } finally {
+                            submitBtn.disabled = false;
+                            submitBtn.innerHTML = 'Send Message <i class="fas fa-paper-plane" style="margin-left: 10px;"></i>';
+                        }
+                    });
+                </script>
+            </div>
+        </div>
+
+        <section class="cta-banner section-reveal active">
+            <h2>Ready to Get Started?</h2>
+            <p style="font-size: 1.2rem; max-width: 800px; margin: 0 auto 30px; opacity: 0.9;">
+                Join the growing list of companies transforming their business with Algo Orbit's cutting-edge solutions.
+            </p>
+            <a href="student-signup.html" class="btn btn-outline"
+                style="background: white; color: var(--primary); border: none;">Get Started Now</a>
+        </section>
+    </main>
+
+    <section class="office-section">
+        <div class="container section-reveal active">
+            <h2 class="text-center" style="font-size: 2.5rem;">Find Us</h2>
+            <p class="text-center" style="color: var(--text-secondary); margin-top: 10px;">Located in the heart of
+                Karnataka, we're easily accessible and always ready to welcome you.</p>
+
+            <div class="office-grid">
+                <div class="office-card reveal-up active">
+                    <i class="fas fa-building"></i>
+                    <h3>Algo Orbit Office</h3>
+                    <p style="color: var(--text-secondary); margin-top: 10px;">Operational Headquarters</p>
+                </div>
+                <div class="office-card reveal-up active" style="transition-delay: 0.1s;">
+                    <i class="fas fa-lightbulb"></i>
+                    <h3>Algo Orbit Innovations</h3>
+                    <p style="color: var(--text-secondary); margin-top: 10px;">R&D and Product Lab</p>
+                </div>
+                <div class="office-card reveal-up active" style="transition-delay: 0.2s;">
+                    <i class="fas fa-server"></i>
+                    <h3>Enterprise IT Solutions Hub</h3>
+                    <p style="color: var(--text-secondary); margin-top: 10px;">Security & Support Center</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container" style="text-align: center;">
+            <div style="margin-bottom: 30px;">
+                <h3><i class="fas fa-code"></i> AIONYX</h3>
+                <p style="color: var(--text-secondary); max-width: 600px; margin: 15px auto;">
+                    Empowering developers to master coding interviews with AI-powered learning and expert guidance.
+                </p>
+                <div class="footer-social" style="display: flex; gap: 15px; justify-content: center; margin-top: 20px;">
+                    <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+                    <a href="#" class="social-link"><i class="fab fa-linkedin"></i></a>
+                    <a href="#" class="social-link"><i class="fab fa-github"></i></a>
+                    <a href="#" class="social-link"><i class="fab fa-youtube"></i></a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 AIONYX. All rights reserved. Built for developers.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/theme.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,10 @@
+node_modules/
+.env
+database.db
+database.sqlite
+conn_test_result.txt
+output.txt
+postgresql-18.1-2-windows-x64.exe
+.gemini/
+.DS_Store
+*.log
