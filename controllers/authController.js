@@ -1,7 +1,9 @@
 const pool = require('../config/db');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
-require('dotenv').config();
+
+// Hardcoded JWT Secret
+const JWT_SECRET = 'supersecretkey123';
 
 // Unified Login (Admin & Student)
 exports.login = async (req, res) => {
@@ -22,7 +24,7 @@ exports.login = async (req, res) => {
             if (validPassword) {
                 const token = jwt.sign(
                     { id: admin.id, email: admin.email, role: 'admin' },
-                    process.env.JWT_SECRET,
+                    JWT_SECRET,
                     { expiresIn: '24h' }
                 );
                 return res.json({
@@ -42,7 +44,7 @@ exports.login = async (req, res) => {
             if (validPassword) {
                 const token = jwt.sign(
                     { id: student.id, email: student.email, role: 'student' },
-                    process.env.JWT_SECRET,
+                    JWT_SECRET,
                     { expiresIn: '24h' }
                 );
                 return res.json({
@@ -88,7 +90,7 @@ exports.studentSignup = async (req, res) => {
 
         const token = jwt.sign(
             { id: newStudent.id, email: newStudent.email, role: 'student' },
-            process.env.JWT_SECRET,
+            JWT_SECRET,
             { expiresIn: '24h' }
         );
 

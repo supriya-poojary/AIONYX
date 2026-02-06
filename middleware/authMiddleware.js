@@ -1,5 +1,7 @@
 const jwt = require('jsonwebtoken');
-require('dotenv').config();
+
+// Hardcoded JWT Secret
+const JWT_SECRET = 'supersecretkey123';
 
 const verifyToken = (req, res, next) => {
     const authHeader = req.headers['authorization'];
@@ -10,7 +12,7 @@ const verifyToken = (req, res, next) => {
     }
 
     try {
-        const verified = jwt.verify(token, process.env.JWT_SECRET);
+        const verified = jwt.verify(token, JWT_SECRET);
         req.user = verified;
         next();
     } catch (err) {

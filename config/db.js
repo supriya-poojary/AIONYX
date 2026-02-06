@@ -1,9 +1,8 @@
-require('dotenv').config();
 const { Pool } = require("pg");
 
-// Create PostgreSQL connection pool
+// Create PostgreSQL connection pool with hardcoded Neon credentials
 const pool = new Pool({
-    connectionString: process.env.DATABASE_URL,
+    connectionString: 'postgresql://neondb_owner:npg_5utiYfIQ8Hyg@ep-gentle-bonus-ahh659m3-pooler.c-3.us-east-1.aws.neon.tech/neondb?sslmode=require&channel_binding=require',
     ssl: {
         rejectUnauthorized: false, // required for Neon
     },
