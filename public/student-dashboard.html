@@ -22,6 +22,12 @@
             padding-top: 80px;
         }
 
+        @media (max-width: 768px) {
+            body {
+                padding-top: 70px;
+            }
+        }
+
         .dashboard-container {
             max-width: 1400px;
             margin: 0 auto;
@@ -32,12 +38,29 @@
             animation: fadeIn 0.8s ease-out;
         }
 
+        @media (max-width: 1024px) {
+            .dashboard-container {
+                grid-template-columns: 1fr;
+                padding: 1rem 0;
+                /* Vertical 1rem, horizontal 0 */
+                gap: 1.5rem;
+            }
+        }
+
         /* Sidebar */
         .sidebar {
             position: sticky;
             top: 100px;
             height: fit-content;
             animation: slideInLeft 0.8s ease-out;
+            z-index: 10;
+        }
+
+        @media (max-width: 1024px) {
+            .sidebar {
+                position: static;
+                top: 0;
+            }
         }
 
         .profile-card {
