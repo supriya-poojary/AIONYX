@@ -933,11 +933,46 @@
             left: 100%;
         }
 
-        /* Loading Spinner */
-        .loading-spinner {
-            font-size: 3rem;
-            color: var(--primary);
-            text-shadow: 0 0 20px var(--primary-shadow);
+        /* Copy Button Styles */
+        .code-container {
+            position: relative;
+        }
+
+        .copy-btn {
+            position: absolute;
+            top: 1rem;
+            right: 1.5rem;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--border);
+            color: var(--text-muted);
+            padding: 0.5rem 0.8rem;
+            border-radius: var(--radius-md);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.85rem;
+            backdrop-filter: blur(4px);
+            z-index: 5;
+        }
+
+        .copy-btn:hover {
+            background: var(--primary);
+            border-color: var(--primary);
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: var(--glow-primary);
+        }
+
+        .copy-btn.copied {
+            background: var(--success);
+            border-color: var(--success);
+            color: white;
+        }
+
+        .copy-btn i {
+            font-size: 1rem;
         }
     </style>
 </head>
@@ -1155,24 +1190,19 @@
                         <button class="filter-tab" onclick="switchLanguage('java')" id="lang-java">Java</button>
                         <button class="filter-tab" onclick="switchLanguage('cpp')" id="lang-cpp">C++</button>
                     </div>
-                    <pre
-                        style="background: #0f0f14; padding: 2rem; border: 1px solid var(--border); border-radius: 16px; overflow-x: auto; font-family: 'Fira Code', monospace; font-size: 1rem; line-height: 1.6;"><code id="solutionCode"></code></pre>
+                    <div class="code-container">
+                        <button class="copy-btn" onclick="copyToClipboard()" id="copyBtn">
+                            <i class="far fa-copy"></i>
+                            <span id="copyText">Copy Code</span>
+                        </button>
+                        <pre
+                            style="background: #0f0f14; padding: 2rem; border: 1px solid var(--border); border-radius: 16px; overflow-x: auto; font-family: 'Fira Code', monospace; font-size: 1rem; line-height: 1.6;"><code id="solutionCode"></code></pre>
+                    </div>
                 </div>
             </div>
-            <div id="modalSolutions" class="modal-body" style="display: none;">
-                <div style="display: flex; gap: 0.5rem; margin-bottom: 1rem;">
-                    <button class="filter-tab active" onclick="switchLanguage('python')"
-                        id="lang-python">Python</button>
-                    <button class="filter-tab" onclick="switchLanguage('java')" id="lang-java">Java</button>
-                    <button class="filter-tab" onclick="switchLanguage('cpp')" id="lang-cpp">C++</button>
-                </div>
-                <pre
-                    style="background: var(--background); padding: 1.5rem; border-radius: var(--radius-md); overflow-x: auto; font-family: 'Fira Code', monospace; font-size: 0.9rem;"><code id="solutionCode"></code></pre>
-            </div>
+
+
         </div>
-
-
-    </div>
     </div>
 
     <!-- Theme Manager -->
@@ -1546,6 +1576,31 @@
             localStorage.clear();
             window.location.href = 'student-login';
         });
+
+        async function copyToClipboard() {
+            const codeElem = document.getElementById('solutionCode');
+            const copyBtn = document.getElementById('copyBtn');
+            const copyText = document.getElementById('copyText');
+            const copyIcon = copyBtn.querySelector('i');
+
+            try {
+                await navigator.clipboard.writeText(codeElem.textContent);
+
+                // Visual feedback
+                copyBtn.classList.add('copied');
+                copyText.textContent = 'Copied!';
+                copyIcon.className = 'fas fa-check';
+
+                setTimeout(() => {
+                    copyBtn.classList.remove('copied');
+                    copyText.textContent = 'Copy Code';
+                    copyIcon.className = 'far fa-copy';
+                }, 2000);
+            } catch (err) {
+                console.error('Failed to copy code:', err);
+                alert('Failed to copy code to clipboard');
+            }
+        }
 
         // Start app
         init();
