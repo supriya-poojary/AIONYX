@@ -720,6 +720,25 @@
             box-shadow: 0 4px 10px rgba(139, 92, 246, 0.3);
         }
 
+        #modalProcedureSteps {
+            color: var(--text-secondary);
+            line-height: 1.7;
+        }
+
+        #modalProcedureSteps ul,
+        #modalProcedureSteps ol {
+            padding-left: 1.5rem;
+            margin: 1rem 0;
+        }
+
+        #modalProcedureSteps li {
+            margin-bottom: 0.5rem;
+        }
+
+        #modalProcedureSteps p {
+            margin-bottom: 1rem;
+        }
+
         .procedure-text {
             color: var(--text-secondary);
             line-height: 1.7;
@@ -1122,6 +1141,8 @@
 
             <div id="modalContent">
                 <div id="modalApproach" class="modal-body active">
+
+                    <!-- Example Input/Output -->
                     <!-- Problem Statement -->
                     <div class="approach-section">
                         <div class="approach-title">
@@ -1130,17 +1151,6 @@
                         </div>
                         <p id="modalProblemStatement"
                             style="line-height: 1.8; color: var(--text-secondary); font-size: 1.1rem;"></p>
-                    </div>
-
-                    <!-- Example Input/Output -->
-                    <div class="approach-section">
-                        <div class="approach-title">
-                            <i class="fas fa-terminal"></i>
-                            Input / Output Example
-                        </div>
-                        <div class="example-box">
-                            <div id="modalExampleText" style="color: var(--primary-light);"></div>
-                        </div>
                     </div>
 
                     <!-- Procedure / Algorithm -->
@@ -1154,29 +1164,6 @@
                         </div>
                     </div>
 
-                    <!-- Complexity Analysis -->
-                    <div class="approach-section">
-                        <div class="approach-title">
-                            <i class="fas fa-chart-line"></i>
-                            Complexity Analysis
-                        </div>
-                        <div class="complexity-grid">
-                            <div class="complexity-card">
-                                <i class="fas fa-clock"></i>
-                                <div class="complexity-info">
-                                    <span class="complexity-label">Time Complexity</span>
-                                    <span id="modalTimeComplexity" class="complexity-val">O(n)</span>
-                                </div>
-                            </div>
-                            <div class="complexity-card">
-                                <i class="fas fa-memory"></i>
-                                <div class="complexity-info">
-                                    <span class="complexity-label">Space Complexity</span>
-                                    <span id="modalSpaceComplexity" class="complexity-val">O(1)</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
 
                     <button id="markSolvedBtn" class="solve-action-btn" onclick="markAsSolved()"
                         style="margin-top: 2rem;">
@@ -1433,25 +1420,15 @@
             // Assuming the schema has fields or we parse procedure
             // Schema has: procedure, solution_python, solution_java, solution_cpp, time_complexity, space_complexity, key_insights
 
+
             document.getElementById('modalProblemStatement').textContent = q.problem_statement || 'Follow the LeetCode link for the full problem statement.';
 
             // For example text, if not separate, we can try to find it in procedure or use a placeholder
-            document.getElementById('modalExampleText').innerHTML = `// Sample Case<br>Input: nums = [2, 7, 11, 15], target = 9<br>Output: [0, 1]`;
 
             // Build Procedure Steps
             const stepsArea = document.getElementById('modalProcedureSteps');
-            stepsArea.innerHTML = '';
+            stepsArea.innerHTML = q.procedure || '<div class="procedure-text">Study the code solutions for implementation details.</div>';
 
-            const steps = q.procedure ? q.procedure.split('\n').filter(s => s.trim()) : ['Study the code solutions for implementation details.'];
-            steps.forEach(stepText => {
-                const stepDiv = document.createElement('div');
-                stepDiv.className = 'procedure-step';
-                stepDiv.innerHTML = `<div class="procedure-text">${stepText}</div>`;
-                stepsArea.appendChild(stepDiv);
-            });
-
-            document.getElementById('modalTimeComplexity').textContent = q.time_complexity || 'O(n)';
-            document.getElementById('modalSpaceComplexity').textContent = q.space_complexity || 'O(1)';
 
             // Default to python solution
             switchLanguage('python');
