@@ -824,6 +824,14 @@ body.light-theme .navbar {
     margin-top: auto;
 }
 
+.footer-mobile {
+    display: none;
+}
+
+.footer-desktop {
+    display: block;
+}
+
 .footer-content {
     display: grid;
     grid-template-columns: 2fr 1fr 1fr 1fr;
@@ -903,18 +911,79 @@ body.light-theme .navbar {
 }
 
 @media (max-width: 768px) {
-    .footer-content {
-        grid-template-columns: 1fr;
-        gap: 2rem;
-        text-align: center;
+    .footer-desktop {
+        display: none;
     }
 
-    .footer-brand p {
-        margin: 1rem auto 2rem;
+    .footer-mobile {
+        display: block;
+        padding: 2rem 0;
+        text-align: left;
     }
 
-    .footer-social {
+    .footer-mobile .footer-brand {
+        margin-bottom: 2rem;
+    }
+
+    .footer-mobile .footer-brand h2 {
+        font-size: 1.8rem;
+        font-weight: 800;
+        margin-bottom: 1rem;
+        background: linear-gradient(135deg, var(--primary), var(--secondary));
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+    }
+
+    .footer-mobile .footer-brand p {
+        color: var(--text-secondary);
+        font-size: 1rem;
+        line-height: 1.6;
+        margin-bottom: 2rem;
+    }
+
+    .footer-mobile .footer-section {
+        margin-bottom: 2rem;
+    }
+
+    .footer-mobile .footer-section h4 {
+        color: var(--text-primary);
+        font-size: 1.2rem;
+        font-weight: 700;
+        margin-bottom: 1.2rem;
+    }
+
+    .footer-mobile .footer-links {
+        display: flex;
+        flex-direction: column;
+        gap: 0.8rem;
+    }
+
+    .footer-mobile .footer-links a {
+        color: var(--text-secondary);
+        text-decoration: none;
+        font-size: 1.1rem;
+        transition: color 0.3s ease;
+    }
+
+    .footer-mobile .footer-social {
+        display: flex;
+        gap: 1rem;
+        margin-top: 1rem;
+        justify-content: flex-start;
+    }
+
+    .footer-mobile .social-link {
+        width: 45px;
+        height: 45px;
+        background: var(--surface-hover);
+        border: 1px solid var(--border);
+        border-radius: 8px;
+        display: flex;
+        align-items: center;
         justify-content: center;
+        color: var(--text-primary);
+        font-size: 1.2rem;
     }
 }
 
