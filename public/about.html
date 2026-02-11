@@ -667,7 +667,8 @@
                 <!-- Vision -->
                 <div class="vision-card reveal-up active">
                     <div class="vision-icon-wrapper">
-                        <i class="fas fa-eye" style="position: absolute; z-index: 3; font-size: 2.2rem;"></i>
+                        <i class="fas fa-eye"
+                            style="position: absolute; z-index: 3; font-size: 2.2rem; top: 50%; left: 50%; transform: translate(-50%, -50%); color: white;"></i>
                         <div class="eyelid"></div>
                     </div>
                     <h3 class="dev-name">Our Vision</h3>
@@ -680,7 +681,8 @@
                 <!-- Mission -->
                 <div class="vision-card reveal-up active" style="transition-delay: 0.1s;">
                     <div class="vision-icon-wrapper">
-                        <i class="fas fa-rocket" style="position: absolute; z-index: 3; font-size: 2.2rem;"></i>
+                        <i class="fas fa-rocket"
+                            style="position: absolute; z-index: 3; font-size: 2.2rem; top: 50%; left: 50%; transform: translate(-50%, -50%); color: white;"></i>
                     </div>
                     <h3 class="dev-name">Our Mission</h3>
                     <p class="dev-bio">
@@ -863,8 +865,8 @@
                 /* Covers the eye */
                 top: -100%;
                 left: 0;
-                z-index: 5;
-                /* Above the icon */
+                z-index: 2;
+                /* Should cover icon when it slides down */
                 animation: blink 4s infinite;
                 border-radius: 50%;
             }
