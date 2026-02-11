@@ -58,6 +58,9 @@ app.get('/admin-login', (req, res) => {
     res.sendFile(path.join(__dirname, 'public', 'admin-login.html'));
 });
 
+app.get('/cpp-dashboard', (req, res) => {
+    res.sendFile(path.join(__dirname, 'public', 'cpp-dashboard.html'));
+});
 
 // Start Server
 const server = app.listen(PORT, () => {
