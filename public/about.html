@@ -58,11 +58,55 @@
             background: var(--surface);
             border: 1px solid var(--border);
             border-radius: var(--radius-lg);
-            padding: 40px 30px;
-            text-align: center;
+            /* Removed max-width and margin auto */
+
+
+            padding: 0;
+            /* Remove padding from card container to let image touch edges, add padding to content wrapper instead */
+            text-align: left;
+            /* Align text to left as per reference */
             transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
             position: relative;
+            z-index: 1;
+            /* Ensure card content is above pseudo-elements if needed */
             overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            height: 100%;
+        }
+
+        /* Rotating Thick Border Highlight */
+        .dev-card::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            border-radius: var(--radius-lg);
+            padding: 3px;
+            /* Thickness of the border */
+            background: conic-gradient(from var(--border-angle),
+                    transparent 20%,
+                    var(--primary),
+                    var(--secondary),
+                    var(--primary),
+                    transparent 80%);
+            -webkit-mask:
+                linear-gradient(#fff 0 0) content-box,
+                linear-gradient(#fff 0 0);
+            mask:
+                linear-gradient(#fff 0 0) content-box,
+                linear-gradient(#fff 0 0);
+            -webkit-mask-composite: xor;
+            mask-composite: exclude;
+            pointer-events: none;
+            z-index: 2;
+            opacity: 0.7;
+            animation: borderRotate 4s linear infinite;
+        }
+
+        .dev-card:hover::after {
+            opacity: 1;
+            padding: 4px;
         }
 
         .dev-card:hover {
@@ -72,12 +116,18 @@
         }
 
         .dev-image-space {
-            width: 120px;
-            height: 120px;
+            width: 100%;
+            height: auto;
+            aspect-ratio: 1/1;
+            /* Square aspect ratio */
+            /* Increased height for half-card look */
             background: var(--background-secondary);
-            border-radius: 50%;
-            margin: 0 auto 25px;
-            border: 3px solid var(--primary);
+            border-radius: var(--radius-lg);
+            border-bottom-left-radius: 0;
+            border-bottom-right-radius: 0;
+            margin: 0;
+            border: none;
+            /* Remove border around image */
             display: flex;
             align-items: center;
             justify-content: center;
@@ -87,11 +137,22 @@
             position: relative;
         }
 
+        .dev-card-content {
+            padding: 15px;
+            /* Reduced from 25px */
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            /* Reduced from 10px */
+        }
+
         /* User can add images here */
         .dev-image-space img {
             width: 100%;
             height: 100%;
             object-fit: cover;
+            object-position: top center;
+            /* Focus on faces/top of image */
             /* position absolute to cover the icon when added */
             position: absolute;
             top: 0;
@@ -102,26 +163,31 @@
         }
 
         .dev-name {
-            font-size: 1.5rem;
+            font-size: 1.3rem;
+            /* Reduced from 1.6rem */
             font-weight: 800;
-            margin-bottom: 10px;
+            margin-bottom: 5px;
+            /* Reduced margin */
             color: var(--text-primary);
         }
 
         .dev-role {
-            font-size: 0.9rem;
+            font-size: 0.85rem;
+            /* Reduced from 1rem */
             font-weight: 700;
             color: var(--secondary);
             text-transform: uppercase;
             letter-spacing: 1px;
-            margin-bottom: 15px;
+            margin-bottom: 10px;
             display: block;
         }
 
         .dev-bio {
-            font-size: 0.95rem;
+            font-size: 0.9rem;
+            /* Reduced from 1.05rem */
             color: var(--text-secondary);
-            line-height: 1.6;
+            line-height: 1.4;
+            /* Tighter line height */
         }
 
         .skills-tag {
@@ -158,7 +224,9 @@
             transition: opacity 0.3s ease;
             backdrop-filter: blur(4px);
             z-index: 10;
-            border-radius: 50%;
+            border-radius: var(--radius-lg);
+            border-bottom-left-radius: 0;
+            border-bottom-right-radius: 0;
         }
 
         .dev-image-space {
@@ -249,77 +317,188 @@
 
         /* Vision & Mission Special Styling */
         .vision-card {
-            background: rgba(17, 24, 39, 0.8);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: var(--radius-xl);
-            padding: 40px;
+            background: rgba(17, 24, 39, 0.45);
+            backdrop-filter: blur(25px);
+            -webkit-backdrop-filter: blur(25px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 32px;
+            padding: 2.5rem;
             text-align: center;
             position: relative;
             overflow: hidden;
-            transition: all 0.5s ease;
-            backdrop-filter: blur(10px);
+            transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
             z-index: 1;
+            aspect-ratio: 1/1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            max-width: 360px;
+            margin: 0 auto;
         }
 
-        .vision-card::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: conic-gradient(transparent, rgba(139, 92, 246, 0.3), transparent 30%);
-            animation: rotate 4s linear infinite;
-            z-index: -2;
-            opacity: 0;
-            transition: opacity 0.5s ease;
-        }
-
+        /* Moving Thick Border Highlight */
         .vision-card::after {
             content: '';
             position: absolute;
-            inset: 1px;
-            background: var(--surface);
-            border-radius: inherit;
-            z-index: -1;
+            inset: 0;
+            border-radius: 32px;
+            padding: 3.5px;
+            background: conic-gradient(from var(--border-angle),
+                    transparent 20%,
+                    var(--primary),
+                    var(--secondary),
+                    var(--primary),
+                    transparent 80%);
+            -webkit-mask:
+                linear-gradient(#fff 0 0) content-box,
+                linear-gradient(#fff 0 0);
+            mask:
+                linear-gradient(#fff 0 0) content-box,
+                linear-gradient(#fff 0 0);
+            -webkit-mask-composite: xor;
+            mask-composite: exclude;
+            pointer-events: none;
+            z-index: 2;
+            opacity: 0.6;
+            animation: borderRotate 4s linear infinite;
+        }
+
+        @property --border-angle {
+            syntax: "<angle>";
+            initial-value: 0deg;
+            inherits: false;
+        }
+
+        @keyframes borderRotate {
+            to {
+                --border-angle: 360deg;
+            }
         }
 
         .vision-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 20px 40px -10px rgba(139, 92, 246, 0.2);
-            border-color: rgba(139, 92, 246, 0.5);
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 30px 60px -12px rgba(0, 0, 0, 0.5);
+            background: rgba(20, 20, 28, 0.6);
         }
 
-        .vision-card:hover::before {
+        .vision-card:hover::after {
             opacity: 1;
+            padding: 4.5px;
         }
 
         .vision-icon-wrapper {
-            width: 80px;
-            height: 80px;
-            border-radius: 50%;
-            background: linear-gradient(135deg, rgba(139, 92, 246, 0.1), rgba(236, 72, 153, 0.1));
+            width: 85px;
+            height: 85px;
+            border-radius: 24px;
+            background: rgba(139, 92, 246, 0.1);
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 2rem;
+            font-size: 2.5rem;
             color: var(--primary);
-            margin: 0 auto 25px;
+            margin-bottom: 2rem;
             border: 1px solid rgba(139, 92, 246, 0.2);
-            box-shadow: 0 0 20px rgba(139, 92, 246, 0.1);
-            transition: all 0.5s ease;
+            box-shadow: 0 0 20px rgba(139, 92, 246, 0.15);
+            transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Eyelid Reveal Effect */
+        .vision-icon-wrapper .eyelid {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(139, 92, 246, 0.2);
+            z-index: 10;
+            transition: transform 1.2s cubic-bezier(0.4, 0, 0.2, 1);
+            transform-origin: top;
+        }
+
+        .vision-card:hover .eyelid {
+            transform: scaleY(0);
         }
 
         .vision-card:hover .vision-icon-wrapper {
             background: linear-gradient(135deg, var(--primary), var(--secondary));
             color: white;
-            box-shadow: 0 0 30px rgba(139, 92, 246, 0.4);
-            transform: scale(1.1) rotate(5deg);
+            box-shadow: 0 0 40px rgba(139, 92, 246, 0.4);
+            transform: translateY(-5px);
         }
 
-        @keyframes rotate {
-            100% {
-                transform: rotate(360deg);
+        .vision-card h3 {
+            margin-bottom: 1rem;
+            font-size: 1.6rem;
+            font-weight: 800;
+            letter-spacing: -0.025em;
+        }
+
+        .vision-card p {
+            font-size: 0.95rem !important;
+            line-height: 1.6 !important;
+            color: var(--text-secondary);
+            opacity: 0.9;
+        }
+
+        @media (max-width: 768px) {
+            .about-hero {
+                padding: 120px 0 60px;
+                min-height: auto !important;
+            }
+
+            .about-hero h1 {
+                font-size: 2.5rem !important;
+            }
+
+            .platform-intro {
+                flex-direction: column;
+                gap: 40px;
+                padding: 60px 0;
+            }
+
+            .platform-image,
+            .platform-content {
+                width: 100%;
+            }
+
+            .platform-content h2 {
+                font-size: 2rem !important;
+            }
+
+            .vision-mission-layout {
+                flex-direction: column;
+                gap: 40px;
+                margin-top: 20px;
+            }
+
+            .vm-cards,
+            .vm-illustration {
+                width: 100%;
+            }
+
+            .vision-card {
+                max-width: 100%;
+                margin: 0 auto 20px;
+                aspect-ratio: auto;
+                padding: 2rem;
+                min-height: 300px;
+            }
+
+            .dev-grid {
+                grid-template-columns: 1fr;
+                gap: 25px;
+            }
+
+            .illustration-container {
+                max-width: 100%;
+            }
+
+            .section-reveal {
+                padding-left: 1.5rem;
+                padding-right: 1.5rem;
             }
         }
     </style>
@@ -336,6 +515,9 @@
             <a href="about" class="nav-item">About Us</a>
             <a href="contact" class="nav-item">Contact</a>
             <a href="student-signup" class="nav-btn btn-login">Login</a>
+        </div>
+        <div class="mobile-menu-btn">
+            <i class="fas fa-bars"></i>
         </div>
     </nav>
 
@@ -475,142 +657,530 @@
 
     <!-- Vision & Mission Section -->
     <section class="container section-reveal active" style="padding-bottom: 80px;">
-        <div class="dev-grid"
-            style="margin-top: 0; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 40px;">
-            <!-- Vision -->
-            <div class="vision-card reveal-up active">
-                <div class="vision-icon-wrapper">
-                    <i class="fas fa-eye"></i>
+        <div class="text-center" style="margin-bottom: 50px;">
+            <h2 style="font-size: 2.5rem; font-weight: 800; margin-bottom: 1rem;">Our <span
+                    class="text-gradient">Mission & Vision</span></h2>
+        </div>
+
+        <div class="vision-mission-layout">
+            <div class="vm-cards">
+                <!-- Vision -->
+                <div class="vision-card reveal-up active">
+                    <div class="vision-icon-wrapper">
+                        <i class="fas fa-eye" style="position: absolute; z-index: 3; font-size: 2.2rem;"></i>
+                        <div class="eyelid"></div>
+                    </div>
+                    <h3 class="dev-name">Our Vision</h3>
+                    <p class="dev-bio">
+                        To democratize access to elite-level technical education, creating a world where every dedicated
+                        student has the roadmap and mentorship to crack top-tier engineering roles.
+                    </p>
                 </div>
-                <h3 class="dev-name" style="margin-bottom: 15px; font-size: 1.75rem;">Our Vision</h3>
-                <p class="dev-bio" style="font-size: 1.15rem; line-height: 1.7;">
-                    To democratize access to elite-level technical education, creating a world where every dedicated
-                    student has the roadmap and mentorship to crack top-tier engineering roles, regardless of their
-                    background.
-                </p>
+
+                <!-- Mission -->
+                <div class="vision-card reveal-up active" style="transition-delay: 0.1s;">
+                    <div class="vision-icon-wrapper">
+                        <i class="fas fa-rocket" style="position: absolute; z-index: 3; font-size: 2.2rem;"></i>
+                    </div>
+                    <h3 class="dev-name">Our Mission</h3>
+                    <p class="dev-bio">
+                        We are on a mission to simplify complex algorithms into intuitive patterns. By bridging the gap
+                        between academic theory and industry application, we empower students to code.
+                    </p>
+                </div>
             </div>
 
-            <!-- Mission -->
-            <div class="vision-card reveal-up active" style="transition-delay: 0.1s;">
-                <div class="vision-icon-wrapper">
-                    <i class="fas fa-rocket"></i>
+            <div class="vm-illustration reveal-right">
+                <div class="illustration-container">
+                    <img id="vision-mission-img" src="images/vision-mission.png" alt="Vision Mission Illustration">
+                    <div class="illustration-glow"></div>
                 </div>
-                <h3 class="dev-name" style="margin-bottom: 15px; font-size: 1.75rem;">Our Mission</h3>
-                <p class="dev-bio" style="font-size: 1.15rem; line-height: 1.7;">
-                    We are on a mission to simplify complex algorithms into intuitive patterns. By bridging the gap
-                    between academic theory and industry application, we empower students to code with confidence and
-                    logic.
-                </p>
             </div>
         </div>
+
+        <style>
+            .vision-mission-layout {
+                display: flex;
+                align-items: center;
+                gap: 60px;
+                margin-top: 40px;
+            }
+
+            .vm-cards {
+                flex: 1;
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+                gap: 30px;
+            }
+
+            .vm-illustration {
+                flex: 1;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+
+            .illustration-container {
+                position: relative;
+                width: 100%;
+                max-width: 500px;
+                aspect-ratio: 1/1;
+                border-radius: 40px;
+                overflow: hidden;
+                box-shadow: 0 30px 60px -12px rgba(0, 0, 0, 0.5);
+                animation: illustrationFloat 6s ease-in-out infinite;
+                border: 1px solid rgba(139, 92, 246, 0.2);
+            }
+
+            .illustration-container img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+                transition: transform 0.5s ease;
+            }
+
+            .illustration-glow {
+                position: absolute;
+                inset: 0;
+                background: radial-gradient(circle at center, rgba(139, 92, 246, 0.1), transparent 70%);
+                pointer-events: none;
+                z-index: 1;
+                mix-blend-mode: overlay;
+            }
+
+            @keyframes illustrationFloat {
+
+                0%,
+                100% {
+                    transform: translateY(0) scale(1);
+                    box-shadow: 0 30px 60px -12px rgba(0, 0, 0, 0.5);
+                }
+
+                50% {
+                    transform: translateY(-15px) scale(1.02);
+                    box-shadow: 0 40px 70px -12px rgba(139, 92, 246, 0.3);
+                }
+            }
+
+            @media (max-width: 992px) {
+                .vision-mission-layout {
+                    flex-direction: column;
+                    text-align: center;
+                }
+
+                .vm-cards {
+                    width: 100%;
+                }
+
+                .vm-illustration {
+                    width: 100%;
+                }
+            }
+
+            /* Restored Vision-Mission Card Styles */
+            .vision-card {
+                background: rgba(255, 255, 255, 0.03);
+                border: 1px solid rgba(255, 255, 255, 0.1);
+                border-radius: 30px;
+                padding: 40px 30px;
+                position: relative;
+                overflow: hidden;
+                transition: transform 0.3s ease, box-shadow 0.3s ease;
+                text-align: center;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                height: 100%;
+                backdrop-filter: blur(10px);
+            }
+
+            /* Gradient Border Effect */
+            .vision-card::before {
+                content: '';
+                position: absolute;
+                inset: 0;
+                border-radius: 30px;
+                padding: 1px;
+                background: linear-gradient(135deg, var(--primary), var(--secondary), transparent);
+                -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+                mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+                -webkit-mask-composite: xor;
+                mask-composite: exclude;
+                opacity: 0.7;
+            }
+
+            .vision-card:hover {
+                transform: translateY(-10px);
+                box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+            }
+
+            /* Vision Icon Wrapper */
+            .vision-icon-wrapper {
+                width: 80px;
+                height: 80px;
+                margin-bottom: 25px;
+                position: relative;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                font-size: 2.2rem;
+                color: white;
+                background: rgba(255, 255, 255, 0.05);
+                border-radius: 50%;
+                border: 1px solid rgba(255, 255, 255, 0.1);
+                box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+                background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.02));
+                overflow: hidden;
+            }
+
+            .vision-icon-wrapper i {
+                color: white;
+            }
+
+            /* Rocket Animation */
+            .vision-icon-wrapper .fa-rocket {
+                animation: rocketPulse 2s ease-in-out infinite;
+            }
+
+            @keyframes rocketPulse {
+
+                0%,
+                100% {
+                    transform: translateY(0) scale(1);
+                }
+
+                50% {
+                    transform: translateY(-5px) scale(1.1);
+                }
+            }
+
+            /* Eye Animation */
+            .eyelid {
+                position: absolute;
+                width: 100%;
+                height: 100%;
+                background: var(--surface);
+                /* Covers the eye */
+                top: -100%;
+                left: 0;
+                z-index: 5;
+                /* Above the icon */
+                animation: blink 4s infinite;
+                border-radius: 50%;
+            }
+
+            @keyframes blink {
+
+                0%,
+                45%,
+                55%,
+                100% {
+                    top: -100%;
+                }
+
+                50% {
+                    top: 0;
+                }
+            }
+        </style>
     </section>
 
     <section class="container section-reveal active" style="padding-bottom: 100px;">
-        <div class="text-center" style="margin-bottom: 60px;">
+        <div class="dev-section-container">
+            <!-- Left Side: Text Content -->
+            <div class="dev-info-side reveal-right">
+                <h4
+                    style="color: var(--primary); font-weight: 700; margin-bottom: 10px; text-transform: uppercase; letter-spacing: 1px;">
+                    Our Expert Team</h4>
+                <h2 style="font-size: 3.5rem; font-weight: 800; margin-bottom: 1.5rem; line-height: 1.1;">Meet the
+                    <span class="text-gradient"
+                        style="background: linear-gradient(135deg, white, #a78bfa); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;">Developers</span>
+                </h2>
+                <p
+                    style="font-size: 1.1rem; color: var(--text-secondary); margin-bottom: 2rem; line-height: 1.6; max-width: 400px;">
+                    Expert trainers and mentors dedicated to simplifying complex engineering concepts and accelerating
+                    your
+                    technical mastery.
+                </p>
+            </div>
 
-            <h2 style="font-size: 3.5rem; font-weight: 800; margin-bottom: 1rem; line-height: 1.2;">Meet the
-                <span class="text-gradient"
-                    style="background: linear-gradient(135deg, white, #a78bfa); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;">Developers</span>
-            </h2>
-            <p
-                style="font-size: 1.1rem; color: var(--text-secondary); max-width: 600px; margin: 0 auto; line-height: 1.6;">
-                Expert trainers and mentors dedicated to simplifying complex engineering concepts and accelerating your
-                technical mastery
-            </p>
+            <!-- Right Side: 2x2 Grid -->
+            <div class="dev-grid-side">
+                <div class="dev-grid">
+                    <!-- Supriya -->
+                    <div class="dev-card reveal-up active">
+                        <div class="dev-image-space">
+                            <i class="fas fa-code-branch"></i>
+                            <img src="images/IMG_20260204_141446.png.jpeg" alt="Supriya" style="opacity: 1;">
+                        </div>
+                        <div class="dev-card-content">
+                            <h3 class="dev-name">Supriya S Poojary</h3>
+                            <span class="dev-role">Full stack web developer</span>
+                            <p class="dev-bio">Expert in architecting scalable full-stack solutions and delivering
+                                seamless, user-centric web experiences.</p>
+
+                            <div class="card-social-footer">
+                                <a href="mailto:supriyaspoojarypoojary@gmail.com" class="social-btn-footer"><i
+                                        class="fas fa-envelope"></i></a>
+                                <a href="https://www.linkedin.com/in/supriya-s-poojary-547a26259" target="_blank"
+                                    class="social-btn-footer"><i class="fab fa-linkedin-in"></i></a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Akanksha -->
+                    <div class="dev-card reveal-up active" style="transition-delay: 0.1s;">
+                        <div class="dev-image-space">
+                            <i class="fas fa-user-ninja"></i>
+                            <img src="images/WhatsApp Image 2026-02-04 at 3.33.44 PM.jpeg" alt="Akanksha"
+                                style="opacity: 1;">
+                        </div>
+                        <div class="dev-card-content">
+                            <h3 class="dev-name">Akanksha</h3>
+                            <span class="dev-role">Full stack web developer</span>
+                            <p class="dev-bio">Dedicated to building high-performance web applications with a focus on
+                                robust backend systems.</p>
+
+                            <div class="card-social-footer">
+                                <a href="mailto:akankshaa412@gmail.com" class="social-btn-footer"><i
+                                        class="fas fa-envelope"></i></a>
+                                <a href="https://www.linkedin.com/in/akanksha-acharya-b5693625b?utm_source=share_via&utm_content=profile&utm_medium=member_android"
+                                    target="_blank" class="social-btn-footer"><i class="fab fa-linkedin-in"></i></a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Shrushti -->
+                    <div class="dev-card reveal-up active" style="transition-delay: 0.2s;">
+                        <div class="dev-image-space">
+                            <i class="fas fa-rocket"></i>
+                            <img src="images/WhatsApp Image 2026-02-04 at 5.01.59 PM.jpeg" alt="Shrushti"
+                                style="opacity: 1;">
+                        </div>
+                        <div class="dev-card-content">
+                            <h3 class="dev-name">Shrushti</h3>
+                            <span class="dev-role">Frontend developer</span>
+                            <p class="dev-bio">Passionate about crafting responsive and interactive user interfaces with
+                                modern frontend technologies.</p>
+
+                            <div class="card-social-footer">
+                                <a href="mailto:shrishti7672@gmail.com" class="social-btn-footer"><i
+                                        class="fas fa-envelope"></i></a>
+                                <a href="https://www.linkedin.com/in/shrishti-singh-2b5926273" target="_blank"
+                                    class="social-btn-footer"><i class="fab fa-linkedin-in"></i></a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Akhila -->
+                    <div class="dev-card reveal-up active" style="transition-delay: 0.3s;">
+                        <div class="dev-image-space">
+                            <i class="fas fa-brain"></i>
+                            <img src="images/WhatsApp Image 2026-02-04 at 5.01.24 PM.jpeg" alt="Akhila"
+                                style="opacity: 1;">
+                        </div>
+                        <div class="dev-card-content">
+                            <h3 class="dev-name">Akhila</h3>
+                            <span class="dev-role">Frontend developer</span>
+                            <p class="dev-bio">Specializing in creating intuitive design systems and translationg
+                                complex requirements into elegant code.</p>
+
+                            <div class="card-social-footer">
+                                <a href="mailto:akhilamoolya630@gmail.com" class="social-btn-footer"><i
+                                        class="fas fa-envelope"></i></a>
+                                <a href="https://www.linkedin.com/in/akhila630" target="_blank"
+                                    class="social-btn-footer"><i class="fab fa-linkedin-in"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
 
-        <div class="dev-grid">
-            <!-- Supriya -->
-            <div class="dev-card reveal-up active">
-                <div class="dev-image-space">
-                    <i class="fas fa-code-branch"></i>
-                    <img src="images/IMG_20260204_141446.png.jpeg" alt="Supriya" style="opacity: 1;">
-                    <div class="social-overlay">
-                        <a href="mailto:supriyaspoojarypoojary@gmail.com" class="social-btn"><i
-                                class="fas fa-envelope"></i></a>
-                        <a href="https://www.linkedin.com/in/supriya-s-poojary-547a26259" target="_blank"
-                            class="social-btn"><i class="fab fa-linkedin-in"></i></a>
-                    </div>
-                </div>
-                <h3 class="dev-name">Supriya S Poojary</h3>
-                <span class="dev-role">Full stack web developer</span>
-                <p class="dev-bio">Expert in architecting scalable full-stack solutions and delivering seamless,
-                    user-centric web experiences.</p>
-                <div class="skills-tag">
-                    <span class="skill">Full Stack Development</span>
-                    <span class="skill">Backend Development</span>
-                    <span class="skill">Web Architecture</span>
-                    <span class="skill">UI/UX Design</span>
-                </div>
-            </div>
+        <style>
+            /* Split Layout Container */
+            .dev-section-container {
+                display: flex;
+                align-items: flex-start;
+                /* Align text to top */
+                gap: 50px;
+                max-width: 1200px;
+                margin: 0 auto;
+                padding: 40px 20px 0 20px;
+                /* Add top padding */
+            }
 
-            <!-- Akanksha -->
-            <div class="dev-card reveal-up active" style="transition-delay: 0.1s;">
-                <div class="dev-image-space">
-                    <i class="fas fa-user-ninja"></i>
-                    <img src="images/WhatsApp Image 2026-02-04 at 3.33.44 PM.jpeg" alt="Akanksha" style="opacity: 1;">
-                    <div class="social-overlay">
-                        <a href="mailto:akankshaa412@gmail.com" class="social-btn"><i class="fas fa-envelope"></i></a>
-                        <a href="https://www.linkedin.com/in/akanksha-acharya-b5693625b?utm_source=share_via&utm_content=profile&utm_medium=member_android"
-                            target="_blank" class="social-btn"><i class="fab fa-linkedin-in"></i></a>
-                    </div>
-                </div>
-                <h3 class="dev-name">Akanksha</h3>
-                <span class="dev-role">Full stack web developer</span>
-                <p class="dev-bio">Dedicated to building high-performance web applications with a focus on robust
-                    backend systems and modern technologies.</p>
-                <div class="skills-tag">
-                    <span class="skill">Backend Systems</span>
-                    <span class="skill">Frontend Frameworks</span>
-                    <span class="skill">System Design</span>
-                </div>
-            </div>
+            .dev-info-side {
+                flex: 1;
+                text-align: left;
+            }
 
-            <!-- Shrushti -->
-            <div class="dev-card reveal-up active" style="transition-delay: 0.2s;">
-                <div class="dev-image-space">
-                    <i class="fas fa-rocket"></i>
-                    <img src="images/WhatsApp Image 2026-02-04 at 5.01.59 PM.jpeg" alt="Shrushti" style="opacity: 1;">
-                    <div class="social-overlay">
-                        <a href="mailto:shrishti7672@gmail.com" class="social-btn"><i class="fas fa-envelope"></i></a>
-                        <a href="https://www.linkedin.com/in/shrishti-singh-2b5926273" target="_blank"
-                            class="social-btn"><i class="fab fa-linkedin-in"></i></a>
-                    </div>
-                </div>
-                <h3 class="dev-name">Shrushti</h3>
-                <span class="dev-role">Frontend developer</span>
-                <p class="dev-bio">Passionate about crafting intuitive user interfaces and bringing designs to life with
-                    clean, efficient code.</p>
-                <div class="skills-tag">
-                    <span class="skill">UI Architecture</span>
-                    <span class="skill">Modern CSS</span>
-                    <span class="skill">Responsive Design</span>
-                </div>
-            </div>
+            .dev-grid-side {
+                flex: 1.5;
+                /* Grid takes more space */
+            }
 
-            <!-- Akhila -->
-            <div class="dev-card reveal-up active" style="transition-delay: 0.3s;">
-                <div class="dev-image-space">
-                    <i class="fas fa-brain"></i>
-                    <img src="images/WhatsApp Image 2026-02-04 at 5.01.24 PM.jpeg" alt="Akhila" style="opacity: 1;">
-                    <div class="social-overlay">
-                        <a href="mailto:akhilamoolya630@gmail.com" class="social-btn"><i
-                                class="fas fa-envelope"></i></a>
-                        <a href="https://www.linkedin.com/in/akhila630" target="_blank" class="social-btn"><i
-                                class="fab fa-linkedin-in"></i></a>
-                    </div>
-                </div>
-                <h3 class="dev-name">Akhila</h3>
-                <span class="dev-role">Frontend developer</span>
-                <p class="dev-bio">Specializes in building responsive and accessible web components that provide a
-                    seamless user experience across all devices.</p>
-                <div class="skills-tag">
-                    <span class="skill">Frontend Engineering</span>
-                    <span class="skill">User Experience</span>
-                    <span class="skill">Web Performance</span>
-                </div>
-            </div>
-        </div>
+            /* 2x2 Grid Layout */
+            .dev-grid {
+                display: grid;
+                grid-template-columns: repeat(2, 1fr);
+                gap: 20px;
+                margin-top: 0;
+            }
+
+            /* Professional Vertical Card Styling (Like Previous) */
+            .dev-card {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                text-align: center;
+                overflow: hidden;
+                background: var(--surface);
+                border: 1px solid var(--border);
+                border-top: 4px solid var(--primary);
+                /* Gradient border accent */
+                border-radius: 20px;
+                padding: 20px;
+                transition: all 0.3s ease;
+                height: 100%;
+                /* Ensure uniform height */
+            }
+
+            .dev-card:hover {
+                transform: translateY(-5px);
+                box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+                border-top-color: #a78bfa;
+                /* Hover accent */
+            }
+
+            /* Full Portrait Image Style - CIRCLE UPDATE */
+            .dev-image-space {
+                width: 160px;
+                /* Slightly larger circle */
+                height: 160px;
+                aspect-ratio: 1/1;
+                /* Square for circle */
+                border-radius: 50%;
+                /* Circle shape */
+                margin-bottom: 20px;
+                overflow: hidden;
+                position: relative;
+                border: 3px solid rgba(139, 92, 246, 0.3);
+                /* Optional ring */
+            }
+
+            .dev-image-space img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+                object-position: top center;
+                transition: transform 0.3s ease;
+            }
+
+            .dev-card:hover .dev-image-space img {
+                transform: scale(1.05);
+            }
+
+            /* Content Styling */
+            .dev-card-content {
+                width: 100%;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                flex-grow: 1;
+            }
+
+            .dev-name {
+                font-size: 1.4rem;
+                margin-bottom: 5px;
+                color: var(--text-main);
+                font-weight: 700;
+            }
+
+            .dev-role {
+                font-size: 0.85rem;
+                font-weight: 700;
+                color: var(--primary);
+                margin-bottom: 15px;
+                text-transform: uppercase;
+                letter-spacing: 1px;
+            }
+
+            /* Show Bios again */
+            .dev-bio {
+                font-size: 0.95rem;
+                color: var(--text-secondary);
+                margin-bottom: 20px;
+                line-height: 1.6;
+                display: block !important;
+                /* Force show */
+            }
+
+            .skills-tag {
+                display: none;
+                /* Keep skills hidden for cleaner look unless requested */
+            }
+
+            /* Responsive Adjustments */
+            @media (max-width: 992px) {
+                .dev-section-container {
+                    flex-direction: column;
+                    text-align: center;
+                }
+
+                .dev-info-side {
+                    text-align: center;
+                    margin-bottom: 40px;
+                }
+
+                .dev-info-side p {
+                    margin-left: auto;
+                    margin-right: auto;
+                }
+
+                .dev-grid {
+                    grid-template-columns: repeat(2, 1fr);
+                    /* Keep 2 cols on tablet */
+                }
+            }
+
+            @media (max-width: 500px) {
+                .dev-grid {
+                    grid-template-columns: 1fr;
+                    /* Stack on mobile */
+                }
+            }
+
+            .card-social-footer {
+                display: flex;
+                justify-content: center;
+                gap: 15px;
+                width: 100%;
+                margin-top: auto;
+                /* Push to bottom */
+            }
+
+            .social-btn-footer {
+                width: 40px;
+                height: 40px;
+                background: var(--surface-elevated);
+                border: none;
+                color: var(--text-secondary);
+                border-radius: 50%;
+                /* Circular buttons */
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                text-decoration: none;
+                transition: all 0.3s ease;
+            }
+
+            .social-btn-footer:hover {
+                background: var(--primary);
+                color: white;
+                transform: translateY(-3px);
+            }
+        </style>
     </section>
 
     <!-- FAQ Section -->
