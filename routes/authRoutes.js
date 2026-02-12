@@ -7,5 +7,6 @@ router.post('/login', authController.login);
 router.post('/student/signup', authController.studentSignup);
 router.post('/student/login', authController.studentLogin);
 router.get('/students', verifyToken, authController.getStudents);
+router.put('/student/profile', verifyToken, authController.updateStudentProfile);
 
 module.exports = router;

@@ -514,7 +514,7 @@
             <a href="courses" class="nav-item">Courses</a>
             <a href="about" class="nav-item">About Us</a>
             <a href="contact" class="nav-item">Contact</a>
-            <a href="student-signup" class="nav-btn btn-login">Login</a>
+            <a href="student-login" class="nav-btn btn-login">Login</a>
         </div>
         <div class="mobile-menu-btn">
             <i class="fas fa-bars"></i>
@@ -1315,7 +1315,7 @@
     </section>
 
     <!-- FAQ Section -->
-    <section class="container section-reveal active" style="padding: 100px 0;">
+    <section class="container section-reveal active" style="padding: 20px 0 100px;">
         <div class="text-center" style="margin-bottom: 60px;">
             <span class="section-badge"
                 style="margin-bottom: 1.5rem; background: rgba(139, 92, 246, 0.1); border-color: rgba(139, 92, 246, 0.2); color: var(--primary);">FREQUENTLY
@@ -1602,132 +1602,6 @@
             100% {
                 transform: rotate(360deg);
             }
-        }
-
-        /* CTA Mobile Responsiveness */
-        @media (max-width: 768px) {
-            .cta-section {
-                padding: 60px 0;
-            }
-
-            .cta-container {
-                padding: 2.5rem 1.5rem;
-                border-radius: var(--radius-lg);
-                margin: 0 1rem;
-            }
-
-            .cta-container h2 {
-                font-size: 1.75rem;
-            }
-
-            .cta-buttons {
-                flex-direction: column;
-                gap: 0.75rem;
-            }
-
-            .cta-buttons .btn {
-                width: 100%;
-            }
-        }
-
-        .cta-container {
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
-            border-radius: var(--radius-xl);
-            padding: 4rem 2rem;
-            text-align: center;
-            position: relative;
-            overflow: hidden;
-            box-shadow: 0 20px 50px -10px rgba(139, 92, 246, 0.5);
-            max-width: 900px;
-            margin: 0 auto;
-            z-index: 1;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-        }
-
-        .cta-container::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0.2), transparent 50%);
-            animation: floatingGlow 10s ease-in-out infinite;
-            z-index: 1;
-            pointer-events: none;
-        }
-
-        @keyframes floatingGlow {
-            0% {
-                transform: translate(-20%, -20%) scale(1);
-                opacity: 0.3;
-            }
-
-            50% {
-                transform: translate(20%, 20%) scale(1.2);
-                opacity: 0.7;
-            }
-
-            100% {
-                transform: translate(-20%, -20%) scale(1);
-                opacity: 0.3;
-            }
-        }
-
-        .cta-container::after {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: url('data:image/svg+xml,<svg width="100" height="100" xmlns="http://www.w3.org/2000/svg"><circle cx="50" cy="50" r="2" fill="white" opacity="0.1"/></svg>');
-            opacity: 0.1;
-            z-index: 0;
-        }
-
-        .cta-content {
-            position: relative;
-            z-index: 2;
-        }
-
-        .cta-container h2 {
-            font-size: 2.25rem;
-            font-weight: 800;
-            color: white;
-            margin-bottom: 0.75rem;
-        }
-
-        .cta-container p {
-            font-size: 1.1rem;
-            color: rgba(255, 255, 255, 0.9);
-            margin-bottom: 2rem;
-            max-width: 600px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-
-        .cta-buttons {
-            display: flex;
-            gap: 1rem;
-            justify-content: center;
-            flex-wrap: wrap;
-        }
-
-        .cta-buttons .btn {
-            padding: 1rem 2.5rem;
-            font-size: 1.1rem;
-        }
-
-        .btn-white {
-            background: white;
-            color: var(--primary);
-            border: none;
-        }
-
-        .btn-white:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 25px rgba(255, 255, 255, 0.3);
         }
     </style>
 

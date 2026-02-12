@@ -120,3 +120,37 @@ exports.getStudents = async (req, res) => {
         res.status(500).json({ message: 'Server Error' });
     }
 };
+
+// Update Student Profile
+exports.updateStudentProfile = async (req, res) => {
+    const { id } = req.user; // From verifyToken middleware
+    const { name, email } = req.body;
+
+    try {
+        if (!name || !email) {
+            return res.status(400).json({ message: 'Name and email are required' });
+        }
+
+        // Check if email is taken by another student
+        const existingStudent = await pool.query('SELECT * FROM students WHERE email = $1 AND id != $2', [email, id]);
+        if (existingStudent.rows.length > 0) {
+            return res.status(400).json({ message: 'Email already in use' });
+        }
+
+        const result = await pool.query(
+            'UPDATE students SET name = $1, email = $2 WHERE id = $3 RETURNING id, name, email, created_at',
+            [name, email, id]
+        );
+
+        if (result.rows.length === 0) {
+            return res.status(404).json({ message: 'Student not found' });
+        }
+
+        const updatedUser = result.rows[0];
+        res.json({ user: { ...updatedUser, role: 'student' }, message: 'Profile updated successfully' });
+
+    } catch (err) {
+        console.error('Update profile error:', err.message);
+        res.status(500).json({ message: 'Server Error' });
+    }
+};

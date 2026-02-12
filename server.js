@@ -14,8 +14,8 @@ app.use(cors());
 
 // Serve static files with caching
 app.use(express.static(path.join(__dirname, 'public'), {
-    maxAge: '1d', // Cache static assets for 1 day
-    etag: true
+    maxAge: '0', // Disable caching for development
+    etag: false
 }));
 
 // Routes
@@ -71,6 +71,14 @@ app.get('/admin-login', (req, res) => {
 
 app.get('/cpp-dashboard', (req, res) => {
     res.sendFile(path.join(__dirname, 'public', 'cpp-dashboard.html'));
+});
+
+app.get('/cpp-lesson', (req, res) => {
+    res.sendFile(path.join(__dirname, 'public', 'cpp-lesson.html'));
+});
+
+app.get('/profile', (req, res) => {
+    res.sendFile(path.join(__dirname, 'public', 'profile.html'));
 });
 
 // Start Server

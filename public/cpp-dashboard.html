@@ -4,33 +4,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Learn C++ Programming - AIONYX</title>
+    <title>Learn C++ - AIONYX</title>
     <link rel="icon" type="image/svg+xml" href="/favicon.svg">
-
-    <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap"
         rel="stylesheet">
-
-    <!-- Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-
-    <!-- Theme CSS -->
     <link rel="stylesheet" href="css/theme.css">
-
-    <!-- Prism.js for Syntax Highlighting -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css">
-    <link rel="stylesheet"
-        href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/line-numbers/prism-line-numbers.min.css">
-
     <style>
         body {
             padding-top: 80px;
-        }
-
-        @media (max-width: 768px) {
-            body {
-                padding-top: 70px;
-            }
+            /* Ensure global theme background is visible */
+            background: var(--background);
         }
 
         .dashboard-container {
@@ -38,7 +22,7 @@
             margin: 0 auto;
             padding: 2rem;
             display: grid;
-            grid-template-columns: 320px 1fr;
+            grid-template-columns: 350px 1fr;
             gap: 2rem;
             animation: fadeIn 0.8s ease-out;
         }
@@ -46,23 +30,224 @@
         @media (max-width: 1024px) {
             .dashboard-container {
                 grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            body {
+                padding-top: 70px;
+            }
+
+            .dashboard-container {
                 padding: 1rem;
+                gap: 1.5rem;
+            }
+
+            .hero-section {
+                padding: 2rem 1.5rem;
+                flex-direction: column;
+                text-align: center;
+                margin-bottom: 1.5rem;
+            }
+
+            .hero-content {
+                max-width: 100%;
+            }
+
+            .hero-title {
+                font-size: 1.8rem;
+            }
+
+            .hero-subtitle {
+                font-size: 1rem;
+                margin-bottom: 1rem;
+            }
+
+            .hero-image {
+                display: none;
+                /* Hide image on mobile to prevent overlap */
+            }
+
+            .sidebar {
+                position: relative;
+                top: 0;
+            }
+
+            .profile-card,
+            .progress-card {
+                padding: 1.5rem;
+            }
+
+            .profile-avatar {
+                width: 80px;
+                height: 80px;
+                font-size: 2rem;
+            }
+
+            .progress-circle-container {
+                width: 140px;
+                height: 140px;
+            }
+
+            .module-header {
+                padding: 1.25rem 1.5rem;
+            }
+
+            .module-title {
+                font-size: 1.1rem;
+            }
+
+            .lesson-link {
+                padding: 1rem 1.5rem 1rem 4rem;
+            }
+
+            .lesson-link:hover {
+                padding-left: 4.5rem;
+            }
+
+            .assessment-card {
+                padding: 2rem;
+                flex-direction: column;
+                text-align: center;
                 gap: 1.5rem;
             }
         }
 
-        /* Sidebar */
+        @media (max-width: 480px) {
+            .dashboard-container {
+                padding: 0.75rem;
+                gap: 1rem;
+            }
+
+            .hero-section {
+                padding: 1.5rem 1rem;
+                margin-bottom: 1rem;
+            }
+
+            .hero-title {
+                font-size: 1.5rem;
+                margin-bottom: 0.75rem;
+            }
+
+            .hero-subtitle {
+                font-size: 0.9rem;
+                margin-bottom: 0.75rem;
+            }
+
+            .hero-image {
+                display: none;
+            }
+
+            .profile-card,
+            .progress-card {
+                padding: 1.25rem;
+            }
+
+            .module-header {
+                padding: 1rem;
+            }
+
+            .module-title {
+                font-size: 1rem;
+                gap: 0.75rem;
+            }
+
+            .module-number {
+                width: 35px;
+                height: 35px;
+                font-size: 1rem;
+            }
+
+            .lesson-link {
+                padding: 0.875rem 1rem 0.875rem 3rem;
+                font-size: 0.9rem;
+            }
+
+            .lesson-link:hover {
+                padding-left: 3.5rem;
+            }
+
+            .assessment-card {
+                padding: 1.5rem;
+            }
+
+            .assessment-card h3 {
+                font-size: 1.2rem;
+            }
+
+            .btn-assessment {
+                padding: 0.875rem 1.5rem;
+                font-size: 0.9rem;
+            }
+        }
+
+        /* Hero Section - Matching Landing Page */
+        .hero-section {
+            background: linear-gradient(135deg, rgba(139, 92, 246, 0.1), rgba(236, 72, 153, 0.1));
+            border: 1px solid var(--border);
+            border-radius: var(--radius-lg);
+            padding: 3rem;
+            margin-bottom: 2.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            position: relative;
+            overflow: hidden;
+            box-shadow: var(--shadow-lg);
+        }
+
+        .hero-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at top right, rgba(236, 72, 153, 0.15), transparent 40%);
+            z-index: 0;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            max-width: 60%;
+        }
+
+        .hero-title {
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-subtitle {
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+            margin-bottom: 2rem;
+            line-height: 1.6;
+        }
+
+        .hero-image {
+            position: relative;
+            z-index: 1;
+            width: 200px;
+            /* Adjusted size */
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .hero-image img {
+            width: 100%;
+            filter: drop-shadow(0 10px 20px rgba(0, 0, 0, 0.3));
+        }
+
+        /* Sidebar similar to student-dashboard */
         .sidebar {
             position: sticky;
             top: 100px;
             height: fit-content;
-            animation: slideInLeft 0.8s ease-out;
-        }
-
-        @media (max-width: 1024px) {
-            .sidebar {
-                position: static;
-            }
         }
 
         .profile-card {
@@ -89,1463 +274,272 @@
             box-shadow: var(--glow-primary);
         }
 
-        .profile-name {
-            font-size: 1.5rem;
-            font-weight: 700;
-            margin-bottom: 0.5rem;
-        }
-
-        .profile-email {
-            color: var(--text-muted);
-            font-size: 0.9rem;
-            margin-bottom: 1.5rem;
-        }
-
         .progress-card {
             background: var(--surface);
             border: 1px solid var(--border);
             border-radius: var(--radius-lg);
-            padding: 1.5rem;
-            box-shadow: var(--shadow-md);
-        }
-
-        .progress-header {
-            font-size: 1.1rem;
-            font-weight: 700;
-            margin-bottom: 1.5rem;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-
-        .progress-header i {
-            color: var(--primary);
-        }
-
-        .stat-item {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 1rem;
-            background: var(--background);
-            border-radius: var(--radius-md);
-            margin-bottom: 1rem;
-            transition: all var(--transition-base);
-        }
-
-        .stat-item:hover {
-            transform: translateX(5px);
-            background: var(--surface-hover);
-        }
-
-        .stat-label {
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            color: var(--text-secondary);
-        }
-
-        .stat-value {
-            font-weight: 700;
-            font-size: 1.1rem;
-        }
-
-        .total-completed {
-            text-align: center;
-            padding: 2rem 1rem;
-            background: linear-gradient(135deg, rgba(139, 92, 246, 0.1), rgba(236, 72, 153, 0.1));
-            border-radius: var(--radius-md);
-            margin-top: 1.5rem;
-        }
-
-        .total-number {
-            font-size: 3rem;
-            font-weight: 800;
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            display: block;
-            margin-bottom: 0.5rem;
-        }
-
-        .total-label {
-            color: var(--text-muted);
-            font-size: 0.9rem;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-
-        /* Main Content */
-        .main-content {
-            animation: slideInRight 0.8s ease-out;
-        }
-
-        /* Course Header Banner */
-        .course-header-banner {
-            background: linear-gradient(135deg, rgba(139, 92, 246, 0.1), rgba(236, 72, 153, 0.1));
-            border: 1px solid var(--border);
-            border-radius: var(--radius-lg);
-            padding: 2.5rem;
-            margin-bottom: 2rem;
-            display: grid;
-            grid-template-columns: 1fr auto;
-            gap: 2rem;
-            align-items: center;
-            box-shadow: var(--shadow-md);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .course-header-banner::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            right: 0;
-            width: 300px;
-            height: 300px;
-            background: radial-gradient(circle, rgba(139, 92, 246, 0.15), transparent);
-            border-radius: 50%;
-            transform: translate(30%, -30%);
-        }
-
-        .course-header-content {
-            position: relative;
-            z-index: 2;
-        }
-
-        .course-category {
-            color: var(--primary);
-            font-size: 0.9rem;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            margin-bottom: 0.5rem;
-        }
-
-        .course-header-title {
-            font-size: 2.5rem;
-            font-weight: 800;
-            margin-bottom: 0.75rem;
-            background: linear-gradient(135deg, var(--text-primary), var(--primary));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        .course-header-description {
-            color: var(--text-secondary);
-            font-size: 1rem;
-            line-height: 1.6;
-            margin-bottom: 1.5rem;
-            max-width: 700px;
-        }
-
-        .course-stats {
-            display: flex;
-            gap: 2rem;
-            margin-bottom: 1.5rem;
-        }
-
-        .course-stat {
-            display: flex;
-            flex-direction: column;
-        }
-
-        .course-stat-value {
-            font-size: 1.5rem;
-            font-weight: 800;
-            color: var(--primary);
-        }
-
-        .course-stat-label {
-            font-size: 0.85rem;
-            color: var(--text-muted);
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-        }
-
-        /* Course Track Section */
-        .course-track-section {
-            background: var(--surface);
-            border: 1px solid var(--border);
-            border-radius: var(--radius-lg);
             padding: 2rem;
-            margin-bottom: 2rem;
             box-shadow: var(--shadow-md);
+            text-align: center;
         }
 
-        .course-track-section .section-title {
-            font-size: 1.3rem;
-            font-weight: 700;
-            margin-bottom: 1.5rem;
-            display: flex;
-            align-items: center;
-            gap: 0.75rem;
+        .progress-circle-container {
+            position: relative;
+            width: 160px;
+            height: 160px;
+            margin: 0 auto 20px;
         }
 
-        .course-track-section .section-title i {
-            color: var(--primary);
+        .progress-circle-bg {
+            fill: none;
+            stroke: var(--surface-hover);
+            stroke-width: 12;
         }
 
-        .course-track-section .course-stats {
-            display: flex;
-            gap: 3rem;
-            justify-content: flex-start;
-            margin-bottom: 0;
+        .progress-circle-fg {
+            fill: none;
+            stroke: var(--secondary);
+            /* Changed to secondary (pink) to match theme */
+            stroke-width: 12;
+            stroke-dasharray: 440;
+            stroke-dashoffset: 440;
+            transition: stroke-dashoffset 1s ease-out;
+            stroke-linecap: round;
+            transform: rotate(-90deg);
+            transform-origin: 50% 50%;
+            filter: drop-shadow(0 0 5px rgba(236, 72, 153, 0.5));
         }
 
-        @media (max-width: 768px) {
-            .course-track-section .course-stats {
-                flex-wrap: wrap;
-                gap: 1.5rem;
-            }
-        }
-
-        .course-level-badge {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            background: var(--surface);
-            border: 1px solid var(--border);
-            padding: 0.5rem 1rem;
-            border-radius: var(--radius-md);
-            font-size: 0.9rem;
-            font-weight: 600;
+        .progress-text {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 2rem;
+            font-weight: 800;
             color: var(--text-primary);
         }
 
-        .course-header-actions {
-            position: relative;
-            z-index: 2;
+        /* Modules - Styled like Stat Cards from Landing Page */
+        .module-list {
             display: flex;
             flex-direction: column;
-            gap: 1rem;
-            align-items: flex-end;
+            gap: 1.5rem;
         }
 
-        .btn-start-track {
-            padding: 1rem 2rem;
+        .module-card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .module-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.3s ease;
+        }
+
+        .module-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--border-hover);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .module-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        /* Active styling - "Highlighter" */
+        .module-card.active {
+            border-color: var(--primary);
+            box-shadow: 0 0 20px rgba(139, 92, 246, 0.15);
+        }
+
+        .module-card.active::before {
+            transform: scaleX(1);
+        }
+
+        .module-header {
+            padding: 1.5rem 2rem;
+            background: rgba(255, 255, 255, 0.02);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+            border-bottom: 1px solid transparent;
+            transition: all 0.3s ease;
+        }
+
+        .module-card.active .module-header {
+            background: linear-gradient(90deg, rgba(139, 92, 246, 0.1), transparent);
+            border-bottom-color: var(--border);
+        }
+
+        .module-title {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--text-primary);
+        }
+
+        /* Gradient Icon/Number style from Landing Page */
+        .module-number {
+            width: 40px;
+            height: 40px;
             background: linear-gradient(135deg, var(--primary), var(--secondary));
             color: white;
-            border: none;
-            border-radius: var(--radius-md);
-            font-weight: 700;
-            font-size: 1rem;
-            cursor: pointer;
-            transition: all var(--transition-base);
+            border-radius: 50%;
+            /* Circle like stats icons */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.1rem;
+            font-weight: 800;
             box-shadow: var(--glow-primary);
+        }
+
+        .module-lessons {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+            display: none;
+            animation: slideInUp 0.3s ease-out;
+        }
+
+        .module-card.active .module-lessons {
+            display: block;
+        }
+
+        .lesson-item {
+            border-bottom: 1px solid var(--border);
+        }
+
+        .lesson-item:last-child {
+            border-bottom: none;
+        }
+
+        .lesson-link {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.2rem 2rem 1.2rem 5rem;
+            color: var(--text-secondary);
+            text-decoration: none;
+            transition: all 0.2s ease;
+            position: relative;
+        }
+
+        .lesson-link:hover {
+            background: rgba(255, 255, 255, 0.03);
+            color: var(--text-primary);
+            padding-left: 5.5rem;
+        }
+
+        .lesson-link i {
+            color: var(--primary);
+        }
+
+        .lesson-status {
+            font-size: 0.8rem;
+            padding: 0.25rem 0.75rem;
+            border-radius: 50px;
+            background: var(--surface-hover);
+            color: var(--text-muted);
             display: flex;
             align-items: center;
             gap: 0.5rem;
         }
 
-        .btn-start-track:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 25px rgba(139, 92, 246, 0.4);
+        .lesson-status.completed {
+            background: rgba(34, 197, 94, 0.15);
+            color: #22c55e;
+            box-shadow: 0 0 10px rgba(34, 197, 94, 0.2);
+        }
+
+        /* Completed module highlighter */
+        .module-card.completed {
+            border-color: var(--success);
+        }
+
+        .module-card.completed .module-number {
+            background: linear-gradient(135deg, var(--success), #059669);
+            box-shadow: 0 0 10px rgba(16, 185, 129, 0.3);
+        }
+
+        /* Assessment Card */
+        .assessment-card {
+            background: linear-gradient(135deg, rgba(239, 68, 68, 0.1), rgba(185, 28, 28, 0.05));
+            border: 1px solid rgba(239, 68, 68, 0.2);
+            border-radius: var(--radius-lg);
+            padding: 2.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-top: 3rem;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            box-shadow: var(--shadow-md);
+        }
+
+        .assessment-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-lg);
         }
 
         .btn-assessment {
             padding: 1rem 2rem;
-            background: var(--surface);
-            color: var(--text-muted);
-            border: 1px solid var(--border);
+            background: var(--surface-elevated);
+            color: var(--text-disabled);
             border-radius: var(--radius-md);
-            font-weight: 700;
-            font-size: 1rem;
+            font-weight: 600;
+            border: 1px solid var(--border);
             cursor: not-allowed;
             display: flex;
             align-items: center;
-            gap: 0.5rem;
-            opacity: 0.6;
-            transition: all var(--transition-base);
+            gap: 0.75rem;
+            transition: all 0.3s ease;
         }
 
         .btn-assessment.unlocked {
-            background: linear-gradient(135deg, var(--success), #059669);
+            background: linear-gradient(135deg, #ef4444, #b91c1c);
             color: white;
+            border-color: #ef4444;
             cursor: pointer;
-            opacity: 1;
-            box-shadow: 0 4px 15px rgba(34, 197, 94, 0.3);
-        }
-
-        .btn-assessment.unlocked:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 25px rgba(34, 197, 94, 0.4);
-        }
-
-        @media (max-width: 1024px) {
-            .course-header-banner {
-                grid-template-columns: 1fr;
-                padding: 2rem;
-            }
-
-            .course-header-actions {
-                align-items: stretch;
-            }
-
-            .btn-start-track,
-            .btn-assessment {
-                width: 100%;
-                justify-content: center;
-            }
-        }
-
-        @media (max-width: 768px) {
-            .course-header-banner {
-                padding: 1.5rem;
-            }
-
-            .course-header-title {
-                font-size: 1.75rem;
-            }
-
-            .course-stats {
-                flex-wrap: wrap;
-                gap: 1rem;
-            }
-        }
-
-        .welcome-banner {
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
-            border-radius: var(--radius-lg);
-            padding: 2.5rem;
-            margin-bottom: 2rem;
-            color: white;
-            position: relative;
-            overflow: hidden;
-            box-shadow: var(--shadow-lg);
-        }
-
-        .welcome-banner::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: url('data:image/svg+xml,<svg width="100" height="100" xmlns="http://www.w3.org/2000/svg"><circle cx="50" cy="50" r="2" fill="white" opacity="0.1"/></svg>');
-            opacity: 0.3;
-        }
-
-        .welcome-content {
-            position: relative;
-            z-index: 2;
-        }
-
-        .welcome-banner h1 {
-            font-size: 2rem;
-            font-weight: 800;
-            margin-bottom: 0.5rem;
-        }
-
-        .welcome-banner p {
-            font-size: 1.1rem;
-            opacity: 0.9;
-        }
-
-        .curriculum-section {
-            background: var(--surface);
-            border: 1px solid var(--border);
-            border-radius: var(--radius-lg);
-            padding: 2rem;
-            box-shadow: var(--shadow-md);
-        }
-
-        .section-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 2rem;
-        }
-
-        .section-title {
-            font-size: 1.5rem;
-            font-weight: 700;
-            display: flex;
-            align-items: center;
-            gap: 0.75rem;
-        }
-
-        .section-title i {
-            color: var(--primary);
-        }
-
-        /* Module Groups */
-        .module-group {
-            margin-bottom: 2.5rem;
-        }
-
-        .module-header {
-            font-size: 1.2rem;
-            font-weight: 700;
-            color: var(--primary);
-            margin-bottom: 1.5rem;
-            display: flex;
-            align-items: center;
-            gap: 0.75rem;
-            padding-bottom: 0.75rem;
-            border-bottom: 2px solid var(--border);
-            cursor: pointer;
-            transition: all var(--transition-base);
-        }
-
-        .module-header:hover {
-            color: var(--secondary);
-        }
-
-        .module-header i {
-            transition: transform var(--transition-base);
-        }
-
-        .module-group.expanded .module-header i {
-            transform: rotate(90deg);
-        }
-
-        .lessons-container {
-            display: none;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            gap: 1.5rem;
-            margin-top: 1.5rem;
-            animation: fadeIn 0.3s ease-out;
-        }
-
-        .module-group.expanded .lessons-container {
-            display: grid;
-        }
-
-        .lesson-card {
-            background: var(--background);
-            border: 1px solid var(--border);
-            border-radius: var(--radius-md);
-            padding: 1.5rem;
-            transition: all var(--transition-base);
-            cursor: pointer;
-            position: relative;
-        }
-
-        .lesson-card:hover {
-            transform: translateY(-5px);
-            border-color: var(--primary);
-            box-shadow: var(--shadow-md);
-        }
-
-        .lesson-card.completed {
-            border-color: var(--success);
-            background: linear-gradient(to bottom right, var(--background), rgba(34, 197, 94, 0.05));
-        }
-
-        .lesson-status {
-            position: absolute;
-            top: 1rem;
-            right: 1rem;
-            width: 24px;
-            height: 24px;
-            border-radius: 50%;
-            border: 2px solid var(--border);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 0.7rem;
-        }
-
-        .lesson-card.completed .lesson-status {
-            background: var(--success);
-            border-color: var(--success);
-            color: white;
-        }
-
-        .lesson-title {
-            font-size: 1.1rem;
-            font-weight: 700;
-            margin-bottom: 0.75rem;
-            color: var(--text-primary);
-            padding-right: 2rem;
-        }
-
-        .lesson-description {
-            color: var(--text-secondary);
-            font-size: 0.9rem;
-            line-height: 1.6;
-            margin-bottom: 1rem;
-        }
-
-        .lesson-meta {
-            display: flex;
-            gap: 1rem;
-            font-size: 0.85rem;
-            color: var(--text-muted);
-        }
-
-        .lesson-meta i {
-            color: var(--primary);
-        }
-
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-            }
-
-            to {
-                opacity: 1;
-            }
-        }
-
-        @keyframes slideInLeft {
-            from {
-                opacity: 0;
-                transform: translateX(-30px);
-            }
-
-            to {
-                opacity: 1;
-                transform: translateX(0);
-            }
-        }
-
-        @keyframes slideInRight {
-            from {
-                opacity: 0;
-                transform: translateX(30px);
-            }
-
-            to {
-                opacity: 1;
-                transform: translateX(0);
-            }
-        }
-
-        /* Lesson Modal Styles */
-        .lesson-modal {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.95);
-            z-index: 10000;
-            animation: fadeIn 0.3s ease-out;
-        }
-
-        .lesson-modal.active {
-            display: block;
-        }
-
-        .lesson-modal-content {
-            width: 100%;
-            height: 100%;
-            display: flex;
-            flex-direction: column;
-            background: var(--background);
-        }
-
-        .lesson-modal-header {
-            display: flex;
-            align-items: center;
-            padding: 1rem 2rem;
-            background: var(--surface);
-            border-bottom: 1px solid var(--border);
-            position: relative;
-        }
-
-        .lesson-progress-bar {
-            flex: 1;
-            height: 6px;
-            background: var(--background);
-            border-radius: 3px;
-            overflow: hidden;
-            margin-right: 2rem;
-        }
-
-        .lesson-progress-fill {
-            height: 100%;
-            background: linear-gradient(90deg, var(--primary), var(--secondary));
-            border-radius: 3px;
-            transition: width 0.3s ease;
-        }
-
-        .lesson-close-btn {
-            background: none;
-            border: none;
-            color: var(--text-secondary);
-            font-size: 1.5rem;
-            cursor: pointer;
-            padding: 0.5rem;
-            transition: all var(--transition-base);
-            border-radius: var(--radius-sm);
-        }
-
-        .lesson-close-btn:hover {
-            color: var(--text-primary);
-            background: var(--surface-hover);
-        }
-
-        .lesson-modal-body {
-            flex: 1;
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            overflow: hidden;
-        }
-
-        @media (max-width: 1024px) {
-            .lesson-modal-body {
-                grid-template-columns: 1fr;
-            }
-
-            .lesson-code-panel {
-                display: none;
-            }
-        }
-
-        /* Left Panel: Content */
-        .lesson-content-panel {
-            background: var(--background);
-            display: flex;
-            flex-direction: column;
-            border-right: 1px solid var(--border);
-        }
-
-        .lesson-tabs {
-            display: flex;
-            gap: 0.5rem;
-            padding: 1rem 2rem 0;
-            background: var(--surface);
-            border-bottom: 1px solid var(--border);
-        }
-
-        .lesson-tab {
-            padding: 0.75rem 1.5rem;
-            background: none;
-            border: none;
-            color: var(--text-secondary);
-            font-weight: 600;
-            cursor: pointer;
-            border-bottom: 3px solid transparent;
-            transition: all var(--transition-base);
-        }
-
-        .lesson-tab.active {
-            color: var(--primary);
-            border-bottom-color: var(--primary);
-        }
-
-        .lesson-tab:hover:not(.active) {
-            color: var(--text-primary);
-        }
-
-        .lesson-tab-content {
-            display: none;
-            flex: 1;
-            overflow-y: auto;
-        }
-
-        .lesson-tab-content.active {
-            display: block;
-        }
-
-        .lesson-scroll-content {
-            padding: 2rem;
-            max-width: 800px;
-        }
-
-        .lesson-scroll-content h2 {
-            font-size: 2rem;
-            font-weight: 800;
-            margin-bottom: 2rem;
-            color: var(--text-primary);
-        }
-
-        .lesson-section {
-            margin-bottom: 3rem;
-        }
-
-        .lesson-section h3 {
-            font-size: 1.3rem;
-            font-weight: 700;
-            margin-bottom: 1rem;
-            color: var(--text-primary);
-            display: flex;
-            align-items: center;
-            gap: 0.75rem;
-        }
-
-        .lesson-section h3 i {
-            color: var(--primary);
-        }
-
-        .lesson-section p {
-            line-height: 1.8;
-            color: var(--text-secondary);
-            margin-bottom: 1rem;
-        }
-
-        .lesson-section ul {
-            list-style: none;
-            padding: 0;
-        }
-
-        .lesson-section ul li {
-            padding: 0.75rem 0;
-            padding-left: 2rem;
-            position: relative;
-            line-height: 1.6;
-            color: var(--text-secondary);
-        }
-
-        .lesson-section ul li::before {
-            content: '•';
-            position: absolute;
-            left: 0.5rem;
-            color: var(--primary);
-            font-size: 1.5rem;
-            line-height: 1;
-        }
-
-        .code-example-block {
-            background: var(--surface);
-            border: 1px solid var(--border);
-            border-radius: var(--radius-md);
-            padding: 1.5rem;
-            margin: 1.5rem 0;
-        }
-
-        .code-example-block h4 {
-            font-size: 1.1rem;
-            font-weight: 700;
-            margin-bottom: 1rem;
-            color: var(--primary);
-        }
-
-        .code-example-block pre {
-            background: var(--background) !important;
-            border-radius: var(--radius-sm);
-            padding: 1rem !important;
-            margin: 1rem 0;
-            overflow-x: auto;
-        }
-
-        .code-example-block .explanation {
-            color: var(--text-secondary);
-            line-height: 1.7;
-            margin-top: 1rem;
-        }
-
-        .doubt-item {
-            background: var(--surface);
-            border: 1px solid var(--border);
-            border-radius: var(--radius-md);
-            padding: 1.5rem;
-            margin-bottom: 1rem;
-        }
-
-        .doubt-item h4 {
-            font-size: 1.1rem;
-            font-weight: 700;
-            margin-bottom: 0.75rem;
-            color: var(--text-primary);
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-
-        .doubt-item h4 i {
-            color: var(--secondary);
-        }
-
-        .doubt-item p {
-            color: var(--text-secondary);
-            line-height: 1.7;
-        }
-
-        .ai-help-placeholder {
-            text-align: center;
-            padding: 4rem 2rem;
-            color: var(--text-secondary);
-        }
-
-        .ai-help-placeholder h3 {
-            font-size: 1.5rem;
-            margin-bottom: 0.5rem;
-            color: var(--text-primary);
-        }
-
-        /* Right Panel: Code */
-        .lesson-code-panel {
-            background: var(--surface);
-            display: flex;
-            flex-direction: column;
-        }
-
-        .code-panel-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 1rem 2rem;
-            background: var(--background);
-            border-bottom: 1px solid var(--border);
-        }
-
-        .code-panel-header span {
-            font-weight: 600;
-            color: var(--text-primary);
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-
-        .code-copy-btn {
-            background: var(--primary);
-            color: white;
-            border: none;
-            padding: 0.5rem 1rem;
-            border-radius: var(--radius-sm);
-            font-weight: 600;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            transition: all var(--transition-base);
-        }
-
-        .code-copy-btn:hover {
-            background: var(--secondary);
-            transform: translateY(-2px);
-        }
-
-        .code-panel-body {
-            flex: 1;
-            overflow-y: auto;
-            padding: 2rem;
-        }
-
-        .code-panel-body pre {
-            margin: 0;
-            background: var(--background) !important;
-            border-radius: var(--radius-md);
-            font-size: 0.95rem;
-        }
-
-        .code-panel-body code {
-            font-family: 'Roboto Mono', 'Courier New', monospace;
-        }
-
-        /* Modal Footer */
-        .lesson-modal-footer {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 1.5rem 2rem;
-            background: var(--surface);
-            border-top: 1px solid var(--border);
-        }
-
-        .lesson-modal-footer .btn {
-            padding: 0.75rem 1.5rem;
-            font-weight: 600;
-        }
-
-        /* Prism.js Theme Overrides */
-        pre[class*="language-"] {
-            background: var(--background) !important;
-            color: var(--text-primary) !important;
-        }
-
-        code[class*="language-"] {
-            color: var(--text-primary) !important;
-        }
-
-        .token.comment {
-            color: #6a9955 !important;
-        }
-
-        .token.keyword {
-            color: #569cd6 !important;
-        }
-
-        .token.string {
-            color: #ce9178 !important;
-        }
-
-        .token.function {
-            color: #dcdcaa !important;
-        }
-
-        .token.number {
-            color: #b5cea8 !important;
-        }
-
-        .token.operator {
-            color: #d4d4d4 !important;
-        }
-
-        /* Mobile Responsive Styles */
-        @media (max-width: 768px) {
-            body {
-                padding-top: 60px;
-            }
-
-            /* Sidebar - Make it collapsible or overlay on mobile */
-            .sidebar {
-                position: fixed;
-                left: -280px;
-                top: 0;
-                height: 100vh;
-                z-index: 1000;
-                transition: left 0.3s ease;
-            }
-
-            .sidebar.active {
-                left: 0;
-            }
-
-            /* Main content takes full width on mobile */
-            .main-content {
-                margin-left: 0;
-                padding: 1rem;
-            }
-
-            /* Profile card adjustments */
-            .profile-card {
-                padding: 1rem;
-            }
-
-            .profile-info h3 {
-                font-size: 1rem;
-            }
-
-            .profile-info p {
-                font-size: 0.8rem;
-            }
-
-            /* Stats grid - stack vertically on mobile */
-            .stats-grid {
-                grid-template-columns: 1fr;
-                gap: 0.75rem;
-            }
-
-            .stat-item {
-                padding: 1rem;
-            }
-
-            .stat-value {
-                font-size: 1.5rem;
-            }
-
-            /* Welcome banner */
-            .welcome-banner {
-                padding: 1.5rem;
-            }
-
-            .welcome-banner h1 {
-                font-size: 1.5rem;
-            }
-
-            .welcome-banner p {
-                font-size: 0.9rem;
-            }
-
-            /* Module groups */
-            .module-group {
-                padding: 1rem;
-            }
-
-            .module-header h3 {
-                font-size: 1rem;
-            }
-
-            .module-meta {
-                font-size: 0.75rem;
-            }
-
-            /* Lessons grid - single column on mobile */
-            .lessons-grid {
-                grid-template-columns: 1fr;
-                gap: 0.75rem;
-            }
-
-            .lesson-card {
-                padding: 1rem;
-            }
-
-            .lesson-card h4 {
-                font-size: 0.95rem;
-            }
-
-            .lesson-card p {
-                font-size: 0.8rem;
-            }
-
-            /* Lesson Modal - Full screen on mobile */
-            .lesson-modal-header {
-                padding: 0.75rem 1rem;
-            }
-
-            .lesson-progress-bar {
-                margin-right: 1rem;
-            }
-
-            .lesson-tabs {
-                padding: 0.75rem 1rem 0;
-                overflow-x: auto;
-            }
-
-            .lesson-tab {
-                padding: 0.6rem 1rem;
-                font-size: 0.9rem;
-                white-space: nowrap;
-            }
-
-            .lesson-scroll-content {
-                padding: 1rem;
-            }
-
-            .lesson-scroll-content h2 {
-                font-size: 1.5rem;
-                margin-bottom: 1rem;
-            }
-
-            .lesson-section {
-                margin-bottom: 2rem;
-            }
-
-            .lesson-section h3 {
-                font-size: 1.1rem;
-            }
-
-            .lesson-section p {
-                font-size: 0.9rem;
-            }
-
-            .code-example-block {
-                padding: 1rem;
-                margin: 1rem 0;
-            }
-
-            .code-example-block h4 {
-                font-size: 1rem;
-            }
-
-            .code-example-block pre {
-                font-size: 0.8rem;
-                overflow-x: auto;
-            }
-
-            .doubt-item {
-                padding: 1rem;
-            }
-
-            .doubt-item h4 {
-                font-size: 1rem;
-            }
-
-            /* Modal footer - stack buttons on very small screens */
-            .lesson-modal-footer {
-                padding: 1rem;
-                flex-wrap: wrap;
-                gap: 0.5rem;
-            }
-
-            .lesson-modal-footer .btn {
-                padding: 0.6rem 1rem;
-                font-size: 0.9rem;
-            }
-
-            /* Code panel header */
-            .code-panel-header {
-                padding: 0.75rem 1rem;
-            }
-
-            .code-panel-body {
-                padding: 1rem;
-            }
-
-            /* Progress circle */
-            .progress-circle {
-                width: 80px;
-                height: 80px;
-            }
-
-            .total-number {
-                font-size: 1.5rem;
-            }
-
-            .total-label {
-                font-size: 0.7rem;
-            }
-        }
-
-        /* Extra small devices (phones in portrait) */
-        @media (max-width: 480px) {
-            .welcome-banner h1 {
-                font-size: 1.25rem;
-            }
-
-            .welcome-banner p {
-                font-size: 0.85rem;
-            }
-
-            .stat-value {
-                font-size: 1.25rem;
-            }
-
-            .stat-label {
-                font-size: 0.75rem;
-            }
-
-            .lesson-scroll-content h2 {
-                font-size: 1.25rem;
-            }
-
-            .lesson-section h3 {
-                font-size: 1rem;
-            }
-
-            .lesson-modal-footer {
-                flex-direction: column;
-            }
-
-            .lesson-modal-footer .btn {
-                width: 100%;
-            }
-
-            #prevLessonBtn,
-            #nextLessonBtn {
-                order: 1;
-            }
-
-            #markCompleteBtn {
-                order: 0;
-                margin-bottom: 0.5rem;
-            }
-        }
-
-        /* Tablet landscape and small desktop */
-        @media (min-width: 769px) and (max-width: 1024px) {
-            .sidebar {
-                width: 240px;
-            }
-
-            .main-content {
-                margin-left: 240px;
-            }
-
-            .lessons-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-        }
-
-        /* Mobile menu toggle button (add if needed) */
-        .mobile-menu-toggle {
-            display: none;
-            position: fixed;
-            top: 1rem;
-            left: 1rem;
-            z-index: 1001;
-            background: var(--primary);
-            color: white;
-            border: none;
-            padding: 0.75rem;
-            border-radius: var(--radius-sm);
-            cursor: pointer;
-            box-shadow: var(--shadow-md);
-        }
-
-        /* AI Visual Header Styles */
-        /* AI Visual Header Styles */
-        .header-visual {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            margin-bottom: 1rem;
-        }
-
-        .ai-coding-visual {
-            width: 260px;
-            height: 140px;
-            background: rgba(15, 23, 42, 0.6);
-            border: 1px solid rgba(139, 92, 246, 0.3);
-            border-radius: var(--radius-lg);
-            position: relative;
-            padding: 1.5rem;
-            display: flex;
-            flex-direction: column;
-            gap: 1rem;
-            backdrop-filter: blur(10px);
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5),
-                inset 0 0 20px rgba(139, 92, 246, 0.05);
-            animation: float 6s ease-in-out infinite;
-            overflow: hidden;
-        }
-
-        .code-line {
-            height: 6px;
-            background: rgba(139, 92, 246, 0.2);
-            border-radius: 4px;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .code-line::after {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 50%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(139, 92, 246, 0.6), transparent);
-            transform: translateX(-150%);
-            animation: scan 2.5s ease-in-out infinite;
-        }
-
-        .code-line:nth-child(1)::after {
-            animation-delay: 0s;
-            width: 60%;
-        }
-
-        .code-line:nth-child(2)::after {
-            animation-delay: 0.8s;
-            width: 40%;
-        }
-
-        .code-line:nth-child(3)::after {
-            animation-delay: 1.5s;
-            width: 70%;
-        }
-
-        .code-line:nth-child(4)::after {
-            animation-delay: 0.4s;
-            width: 50%;
-        }
-
-        .ai-icon-overlay {
-            position: absolute;
-            bottom: 15px;
-            right: 15px;
-            font-size: 2.5rem;
-            color: var(--primary);
-            opacity: 0.8;
-            filter: drop-shadow(0 0 15px rgba(139, 92, 246, 0.6));
-            animation: pulse-glow 3s infinite alternate;
-        }
-
-        @keyframes scan {
-            0% {
-                transform: translateX(-150%);
-            }
-
-            100% {
-                transform: translateX(250%);
-            }
-        }
-
-        @keyframes pulse-glow {
-            0% {
-                opacity: 0.6;
-                transform: scale(0.95);
-            }
-
-            100% {
-                opacity: 1;
-                transform: scale(1.05);
-            }
-        }
-
-        @keyframes float {
-            0% {
-                transform: translateY(0px);
-            }
-
-            50% {
-                transform: translateY(-12px);
-            }
-
-            100% {
-                transform: translateY(0px);
-            }
-        }
-
-        /* AI Chat & Solution Tab Styles */
-        .ai-chat-container {
-            display: flex;
-            flex-direction: column;
-            height: 100%;
-            background: rgba(15, 23, 42, 0.4);
-            border-radius: var(--radius-md);
-            overflow: hidden;
-        }
-
-        .ai-chat-messages {
-            flex: 1;
-            padding: 1.5rem;
-            overflow-y: auto;
-            display: flex;
-            flex-direction: column;
-            gap: 1.5rem;
-            max-height: 400px;
-        }
-
-        .ai-msg,
-        .user-msg {
-            display: flex;
-            gap: 1rem;
-            max-width: 85%;
-        }
-
-        .user-msg {
-            align-self: flex-end;
-            flex-direction: row-reverse;
-        }
-
-        .msg-avatar {
-            width: 32px;
-            height: 32px;
-            background: var(--primary);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 0.9rem;
-            color: white;
-            flex-shrink: 0;
-        }
-
-        .user-msg .msg-avatar {
-            background: var(--secondary);
-        }
-
-        .msg-bubble {
-            background: rgba(30, 41, 59, 0.8);
-            padding: 1rem;
-            border-radius: var(--radius-md);
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            font-size: 0.95rem;
-            line-height: 1.5;
-        }
-
-        .user-msg .msg-bubble {
-            background: var(--primary);
-            color: white;
-        }
-
-        .ai-chat-input-area {
-            padding: 1rem;
-            background: rgba(30, 41, 59, 0.6);
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-            display: flex;
-            gap: 0.5rem;
-        }
-
-        #aiChatInput {
-            flex: 1;
-            background: rgba(15, 23, 42, 0.8);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: var(--radius-sm);
-            padding: 0.75rem 1rem;
-            color: white;
-            font-size: 0.9rem;
-        }
-
-        .btn-send {
-            background: var(--primary);
-            color: white;
-            border: none;
-            border-radius: var(--radius-sm);
-            padding: 0 1rem;
-            cursor: pointer;
-            transition: all 0.2s;
-        }
-
-        .btn-send:hover {
-            transform: scale(1.05);
-            background: var(--primary-light);
-        }
-
-        .solution-content-body {
-            padding: 1rem;
-        }
-
-        .exercise-preview-card {
-            background: rgba(139, 92, 246, 0.05);
-            border: 1px solid rgba(139, 92, 246, 0.2);
-            border-radius: var(--radius-md);
-            margin: 1.5rem 0;
-            overflow: hidden;
-        }
-
-        .exercise-header {
-            background: rgba(139, 92, 246, 0.2);
-            padding: 0.75rem 1rem;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            font-weight: 600;
-            color: var(--primary-light);
-            font-size: 0.85rem;
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-        }
-
-        .exercise-body {
-            padding: 1rem;
-        }
-
-        .exercise-body p {
-            margin-bottom: 1rem;
-            font-size: 0.9rem;
-            color: var(--text-muted);
-        }
-
-        .load-exercise-btn {
-            width: 100%;
-            background: var(--primary);
-            color: white;
-            border: none;
-            padding: 0.75rem;
-            border-radius: var(--radius-sm);
-            cursor: pointer;
-            font-weight: 600;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 0.5rem;
-            transition: all 0.2s;
-        }
-
-        .load-exercise-btn:hover {
-            background: var(--primary-light);
-        }
-
-        @media (max-width: 768px) {
-            .mobile-menu-toggle {
-                display: block;
-            }
+            box-shadow: 0 5px 15px rgba(239, 68, 68, 0.4);
+            animation: pulse 2s infinite;
         }
     </style>
 </head>
 
 <body>
-    <!-- Navigation -->
+    <!-- Navbar -->
     <nav class="navbar">
         <a href="/" class="logo">
             <i class="fas fa-code"></i>
             <span class="logo-text">AIONYX</span>
         </a>
         <div class="nav-links">
-            <a href="student-courses" class="btn btn-ghost">
-                <i class="fas fa-arrow-left"></i> Back to Courses
-            </a>
-            <span id="userName" style="color: var(--text-muted); font-weight: 600;">Student</span>
-            <button id="logoutBtn" class="btn btn-ghost">
+            <span id="navUserName"
+                style="color: var(--text-muted); font-weight: 600; margin-right: 1rem;">Student</span>
+            <a href="student-courses" class="nav-item">Dashboard</a>
+            <button id="logoutBtn" class="btn btn-ghost" style="padding: 0.5rem 1rem; font-size: 0.9rem;">
                 Logout
             </button>
         </div>
     </nav>
-
-    <!-- Mobile Menu Toggle -->
-    <button class="mobile-menu-toggle" id="mobileMenuToggle">
-        <i class="fas fa-bars"></i>
-    </button>
 
     <div class="dashboard-container">
         <!-- Sidebar -->
@@ -1554,691 +548,160 @@
                 <div class="profile-avatar">
                     <i class="fas fa-user"></i>
                 </div>
-                <h2 class="profile-name" id="profileName">Student</h2>
-                <p class="profile-email" id="profileEmail">student@example.com</p>
+                <h2 class="profile-name" id="profileName" style="color: var(--text-primary);">Student</h2>
+                <p class="profile-email" id="profileEmail" style="color: var(--text-muted);">student@example.com</p>
+                <div style="margin-top: 1rem;">
+                    <span class="difficulty-badge"
+                        style="background: rgba(6, 182, 212, 0.1); color: #06b6d4; padding: 0.5rem 1rem;">C++
+                        Stream</span>
+                </div>
             </div>
 
             <div class="progress-card">
                 <div class="progress-header">
-                    <i class="fas fa-chart-line"></i>
+                    <i class="fas fa-chart-pie" style="color: #06b6d4;"></i>
                     Course Progress
                 </div>
 
-                <div class="stat-item">
-                    <div class="stat-label">
-                        <i class="fas fa-book"></i>
-                        <span>Modules</span>
-                    </div>
-                    <div class="stat-value">0/10</div>
+                <div class="progress-circle-container">
+                    <svg width="160" height="160">
+                        <circle cx="80" cy="80" r="70" class="progress-circle-bg"></circle>
+                        <circle cx="80" cy="80" r="70" class="progress-circle-fg" id="overallProgressCircle"></circle>
+                    </svg>
+                    <div class="progress-text" id="overallProgressText">0%</div>
                 </div>
 
-                <div class="stat-item">
-                    <div class="stat-label">
-                        <i class="fas fa-check-circle"></i>
-                        <span>Lessons</span>
-                    </div>
-                    <div class="stat-value">0/45</div>
+                <div
+                    style="display: flex; justify-content: space-between; margin-bottom: 20px; color: var(--text-muted); font-size: 0.95rem; font-weight: 500;">
+                    <span>Completed Lessons</span>
+                    <span id="completedCount" style="color: var(--text-primary);">0/15</span>
                 </div>
 
-                <div class="total-completed">
-                    <span class="total-number">0%</span>
-                    <span class="total-label">Completed</span>
-                </div>
+                <a href="#" class="btn btn-primary" id="btnResume"
+                    style="width: 100%; justify-content: center; background: linear-gradient(135deg, var(--primary), var(--secondary)); box-shadow: var(--glow-primary);">
+                    Resume Learning
+                </a>
             </div>
         </aside>
 
         <!-- Main Content -->
-        <main class="main-content">
-            <!-- Course Header Banner -->
-            <div class="course-header-banner">
-                <div class="course-header-content">
-                    <div class="course-category">LEARN C++ MASTER CLASS</div>
-                    <h1 class="course-header-title">C++ Mastery</h1>
-                    <p class="course-header-description">
-                        Master C++ from fundamentals to advanced object-oriented programming with our interactive track.
-                        Build real-world logic and solve complex problems.
+        <main>
+            <!-- Hero Section -->
+            <div class="hero-section">
+                <div class="hero-content">
+                    <h1 class="hero-title">Master C++ Programming</h1>
+                    <p class="hero-subtitle">
+                        From basic syntax to advanced memory management. Build high-performance applications with our
+                        comprehensive module-based curriculum.
                     </p>
-                    <div class="header-cta" style="margin-top: 2rem; display: flex; gap: 1rem;">
-                        <button class="btn btn-primary btn-start-track" id="startTrackBtn">
-                            <i class="fas fa-play"></i> START TRACK
-                        </button>
-                    </div>
-                </div>
-                <div class="course-header-actions">
-                    <div class="header-visual">
-                        <div class="ai-coding-visual">
-                            <div class="code-line"></div>
-                            <div class="code-line"></div>
-                            <div class="code-line"></div>
-                            <div class="code-line"></div>
-                            <div class="ai-icon-overlay"><i class="fas fa-robot"></i></div>
+                    <div style="display: flex; gap: 1rem;">
+                        <div style="display: flex; align-items: center; gap: 0.5rem; color: var(--text-secondary);">
+                            <i class="fas fa-video" style="color: #06b6d4;"></i> 20+ Hours
+                        </div>
+                        <div style="display: flex; align-items: center; gap: 0.5rem; color: var(--text-secondary);">
+                            <i class="fas fa-certificate" style="color: #f59e0b;"></i> Certification
                         </div>
                     </div>
-                    <button class="btn-assessment" id="assessmentBtn">
-                        <i class="fas fa-lock"></i>
-                        ASSESSMENT LOCKED
-                    </button>
+                </div>
+                <div class="hero-image">
+                    <!-- Illutration placeholder -->
+                    <img src="https://cdn-icons-png.flaticon.com/512/6132/6132222.png" alt="C++ Programming"
+                        style="width: 100%;">
                 </div>
             </div>
 
-            <!-- Course Track Section -->
-            <div class="course-track-section">
-                <div class="course-stats">
-                    <div class="course-stat">
-                        <span class="course-stat-value" id="totalLessonsCount">45</span>
-                        <span class="course-stat-label">LESSONS</span>
-                    </div>
-                    <div class="course-stat">
-                        <span class="course-stat-value" id="courseProgressPercent">0%</span>
-                        <span class="course-stat-label">PROGRESS</span>
-                    </div>
-                    <div class="course-stat">
-                        <span class="course-stat-value">Beginner</span>
-                        <span class="course-stat-label">LEVEL</span>
-                    </div>
-                </div>
+            <h2 class="section-title"
+                style="font-size: 1.8rem; margin-bottom: 1.5rem; display: flex; align-items: center; gap: 1rem;">
+                <i class="fas fa-layer-group" style="color: #3b82f6;"></i> Course Modules
+            </h2>
+
+            <div class="module-list" id="modulesContainer">
+                <!-- Modules injected here -->
             </div>
 
-            <div class="curriculum-section">
-                <div class="section-header">
-                    <div class="section-title">
-                        <i class="fas fa-graduation-cap"></i>
-                        Course Curriculum
-                    </div>
+            <!-- Final Assessment -->
+            <div class="assessment-card">
+                <div class="assessment-info">
+                    <h3 style="font-size: 1.4rem; font-weight: 700; margin-bottom: 0.5rem; color: #fca5a5;">
+                        <i class="fas fa-lock"></i> Final Assessment
+                    </h3>
+                    <p style="color: #fecaca; opacity: 0.8;">Pass the final exam to earn your certificate of completion.
+                        Unlocks after all modules.</p>
                 </div>
-
-                <!-- Module 1: Getting Started -->
-                <div class="module-group expanded">
-                    <div class="module-header">
-                        <i class="fas fa-chevron-right"></i>
-                        <span>1. Getting Started with C++</span>
-                    </div>
-                    <div class="lessons-container">
-                        <div class="lesson-card">
-                            <div class="lesson-status"></div>
-                            <h3 class="lesson-title">Introduction to C++</h3>
-                            <p class="lesson-description">Learn about C++ history, features, and why it's important</p>
-                            <div class="lesson-meta">
-                                <span><i class="fas fa-clock"></i> 15 min</span>
-                                <span><i class="fas fa-signal"></i> Beginner</span>
-                            </div>
-                        </div>
-                        <div class="lesson-card">
-                            <div class="lesson-status"></div>
-                            <h3 class="lesson-title">Setting Up Environment</h3>
-                            <p class="lesson-description">Install compiler and IDE for C++ development</p>
-                            <div class="lesson-meta">
-                                <span><i class="fas fa-clock"></i> 20 min</span>
-                                <span><i class="fas fa-signal"></i> Beginner</span>
-                            </div>
-                        </div>
-                        <div class="lesson-card">
-                            <div class="lesson-status"></div>
-                            <h3 class="lesson-title">Your First C++ Program</h3>
-                            <p class="lesson-description">Write and run your first "Hello World" program</p>
-                            <div class="lesson-meta">
-                                <span><i class="fas fa-clock"></i> 25 min</span>
-                                <span><i class="fas fa-signal"></i> Beginner</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Module 2: Variables & Data Types -->
-                <div class="module-group">
-                    <div class="module-header">
-                        <i class="fas fa-chevron-right"></i>
-                        <span>2. Variables & Data Types</span>
-                    </div>
-                    <div class="lessons-container">
-                        <div class="lesson-card">
-                            <div class="lesson-status"></div>
-                            <h3 class="lesson-title">Primitive Data Types</h3>
-                            <p class="lesson-description">int, float, double, char, bool and their usage</p>
-                            <div class="lesson-meta">
-                                <span><i class="fas fa-clock"></i> 30 min</span>
-                                <span><i class="fas fa-signal"></i> Beginner</span>
-                            </div>
-                        </div>
-                        <div class="lesson-card">
-                            <div class="lesson-status"></div>
-                            <h3 class="lesson-title">Variables & Constants</h3>
-                            <p class="lesson-description">Declaring variables, constants, and naming conventions</p>
-                            <div class="lesson-meta">
-                                <span><i class="fas fa-clock"></i> 25 min</span>
-                                <span><i class="fas fa-signal"></i> Beginner</span>
-                            </div>
-                        </div>
-                        <div class="lesson-card">
-                            <div class="lesson-status"></div>
-                            <h3 class="lesson-title">Type Conversion</h3>
-                            <p class="lesson-description">Implicit and explicit type casting in C++</p>
-                            <div class="lesson-meta">
-                                <span><i class="fas fa-clock"></i> 20 min</span>
-                                <span><i class="fas fa-signal"></i> Beginner</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Module 3: Operators -->
-                <div class="module-group">
-                    <div class="module-header">
-                        <i class="fas fa-chevron-right"></i>
-                        <span>3. Operators & Expressions</span>
-                    </div>
-                    <div class="lessons-container">
-                        <div class="lesson-card">
-                            <div class="lesson-status"></div>
-                            <h3 class="lesson-title">Arithmetic Operators</h3>
-                            <p class="lesson-description">+, -, *, /, % and their applications</p>
-                            <div class="lesson-meta">
-                                <span><i class="fas fa-clock"></i> 20 min</span>
-                                <span><i class="fas fa-signal"></i> Beginner</span>
-                            </div>
-                        </div>
-                        <div class="lesson-card">
-                            <div class="lesson-status"></div>
-                            <h3 class="lesson-title">Logical & Relational</h3>
-                            <p class="lesson-description">Comparison and logical operators</p>
-                            <div class="lesson-meta">
-                                <span><i class="fas fa-clock"></i> 25 min</span>
-                                <span><i class="fas fa-signal"></i> Beginner</span>
-                            </div>
-                        </div>
-                        <div class="lesson-card">
-                            <div class="lesson-status"></div>
-                            <h3 class="lesson-title">Bitwise Operators</h3>
-                            <p class="lesson-description">Bit manipulation and bitwise operations</p>
-                            <div class="lesson-meta">
-                                <span><i class="fas fa-clock"></i> 30 min</span>
-                                <span><i class="fas fa-signal"></i> Intermediate</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Module 4: Control Flow -->
-                <div class="module-group">
-                    <div class="module-header">
-                        <i class="fas fa-chevron-right"></i>
-                        <span>4. Control Flow Statements</span>
-                    </div>
-                    <div class="lessons-container">
-                        <div class="lesson-card">
-                            <div class="lesson-status"></div>
-                            <h3 class="lesson-title">If-Else Statements</h3>
-                            <p class="lesson-description">Conditional execution and decision making</p>
-                            <div class="lesson-meta">
-                                <span><i class="fas fa-clock"></i> 30 min</span>
-                                <span><i class="fas fa-signal"></i> Beginner</span>
-                            </div>
-                        </div>
-                        <div class="lesson-card">
-                            <div class="lesson-status"></div>
-                            <h3 class="lesson-title">Switch Statements</h3>
-                            <p class="lesson-description">Multi-way branching with switch-case</p>
-                            <div class="lesson-meta">
-                                <span><i class="fas fa-clock"></i> 25 min</span>
-                                <span><i class="fas fa-signal"></i> Beginner</span>
-                            </div>
-                        </div>
-                        <div class="lesson-card">
-                            <div class="lesson-status"></div>
-                            <h3 class="lesson-title">Loops</h3>
-                            <p class="lesson-description">for, while, do-while loops and iteration</p>
-                            <div class="lesson-meta">
-                                <span><i class="fas fa-clock"></i> 35 min</span>
-                                <span><i class="fas fa-signal"></i> Beginner</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Module 5: Functions -->
-                <div class="module-group">
-                    <div class="module-header">
-                        <i class="fas fa-chevron-right"></i>
-                        <span>5. Functions</span>
-                    </div>
-                    <div class="lessons-container">
-                        <div class="lesson-card">
-                            <div class="lesson-status"></div>
-                            <h3 class="lesson-title">Function Basics</h3>
-                            <p class="lesson-description">Defining and calling functions</p>
-                            <div class="lesson-meta">
-                                <span><i class="fas fa-clock"></i> 30 min</span>
-                                <span><i class="fas fa-signal"></i> Beginner</span>
-                            </div>
-                        </div>
-                        <div class="lesson-card">
-                            <div class="lesson-status"></div>
-                            <h3 class="lesson-title">Parameters & Return Values</h3>
-                            <p class="lesson-description">Pass by value, reference, and return types</p>
-                            <div class="lesson-meta">
-                                <span><i class="fas fa-clock"></i> 35 min</span>
-                                <span><i class="fas fa-signal"></i> Intermediate</span>
-                            </div>
-                        </div>
-                        <div class="lesson-card">
-                            <div class="lesson-status"></div>
-                            <h3 class="lesson-title">Function Overloading</h3>
-                            <p class="lesson-description">Multiple functions with same name</p>
-                            <div class="lesson-meta">
-                                <span><i class="fas fa-clock"></i> 25 min</span>
-                                <span><i class="fas fa-signal"></i> Intermediate</span>
-                            </div>
-                        </div>
-                        <div class="lesson-card">
-                            <div class="lesson-status"></div>
-                            <h3 class="lesson-title">Recursion</h3>
-                            <p class="lesson-description">Functions calling themselves</p>
-                            <div class="lesson-meta">
-                                <span><i class="fas fa-clock"></i> 40 min</span>
-                                <span><i class="fas fa-signal"></i> Intermediate</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Module 6: Arrays & Strings -->
-                <div class="module-group">
-                    <div class="module-header">
-                        <i class="fas fa-chevron-right"></i>
-                        <span>6. Arrays & Strings</span>
-                    </div>
-                    <div class="lessons-container">
-                        <div class="lesson-card">
-                            <div class="lesson-status"></div>
-                            <h3 class="lesson-title">Array Fundamentals</h3>
-                            <p class="lesson-description">Declaring, initializing, and accessing arrays</p>
-                            <div class="lesson-meta">
-                                <span><i class="fas fa-clock"></i> 30 min</span>
-                                <span><i class="fas fa-signal"></i> Beginner</span>
-                            </div>
-                        </div>
-                        <div class="lesson-card">
-                            <div class="lesson-status"></div>
-                            <h3 class="lesson-title">Multi-dimensional Arrays</h3>
-                            <p class="lesson-description">2D arrays and matrices</p>
-                            <div class="lesson-meta">
-                                <span><i class="fas fa-clock"></i> 35 min</span>
-                                <span><i class="fas fa-signal"></i> Intermediate</span>
-                            </div>
-                        </div>
-                        <div class="lesson-card">
-                            <div class="lesson-status"></div>
-                            <h3 class="lesson-title">C-Style Strings</h3>
-                            <p class="lesson-description">Character arrays and string functions</p>
-                            <div class="lesson-meta">
-                                <span><i class="fas fa-clock"></i> 30 min</span>
-                                <span><i class="fas fa-signal"></i> Intermediate</span>
-                            </div>
-                        </div>
-                        <div class="lesson-card">
-                            <div class="lesson-status"></div>
-                            <h3 class="lesson-title">String Class</h3>
-                            <p class="lesson-description">std::string and string operations</p>
-                            <div class="lesson-meta">
-                                <span><i class="fas fa-clock"></i> 35 min</span>
-                                <span><i class="fas fa-signal"></i> Intermediate</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Module 7: Pointers & References -->
-                <div class="module-group">
-                    <div class="module-header">
-                        <i class="fas fa-chevron-right"></i>
-                        <span>7. Pointers & References</span>
-                    </div>
-                    <div class="lessons-container">
-                        <div class="lesson-card">
-                            <div class="lesson-status"></div>
-                            <h3 class="lesson-title">Pointer Basics</h3>
-                            <p class="lesson-description">Understanding memory addresses and pointers</p>
-                            <div class="lesson-meta">
-                                <span><i class="fas fa-clock"></i> 40 min</span>
-                                <span><i class="fas fa-signal"></i> Intermediate</span>
-                            </div>
-                        </div>
-                        <div class="lesson-card">
-                            <div class="lesson-status"></div>
-                            <h3 class="lesson-title">Pointer Arithmetic</h3>
-                            <p class="lesson-description">Operations on pointers</p>
-                            <div class="lesson-meta">
-                                <span><i class="fas fa-clock"></i> 35 min</span>
-                                <span><i class="fas fa-signal"></i> Intermediate</span>
-                            </div>
-                        </div>
-                        <div class="lesson-card">
-                            <div class="lesson-status"></div>
-                            <h3 class="lesson-title">References</h3>
-                            <p class="lesson-description">Reference variables and their uses</p>
-                            <div class="lesson-meta">
-                                <span><i class="fas fa-clock"></i> 30 min</span>
-                                <span><i class="fas fa-signal"></i> Intermediate</span>
-                            </div>
-                        </div>
-                        <div class="lesson-card">
-                            <div class="lesson-status"></div>
-                            <h3 class="lesson-title">Dynamic Memory</h3>
-                            <p class="lesson-description">new, delete, and memory management</p>
-                            <div class="lesson-meta">
-                                <span><i class="fas fa-clock"></i> 45 min</span>
-                                <span><i class="fas fa-signal"></i> Advanced</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Module 8: OOP -->
-                <div class="module-group">
-                    <div class="module-header">
-                        <i class="fas fa-chevron-right"></i>
-                        <span>8. Object-Oriented Programming</span>
-                    </div>
-                    <div class="lessons-container">
-                        <div class="lesson-card">
-                            <div class="lesson-status"></div>
-                            <h3 class="lesson-title">Classes & Objects</h3>
-                            <p class="lesson-description">Creating classes and instantiating objects</p>
-                            <div class="lesson-meta">
-                                <span><i class="fas fa-clock"></i> 40 min</span>
-                                <span><i class="fas fa-signal"></i> Intermediate</span>
-                            </div>
-                        </div>
-                        <div class="lesson-card">
-                            <div class="lesson-status"></div>
-                            <h3 class="lesson-title">Constructors & Destructors</h3>
-                            <p class="lesson-description">Object initialization and cleanup</p>
-                            <div class="lesson-meta">
-                                <span><i class="fas fa-clock"></i> 35 min</span>
-                                <span><i class="fas fa-signal"></i> Intermediate</span>
-                            </div>
-                        </div>
-                        <div class="lesson-card">
-                            <div class="lesson-status"></div>
-                            <h3 class="lesson-title">Inheritance</h3>
-                            <p class="lesson-description">Base and derived classes</p>
-                            <div class="lesson-meta">
-                                <span><i class="fas fa-clock"></i> 45 min</span>
-                                <span><i class="fas fa-signal"></i> Advanced</span>
-                            </div>
-                        </div>
-                        <div class="lesson-card">
-                            <div class="lesson-status"></div>
-                            <h3 class="lesson-title">Polymorphism</h3>
-                            <p class="lesson-description">Virtual functions and runtime polymorphism</p>
-                            <div class="lesson-meta">
-                                <span><i class="fas fa-clock"></i> 50 min</span>
-                                <span><i class="fas fa-signal"></i> Advanced</span>
-                            </div>
-                        </div>
-                        <div class="lesson-card">
-                            <div class="lesson-status"></div>
-                            <h3 class="lesson-title">Encapsulation & Abstraction</h3>
-                            <p class="lesson-description">Access specifiers and abstract classes</p>
-                            <div class="lesson-meta">
-                                <span><i class="fas fa-clock"></i> 40 min</span>
-                                <span><i class="fas fa-signal"></i> Advanced</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Module 9: STL -->
-                <div class="module-group">
-                    <div class="module-header">
-                        <i class="fas fa-chevron-right"></i>
-                        <span>9. Standard Template Library (STL)</span>
-                    </div>
-                    <div class="lessons-container">
-                        <div class="lesson-card">
-                            <div class="lesson-status"></div>
-                            <h3 class="lesson-title">Vectors</h3>
-                            <p class="lesson-description">Dynamic arrays with std::vector</p>
-                            <div class="lesson-meta">
-                                <span><i class="fas fa-clock"></i> 35 min</span>
-                                <span><i class="fas fa-signal"></i> Intermediate</span>
-                            </div>
-                        </div>
-                        <div class="lesson-card">
-                            <div class="lesson-status"></div>
-                            <h3 class="lesson-title">Maps & Sets</h3>
-                            <p class="lesson-description">Key-value pairs and unique elements</p>
-                            <div class="lesson-meta">
-                                <span><i class="fas fa-clock"></i> 40 min</span>
-                                <span><i class="fas fa-signal"></i> Intermediate</span>
-                            </div>
-                        </div>
-                        <div class="lesson-card">
-                            <div class="lesson-status"></div>
-                            <h3 class="lesson-title">Iterators</h3>
-                            <p class="lesson-description">Traversing containers efficiently</p>
-                            <div class="lesson-meta">
-                                <span><i class="fas fa-clock"></i> 30 min</span>
-                                <span><i class="fas fa-signal"></i> Intermediate</span>
-                            </div>
-                        </div>
-                        <div class="lesson-card">
-                            <div class="lesson-status"></div>
-                            <h3 class="lesson-title">Algorithms</h3>
-                            <p class="lesson-description">sort, find, binary_search and more</p>
-                            <div class="lesson-meta">
-                                <span><i class="fas fa-clock"></i> 45 min</span>
-                                <span><i class="fas fa-signal"></i> Advanced</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Module 10: Advanced Topics -->
-                <div class="module-group">
-                    <div class="module-header">
-                        <i class="fas fa-chevron-right"></i>
-                        <span>10. Advanced C++ Topics</span>
-                    </div>
-                    <div class="lessons-container">
-                        <div class="lesson-card">
-                            <div class="lesson-status"></div>
-                            <h3 class="lesson-title">Templates</h3>
-                            <p class="lesson-description">Generic programming with templates</p>
-                            <div class="lesson-meta">
-                                <span><i class="fas fa-clock"></i> 50 min</span>
-                                <span><i class="fas fa-signal"></i> Advanced</span>
-                            </div>
-                        </div>
-                        <div class="lesson-card">
-                            <div class="lesson-status"></div>
-                            <h3 class="lesson-title">Exception Handling</h3>
-                            <p class="lesson-description">try, catch, throw for error handling</p>
-                            <div class="lesson-meta">
-                                <span><i class="fas fa-clock"></i> 40 min</span>
-                                <span><i class="fas fa-signal"></i> Advanced</span>
-                            </div>
-                        </div>
-                        <div class="lesson-card">
-                            <div class="lesson-status"></div>
-                            <h3 class="lesson-title">File I/O</h3>
-                            <p class="lesson-description">Reading and writing files</p>
-                            <div class="lesson-meta">
-                                <span><i class="fas fa-clock"></i> 35 min</span>
-                                <span><i class="fas fa-signal"></i> Advanced</span>
-                            </div>
-                        </div>
-                        <div class="lesson-card">
-                            <div class="lesson-status"></div>
-                            <h3 class="lesson-title">Modern C++ Features</h3>
-                            <p class="lesson-description">C++11/14/17 features and best practices</p>
-                            <div class="lesson-meta">
-                                <span><i class="fas fa-clock"></i> 60 min</span>
-                                <span><i class="fas fa-signal"></i> Advanced</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
+                <button class="btn-assessment" id="btnAssessment">
+                    <i class="fas fa-lock"></i> Locked
+                </button>
             </div>
         </main>
     </div>
 
-    <!-- Lesson Modal Viewer -->
-    <div id="lessonModal" class="lesson-modal">
-        <div class="lesson-modal-content">
-            <!-- Modal Header -->
-            <div class="lesson-modal-header">
-                <div class="lesson-progress-bar">
-                    <div class="lesson-progress-fill" id="lessonProgressFill"></div>
-                </div>
-                <button class="lesson-close-btn" id="closeLessonBtn">
-                    <i class="fas fa-times"></i>
-                </button>
-            </div>
-
-            <!-- Modal Body: Split Screen -->
-            <div class="lesson-modal-body">
-                <!-- Left Panel: Content -->
-                <div class="lesson-content-panel">
-                    <div class="lesson-tabs">
-                        <button class="lesson-tab active" data-tab="statement">Statement</button>
-                        <button class="lesson-tab" data-tab="solution">Solution</button>
-                        <button class="lesson-tab" data-tab="help">AI Help</button>
-                    </div>
-
-                    <div class="lesson-tab-content active" id="statementTab">
-                        <div class="lesson-scroll-content">
-                            <h2 id="lessonTitle">Lesson Title</h2>
-
-                            <div class="lesson-section">
-                                <h3><i class="fas fa-lightbulb"></i> Introduction</h3>
-                                <div id="lessonIntro"></div>
-                            </div>
-
-                            <div class="lesson-section" id="objectivesSection">
-                                <h3><i class="fas fa-bullseye"></i> What will you learn here?</h3>
-                                <ul id="lessonObjectives"></ul>
-                            </div>
-
-                            <div class="lesson-section">
-                                <h3><i class="fas fa-book"></i> Theory</h3>
-                                <div id="lessonTheory"></div>
-                            </div>
-
-                            <div class="lesson-section" id="codeExamplesSection">
-                                <h3><i class="fas fa-code"></i> Code Examples</h3>
-                                <div id="lessonCodeExamples"></div>
-                            </div>
-
-                            <div class="lesson-section">
-                                <h3><i class="fas fa-star"></i> Key Points</h3>
-                                <ul id="lessonKeyPoints"></ul>
-                            </div>
-
-                            <div class="lesson-section" id="doubtsSection">
-                                <h3><i class="fas fa-question-circle"></i> Common Doubts</h3>
-                                <div id="lessonDoubts"></div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="lesson-tab-content" id="solutionTab">
-                        <div class="lesson-scroll-content">
-                            <div id="solutionContent" class="solution-content-body">
-                                <div class="ai-help-placeholder">
-                                    <i class="fas fa-lightbulb"
-                                        style="font-size: 3rem; color: var(--warning); margin-bottom: 1rem;"></i>
-                                    <h3>Exercise Solution</h3>
-                                    <p>Try solving the exercise first! The expert solution will appear here once you
-                                        load a practice task.</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="lesson-tab-content" id="helpTab">
-                        <div class="lesson-scroll-content">
-                            <div class="ai-chat-container">
-                                <div id="aiChatMessages" class="ai-chat-messages">
-                                    <div class="ai-msg">
-                                        <div class="msg-avatar"><i class="fas fa-robot"></i></div>
-                                        <div class="msg-bubble">
-                                            <p>Hello! I'm your C++ Assistant. Ask me anything about this lesson or if
-                                                you're stuck on the exercise!</p>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="ai-chat-input-area">
-                                    <input type="text" id="aiChatInput"
-                                        placeholder="Ask about syntax, logic, or hints...">
-                                    <button id="sendAiBtn" class="btn-send"><i class="fas fa-paper-plane"></i></button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Right Panel: Code Editor View -->
-                <div class="lesson-code-panel">
-                    <div class="code-panel-header">
-                        <span><i class="fas fa-file-code"></i> C++</span>
-                        <button class="code-copy-btn" id="copyCodeBtn">
-                            <i class="fas fa-copy"></i> Copy
-                        </button>
-                    </div>
-                    <div class="code-panel-body">
-                        <pre class="line-numbers"><code class="language-cpp" id="lessonCode">#include &lt;iostream&gt;
-using namespace std;
-
-int main() {
-    cout &lt;&lt; "Hello, World!" &lt;&lt; endl;
-    return 0;
-}</code></pre>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Modal Footer -->
-            <div class="lesson-modal-footer">
-                <button class="btn btn-ghost" id="prevLessonBtn">
-                    <i class="fas fa-arrow-left"></i> Previous
-                </button>
-                <button class="btn btn-primary" id="markCompleteBtn">
-                    <i class="fas fa-check-circle"></i> Mark as Complete
-                </button>
-                <button class="btn btn-primary" id="nextLessonBtn">
-                    Next <i class="fas fa-arrow-right"></i>
-                </button>
-            </div>
-        </div>
-    </div>
-
-    <!-- Theme Manager -->
     <script src="js/theme.js"></script>
-
-    <!-- Prism.js Scripts -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-cpp.min.js"></script>
-    <script
-        src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/line-numbers/prism-line-numbers.min.js"></script>
-
     <script>
-        // Auth Check
-        const token = localStorage.getItem('token');
-        const user = JSON.parse(localStorage.getItem('user') || '{}');
+        // Module Data
+        const modules = [
+            {
+                id: 1,
+                title: "Introduction to C++",
+                lessons: [
+                    { id: "1.1", title: "Introduction to C++", type: "learn" },
+                    { id: "1.2", title: "Outputting Strings", type: "learn" },
+                    { id: "1.3", title: "Writing Comments", type: "learn" }
+                ]
+            },
+            {
+                id: 2,
+                title: "Variables and Data Types",
+                lessons: [
+                    { id: "2.1", title: "Integer Variables", type: "learn" },
+                    { id: "2.2", title: "Double and Float", type: "learn" },
+                    { id: "2.3", title: "Characters and Strings", type: "learn" },
+                    { id: "2.4", title: "Boolean Variables", type: "learn" }
+                ]
+            },
+            {
+                id: 3,
+                title: "User Input",
+                lessons: [
+                    { id: "3.1", title: "Taking Input with cin", type: "learn" },
+                    { id: "3.2", title: "Inputting Multiple Values", type: "learn" },
+                    { id: "3.3", title: "Simple Calculator", type: "practice" }
+                ]
+            },
+            {
+                id: 4,
+                title: "Control Flow",
+                lessons: [
+                    { id: "4.1", title: "If-Else Statements", type: "learn" },
+                    { id: "4.2", title: "Switch Case", type: "learn" },
+                    { id: "4.3", title: "While Loops", type: "learn" },
+                    { id: "4.4", title: "For Loops", type: "learn" }
+                ]
+            },
+            {
+                id: 5,
+                title: "Functions",
+                lessons: [
+                    { id: "5.1", title: "Creating Functions", type: "learn" },
+                    { id: "5.2", title: "Parameters and Arguments", type: "learn" },
+                    { id: "5.3", title: "Return Values", type: "learn" }
+                ]
+            }
+        ];
 
+        // Auth Logic
+        const user = JSON.parse(localStorage.getItem('user') || '{}');
+        const token = localStorage.getItem('token');
+
+        // Basic auth check
         if (!token) {
-            window.location.href = 'student-login';
+            // window.location.href = 'student-login'; // Optional: Redirect if strict, or just let them exist
         }
 
-        // Update user info
+        // Update Profile
         if (user.name) {
-            document.getElementById('userName').textContent = user.name;
             document.getElementById('profileName').textContent = user.name;
-            if (user.email) {
-                document.getElementById('profileEmail').textContent = user.email;
-            }
+            document.getElementById('navUserName').textContent = user.name;
+            document.getElementById('profileEmail').textContent = user.email || 'student@example.com';
         }
 
         // Logout
@@ -2247,920 +710,122 @@ int main() {
             window.location.href = 'student-login';
         });
 
-        // Module Expand/Collapse
-        document.querySelectorAll('.module-header').forEach(header => {
-            header.addEventListener('click', () => {
-                const moduleGroup = header.parentElement;
-                moduleGroup.classList.toggle('expanded');
-            });
-        });
+        // Progress Logic
+        const studentId = user.id;
+        let savedProgress = {};
 
-        // Mobile Menu Toggle
-        const mobileMenuToggle = document.getElementById('mobileMenuToggle');
-        const sidebar = document.querySelector('.sidebar');
-
-        if (mobileMenuToggle) {
-            mobileMenuToggle.addEventListener('click', () => {
-                sidebar.classList.toggle('active');
-            });
-
-            // Close sidebar when clicking outside on mobile
-            document.addEventListener('click', (e) => {
-                if (window.innerWidth <= 768) {
-                    if (!sidebar.contains(e.target) && !mobileMenuToggle.contains(e.target)) {
-                        sidebar.classList.remove('active');
-                    }
-                }
-            });
-        }
-
-        // IDE & Exercise Collections
-        const exerciseOriginals = {};
-        const exerciseSolutions = {};
-        const codeSnippets = {};
-        let currentExerciseId = null;
-
-        // AI Assistant Logic
-        function generateAiResponse(question) {
-            const q = question.toLowerCase();
-            if (q.includes('error') || q.includes('bug') || q.includes('wrong') || q.includes('not working')) {
-                return `🔍 **Debugging Tips for C++:**
-                - Check #include <iostream> is at the top
-                - Every statement must end with ;
-                - Make sure all { have matching }
-                - Variable names are case-sensitive
-                - Use std::cout or add using namespace std;`;
-            }
-            if (q.includes('loop') || q.includes('for') || q.includes('while')) {
-                return `🔄 **C++ Loops:**
-                - **For Loop:** \`for (int i = 0; i < 10; i++) { ... }\`
-                - **While Loop:** \`while (condition) { ... }\`
-                - **Key:** Always update the loop variable to avoid infinite loops!`;
-            }
-            if (q.includes('syntax') || q.includes('how to') || q.includes('cout') || q.includes('print')) {
-                return `📚 **C++ Basics:**
-                - **Print:** \`cout << "text" << endl;\`
-                - **Variable:** \`int age = 20;\`
-                - **Input:** \`cin >> variable;\`
-                - **If:** \`if (x > 10) { ... }\``;
-            }
-            if (q.includes('solution') || q.includes('answer') || q.includes('hint') || q.includes('help')) {
-                return `💡 **Try these steps:**
-                - Read the exercise TODO comments carefully
-                - Think about what variables you need
-                - Write one line at a time
-                - Check the **Solution** tab if you're really stuck!`;
-            }
-            return `👋 I can help with C++ topics! Try asking:
-            - "How do I use a for loop?"
-            - "What is a pointer?"
-            - "Why am I getting an error?"
-            - "Give me a hint for this exercise"`;
-        }
-
-        function sendAiMessage() {
-            const inputEl = document.getElementById('aiChatInput');
-            const container = document.getElementById('aiChatMessages');
-            const msg = inputEl.value.trim();
-
-            if (!msg) return;
-
-            // Add user message
-            const userDiv = document.createElement('div');
-            userDiv.className = 'user-msg';
-            userDiv.innerHTML = `
-                <div class="msg-avatar"><i class="fas fa-user"></i></div>
-                <div class="msg-bubble"><p>${msg}</p></div>
-            `;
-            container.appendChild(userDiv);
-            inputEl.value = '';
-            container.scrollTop = container.scrollHeight;
-
-            // Generate AI reply
-            setTimeout(() => {
-                const reply = generateAiResponse(msg);
-                const aiDiv = document.createElement('div');
-                aiDiv.className = 'ai-msg';
-                aiDiv.innerHTML = `
-                    <div class="msg-avatar"><i class="fas fa-robot"></i></div>
-                    <div class="msg-bubble"><p>${reply.replace(/\n/g, '<br>')}</p></div>
-                `;
-                container.appendChild(aiDiv);
-                container.scrollTop = container.scrollHeight;
-            }, 600);
-        }
-
-        function escapeHtml(text) {
-            const div = document.createElement('div');
-            div.textContent = text;
-            return div.innerHTML;
-        }
-
-        // IDE Loading Functions
-        function loadExerciseToIde(id) {
-            currentExerciseId = id;
-            const code = exerciseOriginals[id];
-            const codeEl = document.getElementById('lessonCode');
-
-            if (!code || !codeEl) return;
-
-            // Update IDE code
-            codeEl.textContent = code;
-            if (window.Prism) Prism.highlightElement(codeEl);
-
-            // Switch to code panel on mobile
-            if (window.innerWidth <= 1024) {
-                document.querySelector('.lesson-code-panel').scrollIntoView({ behavior: 'smooth' });
-            }
-
-            // Update Solution Tab if logic exists
-            updateSolutionTab(id);
-        }
-
-        function updateSolutionTab(id) {
-            const solutionContent = document.getElementById('solutionContent');
-            if (!solutionContent) return;
-
-            if (exerciseSolutions[id]) {
-                solutionContent.innerHTML = `
-                    <div class="solution-header" style="margin-bottom: 1rem; color: #10b981; font-weight: 600;">
-                        <i class="fas fa-check-circle"></i> Expert Solution
-                    </div>
-                    <pre class="line-numbers"><code class="language-cpp">${escapeHtml(exerciseSolutions[id])}</code></pre>
-                    <p style="margin-top: 1rem; font-size: 0.9rem; color: var(--text-muted);">
-                        Study this solution to understand the correct approach. Try writing it yourself first!
-                    </p>
-                `;
-                const solutionCode = solutionContent.querySelector('code');
-                if (window.Prism) Prism.highlightElement(solutionCode);
-            } else {
-                solutionContent.innerHTML = `
-                    <div class="ai-help-placeholder">
-                        <i class="fas fa-info-circle" style="font-size: 3rem; color: var(--primary); margin-bottom: 1rem;"></i>
-                        <h3>No Static Solution</h3>
-                        <p>This exercise is open-ended. Try different approaches in the editor!</p>
-                    </div>
-                `;
-            }
-        }
-
-        // Lesson Content Database
-        const lessonContent = {
-            // Module 1: Getting Started
-            'intro-cpp': {
-                id: 'intro-cpp',
-                title: 'Introduction to C++',
-                module: 1,
-                moduleTitle: 'Getting Started with C++',
-                intro: 'Let us output an integer in C++.',
-                objectives: [
-                    'All the basic concepts of C++ programming language like - Variables, Strings, Conditions, Arrays, Loops, Functions etc',
-                    'By the end of this course, you will be able to write code in C++ to solve logical real world problems.'
-                ],
-                theory: `C++ is a powerful general-purpose programming language. It can be used to develop operating systems, browsers, games, and so on.
-
-:::terminal cpp
-#include <iostream>
-using namespace std;
-
-int main() {
-    // TODO: Output "C++ is awesome!"
-    cout << "Hello C++" << endl;
-    return 0;
-}
-:::
-
-:::solution cpp
-#include <iostream>
-using namespace std;
-
-int main() {
-    cout << "C++ is awesome!" << endl;
-    return 0;
-}
-:::
-
-**Why Learn C++?**
-- C++ is one of the world's most popular programming languages
-- C++ can be found in today's operating systems, Graphical User Interfaces, and embedded systems
-- C++ is an object-oriented programming language which gives a clear structure to programs and allows code to be reused, lowering development costs
-- C++ is portable and can be used to develop applications that can be adapted to multiple platforms`,
-                codeExamples: [{
-                    title: 'Hello World Program',
-                    code: `#include <iostream>
-using namespace std;
-
-int main() {
-    cout << "Hello, World!" << endl;
-    return 0;
-}`,
-                    explanation: 'This is your first C++ program. The #include directive tells the compiler to include the iostream library. The main() function is the entry point of every C++ program. cout is used to output data to the screen.'
-                }],
-                keyPoints: [
-                    'C++ is a compiled language',
-                    'It supports both procedural and object-oriented programming',
-                    'C++ is known for its high performance',
-                    'The main() function is the starting point of execution'
-                ],
-                commonDoubts: [
-                    { q: 'Why use C++ over Python?', a: 'C++ offers better performance and more control over system resources, making it ideal for system programming, game development, and applications where speed is critical.' },
-                    { q: 'What is a compiler?', a: 'A compiler is a program that translates C++ source code into machine code that your computer can execute.' }
-                ],
-                mainCode: `#include <iostream>
-using namespace std;
-
-int main() {
-    cout << "Welcome to C++ Programming!" << endl;
-    return 0;
-}`
-            },
-            'setup-env': {
-                id: 'setup-env',
-                title: 'Setting Up Environment',
-                module: 1,
-                moduleTitle: 'Getting Started with C++',
-                intro: 'Learn how to set up your C++ development environment.',
-                objectives: [
-                    'Install a C++ compiler',
-                    'Set up an IDE or text editor',
-                    'Compile and run your first program'
-                ],
-                theory: `To start programming in C++, you need two things: a compiler and a text editor or IDE.
-
-:::terminal bash
-# Check if g++ is installed
-g++ --version
-
-# Build a simple file if it exists
-g++ main.cpp -o main
-./main
-:::
-
-:::solution bash
-# Typical commands to compile and run
-g++ my_program.cpp -o app
-./app
-:::
-
-**Popular C++ Compilers:**
-- GCC (GNU Compiler Collection) - Free and open-source
-- Clang - Modern compiler with excellent error messages
-- MSVC (Microsoft Visual C++) - For Windows development
-
-**Popular IDEs:**
-- Visual Studio Code - Lightweight and extensible
-- Code::Blocks - Free and beginner-friendly
-- CLion - Professional IDE by JetBrains
-- Visual Studio - Full-featured IDE for Windows`,
-                codeExamples: [{
-                    title: 'Compiling from Command Line',
-                    code: `// Save this as hello.cpp
-#include <iostream>
-using namespace std;
-
-int main() {
-    cout << "Hello from command line!" << endl;
-    return 0;
-}
-
-// Compile: g++ hello.cpp -o hello
-// Run: ./hello (Linux/Mac) or hello.exe (Windows)`,
-                    explanation: 'This shows how to compile a C++ program using g++ compiler from the command line.'
-                }],
-                keyPoints: [
-                    'You need a compiler to convert C++ code to executable programs',
-                    'IDEs provide integrated tools for coding, debugging, and compiling',
-                    'GCC is available on all major platforms',
-                    'Start with a simple setup and upgrade as you learn'
-                ],
-                commonDoubts: [
-                    { q: 'Which IDE should I use?', a: 'For beginners, Visual Studio Code or Code::Blocks are excellent choices. They are free, lightweight, and have good C++ support.' },
-                    { q: 'Do I need to install anything else?', a: 'Just a compiler and a text editor/IDE. Some IDEs come with compilers bundled.' }
-                ],
-                mainCode: `#include <iostream>
-using namespace std;
-
-int main() {
-    cout << "My development environment is ready!" << endl;
-    return 0;
-}`
-            },
-            'first-program': {
-                id: 'first-program',
-                title: 'Your First C++ Program',
-                module: 1,
-                moduleTitle: 'Getting Started with C++',
-                intro: 'Write and understand your first C++ program in detail.',
-                objectives: [
-                    'Understand the structure of a C++ program',
-                    'Learn about #include directives',
-                    'Understand the main() function',
-                    'Use cout for output'
-                ],
-                theory: `Let's break down the structure of a C++ program:
-
-**1. Libraries:** #include <iostream> imports the input/output stream library
-**2. Namespace:** using namespace std; allows us to use cout without std:: prefix
-**3. Main Function:** int main() { ... } is the entry point of the program
-**4. cout:** Used to print output to the screen
-**5. Return Statement:** return 0; indicates successful program execution
-
-Semicolon (;) is used to end a statement, like period (.) in English.`,
-                codeExamples: [{
-                    title: 'Detailed First Program',
-                    code: `#include <iostream>  // Import input-output library
-using namespace std; // Use standard namespace
-
-// main function - program starts here
-int main() {
-    // Print message to screen
-    cout << "Hello, World!" << endl;
-    
-    // Return 0 to indicate success
-    return 0;
-}`,
-                    explanation: 'Each line has a specific purpose. Comments (starting with //) explain what the code does but are ignored by the compiler.'
-                }],
-                keyPoints: [
-                    'Every C++ program must have a main() function',
-                    'Statements end with a semicolon (;)',
-                    'cout is used for output, << is the insertion operator',
-                    'endl creates a new line',
-                    'Comments help explain code and are ignored by compiler'
-                ],
-                commonDoubts: [
-                    { q: 'What does << mean?', a: 'The << operator is called the insertion operator. It inserts data into the output stream (cout).' },
-                    { q: 'Why return 0?', a: 'Returning 0 from main() indicates that the program executed successfully. Non-zero values indicate errors.' }
-                ],
-                mainCode: `#include <iostream>
-using namespace std;
-
-int main() {
-    cout << "This is my first C++ program!" << endl;
-    cout << "I am learning C++ programming." << endl;
-    return 0;
-}`
-            },
-            // Module 2: Variables & Data Types
-            'primitive-types': {
-                id: 'primitive-types',
-                title: 'Primitive Data Types',
-                module: 2,
-                moduleTitle: 'Variables & Data Types',
-                intro: 'Learn about fundamental data types in C++.',
-                objectives: [
-                    'Understand int, float, double, char, and bool',
-                    'Learn the size and range of each type',
-                    'Choose appropriate data types for different scenarios'
-                ],
-                theory: `C++ provides several built-in data types:
-
-**Integer Types:**
-- int: Whole numbers (typically 4 bytes, range: -2,147,483,648 to 2,147,483,647)
-- short: Smaller integers (2 bytes)
-- long: Larger integers (4 or 8 bytes)
-
-**Floating-Point Types:**
-- float: Single precision (4 bytes, ~7 decimal digits)
-- double: Double precision (8 bytes, ~15 decimal digits)
-
-**Character Type:**
-- char: Single character (1 byte)
-
-**Boolean Type:**
-- bool: true or false (1 byte)`,
-                codeExamples: [{
-                    title: 'Using Different Data Types',
-                    code: `#include <iostream>
-using namespace std;
-
-int main() {
-    int age = 25;
-    float height = 5.9;
-    double pi = 3.14159265359;
-    char grade = 'A';
-    bool isPassed = true;
-    
-    cout << "Age: " << age << endl;
-    cout << "Height: " << height << endl;
-    cout << "Pi: " << pi << endl;
-    cout << "Grade: " << grade << endl;
-    cout << "Passed: " << isPassed << endl;
-    
-    return 0;
-}`,
-                    explanation: 'This program demonstrates how to declare and use different primitive data types in C++.'
-                }],
-                keyPoints: [
-                    'int is used for whole numbers',
-                    'float and double are for decimal numbers',
-                    'char stores single characters in single quotes',
-                    'bool stores true or false values',
-                    'Choose the right type based on your data needs'
-                ],
-                commonDoubts: [
-                    { q: 'When to use float vs double?', a: 'Use double for most decimal calculations as it provides better precision. Use float only when memory is a concern.' },
-                    { q: 'Can I store numbers in char?', a: 'Yes, but char stores the ASCII value. For example, char c = 65; stores \'A\'.' }
-                ],
-                mainCode: `#include <iostream>
-using namespace std;
-
-int main() {
-    int score = 95;
-    double percentage = 95.5;
-    char letterGrade = 'A';
-    bool isExcellent = true;
-    
-    cout << "Score: " << score << endl;
-    cout << "Percentage: " << percentage << "%" << endl;
-    cout << "Grade: " << letterGrade << endl;
-    
-    return 0;
-}`
-            }
-            // Additional lessons would continue here...
-        };
-
-        // Progress Manager
-        const progressManager = {
-            completedLessons: new Set(),
-            currentLesson: null,
-            allLessonIds: [],
-
-            init() {
-                this.loadProgress();
-                this.collectAllLessonIds();
-                this.updateUI();
-            },
-
-            collectAllLessonIds() {
-                document.querySelectorAll('.lesson-card').forEach(card => {
-                    const lessonId = card.dataset.lessonId;
-                    if (lessonId) {
-                        this.allLessonIds.push(lessonId);
-                    }
-                });
-            },
-
-            loadProgress() {
-                const user = JSON.parse(localStorage.getItem('user') || '{}');
-                const uniqueKey = user.email ? `cpp_progress_${user.email}` : 'cpp_progress';
-                const saved = localStorage.getItem(uniqueKey);
-                this.completedLessons = saved ? new Set(JSON.parse(saved)) : new Set();
-            },
-
-            saveProgress() {
-                const user = JSON.parse(localStorage.getItem('user') || '{}');
-                const uniqueKey = user.email ? `cpp_progress_${user.email}` : 'cpp_progress';
-                localStorage.setItem(uniqueKey, JSON.stringify([...this.completedLessons]));
-            },
-
-            markComplete(lessonId) {
-                this.completedLessons.add(lessonId);
-                this.saveProgress();
-                this.updateUI();
-                this.showCompletionToast();
-            },
-
-            isComplete(lessonId) {
-                return this.completedLessons.has(lessonId);
-            },
-
-            updateUI() {
-                // Update lesson cards
-                document.querySelectorAll('.lesson-card').forEach(card => {
-                    const lessonId = card.dataset.lessonId;
-                    if (this.isComplete(lessonId)) {
-                        card.classList.add('completed');
-                        const status = card.querySelector('.lesson-status');
-                        if (status) {
-                            status.innerHTML = '<i class="fas fa-check"></i>';
-                        }
-                    }
-                });
-
-                // Count actual lessons dynamically from DOM
-                const totalLessons = document.querySelectorAll('.lesson-card').length;
-                const completedCount = this.completedLessons.size;
-                const percentage = totalLessons > 0 ? Math.round((completedCount / totalLessons) * 100) : 0;
-
-                // Update total lesson count in header stats
-                const totalLessonsEl = document.getElementById('totalLessonsCount');
-                if (totalLessonsEl) {
-                    totalLessonsEl.textContent = totalLessons;
-                }
-
-                // Update sidebar stats
-                const sidebarLessonsEl = document.querySelector('.stat-item:nth-child(2) .stat-value');
-                if (sidebarLessonsEl) {
-                    sidebarLessonsEl.textContent = `${completedCount}/${totalLessons}`;
-                }
-
-                const totalNumberEl = document.querySelector('.total-number');
-                if (totalNumberEl) {
-                    totalNumberEl.textContent = `${percentage}%`;
-                }
-
-                // Track module completion
-                const moduleCompletionMap = this.getModuleCompletion();
-                const completedModulesCount = Object.values(moduleCompletionMap).filter(isComplete => isComplete).length;
-
-                // Update module count in sidebar
-                const sidebarModulesEl = document.querySelector('.stat-item:nth-child(1) .stat-value');
-                if (sidebarModulesEl) {
-                    sidebarModulesEl.textContent = `${completedModulesCount}/10`;
-                }
-
-                // Update course progress percentage in header
-                const courseProgressEl = document.getElementById('courseProgressPercent');
-                if (courseProgressEl) {
-                    courseProgressEl.textContent = `${percentage}%`;
-                }
-
-                // Check if all modules are complete and unlock assessment
-                this.updateAssessmentButton(completedModulesCount === 10);
-            },
-
-            getModuleCompletion() {
-                // Define lessons per module (based on the HTML structure)
-                const moduleLessons = {
-                    1: 3,  // Getting Started: 3 lessons
-                    2: 3,  // Variables & Data Types: 3 lessons
-                    3: 4,  // Operators: 4 lessons
-                    4: 4,  // Control Flow: 4 lessons
-                    5: 4,  // Functions: 4 lessons
-                    6: 4,  // Arrays: 4 lessons
-                    7: 4,  // Pointers: 4 lessons
-                    8: 4,  // Strings: 4 lessons
-                    9: 5,  // OOP: 5 lessons
-                    10: 4  // Advanced: 4 lessons
-                };
-
-                const moduleCompletion = {};
-
-                // Check each module
-                for (let moduleNum = 1; moduleNum <= 10; moduleNum++) {
-                    const moduleLessonCount = moduleLessons[moduleNum];
-                    let completedInModule = 0;
-
-                    // Count completed lessons in this module
-                    this.completedLessons.forEach(lessonId => {
-                        const lesson = lessonContent[lessonId];
-                        if (lesson && lesson.module === moduleNum) {
-                            completedInModule++;
-                        }
+        async function initDashboard() {
+            if (studentId) {
+                try {
+                    const token = localStorage.getItem('token');
+                    const res = await fetch(`/api/progress/cpp/${studentId}`, {
+                        headers: { 'Authorization': `Bearer ${token}` }
                     });
-
-                    // Module is complete if all its lessons are done
-                    moduleCompletion[moduleNum] = completedInModule >= moduleLessonCount;
+                    if (res.ok) {
+                        savedProgress = await res.json();
+                    }
+                } catch (err) {
+                    console.error("Failed to load progress", err);
                 }
-
-                return moduleCompletion;
-            },
-
-            updateAssessmentButton(allModulesComplete) {
-                const assessmentBtn = document.getElementById('assessmentBtn');
-                if (!assessmentBtn) return;
-
-                if (allModulesComplete) {
-                    // Unlock assessment
-                    assessmentBtn.classList.add('unlocked');
-                    assessmentBtn.innerHTML = '<i class="fas fa-unlock"></i> ASSESSMENT UNLOCKED';
-                    assessmentBtn.style.cursor = 'pointer';
-                    assessmentBtn.disabled = false;
-                } else {
-                    // Keep locked
-                    assessmentBtn.classList.remove('unlocked');
-                    assessmentBtn.innerHTML = '<i class="fas fa-lock"></i> ASSESSMENT LOCKED';
-                    assessmentBtn.style.cursor = 'not-allowed';
-                    assessmentBtn.disabled = true;
-                }
-            },
-
-            showCompletionToast() {
-                // Simple toast notification
-                const toast = document.createElement('div');
-                toast.style.cssText = `
-                    position: fixed;
-                    bottom: 2rem;
-                    right: 2rem;
-                    background: var(--success);
-                    color: white;
-                    padding: 1rem 2rem;
-                    border-radius: var(--radius-md);
-                    box-shadow: var(--shadow-lg);
-                    z-index: 10001;
-                    animation: slideInRight 0.3s ease-out;
-                `;
-                toast.innerHTML = '<i class="fas fa-check-circle"></i> Lesson marked as complete!';
-                document.body.appendChild(toast);
-
-                setTimeout(() => {
-                    toast.style.animation = 'fadeOut 0.3s ease-out';
-                    setTimeout(() => toast.remove(), 300);
-                }, 3000);
             }
-        };
+            renderModules();
+        }
 
-        // Lesson Viewer
-        const lessonViewer = {
-            modal: null,
-            currentLessonId: null,
+        function renderModules() {
+            const container = document.getElementById("modulesContainer");
+            container.innerHTML = "";
 
-            init() {
-                this.modal = document.getElementById('lessonModal');
-                this.setupEventListeners();
-            },
+            let totalLessons = 0;
+            let completedLessons = 0;
+            let firstIncomplete = null;
 
-            setupEventListeners() {
-                // Close button
-                document.getElementById('closeLessonBtn').addEventListener('click', () => this.close());
+            modules.forEach((mod, index) => {
+                const modEl = document.createElement("div");
+                modEl.className = "module-card";
+                if (index === 0) modEl.classList.add("active");
 
-                // ESC key
-                document.addEventListener('keydown', (e) => {
-                    if (e.key === 'Escape' && this.modal.classList.contains('active')) {
-                        this.close();
-                    }
+                // Check completion
+                let modCompletedCount = 0;
+                mod.lessons.forEach(l => {
+                    if (savedProgress[l.id]) modCompletedCount++;
                 });
+                const isModComplete = modCompletedCount === mod.lessons.length;
+                if (isModComplete) modEl.classList.add("completed");
 
-                // Tab switching
-                document.querySelectorAll('.lesson-tab').forEach(tab => {
-                    tab.addEventListener('click', () => {
-                        this.switchTab(tab.dataset.tab);
-                    });
-                });
+                const lessonsHtml = mod.lessons.map(lesson => {
+                    totalLessons++;
+                    const isCompleted = savedProgress[lesson.id];
+                    if (isCompleted) completedLessons++;
+                    else if (!firstIncomplete) firstIncomplete = lesson.id;
 
-                // Mark complete button
-                document.getElementById('markCompleteBtn').addEventListener('click', () => {
-                    if (this.currentLessonId) {
-                        progressManager.markComplete(this.currentLessonId);
-                        this.updateCompleteButton();
-                    }
-                });
-
-                // Navigation buttons
-                document.getElementById('nextLessonBtn').addEventListener('click', () => this.navigateNext());
-                document.getElementById('prevLessonBtn').addEventListener('click', () => this.navigatePrev());
-
-                // Copy code button
-                document.getElementById('copyCodeBtn').addEventListener('click', () => this.copyCode());
-
-                // AI Chat Submit
-                const sendAiBtn = document.getElementById('sendAiBtn');
-                if (sendAiBtn) {
-                    sendAiBtn.addEventListener('click', sendAiMessage);
-                }
-                const aiChatInput = document.getElementById('aiChatInput');
-                if (aiChatInput) {
-                    aiChatInput.addEventListener('keypress', (e) => {
-                        if (e.key === 'Enter') sendAiMessage();
-                    });
-                }
-            },
-
-            switchTab(tabId) {
-                document.querySelectorAll('.lesson-tab').forEach(t => t.classList.remove('active'));
-                document.querySelectorAll('.lesson-tab-content').forEach(c => c.classList.remove('active'));
-
-                const tab = document.querySelector(`.lesson-tab[data-tab="${tabId}"]`);
-                if (tab) tab.classList.add('active');
-
-                const content = document.getElementById(tabId + 'Tab');
-                if (content) content.classList.add('active');
-            },
-
-            renderTheory(theoryText) {
-                const theoryContainer = document.getElementById('lessonTheory');
-                if (!theoryContainer) return;
-
-                let html = '';
-                const blocks = theoryText.split('\n\n');
-
-                blocks.forEach(block => {
-                    const trimmedBlock = block.trim();
-                    if (trimmedBlock.startsWith(':::terminal')) {
-                        const content = trimmedBlock.replace(/:::terminal\s+\w+\n?/, '').replace(/:::/g, '').trim();
-                        const id = 'ex_' + Math.random().toString(36).substr(2, 6);
-                        exerciseOriginals[id] = content;
-
-                        html += `
-                            <div class="exercise-preview-card">
-                                <div class="exercise-header">
-                                    <i class="fas fa-laptop-code"></i> PRACTICE EXERCISE
-                                </div>
-                                <div class="exercise-body">
-                                    <p>The starter code has been loaded in the IDE. Complete the task and see it in action!</p>
-                                    <button class="load-exercise-btn" onclick="loadExerciseToIde('${id}')">
-                                        <i class="fas fa-play"></i> CONVERT TO INTERACTIVE
-                                    </button>
-                                </div>
-                            </div>
-                        `;
-                    } else if (trimmedBlock.startsWith(':::solution')) {
-                        const content = trimmedBlock.replace(/:::solution\s+\w+\n?/, '').replace(/:::/g, '').trim();
-                        const lastId = Object.keys(exerciseOriginals).pop();
-                        if (lastId) {
-                            exerciseSolutions[lastId] = content;
-                        }
-                    } else if (trimmedBlock.startsWith('**') && trimmedBlock.endsWith('**')) {
-                        html += `<h4>${trimmedBlock.replace(/\*\*/g, '')}</h4>`;
-                    } else if (trimmedBlock.startsWith('- ')) {
-                        html += `<ul>${trimmedBlock.split('\n').map(li => `<li>${li.replace('- ', '')}</li>`).join('')}</ul>`;
-                    } else if (trimmedBlock) {
-                        html += `<p>${trimmedBlock}</p>`;
-                    }
-                });
-
-                theoryContainer.innerHTML = html;
-            },
-
-            open(lessonId) {
-                const lesson = lessonContent[lessonId];
-                if (!lesson) {
-                    console.error('Lesson not found:', lessonId);
-                    return;
-                }
-
-                this.currentLessonId = lessonId;
-                this.switchTab('statement');
-                this.renderLesson(lesson);
-                this.modal.classList.add('active');
-                document.body.style.overflow = 'hidden';
-
-                // Reset AI Chat for new lesson
-                const aiChatMessages = document.getElementById('aiChatMessages');
-                if (aiChatMessages) {
-                    aiChatMessages.innerHTML = `
-                        <div class="ai-msg">
-                            <div class="msg-avatar"><i class="fas fa-robot"></i></div>
-                            <div class="msg-bubble">
-                                <p>Hello! I'm your C++ Assistant. Ask me anything about <strong>${lesson.title}</strong>!</p>
-                            </div>
-                        </div>
+                    return `
+                        <li class="lesson-item">
+                            <a href="cpp-lesson?lessonId=${lesson.id}" class="lesson-link">
+                                <span style="display: flex; align-items: center; gap: 10px;">
+                                    <i class="fas ${lesson.type === 'practice' ? 'fa-code' : 'fa-play-circle'}" style="color: ${isCompleted ? 'var(--success)' : 'var(--text-muted)'};"></i> 
+                                    ${lesson.title}
+                                </span>
+                                <span class="lesson-status ${isCompleted ? 'completed' : ''}">
+                                    ${isCompleted ? '<i class="fas fa-check"></i> Done' : 'Start'}
+                                </span>
+                            </a>
+                        </li>
                     `;
-                }
+                }).join("");
 
-                // Highlight syntax
-                setTimeout(() => Prism.highlightAll(), 100);
-            },
-
-            close() {
-                this.modal.classList.remove('active');
-                document.body.style.overflow = '';
-                this.currentLessonId = null;
-            },
-
-            renderLesson(lesson) {
-                // Update title
-                document.getElementById('lessonTitle').textContent = lesson.title;
-
-                // Update intro
-                document.getElementById('lessonIntro').innerHTML = `<p>${lesson.intro}</p>`;
-
-                // Update objectives
-                const objectivesList = document.getElementById('lessonObjectives');
-                objectivesList.innerHTML = lesson.objectives.map(obj => `<li>${obj}</li>`).join('');
-
-                // Update theory with Interactive Support
-                this.renderTheory(lesson.theory);
-
-                // Update code examples
-                const examplesContainer = document.getElementById('lessonCodeExamples');
-                examplesContainer.innerHTML = lesson.codeExamples.map(example => `
-                    <div class="code-example-block">
-                        <h4>${example.title}</h4>
-                        <pre class="line-numbers"><code class="language-cpp">${escapeHtml(example.code)}</code></pre>
-                        <div class="explanation">${example.explanation}</div>
+                modEl.innerHTML = `
+                    <div class="module-header" onclick="this.parentElement.classList.toggle('active')">
+                        <div class="module-title">
+                            <span class="module-number">${index + 1}</span>
+                            ${mod.title}
+                        </div>
+                         <div style="display: flex; align-items: center; gap: 1rem;">
+                            <span style="font-size: 0.9rem; color: var(--text-muted);">${modCompletedCount}/${mod.lessons.length}</span>
+                            <i class="fas fa-chevron-down" style="color: var(--text-muted); transition: transform 0.3s;"></i>
+                        </div>
                     </div>
-                `).join('');
+                    <ul class="module-lessons">
+                        ${lessonsHtml}
+                    </ul>
+                `;
+                container.appendChild(modEl);
+            });
 
-                // Update key points
-                const keyPointsList = document.getElementById('lessonKeyPoints');
-                keyPointsList.innerHTML = lesson.keyPoints.map(point => `<li>${point}</li>`).join('');
+            // Update Stats
+            const percent = totalLessons === 0 ? 0 : Math.round((completedLessons / totalLessons) * 100);
+            updateProgressCircle(percent);
+            document.getElementById("completedCount").innerText = `${completedLessons}/${totalLessons}`;
 
-                // Update common doubts
-                const doubtsContainer = document.getElementById('lessonDoubts');
-                doubtsContainer.innerHTML = lesson.commonDoubts.map(doubt => `
-                    <div class="doubt-item">
-                        <h4><i class="fas fa-question"></i> ${doubt.q}</h4>
-                        <p>${doubt.a}</p>
-                    </div>
-                `).join('');
-
-                // Update main code panel
-                document.getElementById('lessonCode').textContent = lesson.mainCode;
-
-                // Update progress bar
-                const lessonIndex = progressManager.allLessonIds.indexOf(lesson.id);
-                const progress = ((lessonIndex + 1) / progressManager.allLessonIds.length) * 100;
-                document.getElementById('lessonProgressFill').style.width = progress + '%';
-
-                // Update complete button
-                this.updateCompleteButton();
-
-                // Update navigation buttons
-                this.updateNavigationButtons();
-            },
-
-            updateCompleteButton() {
-                const btn = document.getElementById('markCompleteBtn');
-                if (progressManager.isComplete(this.currentLessonId)) {
-                    btn.innerHTML = '<i class="fas fa-check-circle"></i> Completed';
-                    btn.style.background = 'var(--success)';
-                } else {
-                    btn.innerHTML = '<i class="fas fa-check-circle"></i> Mark as Complete';
-                    btn.style.background = '';
-                }
-            },
-
-            updateNavigationButtons() {
-                const currentIndex = progressManager.allLessonIds.indexOf(this.currentLessonId);
-                const prevBtn = document.getElementById('prevLessonBtn');
-                const nextBtn = document.getElementById('nextLessonBtn');
-
-                prevBtn.disabled = currentIndex === 0;
-                nextBtn.disabled = currentIndex === progressManager.allLessonIds.length - 1;
-
-                prevBtn.style.opacity = currentIndex === 0 ? '0.5' : '1';
-                nextBtn.style.opacity = currentIndex === progressManager.allLessonIds.length - 1 ? '0.5' : '1';
-            },
-
-            navigateNext() {
-                const currentIndex = progressManager.allLessonIds.indexOf(this.currentLessonId);
-                if (currentIndex < progressManager.allLessonIds.length - 1) {
-                    const nextId = progressManager.allLessonIds[currentIndex + 1];
-                    this.open(nextId);
-                }
-            },
-
-            navigatePrev() {
-                const currentIndex = progressManager.allLessonIds.indexOf(this.currentLessonId);
-                if (currentIndex > 0) {
-                    const prevId = progressManager.allLessonIds[currentIndex - 1];
-                    this.open(prevId);
-                }
-            },
-
-            copyCode() {
-                const code = document.getElementById('lessonCode').textContent;
-                navigator.clipboard.writeText(code).then(() => {
-                    const btn = document.getElementById('copyCodeBtn');
-                    const originalHTML = btn.innerHTML;
-                    btn.innerHTML = '<i class="fas fa-check"></i> Copied!';
-                    setTimeout(() => {
-                        btn.innerHTML = originalHTML;
-                    }, 2000);
-                });
-            },
-
-            escapeHtml(text) {
-                const div = document.createElement('div');
-                div.textContent = text;
-                return div.innerHTML;
+            // Update Assessment Button
+            const btnAssessment = document.getElementById("btnAssessment");
+            if (completedLessons === totalLessons && totalLessons > 0) {
+                btnAssessment.classList.add("unlocked");
+                btnAssessment.innerHTML = '<i class="fas fa-unlock"></i> Start Assessment';
+                btnAssessment.onclick = () => alert("Assessment Started! Good luck.");
             }
-        };
 
-        // Initialize everything
-        progressManager.init();
-        lessonViewer.init();
-
-        // Lesson Click Handler - Add data-lesson-id to cards
-        document.querySelectorAll('.lesson-card').forEach((card, index) => {
-            // Assign lesson IDs based on order
-            const lessonIds = ['intro-cpp', 'setup-env', 'first-program', 'primitive-types'];
-            const lessonId = lessonIds[index] || `lesson-${index}`;
-            card.dataset.lessonId = lessonId;
-
-            card.addEventListener('click', () => {
-                if (lessonContent[lessonId]) {
-                    lessonViewer.open(lessonId);
-                } else {
-                    alert('Lesson content coming soon! We are working on adding more lessons.');
-                }
-            });
-        });
-
-        // START TRACK Button
-        const startTrackBtn = document.getElementById('startTrackBtn');
-        if (startTrackBtn) {
-            startTrackBtn.addEventListener('click', () => {
-                document.querySelector('.curriculum-section').scrollIntoView({ behavior: 'smooth' });
-            });
+            // Update Resume Button
+            const btnResume = document.getElementById("btnResume");
+            if (firstIncomplete) {
+                btnResume.href = `cpp-lesson?lessonId=${firstIncomplete}`;
+                btnResume.innerText = "Resume Learning";
+            } else {
+                btnResume.href = "#";
+                btnResume.innerText = "Course Completed";
+                btnResume.classList.replace('btn-primary', 'btn-success');
+            }
         }
 
-        // ASSESSMENT Button - Open assessment when unlocked
-        const assessmentBtn = document.getElementById('assessmentBtn');
-        if (assessmentBtn) {
-            assessmentBtn.addEventListener('click', () => {
-                if (assessmentBtn.classList.contains('unlocked')) {
-                    // Open assessment (you can customize this URL or action)
-                    alert('🎉 Congratulations! You have completed all modules!\n\nAssessment feature coming soon. This will test your C++ knowledge across all topics.');
-                    // Future: window.location.href = 'cpp-assessment';
-                } else {
-                    alert('⚠️ Assessment is locked!\n\nComplete all 10 modules to unlock the final assessment.');
-                }
-            });
+        function updateProgressCircle(percent) {
+            const circle = document.getElementById("overallProgressCircle");
+            const text = document.getElementById("overallProgressText");
+            const circumference = 440;
+            const offset = circumference - (percent / 100) * circumference;
+            circle.style.strokeDashoffset = offset;
+            text.innerText = `${percent}%`;
         }
+
+        renderModules();
     </script>
 </body>
 

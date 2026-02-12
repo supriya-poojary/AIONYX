@@ -1,0 +1,771 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Profile - AIONYX</title>
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="css/theme.css">
+    <style>
+        body {
+            padding-top: 80px;
+        }
+
+        .profile-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+            display: grid;
+            grid-template-columns: 350px 1fr;
+            gap: 2rem;
+        }
+
+        @media (max-width: 1024px) {
+            .profile-container {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            body {
+                padding-top: 70px;
+            }
+
+            .profile-container {
+                padding: 1rem;
+                gap: 1.5rem;
+            }
+
+            .user-card {
+                padding: 1.5rem;
+            }
+
+            .user-avatar {
+                width: 80px;
+                height: 80px;
+                font-size: 2rem;
+            }
+
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr) !important;
+                gap: 1rem;
+            }
+
+            .stat-card {
+                padding: 1rem;
+            }
+
+            .stat-value {
+                font-size: 1.8rem !important;
+            }
+
+            .calendar-heatmap {
+                overflow-x: scroll;
+            }
+
+            .heatmap-day {
+                width: 10px;
+                height: 10px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .profile-container {
+                padding: 0.75rem;
+            }
+
+            .stats-grid {
+                grid-template-columns: 1fr !important;
+            }
+
+            .stat-card {
+                padding: 1.25rem;
+            }
+
+            .user-card h2 {
+                font-size: 1.25rem;
+            }
+
+            .user-card p {
+                font-size: 0.85rem;
+            }
+        }
+
+        /* Left Column */
+        .profile-sidebar {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .user-card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-lg);
+            padding: 2rem;
+            text-align: center;
+            box-shadow: var(--shadow-md);
+        }
+
+        /* Background Animation */
+        #bgCanvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            /* Behind everything */
+            background: linear-gradient(135deg, #0f172a 0%, #1e1b4b 100%);
+        }
+
+        /* Modal Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            align-items: center;
+            justify-content: center;
+            backdrop-filter: blur(5px);
+        }
+
+        .modal-content {
+            background: var(--surface);
+            padding: 2rem;
+            border-radius: var(--radius-lg);
+            border: 1px solid var(--border);
+            width: 90%;
+            max-width: 500px;
+            box-shadow: var(--shadow-xl);
+            position: relative;
+            animation: slideIn 0.3s ease-out;
+        }
+
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .close-modal {
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--text-muted);
+            transition: color 0.2s;
+        }
+
+        .close-modal:hover {
+            color: var(--text-primary);
+        }
+
+        .form-group {
+            margin-bottom: 1.25rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: var(--text-secondary);
+            font-weight: 500;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 0.75rem;
+            border-radius: var(--radius-md);
+            border: 1px solid var(--border);
+            background: var(--background);
+            color: var(--text-primary);
+            font-size: 1rem;
+            transition: all 0.2s;
+        }
+
+        .form-control:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(139, 92, 246, 0.2);
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .user-avatar {
+            width: 120px;
+            height: 120px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 3.5rem;
+            margin: 0 auto 1.5rem;
+            box-shadow: var(--glow-primary);
+        }
+
+        .user-name {
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+
+        .user-rank {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .btn-edit-profile {
+            width: 100%;
+            padding: 0.8rem;
+            background: var(--surface-hover);
+            color: var(--text-primary);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-md);
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .btn-edit-profile:hover {
+            background: var(--border);
+        }
+
+        /* Right Column */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .stat-card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-lg);
+            padding: 1.5rem;
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+            transition: transform 0.3s;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--primary);
+        }
+
+        .stat-label {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            font-weight: 600;
+        }
+
+        .stat-value {
+            font-size: 2rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, var(--text-primary), var(--text-secondary));
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        /* Heatmap Section */
+        .heatmap-card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-lg);
+            padding: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .section-header {
+            font-size: 1.2rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .calendar-heatmap {
+            display: flex;
+            gap: 4px;
+            overflow-x: auto;
+            padding-bottom: 10px;
+        }
+
+        .heatmap-week {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+
+        .heatmap-day {
+            width: 12px;
+            height: 12px;
+            background: var(--surface-hover);
+            border-radius: 2px;
+        }
+
+        .heatmap-day.level-1 {
+            background: rgba(16, 185, 129, 0.2);
+        }
+
+        .heatmap-day.level-2 {
+            background: rgba(16, 185, 129, 0.4);
+        }
+
+        .heatmap-day.level-3 {
+            background: rgba(16, 185, 129, 0.6);
+        }
+
+        .heatmap-day.level-4 {
+            background: rgba(16, 185, 129, 0.8);
+        }
+
+        .heatmap-day.level-5 {
+            background: #10b981;
+        }
+
+        /* Recent Activity */
+        .activity-list {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .activity-item {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-md);
+            padding: 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            transition: all 0.2s;
+        }
+
+        .activity-item:hover {
+            transform: translateX(5px);
+            border-color: var(--border-focus);
+        }
+
+        .activity-left {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .activity-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 8px;
+            background: rgba(59, 130, 246, 0.1);
+            color: #3b82f6;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .activity-info h4 {
+            font-size: 1rem;
+            margin-bottom: 0.2rem;
+        }
+
+        .activity-info span {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Navbar -->
+    <nav class="navbar">
+        <a href="/" class="logo">
+            <i class="fas fa-code"></i>
+            <span class="logo-text">AIONYX</span>
+        </a>
+        <div class="nav-links">
+            <a href="student-courses" class="nav-item">Dashboard</a>
+            <div class="nav-item" style="display: flex; align-items: center; gap: 8px; color: var(--primary);">
+                <i class="fas fa-user-circle"></i> Profile
+            </div>
+            <button id="logoutBtn" class="btn btn-ghost">Logout</button>
+        </div>
+    </nav>
+
+    <!-- Background Animation -->
+    <canvas id="bgCanvas"></canvas>
+
+    <div class="profile-container">
+        <!-- Sidebar -->
+        <aside class="profile-sidebar">
+            <div class="user-card">
+                <div class="user-avatar" id="userAvatar">
+                    <i class="fas fa-user"></i>
+                </div>
+                <h1 class="user-name" id="userName">Loading...</h1>
+                <p class="user-rank" id="userEmail">student@example.com</p>
+                <div style="display: flex; justify-content: center; gap: 10px; margin-bottom: 1.5rem;">
+                    <span class="badge"
+                        style="background: rgba(236, 72, 153, 0.1); color: var(--secondary); padding: 4px 10px; border-radius: 20px; font-size: 0.8rem;">Student</span>
+                    <span class="badge"
+                        style="background: rgba(16, 185, 129, 0.1); color: var(--success); padding: 4px 10px; border-radius: 20px; font-size: 0.8rem;">Active</span>
+                </div>
+                <button class="btn-edit-profile" onclick="openEditModal()">
+                    <i class="fas fa-pen"></i> Edit Profile
+                </button>
+            </div>
+
+            <div class="user-card" style="text-align: left;">
+                <h3 style="margin-bottom: 1rem;">Community Stats</h3>
+                <div
+                    style="display: flex; align-items: center; gap: 10px; margin-bottom: 0.8rem; color: var(--text-secondary);">
+                    <i class="fas fa-eye" style="color: var(--text-muted);"></i>
+                    <span>Views</span>
+                    <span style="flex: 1; text-align: right; font-weight: 600;">0</span>
+                </div>
+                <div style="display: flex; align-items: center; gap: 10px; color: var(--text-secondary);">
+                    <i class="fas fa-check" style="color: var(--text-muted);"></i>
+                    <span>Solutions</span>
+                    <span style="flex: 1; text-align: right; font-weight: 600;">0</span>
+                </div>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main>
+            <!-- Stats Grid -->
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <span class="stat-label">Total Solved</span>
+                    <span class="stat-value" id="totalSolved">0</span>
+                    <div style="font-size: 0.8rem; color: var(--text-muted); margin-top: auto;">
+                        Across all courses
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-label">DSA Problems</span>
+                    <span class="stat-value" id="dsaSolved">0</span>
+                    <div style="font-size: 0.8rem; color: var(--text-muted); margin-top: auto;">
+                        Questions completed
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-label">C++ Lessons</span>
+                    <span class="stat-value" id="cppSolved">0</span>
+                    <div style="font-size: 0.8rem; color: var(--text-muted); margin-top: auto;">
+                        Modules mastered
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-label">Current Streak</span>
+                    <span class="stat-value" id="currentStreak">0</span>
+                    <div style="font-size: 0.8rem; color: var(--text-muted); margin-top: auto;">
+                        Days in a row
+                    </div>
+                </div>
+            </div>
+
+            <!-- Heatmap -->
+            <div class="heatmap-card">
+                <div class="section-header">
+                    <i class="fas fa-calendar-alt" style="color: var(--text-muted);"></i>
+                    Activity Log (Last 6 Months)
+                </div>
+                <div class="calendar-heatmap" id="heatmapContainer">
+                    <!-- Injected by JS -->
+                </div>
+            </div>
+
+            <!-- Recent Activity REMOVED per user request -->
+        </main>
+    </div>
+
+    <!-- Edit Profile Modal -->
+    <div id="editProfileModal" class="modal">
+        <div class="modal-content" style="max-width: 500px;">
+            <div class="modal-header">
+                <h2>Edit Profile</h2>
+                <span class="close-modal" onclick="closeEditModal()">&times;</span>
+            </div>
+            <div class="modal-body">
+                <form id="editProfileForm">
+                    <div class="form-group">
+                        <label for="editName">Full Name</label>
+                        <input type="text" id="editName" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="editEmail">Email Address</label>
+                        <input type="email" id="editEmail" class="form-control" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary" style="width: 100%; margin-top: 1rem;">Save
+                        Changes</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/theme.js"></script>
+    <script>
+        // Profile Logic
+        const token = localStorage.getItem('token');
+        let user = JSON.parse(localStorage.getItem('user') || '{}');
+        const studentId = user.id;
+
+        if (!token) window.location.href = 'student-login';
+
+        // Render basic info first
+        function renderUserInfo() {
+            if (user.name) {
+                document.getElementById('userName').textContent = user.name;
+                document.getElementById('editName').value = user.name;
+            }
+            if (user.email) {
+                document.getElementById('userEmail').textContent = user.email;
+                document.getElementById('editEmail').value = user.email;
+            }
+        }
+        renderUserInfo();
+
+        // Fetch Stats
+        async function fetchProfileStats() {
+            try {
+                const response = await fetch(`/api/progress/profile/${studentId}`, {
+                    headers: { 'Authorization': `Bearer ${token}` }
+                });
+
+                if (!response.ok) throw new Error("Failed to fetch stats");
+
+                const data = await response.json();
+
+                // Update Stats
+                document.getElementById('totalSolved').textContent = data.stats.totalSolved;
+                document.getElementById('dsaSolved').textContent = data.stats.dsaSolved;
+                document.getElementById('cppSolved').textContent = data.stats.cppCompleted;
+                document.getElementById('currentStreak').textContent = data.user.current_streak || 0;
+
+                // Render Heatmap with real activity data
+                renderHeatmap(data.activityMap || {}, data.user.created_at);
+
+            } catch (err) {
+                console.error(err);
+                // Even on error, render empty heatmap
+                renderHeatmap({}, null);
+            }
+        }
+
+        function renderHeatmap(activityMap, userCreatedAt) {
+            const container = document.getElementById('heatmapContainer');
+            container.innerHTML = '';
+
+            const today = new Date();
+
+            // Start from user account creation or 1 year ago, whichever is more recent
+            const accountCreated = userCreatedAt ? new Date(userCreatedAt) : new Date();
+            const oneYearAgo = new Date();
+            oneYearAgo.setFullYear(today.getFullYear() - 1);
+
+            const startDate = accountCreated > oneYearAgo ? accountCreated : oneYearAgo;
+
+            // Align to start of week (Sunday)
+            const dayOfWeek = startDate.getDay();
+            startDate.setDate(startDate.getDate() - dayOfWeek);
+
+            // Calculate number of weeks to display
+            const daysDiff = Math.ceil((today - startDate) / (1000 * 60 * 60 * 24));
+            const weeksToShow = Math.ceil(daysDiff / 7) + 1;
+
+            for (let w = 0; w < weeksToShow; w++) {
+                const week = document.createElement('div');
+                week.className = 'heatmap-week';
+
+                for (let d = 0; d < 7; d++) {
+                    const day = document.createElement('div');
+                    day.className = 'heatmap-day';
+
+                    const dayDate = new Date(startDate);
+                    dayDate.setDate(startDate.getDate() + (w * 7) + d);
+
+                    // Don't render future days or days before account creation
+                    if (dayDate > today || (userCreatedAt && dayDate < new Date(userCreatedAt))) {
+                        day.style.opacity = '0';
+                        week.appendChild(day);
+                        continue;
+                    }
+
+                    const dateStr = dayDate.toISOString().split('T')[0];
+                    const count = activityMap[dateStr] || 0;
+
+                    // Apply green levels based on activity count
+                    if (count > 0) {
+                        let level = 1;
+                        if (count >= 5) level = 5;
+                        else if (count >= 4) level = 4;
+                        else if (count >= 3) level = 3;
+                        else if (count >= 2) level = 2;
+                        day.classList.add(`level-${level}`);
+                    }
+                    // No activity = stays gray (default background)
+
+                    day.title = `${count} contribution${count !== 1 ? 's' : ''} on ${dayDate.toLocaleDateString()}`;
+
+                    week.appendChild(day);
+                }
+                container.appendChild(week);
+            }
+        }
+
+        document.getElementById('logoutBtn').addEventListener('click', () => {
+            localStorage.clear();
+            window.location.href = 'student-login';
+        });
+
+        // Initialize
+        if (studentId) fetchProfileStats();
+
+        // --- EDIT PROFILE MODAL ---
+        const modal = document.getElementById('editProfileModal');
+
+        function openEditModal() {
+            modal.style.display = 'flex';
+        }
+
+        function closeEditModal() {
+            modal.style.display = 'none';
+        }
+
+        window.onclick = function (event) {
+            if (event.target == modal) {
+                closeEditModal();
+            }
+        }
+
+        document.getElementById('editProfileForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const btn = e.target.querySelector('button');
+            const originalText = btn.textContent;
+            btn.textContent = 'Saving...';
+            btn.disabled = true;
+
+            const newName = document.getElementById('editName').value;
+            const newEmail = document.getElementById('editEmail').value;
+
+            try {
+                const response = await fetch('/api/auth/student/profile', {
+                    method: 'PUT',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${token}`
+                    },
+                    body: JSON.stringify({ name: newName, email: newEmail })
+                });
+
+                const data = await response.json();
+
+                if (response.ok) {
+                    // Update LocalStorage
+                    user.name = data.user.name;
+                    user.email = data.user.email;
+                    localStorage.setItem('user', JSON.stringify(user));
+
+                    // Update UI
+                    renderUserInfo();
+                    closeEditModal();
+                    alert('Profile updated successfully!');
+                } else {
+                    alert(data.message || 'Failed to update profile');
+                }
+            } catch (err) {
+                console.error(err);
+                alert('An error occurred. Please try again.');
+            } finally {
+                btn.textContent = originalText;
+                btn.disabled = false;
+            }
+        });
+
+        // --- BACKGROUND ANIMATION ---
+        const canvas = document.getElementById('bgCanvas');
+        const ctx = canvas.getContext('2d');
+        let width, height;
+
+        function resize() {
+            width = canvas.width = window.innerWidth;
+            height = canvas.height = window.innerHeight;
+        }
+
+        window.addEventListener('resize', resize);
+        resize();
+
+        const particles = [];
+        const particleCount = 50;
+
+        class Particle {
+            constructor() {
+                this.x = Math.random() * width;
+                this.y = Math.random() * height;
+                this.vx = (Math.random() - 0.5) * 0.5;
+                this.vy = (Math.random() - 0.5) * 0.5;
+                this.size = Math.random() * 2;
+                this.color = `rgba(${Math.random() > 0.5 ? '139, 92, 246' : '236, 72, 153'}, ${Math.random() * 0.5})`;
+            }
+
+            update() {
+                this.x += this.vx;
+                this.y += this.vy;
+
+                if (this.x < 0 || this.x > width) this.vx *= -1;
+                if (this.y < 0 || this.y > height) this.vy *= -1;
+            }
+
+            draw() {
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                ctx.fillStyle = this.color;
+                ctx.fill();
+            }
+        }
+
+        for (let i = 0; i < particleCount; i++) {
+            particles.push(new Particle());
+        }
+
+        function animate() {
+            ctx.clearRect(0, 0, width, height);
+
+            particles.forEach(p => {
+                p.update();
+                p.draw();
+            });
+
+            requestAnimationFrame(animate);
+        }
+
+        animate();
+
+    </script>
+</body>
+
+</html>
