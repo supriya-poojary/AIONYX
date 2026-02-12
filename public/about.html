@@ -1011,15 +1011,19 @@
             <!-- Left Side: Text Content -->
             <div class="dev-info-side reveal-right">
                 <h4
-                    style="color: var(--primary); font-weight: 700; margin-bottom: 10px; text-transform: uppercase; letter-spacing: 1px;">
+                    style="color: var(--primary); font-size: 1.1rem; font-weight: 800; margin-bottom: 1.5rem; text-transform: uppercase; letter-spacing: 3px; border-left: 4px solid var(--secondary); padding-left: 15px;">
                     Our Expert Team</h4>
-                <h2 style="font-size: 3.5rem; font-weight: 800; margin-bottom: 1.5rem; line-height: 1.1;">Meet the
-                    <span class="text-gradient"
-                        style="background: linear-gradient(135deg, white, #a78bfa); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;">Developers</span>
+                <h2
+                    style="font-size: 4.5rem; font-weight: 900; margin-bottom: 2rem; line-height: 1.1; letter-spacing: -1px;">
+                    Meet the
+                    <br><span class="text-gradient"
+                        style="background: linear-gradient(135deg, white, #a78bfa); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; font-size: 5rem;">Developers</span>
                 </h2>
                 <p
-                    style="font-size: 1.1rem; color: var(--text-secondary); margin-bottom: 2rem; line-height: 1.6; max-width: 400px;">
-                    Expert trainers and mentors dedicated to simplifying complex engineering concepts and accelerating
+                    style="font-size: 1.35rem; color: var(--text-secondary); margin-bottom: 2rem; line-height: 1.7; max-width: 480px; font-weight: 500; border-left: 1px solid rgba(255,255,255,0.1); padding-left: 20px;">
+                    Expert trainers and mentors dedicated to <span
+                        style="color: var(--text-primary); font-weight: 700;">simplifying</span> complex engineering
+                    concepts and <span style="color: var(--text-primary); font-weight: 700;">accelerating</span>
                     your
                     technical mastery.
                 </p>
@@ -1122,23 +1126,23 @@
             /* Split Layout Container */
             .dev-section-container {
                 display: flex;
-                align-items: flex-start;
-                /* Align text to top */
+                align-items: center;
+                /* Centered vertically to fix empty space */
                 gap: 50px;
                 max-width: 1200px;
                 margin: 0 auto;
                 padding: 40px 20px 0 20px;
-                /* Add top padding */
             }
 
             .dev-info-side {
                 flex: 1;
                 text-align: left;
+                padding-right: 20px;
+                /* Add some spacing */
             }
 
             .dev-grid-side {
                 flex: 1.5;
-                /* Grid takes more space */
             }
 
             /* 2x2 Grid Layout */
@@ -1149,7 +1153,7 @@
                 margin-top: 0;
             }
 
-            /* Professional Vertical Card Styling (Like Previous) */
+            /* Professional Vertical Card Styling */
             .dev-card {
                 display: flex;
                 flex-direction: column;
@@ -1159,35 +1163,35 @@
                 background: var(--surface);
                 border: 1px solid var(--border);
                 border-top: 4px solid var(--primary);
-                /* Gradient border accent */
                 border-radius: 20px;
-                padding: 20px;
+                padding: 15px;
+                /* Reduced from 20px */
                 transition: all 0.3s ease;
-                height: 100%;
-                /* Ensure uniform height */
+                height: auto;
+                /* Changed from 100% to auto to reduce height */
+                min-height: 100%;
+                /* Ensure equal height but not forced excessive height */
             }
 
             .dev-card:hover {
                 transform: translateY(-5px);
                 box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
                 border-top-color: #a78bfa;
-                /* Hover accent */
             }
 
             /* Full Portrait Image Style - CIRCLE UPDATE */
             .dev-image-space {
-                width: 160px;
-                /* Slightly larger circle */
-                height: 160px;
+                width: 120px;
+                /* Reduced from 160px */
+                height: 120px;
+                /* Reduced from 160px */
                 aspect-ratio: 1/1;
-                /* Square for circle */
                 border-radius: 50%;
-                /* Circle shape */
-                margin-bottom: 20px;
+                margin-bottom: 15px;
+                /* Reduced from 20px */
                 overflow: hidden;
                 position: relative;
                 border: 3px solid rgba(139, 92, 246, 0.3);
-                /* Optional ring */
             }
 
             .dev-image-space img {
@@ -1209,32 +1213,38 @@
                 flex-direction: column;
                 align-items: center;
                 flex-grow: 1;
+                padding: 0;
+                /* Ensuring no extra padding */
             }
 
             .dev-name {
-                font-size: 1.4rem;
-                margin-bottom: 5px;
+                font-size: 1.2rem;
+                /* Reduced from 1.4rem */
+                margin-bottom: 3px;
                 color: var(--text-main);
                 font-weight: 700;
             }
 
             .dev-role {
-                font-size: 0.85rem;
+                font-size: 0.75rem;
+                /* Reduced from 0.85rem */
                 font-weight: 700;
                 color: var(--primary);
-                margin-bottom: 15px;
+                margin-bottom: 10px;
+                /* Reduced from 15px */
                 text-transform: uppercase;
                 letter-spacing: 1px;
             }
 
             /* Show Bios again */
             .dev-bio {
-                font-size: 0.95rem;
+                font-size: 0.85rem;
+                /* Reduced from 0.95rem */
                 color: var(--text-secondary);
-                margin-bottom: 20px;
-                line-height: 1.6;
+                margin-bottom: 15px;
+                /* Reduced from 20px */
+                line-height: 1.5;
                 display: block !important;
-                /* Force show */
             }
 
             .skills-tag {
@@ -1549,18 +1559,89 @@
         .cta-section {
             padding: 100px 0;
             position: relative;
+            background:
+                radial-gradient(circle at 15% 50%, rgba(139, 92, 246, 0.08), transparent 25%),
+                radial-gradient(circle at 85% 30%, rgba(236, 72, 153, 0.08), transparent 25%);
+            overflow: hidden;
+        }
+
+        .cta-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image:
+                linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+            background-size: 40px 40px;
+            opacity: 0.3;
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        .cta-section::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle at 50% 50%, rgba(139, 92, 246, 0.1), transparent 50%);
+            animation: rotateCtaBg 30s linear infinite;
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        @keyframes rotateCtaBg {
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        /* CTA Mobile Responsiveness */
+        @media (max-width: 768px) {
+            .cta-section {
+                padding: 60px 0;
+            }
+
+            .cta-container {
+                padding: 2.5rem 1.5rem;
+                border-radius: var(--radius-lg);
+                margin: 0 1rem;
+            }
+
+            .cta-container h2 {
+                font-size: 1.75rem;
+            }
+
+            .cta-buttons {
+                flex-direction: column;
+                gap: 0.75rem;
+            }
+
+            .cta-buttons .btn {
+                width: 100%;
+            }
         }
 
         .cta-container {
             background: linear-gradient(135deg, var(--primary), var(--secondary));
             border-radius: var(--radius-xl);
-            padding: 3rem 2rem;
+            padding: 4rem 2rem;
             text-align: center;
             position: relative;
             overflow: hidden;
-            box-shadow: var(--shadow-xl);
-            max-width: 850px;
+            box-shadow: 0 20px 50px -10px rgba(139, 92, 246, 0.5);
+            max-width: 900px;
             margin: 0 auto;
+            z-index: 1;
+            border: 1px solid rgba(255, 255, 255, 0.1);
         }
 
         .cta-container::before {

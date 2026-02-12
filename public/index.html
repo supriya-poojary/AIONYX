@@ -423,18 +423,89 @@
         .cta-section {
             padding: 100px 0;
             position: relative;
+            background:
+                radial-gradient(circle at 15% 50%, rgba(139, 92, 246, 0.08), transparent 25%),
+                radial-gradient(circle at 85% 30%, rgba(236, 72, 153, 0.08), transparent 25%);
+            overflow: hidden;
+        }
+
+        .cta-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image:
+                linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+            background-size: 40px 40px;
+            opacity: 0.3;
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        .cta-section::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle at 50% 50%, rgba(139, 92, 246, 0.1), transparent 50%);
+            animation: rotateCtaBg 30s linear infinite;
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        @keyframes rotateCtaBg {
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        /* CTA Mobile Responsiveness */
+        @media (max-width: 768px) {
+            .cta-section {
+                padding: 60px 0;
+            }
+
+            .cta-container {
+                padding: 2.5rem 1.5rem;
+                border-radius: var(--radius-lg);
+                margin: 0 1rem;
+            }
+
+            .cta-container h2 {
+                font-size: 1.75rem;
+            }
+
+            .cta-buttons {
+                flex-direction: column;
+                gap: 0.75rem;
+            }
+
+            .cta-buttons .btn {
+                width: 100%;
+            }
         }
 
         .cta-container {
             background: linear-gradient(135deg, var(--primary), var(--secondary));
             border-radius: var(--radius-xl);
-            padding: 3rem 2rem;
+            padding: 4rem 2rem;
             text-align: center;
             position: relative;
             overflow: hidden;
-            box-shadow: var(--shadow-xl);
-            max-width: 850px;
+            box-shadow: 0 20px 50px -10px rgba(139, 92, 246, 0.5);
+            max-width: 900px;
             margin: 0 auto;
+            z-index: 1;
+            border: 1px solid rgba(255, 255, 255, 0.1);
         }
 
         .cta-container::before {
@@ -1206,7 +1277,7 @@
                     <p class="review-quote">"The depth of the DSA curriculum is incredible. It helped me clear my
                         placement rounds at Nitte with such clarity."</p>
                     <div class="review-author">
-                        <img src="https://images.unsplash.com/photo-1539331130382-17a1db938ad0?auto=format&fit=crop&q=80&w=150"
+                        <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&q=80&w=150"
                             alt="Rahul Hegde" class="author-avatar">
                         <div class="author-info">
                             <h4>Rahul Hegde</h4>
