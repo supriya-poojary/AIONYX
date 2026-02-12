@@ -82,6 +82,10 @@ body.light-theme {
    GLOBAL STYLES
    ======================================== */
 
+a {
+    text-decoration: none !important;
+}
+
 * {
     margin: 0;
     padding: 0;
@@ -818,10 +822,41 @@ body.light-theme .navbar {
 .footer {
     background: var(--surface);
     border-top: 1px solid var(--border);
-    padding: 4rem 0 2rem;
+    padding: 2.5rem 0 1.5rem;
     position: relative;
     overflow: hidden;
     margin-top: auto;
+}
+
+.footer::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle at 30% 30%, rgba(168, 85, 247, 0.05) 0%, transparent 50%),
+        radial-gradient(circle at 70% 70%, rgba(59, 130, 246, 0.05) 0%, transparent 50%),
+        radial-gradient(circle at 50% 50%, rgba(168, 85, 247, 0.02) 0%, transparent 80%);
+    animation: footerMove 15s ease-in-out infinite alternate;
+    pointer-events: none;
+    z-index: 0;
+}
+
+@keyframes footerMove {
+    0% {
+        transform: translate(0, 0) rotate(0deg);
+    }
+
+    100% {
+        transform: translate(-5%, -5%) rotate(5deg);
+    }
+}
+
+.footer-desktop,
+.footer-mobile {
+    position: relative;
+    z-index: 1;
 }
 
 .footer-mobile {
@@ -835,8 +870,8 @@ body.light-theme .navbar {
 .footer-content {
     display: grid;
     grid-template-columns: 2fr 1fr 1fr 1fr;
-    gap: 3rem;
-    margin-bottom: 3rem;
+    gap: 2rem;
+    margin-bottom: 2rem;
 }
 
 .footer-brand p {
@@ -849,7 +884,7 @@ body.light-theme .navbar {
     color: var(--text-primary);
     font-size: 1.1rem;
     font-weight: 700;
-    margin-bottom: 1.5rem;
+    margin-bottom: 1rem;
 }
 
 .footer-links {
@@ -859,7 +894,7 @@ body.light-theme .navbar {
 }
 
 .footer-links li {
-    margin-bottom: 0.75rem;
+    margin-bottom: 0.5rem;
 }
 
 .footer-links a {
@@ -877,7 +912,7 @@ body.light-theme .navbar {
 .footer-social {
     display: flex;
     gap: 1rem;
-    margin-top: 1.5rem;
+    margin-top: 1rem;
 }
 
 .social-link {
@@ -904,7 +939,7 @@ body.light-theme .navbar {
 
 .footer-bottom {
     border-top: 1px solid var(--border);
-    padding-top: 2rem;
+    padding-top: 1.5rem;
     text-align: center;
     color: var(--text-muted);
     font-size: 0.9rem;
@@ -917,12 +952,12 @@ body.light-theme .navbar {
 
     .footer-mobile {
         display: block;
-        padding: 2rem 0;
+        padding: 1.5rem 0;
         text-align: left;
     }
 
     .footer-mobile .footer-brand {
-        margin-bottom: 2rem;
+        margin-bottom: 1.2rem;
     }
 
     .footer-mobile .footer-brand h2 {
@@ -939,24 +974,24 @@ body.light-theme .navbar {
         color: var(--text-secondary);
         font-size: 1rem;
         line-height: 1.6;
-        margin-bottom: 2rem;
+        margin-bottom: 1.2rem;
     }
 
     .footer-mobile .footer-section {
-        margin-bottom: 2rem;
+        margin-bottom: 1rem;
     }
 
     .footer-mobile .footer-section h4 {
         color: var(--text-primary);
         font-size: 1.2rem;
         font-weight: 700;
-        margin-bottom: 1.2rem;
+        margin-bottom: 0.8rem;
     }
 
     .footer-mobile .footer-links {
         display: flex;
         flex-direction: column;
-        gap: 0.8rem;
+        gap: 0.5rem;
     }
 
     .footer-mobile .footer-links a {

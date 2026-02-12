@@ -9,7 +9,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap"
         rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="css/theme.css">
+    <link rel="stylesheet" href="css/theme.css?v=1.1">
     <style>
         .about-hero {
             padding: 160px 0 80px;
@@ -1544,6 +1544,110 @@
                 padding: 0 1.25rem 1.25rem 1.25rem;
             }
         }
+
+        /* CTA Section */
+        .cta-section {
+            padding: 100px 0;
+            position: relative;
+        }
+
+        .cta-container {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            border-radius: var(--radius-xl);
+            padding: 3rem 2rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            box-shadow: var(--shadow-xl);
+            max-width: 850px;
+            margin: 0 auto;
+        }
+
+        .cta-container::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0.2), transparent 50%);
+            animation: floatingGlow 10s ease-in-out infinite;
+            z-index: 1;
+            pointer-events: none;
+        }
+
+        @keyframes floatingGlow {
+            0% {
+                transform: translate(-20%, -20%) scale(1);
+                opacity: 0.3;
+            }
+
+            50% {
+                transform: translate(20%, 20%) scale(1.2);
+                opacity: 0.7;
+            }
+
+            100% {
+                transform: translate(-20%, -20%) scale(1);
+                opacity: 0.3;
+            }
+        }
+
+        .cta-container::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg width="100" height="100" xmlns="http://www.w3.org/2000/svg"><circle cx="50" cy="50" r="2" fill="white" opacity="0.1"/></svg>');
+            opacity: 0.1;
+            z-index: 0;
+        }
+
+        .cta-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .cta-container h2 {
+            font-size: 2.25rem;
+            font-weight: 800;
+            color: white;
+            margin-bottom: 0.75rem;
+        }
+
+        .cta-container p {
+            font-size: 1.1rem;
+            color: rgba(255, 255, 255, 0.9);
+            margin-bottom: 2rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .cta-buttons .btn {
+            padding: 1rem 2.5rem;
+            font-size: 1.1rem;
+        }
+
+        .btn-white {
+            background: white;
+            color: var(--primary);
+            border: none;
+        }
+
+        .btn-white:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(255, 255, 255, 0.3);
+        }
     </style>
 
     <script>
@@ -1563,6 +1667,28 @@
         }
     </script>
 
+    <!-- CTA Section -->
+    <section class="cta-section">
+        <div class="container">
+            <div class="cta-container">
+                <div class="cta-content">
+                    <h2>Ready to Ace Your Next Interview?</h2>
+                    <p>Join thousands of successful students who landed their dream jobs with AIONYX</p>
+                    <div class="cta-buttons">
+                        <a href="student-signup" class="btn btn-white">
+                            <i class="fas fa-rocket"></i>
+                            Start Free Trial
+                        </a>
+                        <a href="student-login" class="btn btn-outline" style="border-color: white; color: white;">
+                            <i class="fas fa-sign-in-alt"></i>
+                            Sign In
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- Footer -->
     <footer class="footer">
         <div class="container">
@@ -1573,7 +1699,7 @@
                     <div class="footer-brand">
                         <a href="/" class="logo">
                             <i class="fas fa-code"></i>
-                            <span class="logo-text">AIONYX</span>
+                            <span class="logo-text"><strong class="text-gradient">AIONYX</strong></span>
                         </a>
                         <p
                             style="color: var(--text-secondary); line-height: 1.7; margin-bottom: 2rem; margin-top: 1rem;">
@@ -1592,25 +1718,15 @@
                         </div>
                     </div>
 
-                    <!-- Platform -->
+                    <!-- Quick links -->
                     <div class="footer-section">
-                        <h4>Platform</h4>
+                        <h4>Quick links</h4>
                         <ul class="footer-links">
-                            <li><a href="#">Features</a></li>
-                            <li><a href="#">Pricing</a></li>
-                            <li><a href="#">Problems</a></li>
-                            <li><a href="#">Resources</a></li>
-                        </ul>
-                    </div>
-
-                    <!-- Company -->
-                    <div class="footer-section">
-                        <h4>Company</h4>
-                        <ul class="footer-links">
+                            <li><a href="/">Home</a></li>
                             <li><a href="about">About Us</a></li>
-                            <li><a href="#">Careers</a></li>
-                            <li><a href="#">Blog</a></li>
+                            <li><a href="courses">Courses</a></li>
                             <li><a href="contact">Contact</a></li>
+                            <li><a href="courses#pricing">Pricing</a></li>
                         </ul>
                     </div>
 
@@ -1618,43 +1734,41 @@
                     <div class="footer-section">
                         <h4>Legal</h4>
                         <ul class="footer-links">
-                            <li><a href="#">Privacy Policy</a></li>
+                            <li><a href="privacy-policy">Privacy Policy</a></li>
                             <li><a href="#">Terms of Service</a></li>
-                            <li><a href="#">Cookie Policy</a></li>
-                            <li><a href="#">GDPR</a></li>
                         </ul>
                     </div>
                 </div>
                 <div class="footer-bottom">
-                    <p>&copy; 2026 AIONYX. All rights reserved. Built for developers.</p>
+                    <p>&copy; 2026 <strong class="text-gradient">AIONYX</strong>. All rights reserved. Built for
+                        developers.</p>
                 </div>
             </div>
 
             <!-- Mobile Footer -->
             <div class="footer-mobile">
                 <div class="footer-brand">
-                    <h2>AIONYX</h2>
-                    <p>Enterprise IT solutions, innovative products, and professional training for modern businesses.
+                    <h2><strong class="text-gradient">AIONYX</strong></h2>
+                    <p>Empowering developers to master coding interviews with AI-powered learning and expert guidance.
                     </p>
                 </div>
 
                 <div class="footer-section">
-                    <h4>Quick Links</h4>
+                    <h4>Quick links</h4>
                     <ul class="footer-links">
                         <li><a href="/">Home</a></li>
-                        <li><a href="about">About</a></li>
-                        <li><a href="#">Careers</a></li>
+                        <li><a href="about">About Us</a></li>
+                        <li><a href="courses">Courses</a></li>
                         <li><a href="contact">Contact</a></li>
-                        <li><a href="#">Privacy & Policy</a></li>
+                        <li><a href="courses#pricing">Pricing</a></li>
                     </ul>
                 </div>
 
                 <div class="footer-section">
-                    <h4>Services</h4>
+                    <h4>Legal</h4>
                     <ul class="footer-links">
-                        <li><a href="#">IT Consultancy</a></li>
-                        <li><a href="#">Enterprise Training</a></li>
-                        <li><a href="#">Internships</a></li>
+                        <li><a href="privacy-policy">Privacy Policy</a></li>
+                        <li><a href="#">Terms of Service</a></li>
                     </ul>
                 </div>
 
@@ -1680,7 +1794,8 @@
 
                 <div class="footer-bottom"
                     style="text-align: left; padding-top: 2rem; border-top: 1px solid var(--border);">
-                    <p>&copy; 2026 Aionyx Innovations Pvt. Ltd. All rights reserved.</p>
+                    <p>&copy; 2026 <strong class="text-gradient">Aionyx Innovations Pvt. Ltd.</strong> All rights
+                        reserved.</p>
                 </div>
             </div>
         </div>

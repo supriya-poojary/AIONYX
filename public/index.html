@@ -18,7 +18,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
     <!-- Theme CSS -->
-    <link rel="stylesheet" href="css/theme.css">
+    <link rel="stylesheet" href="css/theme.css?v=1.3">
 
     <style>
         /* Hero Section */
@@ -428,14 +428,46 @@
         .cta-container {
             background: linear-gradient(135deg, var(--primary), var(--secondary));
             border-radius: var(--radius-xl);
-            padding: 4rem;
+            padding: 3rem 2rem;
             text-align: center;
             position: relative;
             overflow: hidden;
             box-shadow: var(--shadow-xl);
+            max-width: 850px;
+            margin: 0 auto;
         }
 
         .cta-container::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0.2), transparent 50%);
+            animation: floatingGlow 10s ease-in-out infinite;
+            z-index: 1;
+            pointer-events: none;
+        }
+
+        @keyframes floatingGlow {
+            0% {
+                transform: translate(-20%, -20%) scale(1);
+                opacity: 0.3;
+            }
+
+            50% {
+                transform: translate(20%, 20%) scale(1.2);
+                opacity: 0.7;
+            }
+
+            100% {
+                transform: translate(-20%, -20%) scale(1);
+                opacity: 0.3;
+            }
+        }
+
+        .cta-container::after {
             content: '';
             position: absolute;
             top: 0;
@@ -443,7 +475,8 @@
             right: 0;
             bottom: 0;
             background: url('data:image/svg+xml,<svg width="100" height="100" xmlns="http://www.w3.org/2000/svg"><circle cx="50" cy="50" r="2" fill="white" opacity="0.1"/></svg>');
-            opacity: 0.3;
+            opacity: 0.1;
+            z-index: 0;
         }
 
         .cta-content {
@@ -452,16 +485,16 @@
         }
 
         .cta-container h2 {
-            font-size: 3rem;
+            font-size: 2.25rem;
             font-weight: 800;
             color: white;
-            margin-bottom: 1rem;
+            margin-bottom: 0.75rem;
         }
 
         .cta-container p {
-            font-size: 1.25rem;
+            font-size: 1.1rem;
             color: rgba(255, 255, 255, 0.9);
-            margin-bottom: 2.5rem;
+            margin-bottom: 2rem;
             max-width: 600px;
             margin-left: auto;
             margin-right: auto;
@@ -912,8 +945,8 @@
                     loader.style.display = 'none';
                     // Re-enable scrolling
                     document.body.style.overflow = 'auto';
-                }, 500);
-            }, 2500);
+                }, 400);
+            }, 800);
         });
     </script>
     <nav class="navbar">
@@ -1010,7 +1043,7 @@
 
                 <div class="hero-visual">
                     <div class="hero-image-container">
-                        <img src="images/hero_coding_workspace.png" alt="Coding Workspace">
+                        <img src="images/hero_coding_workspace.png" alt="Coding Workspace" loading="lazy">
                     </div>
 
                     <div class="floating-card floating-card-1">
@@ -1042,14 +1075,14 @@
                 <div class="review-card">
                     <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i
                             class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
-                    <p class="review-quote">"The system design course completely changed how I approach scalability
-                        problems. Landed an L5 role at Google!"</p>
+                    <p class="review-quote">"The depth of the DSA curriculum is incredible. It helped me clear my
+                        placement rounds at Nitte with such clarity."</p>
                     <div class="review-author">
-                        <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&q=80&w=150"
-                            alt="Sarah Chen" class="author-avatar">
+                        <img src="https://images.unsplash.com/photo-1539331130382-17a1db938ad0?auto=format&fit=crop&q=80&w=150"
+                            alt="Rahul Hegde" class="author-avatar">
                         <div class="author-info">
-                            <h4>Sarah Chen</h4>
-                            <span>Senior Engineer, Google</span>
+                            <h4>Rahul Hegde</h4>
+                            <span>SDE Intern, NMAMIT Nitte</span>
                         </div>
                     </div>
                 </div>
@@ -1058,14 +1091,14 @@
                 <div class="review-card">
                     <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i
                             class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
-                    <p class="review-quote">"Aionyx's visual learning approach makes complex graph algorithms intuitive.
-                        Best investment for my career."</p>
+                    <p class="review-quote">"I was struggling with graph algorithms, but AIONYX made it so intuitive.
+                        The support from the community is gold."</p>
                     <div class="review-author">
-                        <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=80&w=150"
-                            alt="Michael Ross" class="author-avatar">
+                        <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&q=80&w=150"
+                            alt="Akshata Rao" class="author-avatar">
                         <div class="author-info">
-                            <h4>Michael Ross</h4>
-                            <span>Software Engineer, Netflix</span>
+                            <h4>Akshata Rao</h4>
+                            <span>Final Year Student, MITE Moodabidri</span>
                         </div>
                     </div>
                 </div>
@@ -1074,14 +1107,14 @@
                 <div class="review-card">
                     <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i
                             class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
-                    <p class="review-quote">"From failing OAs to cracking 3 FAANG offers. The roadmap is rigorous but
-                        worth every second."</p>
+                    <p class="review-quote">"The system design course completely changed how I approach logic building.
+                        Landed my first job at a Mangalore startup!"</p>
                     <div class="review-author">
-                        <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&q=80&w=150"
-                            alt="Priyansh Patel" class="author-avatar">
+                        <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&q=80&w=150"
+                            alt="Sanjana Shetty" class="author-avatar">
                         <div class="author-info">
-                            <h4>Priyansh Patel</h4>
-                            <span>SDE II, Meta</span>
+                            <h4>Sanjana Shetty</h4>
+                            <span>Software Developer, Sahyadri Mangalore</span>
                         </div>
                     </div>
                 </div>
@@ -1090,14 +1123,14 @@
                 <div class="review-card">
                     <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i
                             class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
-                    <p class="review-quote">"The mock interviews and detailed feedback loops are unmatched. Finally
-                        understood Dynamic Programming."</p>
+                    <p class="review-quote">"Visualizing complex algorithms makes them intuitive for any engineering
+                        student. Best career investment."</p>
                     <div class="review-author">
-                        <img src="https://images.unsplash.com/photo-1580489944761-15a19d654956?auto=format&fit=crop&q=80&w=150"
-                            alt="Emily Zhang" class="author-avatar">
+                        <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=80&w=150"
+                            alt="Abhishek G" class="author-avatar">
                         <div class="author-info">
-                            <h4>Emily Zhang</h4>
-                            <span>Backend Engineer, Uber</span>
+                            <h4>Abhishek G</h4>
+                            <span>Final Year, BMSCE Bangalore</span>
                         </div>
                     </div>
                 </div>
@@ -1106,14 +1139,62 @@
                 <div class="review-card">
                     <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i
                             class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
-                    <p class="review-quote">"Structured, deep, and no-nonsense. Exactly what senior engineers need to
-                        level up."</p>
+                    <p class="review-quote">"The simplified approach to Data Structures helped me crack my first major
+                        tech interview at SJEC."</p>
                     <div class="review-author">
-                        <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&q=80&w=150"
-                            alt="David Kim" class="author-avatar">
+                        <img src="https://images.unsplash.com/photo-1567532939604-b6b5b0db2604?auto=format&fit=crop&q=80&w=150"
+                            alt="Priya D'Souza" class="author-avatar">
                         <div class="author-info">
-                            <h4>David Kim</h4>
-                            <span>Tech Lead, Microsoft</span>
+                            <h4>Priya D'Souza</h4>
+                            <span>Intern, SJEC Mangalore</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Review 6 -->
+                <div class="review-card">
+                    <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i
+                            class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                    <p class="review-quote">"Hands-on coding experience that you just don't get in regular college
+                        classes. Highly recommended!"</p>
+                    <div class="review-author">
+                        <img src="https://images.unsplash.com/photo-1599566150163-29194dcaad36?auto=format&fit=crop&q=80&w=150"
+                            alt="Karthik Bhat" class="author-avatar">
+                        <div class="author-info">
+                            <h4>Karthik Bhat</h4>
+                            <span>Student, Canara Engineering</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Review 7 -->
+                <div class="review-card">
+                    <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i
+                            class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                    <p class="review-quote">"Mastering System Design was my highlight. AIONYX provides the depth needed
+                        for top-tier roles."</p>
+                    <div class="review-author">
+                        <img src="https://images.unsplash.com/photo-1580489944761-15a19d654956?auto=format&fit=crop&q=80&w=150"
+                            alt="Ananya K" class="author-avatar">
+                        <div class="author-info">
+                            <h4>Ananya K</h4>
+                            <span>Final Year, RVCE Bangalore</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Review 8 -->
+                <div class="review-card">
+                    <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i
+                            class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                    <p class="review-quote">"The peer review system is gold. I feel much more confident in my
+                        algorithmic skills now."</p>
+                    <div class="review-author">
+                        <img src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&q=80&w=150"
+                            alt="Vikram Singh" class="author-avatar">
+                        <div class="author-info">
+                            <h4>Vikram Singh</h4>
+                            <span>Student, PES University Bangalore</span>
                         </div>
                     </div>
                 </div>
@@ -1122,14 +1203,44 @@
                 <div class="review-card">
                     <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i
                             class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
-                    <p class="review-quote">"The system design course completely changed how I approach scalability
-                        problems. Landed an L5 role at Google!"</p>
+                    <p class="review-quote">"The depth of the DSA curriculum is incredible. It helped me clear my
+                        placement rounds at Nitte with such clarity."</p>
+                    <div class="review-author">
+                        <img src="https://images.unsplash.com/photo-1539331130382-17a1db938ad0?auto=format&fit=crop&q=80&w=150"
+                            alt="Rahul Hegde" class="author-avatar">
+                        <div class="author-info">
+                            <h4>Rahul Hegde</h4>
+                            <span>SDE Intern, NMAMIT Nitte</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="review-card">
+                    <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i
+                            class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                    <p class="review-quote">"I was struggling with graph algorithms, but AIONYX made it so intuitive.
+                        The support from the community is gold."</p>
+                    <div class="review-author">
+                        <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&q=80&w=150"
+                            alt="Akshata Rao" class="author-avatar">
+                        <div class="author-info">
+                            <h4>Akshata Rao</h4>
+                            <span>Final Year Student, MITE Moodabidri</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="review-card">
+                    <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i
+                            class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                    <p class="review-quote">"The system design course completely changed how I approach logic building.
+                        Landed my first job at a Mangalore startup!"</p>
                     <div class="review-author">
                         <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&q=80&w=150"
-                            alt="Sarah Chen" class="author-avatar">
+                            alt="Sanjana Shetty" class="author-avatar">
                         <div class="author-info">
-                            <h4>Sarah Chen</h4>
-                            <span>Senior Engineer, Google</span>
+                            <h4>Sanjana Shetty</h4>
+                            <span>Software Developer, Sahyadri Mangalore</span>
                         </div>
                     </div>
                 </div>
@@ -1137,14 +1248,14 @@
                 <div class="review-card">
                     <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i
                             class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
-                    <p class="review-quote">"Aionyx's visual learning approach makes complex graph algorithms intuitive.
-                        Best investment for my career."</p>
+                    <p class="review-quote">"Visualizing complex algorithms makes them intuitive for any engineering
+                        student. Best career investment."</p>
                     <div class="review-author">
                         <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=80&w=150"
-                            alt="Michael Ross" class="author-avatar">
+                            alt="Abhishek G" class="author-avatar">
                         <div class="author-info">
-                            <h4>Michael Ross</h4>
-                            <span>Software Engineer, Netflix</span>
+                            <h4>Abhishek G</h4>
+                            <span>Final Year, BMSCE Bangalore</span>
                         </div>
                     </div>
                 </div>
@@ -1152,44 +1263,14 @@
                 <div class="review-card">
                     <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i
                             class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
-                    <p class="review-quote">"From failing OAs to cracking 3 FAANG offers. The roadmap is rigorous but
-                        worth every second."</p>
+                    <p class="review-quote">"I was struggling with graph algorithms, but AIONYX made it so intuitive.
+                        The support from the community is what sets it apart."</p>
                     <div class="review-author">
-                        <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&q=80&w=150"
-                            alt="Priyansh Patel" class="author-avatar">
+                        <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&q=80&w=150"
+                            alt="Akshata Rao" class="author-avatar">
                         <div class="author-info">
-                            <h4>Priyansh Patel</h4>
-                            <span>SDE II, Meta</span>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="review-card">
-                    <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i
-                            class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
-                    <p class="review-quote">"The mock interviews and detailed feedback loops are unmatched. Finally
-                        understood Dynamic Programming."</p>
-                    <div class="review-author">
-                        <img src="https://images.unsplash.com/photo-1580489944761-15a19d654956?auto=format&fit=crop&q=80&w=150"
-                            alt="Emily Zhang" class="author-avatar">
-                        <div class="author-info">
-                            <h4>Emily Zhang</h4>
-                            <span>Backend Engineer, Uber</span>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="review-card">
-                    <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i
-                            class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
-                    <p class="review-quote">"Structured, deep, and no-nonsense. Exactly what senior engineers need to
-                        level up."</p>
-                    <div class="review-author">
-                        <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&q=80&w=150"
-                            alt="David Kim" class="author-avatar">
-                        <div class="author-info">
-                            <h4>David Kim</h4>
-                            <span>Tech Lead, Microsoft</span>
+                            <h4>Akshata Rao</h4>
+                            <span>Final Year Student, MITE Moodabidri</span>
                         </div>
                     </div>
                 </div>
@@ -1275,7 +1356,8 @@
                     <div class="roadmap-node"></div>
                     <div class="roadmap-image">
                         <!-- High-fidelity Local Foundations Asset -->
-                        <img src="images/hero_coding_workspace.png?v=fixed_local_final" alt="Foundations">
+                        <img src="images/hero_coding_workspace.png?v=fixed_local_final" alt="Foundations"
+                            loading="lazy">
                     </div>
                 </div>
 
@@ -1291,7 +1373,7 @@
                     <div class="roadmap-node"></div>
                     <div class="roadmap-image">
                         <!-- High-fidelity Local Structural Mastery Asset -->
-                        <img src="images/dsa_roadmap.png?v=fixed_local_final" alt="Structural Mastery">
+                        <img src="images/dsa_roadmap.png?v=fixed_local_final" alt="Structural Mastery" loading="lazy">
                     </div>
                 </div>
             </div>
@@ -1558,7 +1640,6 @@
     </section>
 
     <!-- Footer -->
-    <!-- Footer -->
     <footer class="footer">
         <div class="container">
             <!-- Desktop Footer -->
@@ -1568,12 +1649,11 @@
                     <div class="footer-brand">
                         <a href="/" class="logo">
                             <i class="fas fa-code"></i>
-                            <span class="logo-text">AIONYX</span>
+                            <span class="logo-text"><strong class="text-gradient">AIONYX</strong></span>
                         </a>
-                        <p
-                            style="font-size: 1.1rem; color: var(--text-secondary); max-width: 600px; margin: 0 auto; line-height: 1.6;">
-                            Expert trainers and mentors dedicated to simplifying complex engineering concepts and
-                            accelerating your technical mastery.
+                        <p style="color: var(--text-secondary); line-height: 1.7; margin: 1rem 0 2rem;">
+                            Empowering developers to master coding interviews with AI-powered learning and expert
+                            guidance.
                         </p>
                         <div class="footer-social">
                             <a href="https://www.linkedin.com/company/algoorbit/" target="_blank" class="social-link"><i
@@ -1587,25 +1667,15 @@
                         </div>
                     </div>
 
-                    <!-- Platform -->
+                    <!-- Quick links -->
                     <div class="footer-section">
-                        <h4>Platform</h4>
+                        <h4>Quick links</h4>
                         <ul class="footer-links">
-                            <li><a href="#">Features</a></li>
-                            <li><a href="#">Pricing</a></li>
-                            <li><a href="#">Problems</a></li>
-                            <li><a href="#">Resources</a></li>
-                        </ul>
-                    </div>
-
-                    <!-- Company -->
-                    <div class="footer-section">
-                        <h4>Company</h4>
-                        <ul class="footer-links">
+                            <li><a href="/">Home</a></li>
                             <li><a href="about">About Us</a></li>
-                            <li><a href="#">Careers</a></li>
-                            <li><a href="#">Blog</a></li>
+                            <li><a href="courses">Courses</a></li>
                             <li><a href="contact">Contact</a></li>
+                            <li><a href="courses#pricing">Pricing</a></li>
                         </ul>
                     </div>
 
@@ -1613,43 +1683,41 @@
                     <div class="footer-section">
                         <h4>Legal</h4>
                         <ul class="footer-links">
-                            <li><a href="#">Privacy Policy</a></li>
+                            <li><a href="privacy-policy">Privacy Policy</a></li>
                             <li><a href="#">Terms of Service</a></li>
-                            <li><a href="#">Cookie Policy</a></li>
-                            <li><a href="#">GDPR</a></li>
                         </ul>
                     </div>
                 </div>
                 <div class="footer-bottom">
-                    <p>&copy; 2026 AIONYX. All rights reserved. Built for developers.</p>
+                    <p>&copy; 2026 <strong class="text-gradient">AIONYX</strong>. All rights reserved. Built for
+                        developers.</p>
                 </div>
             </div>
 
             <!-- Mobile Footer -->
             <div class="footer-mobile">
                 <div class="footer-brand">
-                    <h2>AIONYX</h2>
-                    <p>Enterprise IT solutions, innovative products, and professional training for modern businesses.
+                    <h2><strong class="text-gradient">AIONYX</strong></h2>
+                    <p>Empowering developers to master coding interviews with AI-powered learning and expert guidance.
                     </p>
                 </div>
 
                 <div class="footer-section">
-                    <h4>Quick Links</h4>
+                    <h4>Quick links</h4>
                     <ul class="footer-links">
                         <li><a href="/">Home</a></li>
-                        <li><a href="about">About</a></li>
-                        <li><a href="#">Careers</a></li>
+                        <li><a href="about">About Us</a></li>
+                        <li><a href="courses">Courses</a></li>
                         <li><a href="contact">Contact</a></li>
-                        <li><a href="#">Privacy & Policy</a></li>
+                        <li><a href="courses#pricing">Pricing</a></li>
                     </ul>
                 </div>
 
                 <div class="footer-section">
-                    <h4>Services</h4>
+                    <h4>Legal</h4>
                     <ul class="footer-links">
-                        <li><a href="#">IT Consultancy</a></li>
-                        <li><a href="#">Enterprise Training</a></li>
-                        <li><a href="#">Internships</a></li>
+                        <li><a href="privacy-policy">Privacy Policy</a></li>
+                        <li><a href="#">Terms of Service</a></li>
                     </ul>
                 </div>
 
@@ -1675,7 +1743,8 @@
 
                 <div class="footer-bottom"
                     style="text-align: left; padding-top: 2rem; border-top: 1px solid var(--border);">
-                    <p>&copy; 2026 Aionyx Innovations Pvt. Ltd. All rights reserved.</p>
+                    <p>&copy; 2026 <strong class="text-gradient">Aionyx Innovations Pvt. Ltd.</strong> All rights
+                        reserved.</p>
                 </div>
             </div>
         </div>

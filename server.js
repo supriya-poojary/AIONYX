@@ -1,15 +1,22 @@
 const express = require('express');
 const cors = require('cors');
 const path = require('path');
+const compression = require('compression');
 require('dotenv').config();
 
 const app = express();
 const PORT = process.env.PORT || 3000;
 
 // Middleware
+app.use(compression()); // Compress all responses
 app.use(express.json());
 app.use(cors());
-app.use(express.static(path.join(__dirname, 'public')));
+
+// Serve static files with caching
+app.use(express.static(path.join(__dirname, 'public'), {
+    maxAge: '1d', // Cache static assets for 1 day
+    etag: true
+}));
 
 // Routes
 app.use('/api/auth', require('./routes/authRoutes'));
@@ -32,6 +39,10 @@ app.get('/contact', (req, res) => {
 
 app.get('/courses', (req, res) => {
     res.sendFile(path.join(__dirname, 'public', 'courses.html'));
+});
+
+app.get('/privacy-policy', (req, res) => {
+    res.sendFile(path.join(__dirname, 'public', 'privacy-policy.html'));
 });
 
 app.get('/student-login', (req, res) => {

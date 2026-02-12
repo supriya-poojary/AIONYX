@@ -1,0 +1,603 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Privacy Policy - AIONYX</title>
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+    <meta name="description"
+        content="AIONYX Privacy Policy - How we collect, use, and protect your personal information.">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="css/theme.css?v=1.5">
+    <style>
+        .policy-hero {
+            padding: 120px 0 60px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            background: #0a0a0c;
+        }
+
+        @media (max-width: 768px) {
+            .policy-hero {
+                padding: 100px 0 40px;
+            }
+
+            .policy-hero h1 {
+                font-size: 2rem;
+            }
+
+            .policy-hero p {
+                font-size: 1rem;
+                padding: 0 1rem;
+            }
+        }
+
+        .policy-hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: url('https://images.unsplash.com/photo-1639762681485-074b7f938ba0?auto=format&fit=crop&q=80&w=2000');
+            background-size: 110% 110%;
+            background-position: center;
+            animation: cinematicMotion 25s ease-in-out infinite alternate;
+            opacity: 0.4;
+            z-index: 0;
+        }
+
+        .policy-hero::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at center, transparent, rgba(10, 10, 12, 0.9));
+            z-index: 1;
+        }
+
+        .policy-hero .container {
+            position: relative;
+            z-index: 2;
+        }
+
+        @keyframes cinematicMotion {
+            0% {
+                transform: scale(1) translate(0, 0);
+            }
+
+            100% {
+                transform: scale(1.15) translate(-1%, -1%);
+            }
+        }
+
+        .policy-hero h1 {
+            color: #ffffff;
+            margin-bottom: 1.5rem;
+        }
+
+        .policy-hero p {
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .policy-grid {
+            display: grid;
+            grid-template-columns: 280px 1fr;
+            gap: 60px;
+            padding: 80px 0;
+            align-items: start;
+        }
+
+        .policy-nav {
+            position: sticky;
+            top: 100px;
+            background: var(--glass-bg);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid var(--glass-border);
+            border-radius: var(--radius-xl);
+            padding: 25px;
+            box-shadow: var(--shadow-xl);
+        }
+
+        .policy-nav h4 {
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--text-muted);
+            margin-bottom: 20px;
+            padding-left: 10px;
+        }
+
+        .policy-nav-list {
+            list-style: none;
+        }
+
+        .policy-nav-item a {
+            display: block;
+            padding: 12px 15px;
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 0.95rem;
+            border-radius: 10px;
+            transition: all 0.3s ease;
+            margin-bottom: 5px;
+        }
+
+        .policy-nav-item a:hover {
+            background: rgba(139, 92, 246, 0.1);
+            color: var(--primary);
+            transform: translateX(5px);
+        }
+
+        .policy-nav-item.active a {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            font-weight: 600;
+        }
+
+        .policy-content {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-2xl);
+            padding: 60px;
+            box-shadow: var(--shadow-2xl);
+            line-height: 1.8;
+            color: var(--text-secondary);
+        }
+
+        .policy-section {
+            margin-bottom: 60px;
+            animation: fadeIn 0.8s ease forwards;
+        }
+
+        .policy-section h2 {
+            font-size: 2rem;
+            color: var(--text-primary);
+            margin-bottom: 25px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .policy-section h2 i {
+            font-size: 1.5rem;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .policy-section h3 {
+            font-size: 1.25rem;
+            color: var(--text-primary);
+            margin: 30px 0 15px;
+        }
+
+        .policy-section p {
+            margin-bottom: 20px;
+        }
+
+        .policy-section ul {
+            margin-bottom: 30px;
+            padding-left: 20px;
+        }
+
+        @media (max-width: 1024px) {
+            .policy-grid {
+                grid-template-columns: 1fr;
+                gap: 30px;
+                padding: 40px 1.5rem;
+            }
+
+            .policy-nav {
+                position: sticky;
+                top: 70px;
+                z-index: 100;
+                margin-bottom: 20px;
+                display: flex;
+                overflow-x: auto;
+                padding: 12px;
+                gap: 10px;
+                white-space: nowrap;
+                background: var(--surface);
+                border-radius: var(--radius-lg);
+                box-shadow: var(--shadow-md);
+                -ms-overflow-style: none;
+                scrollbar-width: none;
+            }
+
+            .policy-nav::-webkit-scrollbar {
+                display: none;
+            }
+
+            .policy-nav h4 {
+                display: none;
+            }
+
+            .policy-nav-list {
+                display: flex;
+                gap: 8px;
+            }
+
+            .policy-nav-item a {
+                margin-bottom: 0;
+                padding: 8px 16px;
+                font-size: 0.85rem;
+            }
+
+            .policy-content {
+                padding: 40px 25px;
+                border-radius: var(--radius-xl);
+            }
+        }
+
+        @media (max-width: 480px) {
+            .policy-section h2 {
+                font-size: 1.5rem;
+            }
+
+            .policy-content {
+                padding: 30px 15px;
+            }
+        }
+
+        .policy-section li {
+            margin-bottom: 12px;
+            position: relative;
+        }
+
+        .security-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(16, 185, 129, 0.1);
+            border: 1px solid rgba(16, 185, 129, 0.2);
+            color: #10b981;
+            padding: 6px 16px;
+            border-radius: 100px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-bottom: 20px;
+        }
+
+        .contact-box {
+            background: var(--background-secondary);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-lg);
+            padding: 30px;
+            margin-top: 40px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+        }
+
+        .contact-item h5 {
+            color: var(--text-primary);
+            font-size: 1rem;
+            margin-bottom: 10px;
+        }
+
+        .contact-item a {
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        @media (max-width: 1024px) {
+            .policy-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .policy-nav {
+                display: none;
+            }
+
+            .policy-content {
+                padding: 40px 25px;
+            }
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+
+<body class="dark-theme">
+    <nav class="navbar">
+        <a href="/" class="logo">
+            <i class="fas fa-code"></i>
+            <span class="logo-text">AIONYX</span>
+        </a>
+        <div class="nav-links">
+            <a href="courses" class="nav-item">Courses</a>
+            <a href="about" class="nav-item">About Us</a>
+            <a href="contact" class="nav-item">Contact</a>
+            <a href="student-login" class="nav-btn btn-login">Login</a>
+        </div>
+    </nav>
+
+    <header class="policy-hero">
+        <div class="container">
+            <div class="security-badge">
+                <i class="fas fa-shield-check"></i> GDPR & Privacy Compliant
+            </div>
+            <h1 class="text-gradient" style="font-size: 4rem; font-weight: 900; margin-bottom: 20px;">Privacy <span
+                    class="text-white">Policy</span></h1>
+            <p style="font-size: 1.25rem; color: var(--text-secondary); max-width: 700px; margin: 0 auto;">
+                At AIONYX, your privacy is our priority. We are committed to transparency and protecting the personal
+                data you share with us.
+            </p>
+        </div>
+    </header>
+
+    <main class="container">
+        <div class="policy-grid">
+            <aside class="policy-nav">
+                <h4>Contents</h4>
+                <ul class="policy-nav-list">
+                    <li class="policy-nav-item"><a href="#introduction">Introduction</a></li>
+                    <li class="policy-nav-item"><a href="#collection">Data Collection</a></li>
+                    <li class="policy-nav-item"><a href="#usage">How We Use Data</a></li>
+                    <li class="policy-nav-item"><a href="#sharing">Data Sharing</a></li>
+                    <li class="policy-nav-item"><a href="#security">Data Security</a></li>
+                    <li class="policy-nav-item"><a href="#rights">Your Rights</a></li>
+                    <li class="policy-nav-item"><a href="#cookies">Cookies</a></li>
+                    <li class="policy-nav-item"><a href="#contact">Contact Us</a></li>
+                </ul>
+            </aside>
+
+            <div class="policy-content">
+                <div id="introduction" class="policy-section">
+                    <h2><i class="fas fa-book-open"></i> Introduction</h2>
+                    <p>Welcome to AIONYX Innovations Pvt. Ltd. ("AIONYX," "we," "us," or "our"). We respect your privacy
+                        and are committed to protecting your personal data. This Privacy Policy explains how we collect,
+                        use, disclose, and safeguard your information when you visit our website, use our services, or
+                        interact with us.</p>
+                    <p>By accessing or using our services, you acknowledge that you have read, understood, and agree to
+                        be bound by this Privacy Policy. This policy applies to all information collected through our
+                        website, applications, and related services.</p>
+                </div>
+
+                <div id="collection" class="policy-section">
+                    <h2><i class="fas fa-database"></i> Information We Collect</h2>
+                    <h3>Personal Information</h3>
+                    <p>We may collect personal information that you voluntarily provide to us when you register for an
+                        account, subscribe to our newsletter, or contact us through our platform.</p>
+                    <ul>
+                        <li><strong>Identity:</strong> Name, username, educational background.</li>
+                        <li><strong>Contact:</strong> Email address, phone number, mailing address.</li>
+                        <li><strong>Professional:</strong> Career interests, skill levels, academic achievements.</li>
+                    </ul>
+
+                    <h3>Automatically Collected Information</h3>
+                    <p>When you access our services, we automatically collect certain technical information:</p>
+                    <ul>
+                        <li>IP address, browser type, and operating system.</li>
+                        <li>Pages visited, time spent, and navigation paths.</li>
+                        <li>Approximate geographic location.</li>
+                    </ul>
+                </div>
+
+                <div id="usage" class="policy-section">
+                    <h2><i class="fas fa-cog"></i> How We Use Your Information</h2>
+                    <p>We use your information for legitimate business purposes including:</p>
+                    <ul>
+                        <li><strong>Service Delivery:</strong> To provide and maintain our coding courses and platforms.
+                        </li>
+                        <li><strong>Communication:</strong> To send technical notices, updates, and promotional offers.
+                        </li>
+                        <li><strong>Analytics:</strong> To analyze usage patterns and improve user experience.</li>
+                        <li><strong>Security:</strong> To detect and prevent security threats or unauthorized access.
+                        </li>
+                    </ul>
+                </div>
+
+                <div id="sharing" class="policy-section">
+                    <h2><i class="fas fa-share-alt"></i> Data Sharing and Disclosure</h2>
+                    <p>We do not sell your personal information. We may share your information with trusted third-party
+                        vendors who perform services on our behalf, such as cloud hosting providers and analytics
+                        partners.</p>
+                    <p>We may also disclose information if required by law or to protect our rights, safety, or property
+                        during legal procedures or business transfers.</p>
+                </div>
+
+                <div id="security" class="policy-section">
+                    <h2><i class="fas fa-lock"></i> Data Security</h2>
+                    <p>We implement robust technical and organizational security measures:</p>
+                    <ul>
+                        <li><strong>Encryption:</strong> 256-bit SSL/TLS for data in transit and AES-256 for data at
+                            rest.</li>
+                        <li><strong>Access Controls:</strong> Multi-factor authentication and role-based access.</li>
+                        <li><strong>Infrastructure:</strong> Secure cloud hosting with enterprise-grade protection.</li>
+                    </ul>
+                    <p><em>Note: While we strive for absolute security, no method of transmission over the internet is
+                            100% secure.</em></p>
+                </div>
+
+                <div id="rights" class="policy-section">
+                    <h2><i class="fas fa-user-check"></i> Your Rights and Choices</h2>
+                    <p>Depending on your location, you have the following rights:</p>
+                    <ul>
+                        <li><strong>Right to Access:</strong> Request a copy of the data we hold.</li>
+                        <li><strong>Right to Rectification:</strong> Request correction of inaccurate information.</li>
+                        <li><strong>Right to Erasure:</strong> Request deletion of your personal data.</li>
+                        <li><strong>Right to Object:</strong> Object to processing for direct marketing.</li>
+                    </ul>
+                </div>
+
+                <div id="cookies" class="policy-section">
+                    <h2><i class="fas fa-cookie-bite"></i> Cookies</h2>
+                    <p>We use essential cookies for website functionality. We also use analytics and preference cookies
+                        to enhance your experience. You can manage your cookie preferences through your browser settings
+                        at any time.</p>
+                </div>
+
+                <div id="contact" class="policy-section">
+                    <h2><i class="fas fa-envelope-open-text"></i> Contact Us</h2>
+                    <p>If you have any questions or requests regarding this Privacy Policy, please reach out to our
+                        team:</p>
+                    <div class="contact-box">
+                        <div class="contact-item">
+                            <h5>Privacy Inquiries</h5>
+                            <a href="mailto:connect@algoorbit.in">connect@algoorbit.in</a>
+                        </div>
+                        <div class="contact-item">
+                            <h5>Support Center</h5>
+                            <a href="/contact">Visit Support Portal →</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-desktop">
+                <div class="footer-content">
+                    <div class="footer-brand">
+                        <a href="/" class="logo">
+                            <i class="fas fa-code"></i>
+                            <span class="logo-text"><strong class="text-gradient">AIONYX</strong></span>
+                        </a>
+                        <p style="color: var(--text-secondary); line-height: 1.7; margin: 1rem 0 2rem;">
+                            Empowering developers to master coding interviews with AI-powered learning and expert
+                            guidance.
+                        </p>
+                        <div class="footer-social">
+                            <a href="https://www.linkedin.com/company/algoorbit/" target="_blank" class="social-link"><i
+                                    class="fab fa-linkedin-in"></i></a>
+                            <a href="https://www.instagram.com/algoorbit_official/" target="_blank"
+                                class="social-link"><i class="fab fa-instagram"></i></a>
+                            <a href="https://www.facebook.com/people/Aionyx-AI/pfbid026ZtArzFeEPxSGu9tgG6QXsxkiYUmw4LMGqCgV87sP3ufxCVPPv7BFCoxc5jF7JvMl/"
+                                target="_blank" class="social-link"><i class="fab fa-facebook-f"></i></a>
+                            <a href="https://www.whatsapp.com/channel/0029VbBktvfAYlUS6kToth1B" target="_blank"
+                                class="social-link"><i class="fab fa-whatsapp"></i></a>
+                        </div>
+                    </div>
+
+                    <div class="footer-section">
+                        <h4>Quick links</h4>
+                        <ul class="footer-links">
+                            <li><a href="/">Home</a></li>
+                            <li><a href="about">About Us</a></li>
+                            <li><a href="courses">Courses</a></li>
+                            <li><a href="contact">Contact</a></li>
+                            <li><a href="courses#pricing">Pricing</a></li>
+                        </ul>
+                    </div>
+
+                    <div class="footer-section">
+                        <h4>Legal</h4>
+                        <ul class="footer-links">
+                            <li><a href="privacy-policy">Privacy Policy</a></li>
+                            <li><a href="#">Terms of Service</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="footer-bottom">
+                    <p>&copy; 2026 <strong class="text-gradient">AIONYX</strong>. All rights reserved. Built for
+                        developers.</p>
+                </div>
+            </div>
+
+            <div class="footer-mobile">
+                <div class="footer-brand">
+                    <h2><strong class="text-gradient">AIONYX</strong></h2>
+                    <p>Empowering developers to master coding interviews with AI-powered learning and expert guidance.
+                    </p>
+                </div>
+
+                <div class="footer-section">
+                    <h4>Quick links</h4>
+                    <ul class="footer-links">
+                        <li><a href="/">Home</a></li>
+                        <li><a href="about">About Us</a></li>
+                        <li><a href="courses">Courses</a></li>
+                        <li><a href="contact">Contact</a></li>
+                        <li><a href="courses#pricing">Pricing</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-section">
+                    <h4>Legal</h4>
+                    <ul class="footer-links">
+                        <li><a href="privacy-policy">Privacy Policy</a></li>
+                        <li><a href="#">Terms of Service</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-section">
+                    <h4>Connect</h4>
+                    <div class="footer-social">
+                        <a href="https://www.linkedin.com/company/algoorbit/" target="_blank" class="social-link">
+                            <i class="fab fa-linkedin-in"></i>
+                        </a>
+                        <a href="https://www.instagram.com/algoorbit_official/" target="_blank" class="social-link">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="https://www.facebook.com/people/Aionyx-AI/pfbid026ZtArzFeEPxSGu9tgG6QXsxkiYUmw4LMGqCgV87sP3ufxCVPPv7BFCoxc5jF7JvMl/"
+                            target="_blank" class="social-link">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="https://www.whatsapp.com/channel/0029VbBktvfAYlUS6kToth1B" target="_blank"
+                            class="social-link">
+                            <i class="fab fa-whatsapp"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="footer-bottom"
+                    style="text-align: left; padding-top: 2rem; border-top: 1px solid var(--border);">
+                    <p>&copy; 2026 <strong class="text-gradient">Aionyx Innovations Pvt. Ltd.</strong> All rights
+                        reserved.</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/theme.js"></script>
+    <script>
+        // Active link handling for side nav
+        const sections = document.querySelectorAll('.policy-section');
+        const navItems = document.querySelectorAll('.policy-nav-item');
+
+        window.addEventListener('scroll', () => {
+            let current = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                if (pageYOffset >= sectionTop - 120) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            navItems.forEach(item => {
+                item.classList.remove('active');
+                if (item.querySelector('a').getAttribute('href').slice(1) === current) {
+                    item.classList.add('active');
+                }
+            });
+        });
+    </script>
+</body>
+
+</html>

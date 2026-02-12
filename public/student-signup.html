@@ -18,27 +18,75 @@
     <link rel="stylesheet" href="css/theme.css">
 
     <style>
+        :root {
+            --auth-bg: #0a0a0f;
+            --auth-text: #ffffff;
+        }
+
+        body.light-theme {
+            --auth-bg: #f8fafc;
+            --auth-text: #0f172a;
+        }
+
         .auth-container {
             min-height: 100vh;
             display: flex;
             align-items: center;
             justify-content: center;
             padding: 2rem;
-            background: radial-gradient(circle at top right, rgba(139, 92, 246, 0.1), transparent),
-                radial-gradient(circle at bottom left, rgba(236, 72, 153, 0.1), transparent);
+            position: relative;
+            overflow: hidden;
+            background: var(--auth-bg);
+            transition: background 0.5s ease;
+        }
+
+        /* Cinematic Animated Background */
+        .auth-container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: url('https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&q=80&w=2000');
+            background-size: 110% 110%;
+            background-position: center;
+            animation: cinematicMotion 30s ease-in-out infinite alternate;
+            opacity: 0.4;
+            z-index: 0;
+            transition: opacity 0.5s ease;
+        }
+
+        body.light-theme .auth-container::before {
+            background-image: url('https://images.unsplash.com/photo-1635332122319-29f192ff7661?auto=format&fit=crop&q=80&w=2000');
+            opacity: 0.15;
+        }
+
+        @keyframes cinematicMotion {
+            0% {
+                transform: scale(1) translate(0, 0);
+            }
+
+            100% {
+                transform: scale(1.15) translate(-1%, -1%);
+            }
         }
 
         .auth-card {
             background: var(--surface);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
             border: 1px solid var(--border);
             border-radius: var(--radius-xl);
             display: grid;
             grid-template-columns: 1fr 1fr;
             width: 100%;
             max-width: 1000px;
-            box-shadow: var(--shadow-2xl);
+            box-shadow: var(--shadow-xl);
             overflow: hidden;
             animation: scaleIn 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+            position: relative;
+            z-index: 10;
         }
 
         .auth-info {
@@ -139,7 +187,7 @@
         .form-input {
             width: 100%;
             padding: 0.85rem 1.25rem;
-            background: var(--background);
+            background: var(--background-secondary);
             border: 1px solid var(--border);
             border-radius: var(--radius-md);
             color: var(--text-primary);

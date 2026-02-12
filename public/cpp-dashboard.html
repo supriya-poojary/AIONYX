@@ -1365,6 +1365,157 @@
             }
         }
 
+        /* AI Chat & Solution Tab Styles */
+        .ai-chat-container {
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+            background: rgba(15, 23, 42, 0.4);
+            border-radius: var(--radius-md);
+            overflow: hidden;
+        }
+
+        .ai-chat-messages {
+            flex: 1;
+            padding: 1.5rem;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+            max-height: 400px;
+        }
+
+        .ai-msg,
+        .user-msg {
+            display: flex;
+            gap: 1rem;
+            max-width: 85%;
+        }
+
+        .user-msg {
+            align-self: flex-end;
+            flex-direction: row-reverse;
+        }
+
+        .msg-avatar {
+            width: 32px;
+            height: 32px;
+            background: var(--primary);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.9rem;
+            color: white;
+            flex-shrink: 0;
+        }
+
+        .user-msg .msg-avatar {
+            background: var(--secondary);
+        }
+
+        .msg-bubble {
+            background: rgba(30, 41, 59, 0.8);
+            padding: 1rem;
+            border-radius: var(--radius-md);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+
+        .user-msg .msg-bubble {
+            background: var(--primary);
+            color: white;
+        }
+
+        .ai-chat-input-area {
+            padding: 1rem;
+            background: rgba(30, 41, 59, 0.6);
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        #aiChatInput {
+            flex: 1;
+            background: rgba(15, 23, 42, 0.8);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: var(--radius-sm);
+            padding: 0.75rem 1rem;
+            color: white;
+            font-size: 0.9rem;
+        }
+
+        .btn-send {
+            background: var(--primary);
+            color: white;
+            border: none;
+            border-radius: var(--radius-sm);
+            padding: 0 1rem;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .btn-send:hover {
+            transform: scale(1.05);
+            background: var(--primary-light);
+        }
+
+        .solution-content-body {
+            padding: 1rem;
+        }
+
+        .exercise-preview-card {
+            background: rgba(139, 92, 246, 0.05);
+            border: 1px solid rgba(139, 92, 246, 0.2);
+            border-radius: var(--radius-md);
+            margin: 1.5rem 0;
+            overflow: hidden;
+        }
+
+        .exercise-header {
+            background: rgba(139, 92, 246, 0.2);
+            padding: 0.75rem 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-weight: 600;
+            color: var(--primary-light);
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .exercise-body {
+            padding: 1rem;
+        }
+
+        .exercise-body p {
+            margin-bottom: 1rem;
+            font-size: 0.9rem;
+            color: var(--text-muted);
+        }
+
+        .load-exercise-btn {
+            width: 100%;
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: 0.75rem;
+            border-radius: var(--radius-sm);
+            cursor: pointer;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            transition: all 0.2s;
+        }
+
+        .load-exercise-btn:hover {
+            background: var(--primary-light);
+        }
+
         @media (max-width: 768px) {
             .mobile-menu-toggle {
                 display: block;
@@ -1447,6 +1598,11 @@
                         Master C++ from fundamentals to advanced object-oriented programming with our interactive track.
                         Build real-world logic and solve complex problems.
                     </p>
+                    <div class="header-cta" style="margin-top: 2rem; display: flex; gap: 1rem;">
+                        <button class="btn btn-primary btn-start-track" id="startTrackBtn">
+                            <i class="fas fa-play"></i> START TRACK
+                        </button>
+                    </div>
                 </div>
                 <div class="course-header-actions">
                     <div class="header-visual">
@@ -1947,6 +2103,7 @@
                 <div class="lesson-content-panel">
                     <div class="lesson-tabs">
                         <button class="lesson-tab active" data-tab="statement">Statement</button>
+                        <button class="lesson-tab" data-tab="solution">Solution</button>
                         <button class="lesson-tab" data-tab="help">AI Help</button>
                     </div>
 
@@ -1986,13 +2143,37 @@
                         </div>
                     </div>
 
+                    <div class="lesson-tab-content" id="solutionTab">
+                        <div class="lesson-scroll-content">
+                            <div id="solutionContent" class="solution-content-body">
+                                <div class="ai-help-placeholder">
+                                    <i class="fas fa-lightbulb"
+                                        style="font-size: 3rem; color: var(--warning); margin-bottom: 1rem;"></i>
+                                    <h3>Exercise Solution</h3>
+                                    <p>Try solving the exercise first! The expert solution will appear here once you
+                                        load a practice task.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
                     <div class="lesson-tab-content" id="helpTab">
                         <div class="lesson-scroll-content">
-                            <div class="ai-help-placeholder">
-                                <i class="fas fa-robot"
-                                    style="font-size: 3rem; color: var(--primary); margin-bottom: 1rem;"></i>
-                                <h3>AI Help Coming Soon</h3>
-                                <p>Get instant help with your C++ questions using our AI assistant.</p>
+                            <div class="ai-chat-container">
+                                <div id="aiChatMessages" class="ai-chat-messages">
+                                    <div class="ai-msg">
+                                        <div class="msg-avatar"><i class="fas fa-robot"></i></div>
+                                        <div class="msg-bubble">
+                                            <p>Hello! I'm your C++ Assistant. Ask me anything about this lesson or if
+                                                you're stuck on the exercise!</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="ai-chat-input-area">
+                                    <input type="text" id="aiChatInput"
+                                        placeholder="Ask about syntax, logic, or hints...">
+                                    <button id="sendAiBtn" class="btn-send"><i class="fas fa-paper-plane"></i></button>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -2093,6 +2274,136 @@ int main() {
             });
         }
 
+        // IDE & Exercise Collections
+        const exerciseOriginals = {};
+        const exerciseSolutions = {};
+        const codeSnippets = {};
+        let currentExerciseId = null;
+
+        // AI Assistant Logic
+        function generateAiResponse(question) {
+            const q = question.toLowerCase();
+            if (q.includes('error') || q.includes('bug') || q.includes('wrong') || q.includes('not working')) {
+                return `🔍 **Debugging Tips for C++:**
+                - Check #include <iostream> is at the top
+                - Every statement must end with ;
+                - Make sure all { have matching }
+                - Variable names are case-sensitive
+                - Use std::cout or add using namespace std;`;
+            }
+            if (q.includes('loop') || q.includes('for') || q.includes('while')) {
+                return `🔄 **C++ Loops:**
+                - **For Loop:** \`for (int i = 0; i < 10; i++) { ... }\`
+                - **While Loop:** \`while (condition) { ... }\`
+                - **Key:** Always update the loop variable to avoid infinite loops!`;
+            }
+            if (q.includes('syntax') || q.includes('how to') || q.includes('cout') || q.includes('print')) {
+                return `📚 **C++ Basics:**
+                - **Print:** \`cout << "text" << endl;\`
+                - **Variable:** \`int age = 20;\`
+                - **Input:** \`cin >> variable;\`
+                - **If:** \`if (x > 10) { ... }\``;
+            }
+            if (q.includes('solution') || q.includes('answer') || q.includes('hint') || q.includes('help')) {
+                return `💡 **Try these steps:**
+                - Read the exercise TODO comments carefully
+                - Think about what variables you need
+                - Write one line at a time
+                - Check the **Solution** tab if you're really stuck!`;
+            }
+            return `👋 I can help with C++ topics! Try asking:
+            - "How do I use a for loop?"
+            - "What is a pointer?"
+            - "Why am I getting an error?"
+            - "Give me a hint for this exercise"`;
+        }
+
+        function sendAiMessage() {
+            const inputEl = document.getElementById('aiChatInput');
+            const container = document.getElementById('aiChatMessages');
+            const msg = inputEl.value.trim();
+
+            if (!msg) return;
+
+            // Add user message
+            const userDiv = document.createElement('div');
+            userDiv.className = 'user-msg';
+            userDiv.innerHTML = `
+                <div class="msg-avatar"><i class="fas fa-user"></i></div>
+                <div class="msg-bubble"><p>${msg}</p></div>
+            `;
+            container.appendChild(userDiv);
+            inputEl.value = '';
+            container.scrollTop = container.scrollHeight;
+
+            // Generate AI reply
+            setTimeout(() => {
+                const reply = generateAiResponse(msg);
+                const aiDiv = document.createElement('div');
+                aiDiv.className = 'ai-msg';
+                aiDiv.innerHTML = `
+                    <div class="msg-avatar"><i class="fas fa-robot"></i></div>
+                    <div class="msg-bubble"><p>${reply.replace(/\n/g, '<br>')}</p></div>
+                `;
+                container.appendChild(aiDiv);
+                container.scrollTop = container.scrollHeight;
+            }, 600);
+        }
+
+        function escapeHtml(text) {
+            const div = document.createElement('div');
+            div.textContent = text;
+            return div.innerHTML;
+        }
+
+        // IDE Loading Functions
+        function loadExerciseToIde(id) {
+            currentExerciseId = id;
+            const code = exerciseOriginals[id];
+            const codeEl = document.getElementById('lessonCode');
+
+            if (!code || !codeEl) return;
+
+            // Update IDE code
+            codeEl.textContent = code;
+            if (window.Prism) Prism.highlightElement(codeEl);
+
+            // Switch to code panel on mobile
+            if (window.innerWidth <= 1024) {
+                document.querySelector('.lesson-code-panel').scrollIntoView({ behavior: 'smooth' });
+            }
+
+            // Update Solution Tab if logic exists
+            updateSolutionTab(id);
+        }
+
+        function updateSolutionTab(id) {
+            const solutionContent = document.getElementById('solutionContent');
+            if (!solutionContent) return;
+
+            if (exerciseSolutions[id]) {
+                solutionContent.innerHTML = `
+                    <div class="solution-header" style="margin-bottom: 1rem; color: #10b981; font-weight: 600;">
+                        <i class="fas fa-check-circle"></i> Expert Solution
+                    </div>
+                    <pre class="line-numbers"><code class="language-cpp">${escapeHtml(exerciseSolutions[id])}</code></pre>
+                    <p style="margin-top: 1rem; font-size: 0.9rem; color: var(--text-muted);">
+                        Study this solution to understand the correct approach. Try writing it yourself first!
+                    </p>
+                `;
+                const solutionCode = solutionContent.querySelector('code');
+                if (window.Prism) Prism.highlightElement(solutionCode);
+            } else {
+                solutionContent.innerHTML = `
+                    <div class="ai-help-placeholder">
+                        <i class="fas fa-info-circle" style="font-size: 3rem; color: var(--primary); margin-bottom: 1rem;"></i>
+                        <h3>No Static Solution</h3>
+                        <p>This exercise is open-ended. Try different approaches in the editor!</p>
+                    </div>
+                `;
+            }
+        }
+
         // Lesson Content Database
         const lessonContent = {
             // Module 1: Getting Started
@@ -2106,7 +2417,28 @@ int main() {
                     'All the basic concepts of C++ programming language like - Variables, Strings, Conditions, Arrays, Loops, Functions etc',
                     'By the end of this course, you will be able to write code in C++ to solve logical real world problems.'
                 ],
-                theory: `C++ is a powerful general-purpose programming language. It can be used to develop operating systems, browsers, games, and so on. C++ supports different ways of programming like procedural, object-oriented, functional, and so on. This makes C++ powerful as well as flexible.
+                theory: `C++ is a powerful general-purpose programming language. It can be used to develop operating systems, browsers, games, and so on.
+
+:::terminal cpp
+#include <iostream>
+using namespace std;
+
+int main() {
+    // TODO: Output "C++ is awesome!"
+    cout << "Hello C++" << endl;
+    return 0;
+}
+:::
+
+:::solution cpp
+#include <iostream>
+using namespace std;
+
+int main() {
+    cout << "C++ is awesome!" << endl;
+    return 0;
+}
+:::
 
 **Why Learn C++?**
 - C++ is one of the world's most popular programming languages
@@ -2154,6 +2486,21 @@ int main() {
                     'Compile and run your first program'
                 ],
                 theory: `To start programming in C++, you need two things: a compiler and a text editor or IDE.
+
+:::terminal bash
+# Check if g++ is installed
+g++ --version
+
+# Build a simple file if it exists
+g++ main.cpp -o main
+./main
+:::
+
+:::solution bash
+# Typical commands to compile and run
+g++ my_program.cpp -o app
+./app
+:::
 
 **Popular C++ Compilers:**
 - GCC (GNU Compiler Collection) - Free and open-source
@@ -2539,12 +2886,7 @@ int main() {
                 // Tab switching
                 document.querySelectorAll('.lesson-tab').forEach(tab => {
                     tab.addEventListener('click', () => {
-                        document.querySelectorAll('.lesson-tab').forEach(t => t.classList.remove('active'));
-                        document.querySelectorAll('.lesson-tab-content').forEach(c => c.classList.remove('active'));
-
-                        tab.classList.add('active');
-                        const tabName = tab.dataset.tab;
-                        document.getElementById(tabName + 'Tab').classList.add('active');
+                        this.switchTab(tab.dataset.tab);
                     });
                 });
 
@@ -2562,6 +2904,74 @@ int main() {
 
                 // Copy code button
                 document.getElementById('copyCodeBtn').addEventListener('click', () => this.copyCode());
+
+                // AI Chat Submit
+                const sendAiBtn = document.getElementById('sendAiBtn');
+                if (sendAiBtn) {
+                    sendAiBtn.addEventListener('click', sendAiMessage);
+                }
+                const aiChatInput = document.getElementById('aiChatInput');
+                if (aiChatInput) {
+                    aiChatInput.addEventListener('keypress', (e) => {
+                        if (e.key === 'Enter') sendAiMessage();
+                    });
+                }
+            },
+
+            switchTab(tabId) {
+                document.querySelectorAll('.lesson-tab').forEach(t => t.classList.remove('active'));
+                document.querySelectorAll('.lesson-tab-content').forEach(c => c.classList.remove('active'));
+
+                const tab = document.querySelector(`.lesson-tab[data-tab="${tabId}"]`);
+                if (tab) tab.classList.add('active');
+
+                const content = document.getElementById(tabId + 'Tab');
+                if (content) content.classList.add('active');
+            },
+
+            renderTheory(theoryText) {
+                const theoryContainer = document.getElementById('lessonTheory');
+                if (!theoryContainer) return;
+
+                let html = '';
+                const blocks = theoryText.split('\n\n');
+
+                blocks.forEach(block => {
+                    const trimmedBlock = block.trim();
+                    if (trimmedBlock.startsWith(':::terminal')) {
+                        const content = trimmedBlock.replace(/:::terminal\s+\w+\n?/, '').replace(/:::/g, '').trim();
+                        const id = 'ex_' + Math.random().toString(36).substr(2, 6);
+                        exerciseOriginals[id] = content;
+
+                        html += `
+                            <div class="exercise-preview-card">
+                                <div class="exercise-header">
+                                    <i class="fas fa-laptop-code"></i> PRACTICE EXERCISE
+                                </div>
+                                <div class="exercise-body">
+                                    <p>The starter code has been loaded in the IDE. Complete the task and see it in action!</p>
+                                    <button class="load-exercise-btn" onclick="loadExerciseToIde('${id}')">
+                                        <i class="fas fa-play"></i> CONVERT TO INTERACTIVE
+                                    </button>
+                                </div>
+                            </div>
+                        `;
+                    } else if (trimmedBlock.startsWith(':::solution')) {
+                        const content = trimmedBlock.replace(/:::solution\s+\w+\n?/, '').replace(/:::/g, '').trim();
+                        const lastId = Object.keys(exerciseOriginals).pop();
+                        if (lastId) {
+                            exerciseSolutions[lastId] = content;
+                        }
+                    } else if (trimmedBlock.startsWith('**') && trimmedBlock.endsWith('**')) {
+                        html += `<h4>${trimmedBlock.replace(/\*\*/g, '')}</h4>`;
+                    } else if (trimmedBlock.startsWith('- ')) {
+                        html += `<ul>${trimmedBlock.split('\n').map(li => `<li>${li.replace('- ', '')}</li>`).join('')}</ul>`;
+                    } else if (trimmedBlock) {
+                        html += `<p>${trimmedBlock}</p>`;
+                    }
+                });
+
+                theoryContainer.innerHTML = html;
             },
 
             open(lessonId) {
@@ -2572,9 +2982,23 @@ int main() {
                 }
 
                 this.currentLessonId = lessonId;
+                this.switchTab('statement');
                 this.renderLesson(lesson);
                 this.modal.classList.add('active');
                 document.body.style.overflow = 'hidden';
+
+                // Reset AI Chat for new lesson
+                const aiChatMessages = document.getElementById('aiChatMessages');
+                if (aiChatMessages) {
+                    aiChatMessages.innerHTML = `
+                        <div class="ai-msg">
+                            <div class="msg-avatar"><i class="fas fa-robot"></i></div>
+                            <div class="msg-bubble">
+                                <p>Hello! I'm your C++ Assistant. Ask me anything about <strong>${lesson.title}</strong>!</p>
+                            </div>
+                        </div>
+                    `;
+                }
 
                 // Highlight syntax
                 setTimeout(() => Prism.highlightAll(), 100);
@@ -2597,15 +3021,15 @@ int main() {
                 const objectivesList = document.getElementById('lessonObjectives');
                 objectivesList.innerHTML = lesson.objectives.map(obj => `<li>${obj}</li>`).join('');
 
-                // Update theory
-                document.getElementById('lessonTheory').innerHTML = lesson.theory.split('\n\n').map(p => `<p>${p}</p>`).join('');
+                // Update theory with Interactive Support
+                this.renderTheory(lesson.theory);
 
                 // Update code examples
                 const examplesContainer = document.getElementById('lessonCodeExamples');
                 examplesContainer.innerHTML = lesson.codeExamples.map(example => `
                     <div class="code-example-block">
                         <h4>${example.title}</h4>
-                        <pre class="line-numbers"><code class="language-cpp">${this.escapeHtml(example.code)}</code></pre>
+                        <pre class="line-numbers"><code class="language-cpp">${escapeHtml(example.code)}</code></pre>
                         <div class="explanation">${example.explanation}</div>
                     </div>
                 `).join('');
@@ -2715,6 +3139,14 @@ int main() {
                 }
             });
         });
+
+        // START TRACK Button
+        const startTrackBtn = document.getElementById('startTrackBtn');
+        if (startTrackBtn) {
+            startTrackBtn.addEventListener('click', () => {
+                document.querySelector('.curriculum-section').scrollIntoView({ behavior: 'smooth' });
+            });
+        }
 
         // ASSESSMENT Button - Open assessment when unlocked
         const assessmentBtn = document.getElementById('assessmentBtn');

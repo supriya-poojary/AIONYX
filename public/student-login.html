@@ -22,6 +22,16 @@
             --glass-bg: rgba(13, 13, 22, 0.45);
             --glass-border: rgba(255, 255, 255, 0.08);
             --auth-glow: rgba(139, 92, 246, 0.15);
+            --auth-bg: #0a0a0f;
+            --auth-text: #ffffff;
+        }
+
+        body.light-theme {
+            --glass-bg: rgba(255, 255, 255, 0.7);
+            --glass-border: rgba(0, 0, 0, 0.08);
+            --auth-glow: rgba(139, 92, 246, 0.1);
+            --auth-bg: #f8fafc;
+            --auth-text: #0f172a;
         }
 
         .auth-container {
@@ -32,36 +42,60 @@
             padding: 1.5rem;
             position: relative;
             overflow: hidden;
-            background: #0a0a0f;
+            background: var(--auth-bg);
+            transition: background 0.5s ease;
         }
 
-        /* Dynamic Animated Background */
-        .auth-bg-blob {
+        /* Cinematic Animated Background */
+        .auth-container::before {
+            content: '';
             position: absolute;
-            width: 500px;
-            height: 500px;
-            background: radial-gradient(circle, var(--primary), transparent 70%);
-            filter: blur(80px);
-            opacity: 0.15;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: url('https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&q=80&w=2000');
+            background-size: 110% 110%;
+            background-position: center;
+            animation: cinematicMotion 30s ease-in-out infinite alternate;
+            opacity: 0.4;
             z-index: 0;
-            animation: blobFloat 20s infinite alternate cubic-bezier(0.45, 0, 0.55, 1);
+            transition: opacity 0.5s ease;
         }
 
-        .auth-bg-blob:nth-child(2) {
-            background: radial-gradient(circle, var(--secondary), transparent 70%);
-            animation-delay: -10s;
-            right: -100px;
-            top: -100px;
+        body.light-theme .auth-container::before {
+            background-image: url('https://images.unsplash.com/photo-1635332122319-29f192ff7661?auto=format&fit=crop&q=80&w=2000');
+            opacity: 0.15;
         }
 
-        @keyframes blobFloat {
+        @keyframes cinematicMotion {
             0% {
-                transform: translate(-10%, -10%) scale(1);
+                transform: scale(1) translate(0, 0);
             }
 
             100% {
-                transform: translate(10%, 10%) scale(1.2);
+                transform: scale(1.15) translate(-1%, -1%);
             }
+        }
+
+        .auth-header h1 {
+            font-size: 1.85rem;
+            font-weight: 800;
+            color: var(--auth-text);
+            letter-spacing: -0.025em;
+            margin-bottom: 0.5rem;
+            text-shadow: 0 0 15px rgba(255, 255, 255, 0.1);
+        }
+
+        .form-input {
+            width: 100%;
+            padding: 1rem 1.25rem;
+            background: var(--background-secondary);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            color: var(--text-primary);
+            font-size: 0.95rem;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
         .auth-card {
@@ -202,7 +236,7 @@
         .auth-header h1 {
             font-size: 1.85rem;
             font-weight: 800;
-            color: #fff;
+            color: var(--auth-text);
             letter-spacing: -0.025em;
             margin-bottom: 0.5rem;
             text-shadow: 0 0 15px rgba(255, 255, 255, 0.1);
@@ -257,10 +291,10 @@
         .form-input {
             width: 100%;
             padding: 1rem 1.25rem;
-            background: rgba(10, 10, 15, 0.5);
-            border: 1px solid var(--glass-border);
+            background: var(--background-secondary);
+            border: 1px solid var(--border);
             border-radius: 16px;
-            color: #fff;
+            color: var(--text-primary);
             font-size: 0.95rem;
             transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
@@ -441,8 +475,6 @@
 
 <body>
     <div class="auth-container">
-        <div class="auth-bg-blob"></div>
-        <div class="auth-bg-blob"></div>
 
         <div class="auth-card">
             <div class="highlight-bar"></div>
