@@ -134,10 +134,10 @@ exports.getUserProfileStats = async (req, res) => {
 
         // Activity Dates - Get all solved dates for heatmap
         const activityRes = await pool.query(
-            `SELECT DATE(solved_at) as date, COUNT(*) as count 
+            `SELECT DATE(completed_at) as date, COUNT(*) as count 
              FROM student_progress 
              WHERE student_id = $1 
-             GROUP BY DATE(solved_at)
+             GROUP BY DATE(completed_at)
              ORDER BY date`,
             [studentId]
         );
