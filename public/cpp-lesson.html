@@ -603,25 +603,22 @@ int main() {
             outputDiv.className = "terminal-output"; // Reset classes
 
             try {
-                // Using Piston API
-                const response = await fetch('https://emkc.org/api/v2/piston/execute', {
+                // Using Local Backend Executer
+                const response = await fetch('/api/compiler/run-cpp', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({
-                        language: 'cpp',
-                        version: '10.2.0',
-                        files: [{ content: code }]
-                    })
+                    body: JSON.stringify({ code })
                 });
 
                 const data = await response.json();
 
                 if (data.run) {
-                    // Check for stderr
-                    if (data.run.stderr) {
-                        outputDiv.textContent = data.run.stderr;
+                    if (data.run.code !== 0) {
+                        // Compilation or Runtime Error
+                        outputDiv.textContent = data.run.stderr || data.run.stdout; // fallback to stdout if stderr empty
                         outputDiv.classList.add('terminal-output-error');
                     } else {
+                        // Success
                         outputDiv.textContent = data.run.stdout;
                     }
                 } else {

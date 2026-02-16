@@ -8,3 +8,4 @@ postgresql-18.1-2-windows-x64.exe
 .gemini/
 .DS_Store
 *.log
+temp/

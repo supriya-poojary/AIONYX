@@ -23,6 +23,7 @@ app.use('/api/auth', require('./routes/authRoutes'));
 app.use('/api/content', require('./routes/contentRoutes'));
 app.use('/api/progress', require('./routes/progressRoutes'));
 app.use('/api/contact', require('./routes/contactRoutes'));
+app.use('/api/compiler', require('./routes/compilerRoutes'));
 
 // Serve Frontend
 app.get('/', (req, res) => {
