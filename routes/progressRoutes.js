@@ -12,6 +12,10 @@ router.get('/stats/:studentId', verifyToken, progressController.getStudentStats)
 router.post('/cpp/mark', verifyToken, progressController.markCppLessonCompleted);
 router.get('/cpp/:studentId', verifyToken, progressController.getCppProgress);
 
+// Python Routes
+router.post('/python/mark', verifyToken, progressController.markPythonLessonCompleted);
+router.get('/python/:studentId', verifyToken, progressController.getPythonProgress);
+
 // Profile Stats
 router.get('/profile/:studentId', verifyToken, progressController.getUserProfileStats);
 

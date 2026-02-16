@@ -1,0 +1,620 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Python Lesson - AIONYX</title>
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Monaco Editor -->
+    <link rel="stylesheet" data-name="vs/editor/editor.main"
+        href="https://cdnjs.cloudflare.com/ajax/libs/monaco-editor/0.33.0/min/vs/editor/editor.main.css">
+    <link rel="stylesheet" href="css/theme.css">
+    <style>
+        body {
+            background-color: var(--background);
+            color: var(--text-primary);
+            font-family: 'Inter', sans-serif;
+            overflow: hidden;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Top Navigation - Glassmorphism */
+        .lesson-nav {
+            height: 60px;
+            background: rgba(10, 10, 15, 0.8);
+            backdrop-filter: blur(20px) saturate(180%);
+            border-bottom: 1px solid var(--border);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 20px;
+            z-index: 10;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .nav-left {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .home-btn {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 1rem;
+            font-weight: 500;
+            transition: all 0.2s;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .home-btn:hover {
+            color: #10b981;
+            transform: translateX(-2px);
+        }
+
+        .lesson-title-display {
+            font-weight: 700;
+            background: linear-gradient(135deg, var(--text-primary), var(--text-secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            padding-left: 20px;
+            border-left: 1px solid var(--border);
+        }
+
+        /* Workspace Grid */
+        .workspace {
+            display: grid;
+            grid-template-columns: 40% 60%;
+            height: calc(100vh - 60px);
+        }
+
+        /* Left Panel: Content */
+        .content-panel {
+            background: var(--surface);
+            border-right: 1px solid var(--border);
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+
+        .content-scroll {
+            padding: 30px;
+            overflow-y: auto;
+            flex: 1;
+            line-height: 1.7;
+        }
+
+        .content-scroll h1 {
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(135deg, #10b981, #06b6d4);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .content-scroll h2 {
+            font-size: 1.3rem;
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+            color: var(--text-primary);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .content-scroll h2 i {
+            color: #10b981;
+            filter: drop-shadow(0 0 5px rgba(16, 185, 129, 0.5));
+        }
+
+        .content-scroll p {
+            color: var(--text-secondary);
+            margin-bottom: 1rem;
+        }
+
+        .content-scroll ul {
+            padding-left: 20px;
+            color: var(--text-secondary);
+            margin-bottom: 1rem;
+        }
+
+        .content-scroll li {
+            margin-bottom: 0.5rem;
+        }
+
+        .code-block {
+            background: rgba(0, 0, 0, 0.3);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 15px;
+            font-family: 'Fira Code', monospace;
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            margin: 1.5rem 0;
+            white-space: pre-wrap;
+            position: relative;
+        }
+
+        .code-block::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 3px;
+            background: #10b981;
+            border-radius: 8px 0 0 8px;
+        }
+
+        .nav-buttons {
+            padding: 20px;
+            border-top: 1px solid var(--border);
+            background: var(--surface-elevated);
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .btn-nav {
+            padding: 10px 20px;
+            border-radius: 8px;
+            background: transparent;
+            color: var(--text-secondary);
+            border: 1px solid var(--border);
+            cursor: pointer;
+            text-decoration: none;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.2s;
+        }
+
+        .btn-nav:hover {
+            background: var(--surface-hover);
+            color: #10b981;
+            border-color: #10b981;
+            box-shadow: 0 0 10px rgba(16, 185, 129, 0.1);
+        }
+
+        .btn-complete {
+            background: var(--surface);
+            color: var(--text-muted);
+            border: 1px solid var(--border);
+            padding: 8px 16px;
+            border-radius: 6px;
+            font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.2s;
+        }
+
+        .btn-complete:hover {
+            background: rgba(34, 197, 94, 0.1);
+            color: #22c55e;
+            border-color: #22c55e;
+            transform: translateY(-2px);
+            box-shadow: 0 0 10px rgba(34, 197, 94, 0.2);
+        }
+
+        /* Right Panel: Editor & Terminal */
+        .editor-panel {
+            display: flex;
+            flex-direction: column;
+            background: #1e1e1e;
+            height: 100%;
+            overflow: hidden;
+        }
+
+        .editor-header {
+            height: 40px;
+            background: var(--surface);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 15px;
+            border-bottom: 1px solid var(--border);
+            flex-shrink: 0;
+        }
+
+        .lang-label {
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--text-muted);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .btn-run {
+            background: linear-gradient(135deg, var(--success), #059669);
+            color: white;
+            border: none;
+            padding: 6px 16px;
+            border-radius: 4px;
+            font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.2s;
+            box-shadow: 0 0 10px rgba(16, 185, 129, 0.2);
+            font-size: 0.85rem;
+        }
+
+        .btn-run:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 0 15px rgba(16, 185, 129, 0.4);
+        }
+
+        .btn-run:disabled {
+            background: var(--surface-hover);
+            color: var(--text-disabled);
+            box-shadow: none;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        #editor-container {
+            flex: 1;
+            width: 100%;
+            min-height: 0;
+        }
+
+        .terminal-panel {
+            height: 200px;
+            min-height: 100px;
+            max-height: 80%;
+            background: #09090b;
+            border-top: 1px solid var(--border);
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            flex-shrink: 0;
+        }
+
+        .resize-handle {
+            height: 8px;
+            background: transparent;
+            cursor: row-resize;
+            transition: background 0.2s;
+            position: absolute;
+            top: -4px;
+            left: 0;
+            right: 0;
+            z-index: 100;
+        }
+
+        .resize-handle:hover,
+        .resize-handle.active {
+            background: var(--primary);
+        }
+
+        .terminal-header {
+            padding: 8px 15px;
+            background: rgba(255, 255, 255, 0.05);
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            display: flex;
+            justify-content: space-between;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .terminal-content {
+            flex: 1;
+            padding: 15px;
+            font-family: 'Fira Code', monospace;
+            font-size: 0.9rem;
+            color: #d4d4d4;
+            overflow-y: auto;
+            white-space: pre-wrap;
+        }
+
+        .terminal-line {
+            line-height: 1.5;
+        }
+
+        .terminal-error {
+            color: #ef4444;
+        }
+
+        .terminal-success {
+            color: #22c55e;
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            .workspace {
+                grid-template-columns: 1fr;
+                grid-template-rows: 1fr 1fr;
+                height: calc(100vh - 60px);
+                overflow-y: auto;
+            }
+
+            .content-panel {
+                border-right: none;
+                border-bottom: 1px solid var(--border);
+                height: 50vh;
+            }
+
+            .editor-panel {
+                height: 50vh;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Nav -->
+    <nav class="lesson-nav">
+        <div class="nav-left">
+            <a href="python-dashboard" class="home-btn">
+                <i class="fas fa-arrow-left"></i> Back to Dashboard
+            </a>
+            <span class="lesson-title-display" id="lessonTitle">Loading...</span>
+        </div>
+        <button class="btn-complete" id="markCompleteBtn">
+            <i class="fas fa-check-circle"></i> Mark as Complete
+        </button>
+    </nav>
+
+    <div class="workspace">
+        <!-- Content -->
+        <div class="content-panel">
+            <div class="content-scroll" id="lessonContent">
+                <!-- Injected via JS -->
+                <div style="text-align: center; margin-top: 50px;">
+                    <i class="fas fa-spinner fa-spin fa-2x" style="color: var(--primary);"></i>
+                </div>
+            </div>
+
+            <div class="nav-buttons">
+                <button class="btn-nav" id="prevBtn" style="visibility: hidden;">
+                    <i class="fas fa-chevron-left"></i> Previous
+                </button>
+                <button class="btn-nav" id="nextBtn" style="visibility: hidden;">
+                    Next <i class="fas fa-chevron-right"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Editor -->
+        <div class="editor-panel">
+            <div class="editor-header">
+                <div class="lang-label">
+                    <i class="fab fa-python" style="color: #10b981; font-size: 1.1rem;"></i>
+                    main.py
+                </div>
+                <button class="btn-run" id="runBtn" onclick="runCode()">
+                    <i class="fas fa-play"></i> Run Code
+                </button>
+            </div>
+            <div id="editor-container"></div>
+
+            <!-- Terminal -->
+            <div class="terminal-panel" id="terminalPanel">
+                <div class="resize-handle" id="resizeHandle"></div>
+                <div class="terminal-header">
+                    <span>TERMINAL</span>
+                    <i class="fas fa-terminal"></i>
+                </div>
+                <div class="terminal-content" id="output">
+                    <div class="terminal-line" style="color: var(--text-muted);">Click "Run Code" to execute...</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/monaco-editor/0.33.0/min/vs/loader.min.js"></script>
+    <script src="js/python-data.js"></script>
+    <script>
+        // Auth Check
+        const token = localStorage.getItem('token');
+        if (!token) window.location.href = 'student-login.html';
+        const user = JSON.parse(localStorage.getItem('user'));
+
+        // Query Param
+        const urlParams = new URLSearchParams(window.location.search);
+        const lessonId = urlParams.get('lessonId') || "1.1";
+
+        // DOM Elements
+        const lessonTitleEl = document.getElementById('lessonTitle');
+        const lessonContentEl = document.getElementById('lessonContent');
+        const markCompleteBtn = document.getElementById('markCompleteBtn');
+        const outputEl = document.getElementById('output');
+        const runBtn = document.getElementById('runBtn');
+
+        let editor;
+
+        // Initialize Editor
+        require.config({ paths: { 'vs': 'https://cdnjs.cloudflare.com/ajax/libs/monaco-editor/0.33.0/min/vs' } });
+        require(['vs/editor/editor.main'], function () {
+            editor = monaco.editor.create(document.getElementById('editor-container'), {
+                value: "# Loading...",
+                language: 'python',
+                theme: 'vs-dark',
+                fontSize: 14,
+                minimap: { enabled: false },
+                automaticLayout: true,
+                padding: { top: 15 },
+                scrollBeyondLastLine: false,
+                fontFamily: "'Fira Code', monospace"
+            });
+
+            loadLesson(lessonId);
+        });
+
+        // Load Lesson Data
+        function loadLesson(id) {
+            const data = pythonLessons[id];
+            if (!data) {
+                lessonContentEl.innerHTML = "<h1>Lesson Not Found</h1>";
+                return;
+            }
+
+            // Update UI
+            lessonTitleEl.textContent = data.title;
+            lessonContentEl.innerHTML = data.content;
+            if (editor) editor.setValue(data.code);
+
+            // Check completion status
+            checkCompletion(id);
+
+            // Nav Buttons logic (Simple ID traversal)
+            setupNavigation(id);
+        }
+
+        async function checkCompletion(id) {
+            try {
+                const res = await fetch(`/api/progress/python/${user.id}`, {
+                    headers: { 'Authorization': `Bearer ${token}` }
+                });
+                if (res.ok) {
+                    const progress = await res.json();
+                    if (progress[id]) {
+                        markCompleteBtn.innerHTML = '<i class="fas fa-check-double"></i> Completed';
+                        markCompleteBtn.style.color = '#22c55e';
+                        markCompleteBtn.disabled = true;
+                    }
+                }
+            } catch (err) {
+                console.error("Progress check failed", err);
+            }
+        }
+
+        markCompleteBtn.addEventListener('click', async () => {
+            try {
+                const res = await fetch('/api/progress/python/mark', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${token}`
+                    },
+                    body: JSON.stringify({ studentId: user.id, lessonId: lessonId })
+                });
+
+                if (res.ok) {
+                    markCompleteBtn.innerHTML = '<i class="fas fa-check-double"></i> Completed';
+                    markCompleteBtn.style.color = '#22c55e';
+                    markCompleteBtn.disabled = true;
+
+                    // Simple confetti effect or alert
+                    const btn = markCompleteBtn;
+                    btn.classList.add('pulse');
+                    setTimeout(() => btn.classList.remove('pulse'), 500);
+                }
+            } catch (err) {
+                console.error("Failed to mark complete", err);
+            }
+        });
+
+        // Run Code
+        async function runCode() {
+            const code = editor.getValue();
+            outputEl.innerHTML = '<div class="terminal-line"><i class="fas fa-cog fa-spin"></i> Running...</div>';
+            runBtn.disabled = true;
+
+            try {
+                const res = await fetch('/api/compiler/run-python', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ code })
+                });
+
+                const data = await res.json();
+
+                if (data.run) {
+                    outputEl.innerHTML = '';
+                    if (data.run.stdout) {
+                        outputEl.innerHTML += `<div class="terminal-line">${data.run.stdout.replace(/\n/g, '<br>')}</div>`;
+                    }
+                    if (data.run.stderr) {
+                        outputEl.innerHTML += `<div class="terminal-line terminal-error">${data.run.stderr.replace(/\n/g, '<br>')}</div>`;
+                    }
+                    // Show exit code if non-zero
+                    if (data.run.code !== 0) {
+                        outputEl.innerHTML += `<div class="terminal-line" style="color: #666; margin-top: 10px;">Exited with code ${data.run.code}</div>`;
+                    }
+                } else {
+                    outputEl.innerHTML = `<div class="terminal-line terminal-error">Execution failed. Format error.</div>`;
+                }
+
+            } catch (err) {
+                outputEl.innerHTML = `<div class="terminal-line terminal-error">Server Error: ${err.message}</div>`;
+            } finally {
+                runBtn.disabled = false;
+            }
+        }
+
+        // Navigation Setup
+        function setupNavigation(currentId) {
+            const keys = Object.keys(pythonLessons);
+            const index = keys.indexOf(currentId);
+
+            const prevBtn = document.getElementById('prevBtn');
+            const nextBtn = document.getElementById('nextBtn');
+
+            if (index > 0) {
+                prevBtn.style.visibility = 'visible';
+                prevBtn.onclick = () => window.location.href = `python-lesson?lessonId=${keys[index - 1]}`;
+            } else {
+                prevBtn.style.visibility = 'hidden';
+            }
+
+            if (index < keys.length - 1) {
+                nextBtn.style.visibility = 'visible';
+                nextBtn.onclick = () => window.location.href = `python-lesson?lessonId=${keys[index + 1]}`;
+            } else {
+                nextBtn.style.visibility = 'hidden';
+            }
+        }
+
+        // Resizable Terminal
+        const terminalPanel = document.getElementById('terminalPanel');
+        const resizeHandle = document.getElementById('resizeHandle');
+        let isResizing = false;
+        let startY, startHeight;
+
+        resizeHandle.addEventListener('mousedown', (e) => {
+            isResizing = true;
+            startY = e.clientY;
+            startHeight = terminalPanel.offsetHeight;
+            resizeHandle.classList.add('active');
+            document.body.style.cursor = 'row-resize';
+            e.preventDefault(); // Prevent text selection
+        });
+
+        document.addEventListener('mousemove', (e) => {
+            if (!isResizing) return;
+            const deltaY = startY - e.clientY;
+            let newHeight = startHeight + deltaY;
+            if (newHeight >= 100 && newHeight <= 600) {
+                terminalPanel.style.height = `${newHeight}px`;
+                editor.layout();
+            }
+        });
+
+        document.addEventListener('mouseup', () => {
+            if (isResizing) {
+                isResizing = false;
+                resizeHandle.classList.remove('active');
+                document.body.style.cursor = 'default';
+                editor.layout(); // Layout one last time
+            }
+        });
+
+    </script>
+</body>
+
+</html>

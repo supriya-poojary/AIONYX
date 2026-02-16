@@ -114,6 +114,57 @@ exports.getCppProgress = async (req, res) => {
     }
 };
 
+// --- Python Course Progress ---
+
+exports.markPythonLessonCompleted = async (req, res) => {
+    const { studentId, lessonId } = req.body;
+
+    try {
+        // Check if already completed
+        const checkRes = await pool.query(
+            'SELECT * FROM student_python_progress WHERE student_id = $1 AND lesson_id = $2',
+            [studentId, lessonId]
+        );
+
+        if (checkRes.rows.length > 0) {
+            return res.status(200).json({ message: 'Lesson already completed' });
+        }
+
+        // Insert progress
+        await pool.query(
+            'INSERT INTO student_python_progress (student_id, lesson_id) VALUES ($1, $2)',
+            [studentId, lessonId]
+        );
+
+        res.status(201).json({ message: 'Lesson marked as completed' });
+    } catch (err) {
+        console.error('Error marking Python lesson:', err.message);
+        res.status(500).json({ message: 'Server Error' });
+    }
+};
+
+exports.getPythonProgress = async (req, res) => {
+    const { studentId } = req.params;
+
+    try {
+        const result = await pool.query(
+            'SELECT lesson_id, completed_at FROM student_python_progress WHERE student_id = $1',
+            [studentId]
+        );
+
+        // Convert to map for easier frontend consumption
+        const progressMap = {};
+        result.rows.forEach(row => {
+            progressMap[row.lesson_id] = true;
+        });
+
+        res.json(progressMap);
+    } catch (err) {
+        console.error('Error fetching Python progress:', err.message);
+        res.status(500).json({ message: 'Server Error' });
+    }
+};
+
 // --- Combined Profile Stats ---
 
 exports.getUserProfileStats = async (req, res) => {
@@ -127,6 +178,10 @@ exports.getUserProfileStats = async (req, res) => {
         // C++ Stats
         const cppSolvedRes = await pool.query('SELECT COUNT(*) FROM student_cpp_progress WHERE student_id = $1', [studentId]);
         const cppSolvedCount = parseInt(cppSolvedRes.rows[0].count);
+
+        // Python Stats
+        const pythonSolvedRes = await pool.query('SELECT COUNT(*) FROM student_python_progress WHERE student_id = $1', [studentId]);
+        const pythonSolvedCount = parseInt(pythonSolvedRes.rows[0].count);
 
         // User Details
         const userRes = await pool.query('SELECT name, email, current_streak, last_solved_date, created_at FROM students WHERE id = $1', [studentId]);
@@ -152,6 +207,16 @@ exports.getUserProfileStats = async (req, res) => {
             [studentId]
         );
 
+        // Also get Python activity
+        const pythonActivityRes = await pool.query(
+            `SELECT DATE(completed_at) as date, COUNT(*) as count 
+             FROM student_python_progress 
+             WHERE student_id = $1 
+             GROUP BY DATE(completed_at)
+             ORDER BY date`,
+            [studentId]
+        );
+
         // Combine activities into a map
         const activityMap = {};
         activityRes.rows.forEach(row => {
@@ -162,13 +227,18 @@ exports.getUserProfileStats = async (req, res) => {
             const dateStr = row.date.toISOString().split('T')[0];
             activityMap[dateStr] = (activityMap[dateStr] || 0) + parseInt(row.count);
         });
+        pythonActivityRes.rows.forEach(row => {
+            const dateStr = row.date.toISOString().split('T')[0];
+            activityMap[dateStr] = (activityMap[dateStr] || 0) + parseInt(row.count);
+        });
 
         res.json({
             user,
             stats: {
                 dsaSolved: dsaSolvedCount,
                 cppCompleted: cppSolvedCount,
-                totalSolved: dsaSolvedCount + cppSolvedCount
+                pythonCompleted: pythonSolvedCount,
+                totalSolved: dsaSolvedCount + cppSolvedCount + pythonSolvedCount
             },
             activityMap // Date -> count mapping
         });

@@ -1,0 +1,1017 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Learn Python - AIONYX</title>
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="css/theme.css">
+    <style>
+        body {
+            padding-top: 80px;
+            /* Ensure global theme background is visible */
+            background: var(--background);
+        }
+
+        .dashboard-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 2rem;
+            display: grid;
+            grid-template-columns: 350px 1fr;
+            gap: 2rem;
+            animation: fadeIn 0.8s ease-out;
+        }
+
+        @media (max-width: 1024px) {
+            .dashboard-container {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            body {
+                padding-top: 70px;
+                overflow-x: hidden;
+            }
+
+            .dashboard-container {
+                display: flex;
+                flex-direction: column-reverse;
+                padding: 0.5rem;
+                gap: 1.5rem;
+            }
+
+            .hero-section {
+                padding: 1.5rem;
+                flex-direction: column;
+                text-align: center;
+                margin-bottom: 2rem;
+                height: auto;
+                min-height: auto;
+            }
+
+            .hero-content {
+                max-width: 100%;
+                z-index: 2;
+            }
+
+            .hero-title {
+                font-size: 1.8rem;
+                line-height: 1.3;
+            }
+
+            .hero-subtitle {
+                font-size: 1rem;
+                margin-bottom: 1rem;
+            }
+
+            .hero-image {
+                display: none !important;
+            }
+
+            .sidebar {
+                position: relative !important;
+                top: auto !important;
+                width: 100%;
+                height: auto !important;
+                margin: 0;
+                order: 2;
+            }
+
+            main {
+                width: 100%;
+                order: 1;
+            }
+
+            .profile-card,
+            .progress-card {
+                padding: 1.5rem;
+                margin-bottom: 1rem;
+                background: var(--surface);
+                width: 100%;
+                box-sizing: border-box;
+            }
+
+            .profile-avatar {
+                width: 80px;
+                height: 80px;
+                font-size: 2rem;
+            }
+
+            .progress-circle-container {
+                width: 140px;
+                height: 140px;
+            }
+
+            .module-header {
+                padding: 1.25rem 1.5rem;
+            }
+
+            .module-title {
+                font-size: 1.1rem;
+            }
+
+            .lesson-link {
+                padding: 1rem 1.5rem 1rem 3rem;
+            }
+
+            .lesson-link:hover {
+                padding-left: 4.5rem;
+            }
+
+            .assessment-card {
+                padding: 2rem;
+                flex-direction: column;
+                text-align: center;
+                gap: 1.5rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .dashboard-container {
+                padding: 0.75rem;
+                gap: 1rem;
+            }
+
+            .hero-section {
+                padding: 1.5rem 1rem;
+                margin-bottom: 1rem;
+            }
+
+            .hero-title {
+                font-size: 1.5rem;
+                margin-bottom: 0.75rem;
+            }
+
+            .hero-subtitle {
+                font-size: 0.9rem;
+                margin-bottom: 0.75rem;
+            }
+
+            .hero-image {
+                display: none;
+            }
+
+            .profile-card,
+            .progress-card {
+                padding: 1.25rem;
+            }
+
+            .module-header {
+                padding: 1rem;
+            }
+
+            .module-title {
+                font-size: 1rem;
+                gap: 0.75rem;
+            }
+
+            .module-number {
+                width: 35px;
+                height: 35px;
+                font-size: 1rem;
+            }
+
+            .lesson-link {
+                padding: 0.875rem 1rem 0.875rem 3rem;
+                font-size: 0.9rem;
+            }
+
+            .lesson-link:hover {
+                padding-left: 3.5rem;
+            }
+
+            .assessment-card {
+                padding: 1.5rem;
+            }
+
+            .assessment-card h3 {
+                font-size: 1.2rem;
+            }
+
+            .btn-assessment {
+                padding: 0.875rem 1.5rem;
+                font-size: 0.9rem;
+            }
+        }
+
+        /* Hero Section */
+        .hero-section {
+            background: linear-gradient(135deg, rgba(16, 185, 129, 0.1), rgba(6, 182, 212, 0.1));
+            border: 1px solid var(--border);
+            border-radius: var(--radius-lg);
+            padding: 3rem;
+            margin-bottom: 2.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            position: relative;
+            overflow: hidden;
+            box-shadow: var(--shadow-lg);
+        }
+
+        .hero-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at top right, rgba(16, 185, 129, 0.15), transparent 40%);
+            z-index: 0;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            max-width: 60%;
+        }
+
+        .hero-title {
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, #10b981, #06b6d4);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-subtitle {
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+            margin-bottom: 2rem;
+            line-height: 1.6;
+        }
+
+        .hero-image {
+            position: relative;
+            z-index: 1;
+            width: 200px;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .hero-image img {
+            width: 100%;
+            filter: drop-shadow(0 10px 20px rgba(0, 0, 0, 0.3));
+        }
+
+        /* Sidebar */
+        .sidebar {
+            position: sticky;
+            top: 100px;
+            height: fit-content;
+        }
+
+        .profile-card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-lg);
+            padding: 2rem;
+            margin-bottom: 1.5rem;
+            text-align: center;
+            box-shadow: var(--shadow-md);
+        }
+
+        .profile-avatar {
+            width: 100px;
+            height: 100px;
+            background: linear-gradient(135deg, #10b981, #06b6d4);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 3rem;
+            margin: 0 auto 1rem;
+            box-shadow: 0 0 20px rgba(16, 185, 129, 0.3);
+        }
+
+        .progress-card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-lg);
+            padding: 2rem;
+            box-shadow: var(--shadow-md);
+            text-align: center;
+        }
+
+        .progress-circle-container {
+            position: relative;
+            width: 160px;
+            height: 160px;
+            margin: 0 auto 20px;
+        }
+
+        .progress-circle-bg {
+            fill: none;
+            stroke: var(--surface-hover);
+            stroke-width: 12;
+        }
+
+        .progress-circle-fg {
+            fill: none;
+            stroke: #10b981;
+            stroke-width: 12;
+            stroke-dasharray: 440;
+            stroke-dashoffset: 440;
+            transition: stroke-dashoffset 1s ease-out;
+            stroke-linecap: round;
+            transform: rotate(-90deg);
+            transform-origin: 50% 50%;
+            filter: drop-shadow(0 0 5px rgba(16, 185, 129, 0.5));
+        }
+
+        .progress-text {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 2rem;
+            font-weight: 800;
+            color: var(--text-primary);
+        }
+
+        /* Modules */
+        .module-list {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .module-card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .module-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: linear-gradient(90deg, #10b981, #06b6d4);
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.3s ease;
+        }
+
+        .module-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--border-hover);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .module-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .module-card.active {
+            border-color: #10b981;
+            box-shadow: 0 0 20px rgba(16, 185, 129, 0.15);
+        }
+
+        .module-card.active::before {
+            transform: scaleX(1);
+        }
+
+        .module-header {
+            padding: 1.5rem 2rem;
+            background: rgba(255, 255, 255, 0.02);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+            border-bottom: 1px solid transparent;
+            transition: all 0.3s ease;
+        }
+
+        .module-card.active .module-header {
+            background: linear-gradient(90deg, rgba(16, 185, 129, 0.1), transparent);
+            border-bottom-color: var(--border);
+        }
+
+        .module-title {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--text-primary);
+        }
+
+        .module-number {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, #10b981, #06b6d4);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.1rem;
+            font-weight: 800;
+            box-shadow: 0 0 10px rgba(16, 185, 129, 0.3);
+        }
+
+        .module-lessons {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+            display: none;
+            animation: slideInUp 0.3s ease-out;
+        }
+
+        .module-card.active .module-lessons {
+            display: block;
+        }
+
+        .lesson-item {
+            border-bottom: 1px solid var(--border);
+        }
+
+        .lesson-item:last-child {
+            border-bottom: none;
+        }
+
+        .lesson-link {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.2rem 2rem 1.2rem 5rem;
+            color: var(--text-secondary);
+            text-decoration: none;
+            transition: all 0.2s ease;
+            position: relative;
+        }
+
+        .lesson-link:hover {
+            background: rgba(255, 255, 255, 0.03);
+            color: var(--text-primary);
+            padding-left: 5.5rem;
+        }
+
+        .lesson-link i {
+            color: #10b981;
+        }
+
+        .lesson-status {
+            font-size: 0.8rem;
+            padding: 0.25rem 0.75rem;
+            border-radius: 50px;
+            background: var(--surface-hover);
+            color: var(--text-muted);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .lesson-status.completed {
+            background: rgba(34, 197, 94, 0.15);
+            color: #22c55e;
+            box-shadow: 0 0 10px rgba(34, 197, 94, 0.2);
+        }
+
+        .module-card.completed {
+            border-color: var(--success);
+        }
+
+        .module-card.completed .module-number {
+            background: linear-gradient(135deg, var(--success), #059669);
+            box-shadow: 0 0 10px rgba(16, 185, 129, 0.3);
+        }
+
+        /* Assessment Card */
+        .assessment-card {
+            background: linear-gradient(135deg, rgba(239, 68, 68, 0.1), rgba(185, 28, 28, 0.05));
+            border: 1px solid rgba(239, 68, 68, 0.2);
+            border-radius: var(--radius-lg);
+            padding: 2.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-top: 3rem;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            box-shadow: var(--shadow-md);
+        }
+
+        .assessment-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .btn-assessment {
+            padding: 1rem 2rem;
+            background: var(--surface-elevated);
+            color: var(--text-disabled);
+            border-radius: var(--radius-md);
+            font-weight: 600;
+            border: 1px solid var(--border);
+            cursor: not-allowed;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            transition: all 0.3s ease;
+        }
+
+        .btn-assessment.unlocked {
+            background: linear-gradient(135deg, #ef4444, #b91c1c);
+            color: white;
+            border-color: #ef4444;
+            cursor: pointer;
+            box-shadow: 0 5px 15px rgba(239, 68, 68, 0.4);
+            animation: pulse 2s infinite;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Navbar -->
+    <nav class="navbar">
+        <a href="/" class="logo">
+            <i class="fas fa-code"></i>
+            <span class="logo-text">AIONYX</span>
+        </a>
+        <div class="nav-links">
+            <span id="navUserName"
+                style="color: var(--text-muted); font-weight: 600; margin-right: 1rem;">Student</span>
+            <a href="student-courses" class="nav-item">Dashboard</a>
+            <button id="logoutBtn" class="btn btn-ghost" style="padding: 0.5rem 1rem; font-size: 0.9rem;">
+                Logout
+            </button>
+        </div>
+    </nav>
+
+    <div class="dashboard-container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="profile-card">
+                <div class="profile-avatar">
+                    <i class="fas fa-user"></i>
+                </div>
+                <h2 class="profile-name" id="profileName" style="color: var(--text-primary);">Student</h2>
+                <p class="profile-email" id="profileEmail" style="color: var(--text-muted);">student@example.com</p>
+                <div style="margin-top: 1rem;">
+                    <span class="difficulty-badge"
+                        style="background: rgba(16, 185, 129, 0.1); color: #10b981; padding: 0.5rem 1rem;">Python
+                        Stream</span>
+                </div>
+            </div>
+
+            <div class="progress-card">
+                <div class="progress-header">
+                    <i class="fas fa-chart-pie" style="color: #10b981;"></i>
+                    Course Progress
+                </div>
+
+                <div class="progress-circle-container">
+                    <svg width="160" height="160">
+                        <circle cx="80" cy="80" r="70" class="progress-circle-bg"></circle>
+                        <circle cx="80" cy="80" r="70" class="progress-circle-fg" id="overallProgressCircle"></circle>
+                    </svg>
+                    <div class="progress-text" id="overallProgressText">0%</div>
+                </div>
+
+                <div
+                    style="display: flex; justify-content: space-between; margin-bottom: 20px; color: var(--text-muted); font-size: 0.95rem; font-weight: 500;">
+                    <span>Completed Lessons</span>
+                    <span id="completedCount" style="color: var(--text-primary);">0/0</span>
+                </div>
+
+                <a href="#" class="btn btn-primary" id="btnResume"
+                    style="width: 100%; justify-content: center; background: linear-gradient(135deg, #10b981, #06b6d4); box-shadow: 0 0 15px rgba(16, 185, 129, 0.3);">
+                    Resume Learning
+                </a>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main>
+            <!-- Hero Section -->
+            <div class="hero-section">
+                <div class="hero-content">
+                    <h1 class="hero-title">Master Python Programming</h1>
+                    <p class="hero-subtitle">
+                        Master Python from variables to advanced data structures. Build real-world applications with our
+                        comprehensive module-based curriculum.
+                    </p>
+                    <div style="display: flex; gap: 1rem;">
+                        <div style="display: flex; align-items: center; gap: 0.5rem; color: var(--text-secondary);">
+                            <i class="fas fa-video" style="color: #10b981;"></i> 40+ Hours
+                        </div>
+                        <div style="display: flex; align-items: center; gap: 0.5rem; color: var(--text-secondary);">
+                            <i class="fas fa-certificate" style="color: #f59e0b;"></i> Certification
+                        </div>
+                    </div>
+                </div>
+                <div class="hero-image">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c3/Python-logo-notext.svg/1200px-Python-logo-notext.svg.png"
+                        alt="Python Programming" style="width: 100%;">
+                </div>
+            </div>
+
+            <h2 class="section-title"
+                style="font-size: 1.8rem; margin-bottom: 1.5rem; display: flex; align-items: center; gap: 1rem;">
+                <i class="fas fa-layer-group" style="color: #3b82f6;"></i> Course Modules
+            </h2>
+
+            <div class="module-list" id="modulesContainer">
+                <!-- Modules injected here -->
+            </div>
+
+            <!-- Final Assessment -->
+            <div class="assessment-card">
+                <div class="assessment-info">
+                    <h3 style="font-size: 1.4rem; font-weight: 700; margin-bottom: 0.5rem; color: #fca5a5;">
+                        <i class="fas fa-lock"></i> Final Assessment
+                    </h3>
+                    <p style="color: #fecaca; opacity: 0.8;">Pass the final exam to earn your certificate of completion.
+                        Unlocks after all modules.</p>
+                </div>
+                <button class="btn-assessment" id="btnAssessment">
+                    <i class="fas fa-lock"></i> Locked
+                </button>
+            </div>
+        </main>
+    </div>
+
+    <script src="js/theme.js"></script>
+    <script>
+        // Module Data
+        const modules = [
+            {
+                id: 1,
+                title: "Variables & Data Types",
+                lessons: [
+                    { id: "1.1", title: "Introduction to Variables", type: "learn" },
+                    { id: "1.2", title: "Variable Naming Rules", type: "learn" },
+                    { id: "1.3", title: "Integer Data Type", type: "learn" },
+                    { id: "1.4", title: "Floating Point Data Type", type: "learn" },
+                    { id: "1.5", title: "String Data Type", type: "learn" },
+                    { id: "1.6", title: "Boolean Data Type", type: "learn" },
+                    { id: "1.7", title: "Checking Data Types (type())", type: "learn" },
+                    { id: "1.8", title: "Type Casting", type: "learn" },
+                    { id: "1.9", title: "Multiple Assignment", type: "learn" }
+                ]
+            },
+            {
+                id: 2,
+                title: "Input, Output & Formatting",
+                lessons: [
+                    { id: "2.1", title: "Input Function (input())", type: "learn" },
+                    { id: "2.2", title: "Type Conversion with Input", type: "learn" },
+                    { id: "2.3", title: "Output using print()", type: "learn" },
+                    { id: "2.4", title: "Printing Multiple Values", type: "learn" },
+                    { id: "2.5", title: "sep and end Parameters", type: "learn" },
+                    { id: "2.6", title: "Escape Characters", type: "learn" },
+                    { id: "2.7", title: "f-Strings", type: "learn" },
+                    { id: "2.8", title: "Number Formatting", type: "learn" }
+                ]
+            },
+            {
+                id: 3,
+                title: "Operators",
+                lessons: [
+                    { id: "3.1", title: "Arithmetic Operators", type: "learn" },
+                    { id: "3.2", title: "Relational Operators", type: "learn" },
+                    { id: "3.3", title: "Logical Operators", type: "learn" },
+                    { id: "3.4", title: "Assignment Operators", type: "learn" },
+                    { id: "3.5", title: "Operator Precedence", type: "learn" }
+                ]
+            },
+            {
+                id: 4,
+                title: "Conditional Statements",
+                lessons: [
+                    { id: "4.1", title: "if Statement", type: "learn" },
+                    { id: "4.2", title: "if–else Statement", type: "learn" },
+                    { id: "4.3", title: "if–elif–else Ladder", type: "learn" },
+                    { id: "4.4", title: "Nested if Statements", type: "learn" }
+                ]
+            },
+            {
+                id: 5,
+                title: "Loops",
+                lessons: [
+                    { id: "5.1", title: "while Loop", type: "learn" },
+                    { id: "5.2", title: "for Loop", type: "learn" },
+                    { id: "5.3", title: "range() Function", type: "learn" },
+                    { id: "5.4", title: "Nested Loops", type: "learn" },
+                    { id: "5.5", title: "break Statement", type: "learn" },
+                    { id: "5.6", title: "continue Statement", type: "learn" },
+                    { id: "5.7", title: "pass Statement", type: "learn" }
+                ]
+            },
+            {
+                id: 6,
+                title: "Strings",
+                lessons: [
+                    { id: "6.1", title: "String Creation", type: "learn" },
+                    { id: "6.2", title: "String Indexing", type: "learn" },
+                    { id: "6.3", title: "String Slicing", type: "learn" },
+                    { id: "6.4", title: "String Methods", type: "learn" },
+                    { id: "6.5", title: "String Immutability", type: "learn" },
+                    { id: "6.6", title: "String Formatting", type: "learn" }
+                ]
+            },
+            {
+                id: 7,
+                title: "Lists",
+                lessons: [
+                    { id: "7.1", title: "Creating Lists", type: "learn" },
+                    { id: "7.2", title: "Accessing List Elements", type: "learn" },
+                    { id: "7.3", title: "List Methods", type: "learn" },
+                    { id: "7.4", title: "List Slicing", type: "learn" },
+                    { id: "7.5", title: "Nested Lists", type: "learn" }
+                ]
+            },
+            {
+                id: 8,
+                title: "Tuples & Sets",
+                lessons: [
+                    { id: "8.1", title: "Tuples", type: "learn" },
+                    { id: "8.2", title: "Tuple Methods", type: "learn" },
+                    { id: "8.3", title: "Sets", type: "learn" },
+                    { id: "8.4", title: "Set Operations", type: "learn" }
+                ]
+            },
+            {
+                id: 9,
+                title: "Dictionaries",
+                lessons: [
+                    { id: "9.1", title: "Dictionary Basics", type: "learn" },
+                    { id: "9.2", title: "Accessing Dictionary Values", type: "learn" },
+                    { id: "9.3", title: "Updating Dictionary", type: "learn" },
+                    { id: "9.4", title: "Dictionary Methods", type: "learn" },
+                    { id: "9.5", title: "Nested Dictionaries", type: "learn" }
+                ]
+            },
+            {
+                id: 10,
+                title: "Functions",
+                lessons: [
+                    { id: "10.1", title: "Defining Functions", type: "learn" },
+                    { id: "10.2", title: "Function Parameters", type: "learn" },
+                    { id: "10.3", title: "Return Statement", type: "learn" },
+                    { id: "10.4", title: "Default Arguments", type: "learn" },
+                    { id: "10.5", title: "Keyword Arguments", type: "learn" },
+                    { id: "10.6", title: "Lambda Functions", type: "learn" }
+                ]
+            },
+            {
+                id: 11,
+                title: "Recursion",
+                lessons: [
+                    { id: "11.1", title: "Introduction to Recursion", type: "learn" },
+                    { id: "11.2", title: "Base Case", type: "learn" },
+                    { id: "11.3", title: "Recursive Function Flow", type: "learn" }
+                ]
+            },
+            {
+                id: 12,
+                title: "File Handling",
+                lessons: [
+                    { id: "12.1", title: "Opening Files", type: "learn" },
+                    { id: "12.2", title: "Reading Files", type: "learn" },
+                    { id: "12.3", title: "Writing Files", type: "learn" },
+                    { id: "12.4", title: "Appending Files", type: "learn" },
+                    { id: "12.5", title: "with Statement", type: "learn" }
+                ]
+            },
+            {
+                id: 13,
+                title: "Exception Handling",
+                lessons: [
+                    { id: "13.1", title: "Types of Errors", type: "learn" },
+                    { id: "13.2", title: "try–except", type: "learn" },
+                    { id: "13.3", title: "else and finally", type: "learn" },
+                    { id: "13.4", title: "Raising Exceptions", type: "learn" }
+                ]
+            },
+            {
+                id: 14,
+                title: "Object Oriented Programming",
+                lessons: [
+                    { id: "14.1", title: "Classes & Objects", type: "learn" },
+                    { id: "14.2", title: "Constructors", type: "learn" },
+                    { id: "14.3", title: "Instance Variables", type: "learn" },
+                    { id: "14.4", title: "Inheritance", type: "learn" },
+                    { id: "14.5", title: "Polymorphism", type: "learn" },
+                    { id: "14.6", title: "Encapsulation", type: "learn" }
+                ]
+            },
+            {
+                id: 15,
+                title: "Modules & Packages",
+                lessons: [
+                    { id: "15.1", title: "Importing Modules", type: "learn" },
+                    { id: "15.2", title: "Built-in Modules", type: "learn" },
+                    { id: "15.3", title: "Creating Custom Modules", type: "learn" },
+                    { id: "15.4", title: "pip & Packages", type: "learn" }
+                ]
+            },
+            {
+                id: 16,
+                title: "Advanced Python",
+                lessons: [
+                    { id: "16.1", title: "List Comprehension", type: "learn" },
+                    { id: "16.2", title: "Dictionary Comprehension", type: "learn" },
+                    { id: "16.3", title: "Iterators", type: "learn" },
+                    { id: "16.4", title: "Generators", type: "learn" },
+                    { id: "16.5", title: "Decorators", type: "learn" },
+                    { id: "16.6", title: "*args & **kwargs", type: "learn" }
+                ]
+            },
+            {
+                id: 17,
+                title: "Data Structures using Python",
+                lessons: [
+                    { id: "17.1", title: "Stack Implementation", type: "learn" },
+                    { id: "17.2", title: "Queue Implementation", type: "learn" },
+                    { id: "17.3", title: "Searching Techniques", type: "learn" },
+                    { id: "17.4", title: "Sorting Techniques", type: "learn" }
+                ]
+            },
+            {
+                id: 18,
+                title: "Mini Projects",
+                lessons: [
+                    { id: "18.1", title: "Calculator", type: "project" },
+                    { id: "18.2", title: "Number Guessing Game", type: "project" },
+                    { id: "18.3", title: "Student Management System", type: "project" },
+                    { id: "18.4", title: "Quiz Application", type: "project" },
+                    { id: "18.5", title: "To-Do List (CLI)", type: "project" }
+                ]
+            },
+            {
+                id: 19,
+                title: "Coding Challenges",
+                lessons: [
+                    { id: "19.1", title: "Beginner Challenges", type: "challenge" },
+                    { id: "19.2", title: "Loop-Based Challenges", type: "challenge" },
+                    { id: "19.3", title: "String Challenges", type: "challenge" },
+                    { id: "19.4", title: "Array Challenges", type: "challenge" },
+                    { id: "19.5", title: "Timed Challenges", type: "challenge" }
+                ]
+            }
+        ];
+
+        // Auth Logic
+        const user = JSON.parse(localStorage.getItem('user') || '{}');
+        const token = localStorage.getItem('token');
+
+        // Basic auth check
+        if (!token) {
+            // window.location.href = 'student-login'; // Optional
+        }
+
+        // Update Profile
+        if (user.name) {
+            document.getElementById('profileName').textContent = user.name;
+            document.getElementById('navUserName').textContent = user.name;
+            document.getElementById('profileEmail').textContent = user.email || 'student@example.com';
+        }
+
+        // Logout
+        document.getElementById('logoutBtn').addEventListener('click', () => {
+            localStorage.clear();
+            window.location.href = 'student-login';
+        });
+
+        // Progress Logic
+        const studentId = user.id;
+        let savedProgress = {};
+
+        async function initDashboard() {
+            if (studentId) {
+                try {
+                    const token = localStorage.getItem('token');
+                    // Fetch Python progress (needs to be implemented in backend)
+                    const res = await fetch(`/api/progress/python/${studentId}`, {
+                        headers: { 'Authorization': `Bearer ${token}` }
+                    });
+                    if (res.ok) {
+                        savedProgress = await res.json();
+                    }
+                } catch (err) {
+                    console.error("Failed to load progress", err);
+                }
+            }
+            renderModules();
+        }
+
+        function renderModules() {
+            const container = document.getElementById("modulesContainer");
+            container.innerHTML = "";
+
+            let totalLessons = 0;
+            let completedLessons = 0;
+            let firstIncomplete = null;
+
+            modules.forEach((mod, index) => {
+                const modEl = document.createElement("div");
+                modEl.className = "module-card";
+                if (index === 0) modEl.classList.add("active");
+
+                // Check completion
+                let modCompletedCount = 0;
+                mod.lessons.forEach(l => {
+                    if (savedProgress[l.id]) modCompletedCount++;
+                });
+                const isModComplete = modCompletedCount === mod.lessons.length;
+                if (isModComplete) modEl.classList.add("completed");
+
+                const lessonsHtml = mod.lessons.map(lesson => {
+                    totalLessons++;
+                    const isCompleted = savedProgress[lesson.id];
+                    if (isCompleted) completedLessons++;
+                    else if (!firstIncomplete) firstIncomplete = lesson.id;
+
+                    let iconClass = 'fa-play-circle';
+                    if (lesson.type === 'project') iconClass = 'fa-hammer';
+                    if (lesson.type === 'challenge') iconClass = 'fa-trophy';
+
+                    return `
+                        <li class="lesson-item">
+                            <a href="python-lesson?lessonId=${lesson.id}" class="lesson-link">
+                                <span style="display: flex; align-items: center; gap: 10px;">
+                                    <i class="fas ${iconClass}" style="color: ${isCompleted ? 'var(--success)' : 'var(--text-muted)'};"></i> 
+                                    ${lesson.title}
+                                </span>
+                                <span class="lesson-status ${isCompleted ? 'completed' : ''}">
+                                    ${isCompleted ? '<i class="fas fa-check"></i> Done' : 'Start'}
+                                </span>
+                            </a>
+                        </li>
+                    `;
+                }).join("");
+
+                modEl.innerHTML = `
+                    <div class="module-header" onclick="this.parentElement.classList.toggle('active')">
+                        <div class="module-title">
+                            <span class="module-number">${index + 1}</span>
+                            ${mod.title}
+                        </div>
+                         <div style="display: flex; align-items: center; gap: 1rem;">
+                            <span style="font-size: 0.9rem; color: var(--text-muted);">${modCompletedCount}/${mod.lessons.length}</span>
+                            <i class="fas fa-chevron-down" style="color: var(--text-muted); transition: transform 0.3s;"></i>
+                        </div>
+                    </div>
+                    <ul class="module-lessons">
+                        ${lessonsHtml}
+                    </ul>
+                `;
+                container.appendChild(modEl);
+            });
+
+            // Update Stats
+            const percent = totalLessons === 0 ? 0 : Math.round((completedLessons / totalLessons) * 100);
+            updateProgressCircle(percent);
+            document.getElementById("completedCount").innerText = `${completedLessons}/${totalLessons}`;
+
+            // Update Assessment Button
+            const btnAssessment = document.getElementById("btnAssessment");
+            if (completedLessons === totalLessons && totalLessons > 0) {
+                btnAssessment.classList.add("unlocked");
+                btnAssessment.innerHTML = '<i class="fas fa-unlock"></i> Start Assessment';
+                btnAssessment.onclick = () => alert("Assessment Started! Good luck.");
+            }
+
+            // Update Resume Button
+            const btnResume = document.getElementById("btnResume");
+            if (firstIncomplete) {
+                btnResume.href = `python-lesson?lessonId=${firstIncomplete}`;
+                btnResume.innerText = "Resume Learning";
+            } else {
+                btnResume.href = "#";
+                btnResume.innerText = "Course Completed";
+                btnResume.classList.replace('btn-primary', 'btn-success');
+            }
+        }
+
+        function updateProgressCircle(percent) {
+            const circle = document.getElementById("overallProgressCircle");
+            const text = document.getElementById("overallProgressText");
+            const circumference = 440;
+            const offset = circumference - (percent / 100) * circumference;
+            circle.style.strokeDashoffset = offset;
+            text.innerText = `${percent}%`;
+        }
+
+        initDashboard(); // Changed to call initDashboard
+    </script>
+</body>
+
+</html>

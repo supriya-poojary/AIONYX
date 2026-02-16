@@ -78,6 +78,14 @@ app.get('/cpp-lesson', (req, res) => {
     res.sendFile(path.join(__dirname, 'public', 'cpp-lesson.html'));
 });
 
+app.get('/python-dashboard', (req, res) => {
+    res.sendFile(path.join(__dirname, 'public', 'python-dashboard.html'));
+});
+
+app.get('/python-lesson', (req, res) => {
+    res.sendFile(path.join(__dirname, 'public', 'python-lesson.html'));
+});
+
 app.get('/profile', (req, res) => {
     res.sendFile(path.join(__dirname, 'public', 'profile.html'));
 });
