@@ -529,23 +529,42 @@
                 const res = await fetch('/api/compiler/run-python', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ code })
+                    body: JSON.stringify({ code }) // Ensure input handling later if needed
                 });
+
+                if (!res.ok) {
+                    throw new Error(`Server returned ${res.status}`);
+                }
 
                 const data = await res.json();
 
                 if (data.run) {
                     outputEl.innerHTML = '';
+
+                    const escapeHtml = (text) => {
+                        return text
+                            .replace(/&/g, "&amp;")
+                            .replace(/</g, "&lt;")
+                            .replace(/>/g, "&gt;")
+                            .replace(/"/g, "&quot;")
+                            .replace(/'/g, "&#039;");
+                    };
+
                     if (data.run.stdout) {
-                        outputEl.innerHTML += `<div class="terminal-line">${data.run.stdout.replace(/\n/g, '<br>')}</div>`;
+                        // Escape HTML before replacing newlines
+                        const safeOutput = escapeHtml(data.run.stdout).replace(/\n/g, '<br>');
+                        outputEl.innerHTML += `<div class="terminal-line">${safeOutput}</div>`;
                     }
                     if (data.run.stderr) {
-                        outputEl.innerHTML += `<div class="terminal-line terminal-error">${data.run.stderr.replace(/\n/g, '<br>')}</div>`;
+                        const safeError = escapeHtml(data.run.stderr).replace(/\n/g, '<br>');
+                        outputEl.innerHTML += `<div class="terminal-line terminal-error">${safeError}</div>`;
                     }
                     // Show exit code if non-zero
                     if (data.run.code !== 0) {
                         outputEl.innerHTML += `<div class="terminal-line" style="color: #666; margin-top: 10px;">Exited with code ${data.run.code}</div>`;
                     }
+                } else if (data.error) {
+                    outputEl.innerHTML = `<div class="terminal-line terminal-error">Error: ${data.error}</div>`;
                 } else {
                     outputEl.innerHTML = `<div class="terminal-line terminal-error">Execution failed. Format error.</div>`;
                 }
