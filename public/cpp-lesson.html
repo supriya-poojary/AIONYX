@@ -449,95 +449,104 @@
         // --- DATA ---
         const lessonData = {
             "1.1": {
-                title: "Introduction to C++",
-                content: `
-                    <h1>Introduction to C++</h1>
-                    <p>C++ is a cross-platform language that can be used to create high-performance applications. It was developed by Bjarne Stroustrup, as an extension to the C language.</p>
-                    
-                    <h2><i class="fas fa-lightbulb"></i> Why Use C++?</h2>
-                    <ul>
-                        <li>C++ is one of the world's most popular programming languages.</li>
-                        <li>C++ can be found in today's operating systems, Graphic User Interfaces, and embedded systems.</li>
-                        <li>C++ is an object-oriented programming language which gives a clear structure to programs and allows code to be reused, lowering development costs.</li>
-                    </ul>
-
-                    <h2><i class="fas fa-code"></i> The Hello World Program</h2>
-                    <p>The classic first program in any language is "Hello World". It simply prints text to the screen.</p>
-                    <div class="code-block">#include &lt;iostream&gt;
-using namespace std;
-
-int main() {
-  cout << "Hello World!";
-  return 0;
-}</div>
-                    <p>Click "Run Code" on the right to see it in action!</p>
-                `,
-                defaultCode: `#include <iostream>
-using namespace std;
-
-int main() {
-    cout << "Hello World!";
-    return 0;
-}`
+                "title": "Introduction to C++",
+                "content": "\r\n<h1>Introduction to C++</h1>\r\n\r\nC++ is a powerful programming language created by <strong>Bjarne Stroustrup</strong>. It is used to build operating systems, games, browsers, and more.\r\n\r\n<h3>Why Learn C++?</h3>\r\n<ul><li><strong>Fast</strong> — One of the fastest languages</li>\r\n<li><strong>Control</strong> — Direct access to memory and hardware</li>\r\n<li><strong>Foundation</strong> — Makes learning other languages easier</li></ul>\r\n\r\n<h3>How C++ Works</h3>\r\nYou write code in a <code>.cpp</code> file. A <strong>compiler</strong> converts it into a program your computer can run.\r\n\r\n<h3>Your First Look</h3>\r\nRun this code to see C++ in action:\r\n\r\n",
+                "defaultCode": "#include <iostream>\r\n\r\nint main() {\r\n    std::cout << \"Welcome to C++!\" << std::endl;\r\n    return 0;\r\n}"
             },
             "1.2": {
-                title: "Outputting Strings",
-                content: `
-                    <h1>Outputting Strings</h1>
-                    <p>The <code>cout</code> object, together with the <code>&lt;&lt;</code> operator, is used to output values/print text.</p>
-                    
-                    <h2><i class="fas fa-terminal"></i> New Lines</h2>
-                    <p>To insert a new line, you can use the <code>\\n</code> character or the <code>endl</code> manipulator.</p>
-                    <div class="code-block">cout << "Hello World! \\n";
-cout << "I am learning C++";</div>
-                `,
-                defaultCode: `#include <iostream>
-using namespace std;
-
-int main() {
-    cout << "Line 1\\n";
-    cout << "Line 2" << endl;
-    cout << "Line 3";
-    return 0;
-}`
+                "title": "Your First Program",
+                "content": "\r\n<h1>Your First Program</h1>\r\n\r\nEvery C++ program starts with the <code>main()</code> function. Let's break down a simple program:\r\n\r\n<div class=\"code-block\">#include &lt;iostream&gt;\r\n\r\nint main() {\r\n    std::cout << \"Hello World!\" << std::endl;\r\n    return 0;\r\n}</div>\r\n\r\n<h3>Line by Line:</h3>\r\n<ul><li><strong>#include &lt;iostream&gt;</strong> — Loads the input/output library</li>\r\n<li><strong>int main()</strong> — The starting point of your program</li>\r\n<li><strong>std::cout</strong> — Used to print text to the screen</li>\r\n<li><strong>\"Hello World!\"</strong> — The text to display (called a string)</li>\r\n<li><strong>std::endl</strong> — Moves to the next line</li>\r\n<li><strong>return 0</strong> — Tells the system the program ran successfully</li></ul>\r\n\r\n<h3>Exercise</h3>\r\nPrint your own custom message!\r\n\r\n",
+                "defaultCode": "#include <iostream>\r\n\r\nint main() {\r\n    std::cout << \"I am learning C++!\" << std::endl;\r\n    return 0;\r\n}"
             },
             "1.3": {
-                title: "Writing Comments",
-                content: `
-                    <h1>C++ Comments</h1>
-                    <p>Comments can be used to explain C++ code, and to make it more readable. It can also be used to prevent execution when testing alternative code.</p>
-                    
-                    <h2><i class="fas fa-comment"></i> Single-line Comments</h2>
-                    <p>Single-line comments start with two forward slashes (<code>//</code>).</p>
-                    <div class="code-block">// This is a comment
-cout << "Hello World!";</div>
-
-                    <h2><i class="fas fa-comments"></i> Multi-line Comments</h2>
-                    <p>Multi-line comments start with <code>/*</code> and end with <code>*/</code>.</p>
-                `,
-                defaultCode: `#include <iostream>
-using namespace std;
-
-int main() {
-    // This is a single line comment
-    /* This is a 
-       multi-line comment */
-    cout << "Comments are ignored by the compiler.";
-    return 0;
-}`
+                "title": "Variables — Storing Data",
+                "content": "\r\n<h1>Variables — Storing Data</h1>\r\n\r\nA <strong>variable</strong> is like a labeled box that stores a value.\r\n\r\n<div class=\"code-block\">int age = 20;         // Whole number\r\ndouble price = 9.99;  // Decimal number\r\nchar grade = 'A';     // Single character\r\nbool isOn = true;     // True or False</div>\r\n\r\n<h3>Data Types:</h3>\r\n| Type | What it stores | Example |\r\n|------|---------------|---------|\r\n| <code>int</code> | Whole numbers | 5, -10, 100 |\r\n| <code>double</code> | Decimals | 3.14, 99.99 |\r\n| <code>char</code> | One character | 'A', 'z' |\r\n| <code>bool</code> | True/False | true, false |\r\n\r\n<h3>Exercise</h3>\r\nCreate a variable and print it.\r\n\r\n",
+                "defaultCode": "#include <iostream>\r\n\r\nint main() {\r\n    int score = 100;\r\n    int doubleScore = score * 2;\r\n    std::cout << \"Double Score: \" << doubleScore << std::endl;\r\n    return 0;\r\n}"
             },
-            // Add more placeholders as needed for testing
+            "1.4": {
+                "title": "Working with Text",
+                "content": "\r\n<h1>Working with Text</h1>\r\n\r\nUse <code>std::string</code> to store words and sentences.\r\n\r\n<div class=\"code-block\">#include &lt;iostream&gt;\r\n#include &lt;string&gt;\r\n\r\nint main() {\r\n    std::string name = \"Aionyx\";\r\n    std::cout << \"Hello, \" << name << \"!\" << std::endl;\r\n    return 0;\r\n}</div>\r\n\r\n<h3>Useful String Functions:</h3>\r\n<ul><li><code>.length()</code> — How many characters</li>\r\n<li><code>+</code> — Join two strings together</li></ul>\r\n\r\n<h3>Exercise</h3>\r\nCreate a string with your name and print a greeting.\r\n\r\n",
+                "defaultCode": "#include <iostream>\r\n#include <string>\r\n\r\nint main() {\r\n    std::string name = \"Student\";\r\n    std::cout << \"Hello, \" << name << \"!\" << std::endl;\r\n    return 0;\r\n}"
+            },
+            "1.5": {
+                "title": "Math in C++",
+                "content": "\r\n<h1>Math in C++</h1>\r\n\r\nC++ supports all basic math operations:\r\n\r\n<div class=\"code-block\">int a = 10, b = 3;\r\n\r\nint sum = a + b;       // 13\r\nint diff = a - b;      // 7\r\nint prod = a * b;      // 30\r\nint quot = a / b;      // 3 (rounds down for int)\r\nint rem = a % b;       // 1 (remainder)</div>\r\n\r\n<h3>Important!</h3>\r\nWhen dividing two integers, C++ removes the decimal part. <code>10 / 3 = 3</code>, not 3.33.\r\n\r\n<h3>Exercise</h3>\r\nCalculate the remainder of 25 divided by 7.\r\n\r\n",
+                "defaultCode": "#include <iostream>\r\n\r\nint main() {\r\n    int num1 = 25;\r\n    int num2 = 7;\r\n    int remainder = num1 % num2;\r\n    std::cout << \"Remainder: \" << remainder << std::endl;\r\n    return 0;\r\n}"
+            },
+            "1.6": {
+                "title": "Getting Input from the User",
+                "content": "\r\n<h1>Getting Input from the User</h1>\r\n\r\nUse <code>std::cin</code> to read what the user types.\r\n\r\n<div class=\"code-block\">#include &lt;iostream&gt;\r\n\r\nint main() {\r\n    int age;\r\n    std::cout << \"Enter your age: \";\r\n    std::cin >> age;\r\n    std::cout << \"You are \" << age << \" years old!\" << std::endl;\r\n    return 0;\r\n}</div>\r\n\r\n<h3>How it works:</h3>\r\n<ul><li><code>std::cin >> variable</code> reads input and stores it</li>\r\n<li>The <code>>></code> arrows point INTO the variable</li></ul>\r\n\r\n<h3>Exercise</h3>\r\nSince our IDE doesn't support live input, set a variable directly and print it.\r\n\r\n",
+                "defaultCode": "#include <iostream>\r\n#include <string>\r\n\r\nint main() {\r\n    std::string city = \"Mumbai\";\r\n    std::cout << \"I live in \" << city << std::endl;\r\n    return 0;\r\n}"
+            },
             "2.1": {
-                title: "Integer Variables",
-                content: "<h1>Integer Variables</h1><p>Variables are containers for storing data values. <code>int</code> stores integers (whole numbers).</p>",
-                defaultCode: `#include <iostream>
-using namespace std;
-
-int main() {
-    int myNum = 15;
-    cout << myNum;
-    return 0;
-}`
+                "title": "Comparing Values",
+                "content": "\r\n<h1>Comparing Values</h1>\r\n\r\nComparison operators return <strong>true</strong> (1) or <strong>false</strong> (0).\r\n\r\n<div class=\"code-block\">int x = 10, y = 5;\r\n\r\nx == y   // false (equal?)\r\nx != y   // true  (not equal?)\r\nx > y    // true  (greater?)\r\nx < y    // false (less?)\r\nx >= 10  // true  (greater or equal?)</div>\r\n\r\n<h3>Exercise</h3>\r\nCompare two numbers and print the result.\r\n\r\n",
+                "defaultCode": "#include <iostream>\r\n\r\nint main() {\r\n    int a = 50;\r\n    int b = 20;\r\n    std::cout << \"Is a > b? \" << (a > b) << std::endl;\r\n    std::cout << \"Is a == b? \" << (a == b) << std::endl;\r\n    return 0;\r\n}"
+            },
+            "2.2": {
+                "title": "Making Decisions",
+                "content": "\r\n<h1>Making Decisions</h1>\r\n\r\nThe <code>if</code> statement lets your program choose what to do.\r\n\r\n<div class=\"code-block\">if (condition) {\r\n    // runs if true\r\n} else {\r\n    // runs if false\r\n}</div>\r\n\r\n<h3>Example:</h3>\r\n<div class=\"code-block\">int age = 18;\r\nif (age >= 18) {\r\n    std::cout << \"Adult\" << std::endl;\r\n} else {\r\n    std::cout << \"Minor\" << std::endl;\r\n}</div>\r\n\r\n<h3>Exercise</h3>\r\nCheck if a number is positive or negative.\r\n\r\n",
+                "defaultCode": "#include <iostream>\r\n\r\nint main() {\r\n    int num = -5;\r\n    if (num >= 0) {\r\n        std::cout << \"Positive\" << std::endl;\r\n    } else {\r\n        std::cout << \"Negative\" << std::endl;\r\n    }\r\n    return 0;\r\n}"
+            },
+            "2.3": {
+                "title": "Multiple Conditions",
+                "content": "\r\n<h1>Multiple Conditions</h1>\r\n\r\nUse <code>else if</code> to check multiple conditions.\r\n\r\n<div class=\"code-block\">int score = 85;\r\n\r\nif (score >= 90) {\r\n    std::cout << \"Grade A\";\r\n} else if (score >= 80) {\r\n    std::cout << \"Grade B\";\r\n} else if (score >= 70) {\r\n    std::cout << \"Grade C\";\r\n} else {\r\n    std::cout << \"Grade F\";\r\n}</div>\r\n\r\n<h3>Exercise</h3>\r\nBuild a grade checker.\r\n\r\n",
+                "defaultCode": "#include <iostream>\r\n\r\nint main() {\r\n    int score = 75;\r\n    if (score >= 90) {\r\n        std::cout << \"Grade A\" << std::endl;\r\n    } else if (score >= 80) {\r\n        std::cout << \"Grade B\" << std::endl;\r\n    } else if (score >= 70) {\r\n        std::cout << \"Grade C\" << std::endl;\r\n    } else {\r\n        std::cout << \"Grade F\" << std::endl;\r\n    }\r\n    return 0;\r\n}"
+            },
+            "3.1": {
+                "title": "Repeating with While",
+                "content": "\r\n<h1>Repeating with While</h1>\r\n\r\nA <code>while</code> loop repeats code as long as a condition is true.\r\n\r\n<div class=\"code-block\">int i = 1;\r\nwhile (i <= 5) {\r\n    std::cout << i << \" \";\r\n    i++;\r\n}\r\n// Output: 1 2 3 4 5</div>\r\n\r\n<h3>Be Careful!</h3>\r\nAlways update the variable inside the loop, or it will run forever!\r\n\r\n<h3>Exercise</h3>\r\nPrint a countdown from 5 to 1.\r\n\r\n",
+                "defaultCode": "#include <iostream>\r\n\r\nint main() {\r\n    int i = 5;\r\n    while (i > 0) {\r\n        std::cout << i << \" \";\r\n        i--;\r\n    }\r\n    std::cout << std::endl;\r\n    return 0;\r\n}"
+            },
+            "3.2": {
+                "title": "The For Loop",
+                "content": "\r\n<h1>The For Loop</h1>\r\n\r\nThe most common loop in C++. Perfect when you know how many times to repeat.\r\n\r\n<div class=\"code-block\">for (int i = 1; i <= 5; i++) {\r\n    std::cout << i << \" \";\r\n}\r\n// Output: 1 2 3 4 5</div>\r\n\r\n<h3>Structure:</h3>\r\n<code>for (start; condition; update)</code>\r\n1. <strong>start</strong> — runs once at the beginning\r\n2. <strong>condition</strong> — checked before each loop\r\n3. <strong>update</strong> — runs after each loop\r\n\r\n<h3>Exercise</h3>\r\nPrint even numbers from 2 to 10.\r\n\r\n",
+                "defaultCode": "#include <iostream>\r\n\r\nint main() {\r\n    for (int i = 2; i <= 10; i += 2) {\r\n        std::cout << i << \" \";\r\n    }\r\n    std::cout << std::endl;\r\n    return 0;\r\n}"
+            },
+            "3.3": {
+                "title": "Arrays — Lists of Data",
+                "content": "\r\n<h1>Arrays — Lists of Data</h1>\r\n\r\nAn <strong>array</strong> stores multiple values of the same type.\r\n\r\n<div class=\"code-block\">int numbers[4] = {10, 20, 30, 40};\r\n\r\nstd::cout << numbers[0]; // 10 (first element)\r\nstd::cout << numbers[3]; // 40 (last element)</div>\r\n\r\n<h3>Key Points:</h3>\r\n<ul><li>Arrays start at index <strong>0</strong></li>\r\n<li><code>numbers[0]</code> is the first item</li>\r\n<li><code>numbers[3]</code> is the fourth item</li></ul>\r\n\r\n<h3>Exercise</h3>\r\nCalculate the sum of all elements in an array.\r\n\r\n",
+                "defaultCode": "#include <iostream>\r\n\r\nint main() {\r\n    int nums[] = {10, 20, 30, 40};\r\n    int sum = 0;\r\n    for (int i = 0; i < 4; i++) {\r\n        sum += nums[i];\r\n    }\r\n    std::cout << \"Sum: \" << sum << std::endl;\r\n    return 0;\r\n}"
+            },
+            "3.4": {
+                "title": "String Operations",
+                "content": "\r\n<h1>String Operations</h1>\r\n\r\nStrings in C++ have many useful features.\r\n\r\n<div class=\"code-block\">#include &lt;string&gt;\r\n\r\nstd::string word = \"Hello\";\r\n\r\nword.length();       // 5\r\nword[0];             // 'H'\r\nword + \" World\";     // \"Hello World\"\r\nword.substr(0, 3);   // \"Hel\"</div>\r\n\r\n<h3>Exercise</h3>\r\nFind the length of a string and print it.\r\n\r\n",
+                "defaultCode": "#include <iostream>\r\n#include <string>\r\n\r\nint main() {\r\n    std::string name = \"AIONYX\";\r\n    std::cout << \"Length: \" << name.length() << std::endl;\r\n    std::cout << \"First char: \" << name[0] << std::endl;\r\n    return 0;\r\n}"
+            },
+            "4.1": {
+                "title": "Functions — Reusable Code",
+                "content": "\r\n<h1>Functions — Reusable Code</h1>\r\n\r\nA <strong>function</strong> is a block of code you can call by name.\r\n\r\n<div class=\"code-block\">void sayHello() {\r\n    std::cout << \"Hello!\" << std::endl;\r\n}\r\n\r\nint main() {\r\n    sayHello(); // Calls the function\r\n    return 0;\r\n}</div>\r\n\r\n<h3>Why Functions?</h3>\r\n<ul><li><strong>Reuse</strong> code without repeating it</li>\r\n<li><strong>Organize</strong> your program into pieces</li>\r\n<li><strong>Easier</strong> to read and debug</li></ul>\r\n\r\n<h3>Exercise</h3>\r\nCreate a function that prints a greeting.\r\n\r\n",
+                "defaultCode": "#include <iostream>\r\n\r\nvoid greet() {\r\n    std::cout << \"Hello Student!\" << std::endl;\r\n}\r\n\r\nint main() {\r\n    greet();\r\n    return 0;\r\n}"
+            },
+            "4.2": {
+                "title": "Passing Data to Functions",
+                "content": "\r\n<h1>Passing Data to Functions</h1>\r\n\r\nFunctions can take <strong>parameters</strong> (inputs) and <strong>return</strong> values.\r\n\r\n<div class=\"code-block\">int add(int a, int b) {\r\n    return a + b;\r\n}\r\n\r\nint main() {\r\n    int result = add(5, 3);\r\n    std::cout << result; // 8\r\n    return 0;\r\n}</div>\r\n\r\n<h3>Key Points:</h3>\r\n<ul><li><code>int add(int a, int b)</code> — takes 2 integers, returns an integer</li>\r\n<li><code>void greet()</code> — takes nothing, returns nothing</li>\r\n<li><code>return</code> sends a value back to where the function was called</li></ul>\r\n\r\n<h3>Exercise</h3>\r\nCreate a multiply function.\r\n\r\n",
+                "defaultCode": "#include <iostream>\r\n\r\nint multiply(int x, int y) {\r\n    return x * y;\r\n}\r\n\r\nint main() {\r\n    std::cout << \"Result: \" << multiply(6, 7) << std::endl;\r\n    return 0;\r\n}"
+            },
+            "4.3": {
+                "title": "References — Aliases",
+                "content": "\r\n<h1>References — Aliases</h1>\r\n\r\nA <strong>reference</strong> is another name for an existing variable. Changing the reference changes the original.\r\n\r\n<div class=\"code-block\">int x = 10;\r\nint &ref = x;  // ref is an alias for x\r\n\r\nref = 20;\r\nstd::cout << x; // 20 (x changed too!)</div>\r\n\r\n<h3>Why References?</h3>\r\n<ul><li>Pass large data to functions without copying</li>\r\n<li>Let functions modify the original variable</li></ul>\r\n\r\n<h3>Exercise</h3>\r\nModify a variable through its reference.\r\n\r\n",
+                "defaultCode": "#include <iostream>\r\n\r\nint main() {\r\n    int health = 100;\r\n    int &ref = health;\r\n    ref = 50;\r\n    std::cout << \"Health: \" << health << std::endl;\r\n    return 0;\r\n}"
+            },
+            "4.4": {
+                "title": "Pointers — Memory Addresses",
+                "content": "\r\n<h1>Pointers — Memory Addresses</h1>\r\n\r\nA <strong>pointer</strong> stores the memory address of another variable.\r\n\r\n<div class=\"code-block\">int x = 42;\r\nint *ptr = &x;  // ptr holds the address of x\r\n\r\nstd::cout << ptr;   // prints the address\r\nstd::cout << *ptr;  // prints 42 (the value at that address)</div>\r\n\r\n<h3>Key Symbols:</h3>\r\n<ul><li><code>&x</code> — \"address of x\"</li>\r\n<li><code>*ptr</code> — \"value at the address stored in ptr\"</li></ul>\r\n\r\n<h3>Exercise</h3>\r\nChange a variable's value using a pointer.\r\n\r\n",
+                "defaultCode": "#include <iostream>\r\n\r\nint main() {\r\n    int secret = 777;\r\n    int *ptr = &secret;\r\n    *ptr = 999;\r\n    std::cout << \"Secret: \" << secret << std::endl;\r\n    return 0;\r\n}"
+            },
+            "5.1": {
+                "title": "Object-Oriented Programming",
+                "content": "\r\n<h1>Object-Oriented Programming</h1>\r\n\r\nA <strong>class</strong> is a blueprint. An <strong>object</strong> is a thing built from that blueprint.\r\n\r\n<div class=\"code-block\">class Car {\r\npublic:\r\n    std::string brand;\r\n    int speed;\r\n    \r\n    void drive() {\r\n        std::cout << brand << \" is going \" << speed << \" km/h\" << std::endl;\r\n    }\r\n};</div>\r\n\r\n<h3>Key Terms:</h3>\r\n<ul><li><strong>class</strong> — the template</li>\r\n<li><strong>object</strong> — an instance of the class</li>\r\n<li><strong>public</strong> — accessible from outside the class</li></ul>\r\n\r\n<h3>Exercise</h3>\r\nCreate a Rectangle class with an area method.\r\n\r\n",
+                "defaultCode": "#include <iostream>\r\n\r\nclass Rectangle {\r\npublic:\r\n    int width, height;\r\n    int getArea() {\r\n        return width * height;\r\n    }\r\n};\r\n\r\nint main() {\r\n    Rectangle rect;\r\n    rect.width = 10;\r\n    rect.height = 5;\r\n    std::cout << \"Area: \" << rect.getArea() << std::endl;\r\n    return 0;\r\n}"
+            },
+            "5.2": {
+                "title": "Inheritance — Reusing Classes",
+                "content": "\r\n<h1>Inheritance — Reusing Classes</h1>\r\n\r\nA class can <strong>inherit</strong> from another class, getting all its features.\r\n\r\n<div class=\"code-block\">class Animal {\r\npublic:\r\n    void eat() {\r\n        std::cout << \"Eating...\" << std::endl;\r\n    }\r\n};\r\n\r\nclass Dog : public Animal {\r\npublic:\r\n    void bark() {\r\n        std::cout << \"Woof!\" << std::endl;\r\n    }\r\n};</div>\r\n\r\nNow <code>Dog</code> can both <code>eat()</code> AND <code>bark()</code>!\r\n\r\n<h3>Exercise</h3>\r\nCreate a Bird class that inherits from Animal.\r\n\r\n",
+                "defaultCode": "#include <iostream>\r\n\r\nclass Animal {\r\npublic:\r\n    void eat() {\r\n        std::cout << \"Eating...\" << std::endl;\r\n    }\r\n};\r\n\r\nclass Bird : public Animal {\r\npublic:\r\n    void fly() {\r\n        std::cout << \"Flying...\" << std::endl;\r\n    }\r\n};\r\n\r\nint main() {\r\n    Bird b;\r\n    b.eat();\r\n    b.fly();\r\n    return 0;\r\n}"
+            },
+            "5.3": {
+                "title": "Polymorphism — Many Forms",
+                "content": "\r\n<h1>Polymorphism — Many Forms</h1>\r\n\r\n<strong>Polymorphism</strong> lets different classes respond to the same function call in their own way.\r\n\r\n<div class=\"code-block\">class Shape {\r\npublic:\r\n    virtual void draw() {\r\n        std::cout << \"Drawing shape\" << std::endl;\r\n    }\r\n};\r\n\r\nclass Circle : public Shape {\r\npublic:\r\n    void draw() override {\r\n        std::cout << \"Drawing circle\" << std::endl;\r\n    }\r\n};</div>\r\n\r\n<h3>Key Word: <code>virtual</code></h3>\r\nThe <code>virtual</code> keyword tells C++ to use the child class version of the function.\r\n\r\n<h3>Exercise</h3>\r\nCreate a Square class that overrides draw().\r\n\r\n",
+                "defaultCode": "#include <iostream>\r\n\r\nclass Shape {\r\npublic:\r\n    virtual void draw() {\r\n        std::cout << \"Drawing Shape\" << std::endl;\r\n    }\r\n};\r\n\r\nclass Square : public Shape {\r\npublic:\r\n    void draw() override {\r\n        std::cout << \"Drawing Square\" << std::endl;\r\n    }\r\n};\r\n\r\nint main() {\r\n    Shape *s = new Square();\r\n    s->draw();\r\n    delete s;\r\n    return 0;\r\n}"
             }
         };
 
@@ -574,7 +583,13 @@ int main() {
 
         // --- NAVIGATION LOGIC ---
         // Simple map for next/prev (Flattened list of IDs)
-        const lessonIds = ["1.1", "1.2", "1.3", "2.1", "2.2", "2.3", "2.4", "3.1", "3.2", "3.3"];
+        const lessonIds = [
+            "1.1", "1.2", "1.3", "1.4", "1.5", "1.6",
+            "2.1", "2.2", "2.3",
+            "3.1", "3.2", "3.3", "3.4",
+            "4.1", "4.2", "4.3", "4.4",
+            "5.1", "5.2", "5.3"
+        ];
         const currentIndex = lessonIds.indexOf(lessonId);
 
         if (currentIndex > 0) {
@@ -705,6 +720,7 @@ int main() {
             btn.disabled = true;
 
             try {
+                console.log(`[CPP Lesson] Marking complete: Student ${studentId}, Lesson ${lessonId}`);
                 const response = await fetch('/api/progress/cpp/mark', {
                     method: 'POST',
                     headers: {
@@ -715,6 +731,7 @@ int main() {
                 });
 
                 if (response.ok) {
+                    console.log("[CPP Lesson] Mark complete success");
                     // Update LocalStorage for immediate UI feedback (optional, but good for redundancy)
                     const progressKey = `cpp_progress_${studentId}`;
                     const progress = JSON.parse(localStorage.getItem(progressKey)) || {};
@@ -724,10 +741,12 @@ int main() {
                     btn.innerHTML = '<i class="fas fa-check-double"></i> Completed';
                     btn.classList.add('completed');
                 } else {
+                    const errText = await response.text();
+                    console.error("[CPP Lesson] Mark complete failed:", response.status, errText);
                     throw new Error('Failed to save progress');
                 }
             } catch (err) {
-                console.error(err);
+                console.error("[CPP Lesson] Error in markComplete:", err);
                 alert("Failed to save progress. Please try again.");
                 btn.innerHTML = originalText;
                 btn.disabled = false;

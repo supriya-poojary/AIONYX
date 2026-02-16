@@ -872,8 +872,10 @@
         ];
 
         // Auth Logic
+        // Auth Logic
         const user = JSON.parse(localStorage.getItem('user') || '{}');
         const token = localStorage.getItem('token');
+        console.log("Logged in user:", user); // Debug log
 
         // Basic auth check
         if (!token) {
@@ -881,10 +883,16 @@
         }
 
         // Update Profile
-        if (user.name) {
-            document.getElementById('profileName').textContent = user.name;
-            document.getElementById('navUserName').textContent = user.name;
-            document.getElementById('profileEmail').textContent = user.email || 'student@example.com';
+        if (user && user.name) {
+            const profileName = document.getElementById('profileName');
+            const navUserName = document.getElementById('navUserName');
+            const profileEmail = document.getElementById('profileEmail');
+
+            if (profileName) profileName.textContent = user.name;
+            if (navUserName) navUserName.textContent = user.name;
+            if (profileEmail) profileEmail.textContent = user.email || 'student@example.com';
+        } else {
+            console.warn("User name not found in localStorage object");
         }
 
         // Logout
@@ -901,21 +909,28 @@
             if (studentId) {
                 try {
                     const token = localStorage.getItem('token');
-                    // Fetch Python progress (needs to be implemented in backend)
+                    console.log(`Fetching progress for student: ${studentId}`);
                     const res = await fetch(`/api/progress/python/${studentId}`, {
                         headers: { 'Authorization': `Bearer ${token}` }
                     });
                     if (res.ok) {
                         savedProgress = await res.json();
+                        console.log("Progress loaded:", savedProgress);
+                    } else {
+                        console.error("Failed to fetch progress:", res.status);
                     }
                 } catch (err) {
                     console.error("Failed to load progress", err);
                 }
+            } else {
+                console.warn("No student ID found.");
             }
             renderModules();
         }
 
         function renderModules() {
+            console.log("Rendering modules...", modules);
+            if (!modules || modules.length === 0) console.error("Modules array is empty or undefined!");
             const container = document.getElementById("modulesContainer");
             container.innerHTML = "";
 
@@ -980,17 +995,13 @@
             });
 
             // Update Stats
+            console.log(`Total Lessons: ${totalLessons}, Completed: ${completedLessons}`);
             const percent = totalLessons === 0 ? 0 : Math.round((completedLessons / totalLessons) * 100);
             updateProgressCircle(percent);
             document.getElementById("completedCount").innerText = `${completedLessons}/${totalLessons}`;
 
-            // Update Assessment Button
-            const btnAssessment = document.getElementById("btnAssessment");
-            if (completedLessons === totalLessons && totalLessons > 0) {
-                btnAssessment.classList.add("unlocked");
-                btnAssessment.innerHTML = '<i class="fas fa-unlock"></i> Start Assessment';
-                btnAssessment.onclick = () => alert("Assessment Started! Good luck.");
-            }
+            // Update Assessment Card Logic
+            updateAssessmentCard(completedLessons, totalLessons);
 
             // Update Resume Button
             const btnResume = document.getElementById("btnResume");
@@ -1004,6 +1015,146 @@
             }
         }
 
+        // --- ASSESSMENT SYSTEM ---
+        const assessmentQuestions = [
+            { q: "Who developed Python?", options: ["Dennis Ritchie", "Guido van Rossum", "James Gosling", "Bjarne Stroustrup"], a: 1 },
+            { q: "What is the correct file extension for Python files?", options: [".py", ".python", ".pyt", ".pt"], a: 0 },
+            { q: "Which of the following is mutable?", options: ["Tuple", "List", "String", "Integer"], a: 1 },
+            { q: "How do you output text to the console?", options: ["echo()", "printf()", "print()", "cout <<"], a: 2 },
+            { q: "Which symbol is used for comments?", options: ["//", "#", "/*", "--"], a: 1 },
+            { q: "How do you create a function?", options: ["func myFunc():", "def myFunc():", "function myFunc():", "create myFunc():"], a: 1 },
+            { q: "Which of these is NOT a valid variable name?", options: ["my_var", "_myvar", "2myvar", "myVar"], a: 2 },
+            { q: "How do you check the length of a list?", options: ["list.size()", "length(list)", "len(list)", "count(list)"], a: 2 },
+            { q: "Which keyword breaks out of a loop?", options: ["stop", "exit", "break", "return"], a: 2 },
+            { q: "What is the output of 3 ** 2?", options: ["6", "9", "5", "Error"], a: 1 },
+            { q: "How do you start a while loop?", options: ["while x < 5:", "while (x < 5)", "loop while x < 5:", "do while x < 5:"], a: 0 },
+            { q: "What is the correct syntax for a dictionary?", options: ["{key: value}", "{key; value}", "[key: value]", "(key: value)"], a: 0 },
+            { q: "Which method adds an element to a list?", options: ["add()", "push()", "append()", "insert()"], a: 2 },
+            { q: "What does 'pass' do?", options: ["Skips to next iteration", "Exits the function", "Do nothing", "Raise error"], a: 2 },
+            { q: "How do you import a module?", options: ["include math", "import math", "using math", "#include <math>"], a: 1 },
+            { q: "What is the purpose of 'self' in classes?", options: ["Refers to the class", "Refers to the instance", "Global variable", "Static method"], a: 1 },
+            { q: "How do you create a range of numbers from 0 to 4?", options: ["range(5)", "range(0, 5)", "range(4)", "range(0, 4)"], a: 0 },
+            { q: "What is the result of '10' + '10'?", options: ["20", "1010", "Error", "10 10"], a: 1 },
+            { q: "Which block handles exceptions?", options: ["try...except", "try...catch", "do...catch", "handle...error"], a: 0 },
+            { q: "What is 'pip'?", options: ["Python Interpreter", "Package Installer", "Processing Inteface", "Python IDE"], a: 1 }
+        ];
+
+        function updateAssessmentCard(completed, total) {
+            const btn = document.getElementById("btnAssessment");
+            const scoreKey = `algo_edu_python_assessment_${user.id}`;
+            const savedScore = localStorage.getItem(scoreKey);
+            const isUnlocked = completed === total && total > 0;
+
+            if (savedScore !== null) {
+                // Already taken
+                btn.className = "action-btn btn-completed";
+                btn.innerHTML = `<i class="fas fa-check-circle"></i> Score: ${savedScore}/20`;
+                btn.onclick = () => alert(`You have already completed the assessment.\nYour Score: ${savedScore}/20`);
+                btn.style.background = "rgba(16, 185, 129, 0.2)";
+                btn.style.color = "#10b981";
+                btn.style.borderColor = "#10b981";
+            } else if (isUnlocked) {
+                // Unlocked but not taken
+                btn.className = "action-btn btn-primary unlocked";
+                btn.innerHTML = `<i class="fas fa-unlock"></i> Take Assessment`;
+                btn.onclick = openAssessmentModal;
+            } else {
+                // Locked
+                btn.className = "action-btn";
+                btn.style.opacity = "0.5";
+                btn.style.cursor = "not-allowed";
+                btn.innerHTML = `<i class="fas fa-lock"></i> Locked (Complete Course)`;
+                btn.onclick = null;
+            }
+        }
+
+        // Modal Logic
+        let currentQuestionIndex = 0;
+        let userAnswers = new Array(20).fill(null);
+
+        function openAssessmentModal() {
+            const modal = document.getElementById("assessmentModal");
+            modal.style.display = "flex";
+            currentQuestionIndex = 0;
+            userAnswers.fill(null);
+            renderQuestion();
+        }
+
+        function closeAssessmentModal() {
+            if (confirm("Are you sure you want to exit? Your progress will be lost.")) {
+                document.getElementById("assessmentModal").style.display = "none";
+            }
+        }
+
+        function renderQuestion() {
+            const q = assessmentQuestions[currentQuestionIndex];
+            document.getElementById("questionText").innerText = `${currentQuestionIndex + 1}. ${q.q}`;
+
+            const optionsContainer = document.getElementById("optionsContainer");
+            optionsContainer.innerHTML = "";
+
+            q.options.forEach((opt, idx) => {
+                const btn = document.createElement("div");
+                btn.className = `option-btn ${userAnswers[currentQuestionIndex] === idx ? 'selected' : ''}`;
+                btn.innerText = opt;
+                btn.onclick = () => selectOption(idx);
+                optionsContainer.appendChild(btn);
+            });
+
+            // Buttons
+            document.getElementById("btnPrevQ").style.visibility = currentQuestionIndex === 0 ? "hidden" : "visible";
+            const btnNext = document.getElementById("btnNextQ");
+            if (currentQuestionIndex === 19) {
+                btnNext.innerText = "Submit";
+                btnNext.onclick = submitAssessment;
+            } else {
+                btnNext.innerText = "Next";
+                btnNext.onclick = nextQuestion;
+            }
+        }
+
+        function selectOption(idx) {
+            userAnswers[currentQuestionIndex] = idx;
+            renderQuestion();
+        }
+
+        function nextQuestion() {
+            if (currentQuestionIndex < 19) {
+                currentQuestionIndex++;
+                renderQuestion();
+            }
+        }
+
+        function prevQuestion() {
+            if (currentQuestionIndex > 0) {
+                currentQuestionIndex--;
+                renderQuestion();
+            }
+        }
+
+        function submitAssessment() {
+            if (userAnswers.includes(null)) {
+                if (!confirm("You haven't answered all questions. Submit anyway?")) return;
+            }
+
+            let score = 0;
+            userAnswers.forEach((ans, idx) => {
+                if (ans === assessmentQuestions[idx].a) score++;
+            });
+
+            // Save Score
+            const scoreKey = `algo_edu_python_assessment_${user.id}`;
+            localStorage.setItem(scoreKey, score);
+
+            // Close and Update UI
+            document.getElementById("assessmentModal").style.display = "none";
+            alert(`Assessment Completed!\nYour Score: ${score}/20`);
+            location.reload(); // Reload to update card state
+        }
+
+
+
+
         function updateProgressCircle(percent) {
             const circle = document.getElementById("overallProgressCircle");
             const text = document.getElementById("overallProgressText");
@@ -1013,8 +1164,127 @@
             text.innerText = `${percent}%`;
         }
 
-        initDashboard(); // Changed to call initDashboard
+        initDashboard();
     </script>
-</body>
+
+    <!-- Assessment Modal -->
+    <div id="assessmentModal" class="modal-overlay">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Final Assessment</h2>
+                <i class="fas fa-times close-btn" onclick="closeAssessmentModal()"></i>
+            </div>
+            <div class="modal-body">
+                <h3 id="questionText" class="question-text">Question goes here...</h3>
+                <div id="optionsContainer" class="options-grid"></div>
+            </div>
+            <div class="modal-footer">
+                <button id="btnPrevQ" class="nav-btn" onclick="prevQuestion()">Previous</button>
+                <button id="btnNextQ" class="nav-btn primary" onclick="nextQuestion()">Next</button>
+            </div>
+        </div>
+    </div>
+
+    <style>
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(5px);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+        }
+
+        .modal-content {
+            background: #1e1e1e;
+            width: 90%;
+            max-width: 600px;
+            border-radius: 12px;
+            border: 1px solid #333;
+            overflow: hidden;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+        }
+
+        .modal-header {
+            background: #252525;
+            padding: 15px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid #333;
+        }
+
+        .modal-body {
+            padding: 30px 20px;
+        }
+
+        .question-text {
+            margin-bottom: 20px;
+            font-size: 1.2rem;
+            color: #fff;
+        }
+
+        .options-grid {
+            display: grid;
+            gap: 10px;
+        }
+
+        .option-btn {
+            background: #2a2a2a;
+            padding: 15px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.2s;
+            border: 1px solid #333;
+        }
+
+        .option-btn:hover {
+            background: #333;
+        }
+
+        .option-btn.selected {
+            background: rgba(16, 185, 129, 0.2);
+            border-color: #10b981;
+            color: #10b981;
+        }
+
+        .modal-footer {
+            padding: 15px 20px;
+            border-top: 1px solid #333;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .nav-btn {
+            padding: 8px 16px;
+            border-radius: 6px;
+            border: none;
+            background: #333;
+            color: #fff;
+            cursor: pointer;
+        }
+
+        .nav-btn.primary {
+            background: #10b981;
+            color: #000;
+            font-weight: bold;
+        }
+
+        .close-btn {
+            cursor: pointer;
+            color: #888;
+            font-size: 1.2rem;
+        }
+
+        .close-btn:hover {
+            color: #fff;
+        }
+    </style>
+
 
 </html>

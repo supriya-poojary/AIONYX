@@ -663,49 +663,52 @@
         const modules = [
             {
                 id: 1,
-                title: "Introduction to C++",
+                title: "Introduction",
                 lessons: [
                     { id: "1.1", title: "Introduction to C++", type: "learn" },
-                    { id: "1.2", title: "Outputting Strings", type: "learn" },
-                    { id: "1.3", title: "Writing Comments", type: "learn" }
+                    { id: "1.2", title: "Your First Program", type: "learn" },
+                    { id: "1.3", title: "Variables — Storing Data", type: "learn" },
+                    { id: "1.4", title: "Working with Text", type: "learn" },
+                    { id: "1.5", title: "Math in C++", type: "learn" },
+                    { id: "1.6", title: "Getting Input from the User", type: "learn" }
                 ]
             },
             {
                 id: 2,
-                title: "Variables and Data Types",
+                title: "Operators & Logic",
                 lessons: [
-                    { id: "2.1", title: "Integer Variables", type: "learn" },
-                    { id: "2.2", title: "Double and Float", type: "learn" },
-                    { id: "2.3", title: "Characters and Strings", type: "learn" },
-                    { id: "2.4", title: "Boolean Variables", type: "learn" }
+                    { id: "2.1", title: "Comparing Values", type: "learn" },
+                    { id: "2.2", title: "Making Decisions", type: "learn" },
+                    { id: "2.3", title: "Multiple Conditions", type: "learn" }
                 ]
             },
             {
                 id: 3,
-                title: "User Input",
+                title: "Loops & Arrays",
                 lessons: [
-                    { id: "3.1", title: "Taking Input with cin", type: "learn" },
-                    { id: "3.2", title: "Inputting Multiple Values", type: "learn" },
-                    { id: "3.3", title: "Simple Calculator", type: "practice" }
+                    { id: "3.1", title: "Repeating with While", type: "learn" },
+                    { id: "3.2", title: "The For Loop", type: "learn" },
+                    { id: "3.3", title: "Arrays — Lists of Data", type: "learn" },
+                    { id: "3.4", title: "String Operations", type: "learn" }
                 ]
             },
             {
                 id: 4,
-                title: "Control Flow",
+                title: "Functions & Pointers",
                 lessons: [
-                    { id: "4.1", title: "If-Else Statements", type: "learn" },
-                    { id: "4.2", title: "Switch Case", type: "learn" },
-                    { id: "4.3", title: "While Loops", type: "learn" },
-                    { id: "4.4", title: "For Loops", type: "learn" }
+                    { id: "4.1", title: "Functions — Reusable Code", type: "learn" },
+                    { id: "4.2", title: "Passing Data to Functions", type: "learn" },
+                    { id: "4.3", title: "References — Aliases", type: "learn" },
+                    { id: "4.4", title: "Pointers — Memory Addresses", type: "learn" }
                 ]
             },
             {
                 id: 5,
-                title: "Functions",
+                title: "Object Oriented Programming",
                 lessons: [
-                    { id: "5.1", title: "Creating Functions", type: "learn" },
-                    { id: "5.2", title: "Parameters and Arguments", type: "learn" },
-                    { id: "5.3", title: "Return Values", type: "learn" }
+                    { id: "5.1", title: "Object-Oriented Programming", type: "learn" },
+                    { id: "5.2", title: "Inheritance — Reusing Classes", type: "learn" },
+                    { id: "5.3", title: "Polymorphism — Many Forms", type: "learn" }
                 ]
             }
         ];
@@ -740,20 +743,27 @@
             if (studentId) {
                 try {
                     const token = localStorage.getItem('token');
+                    console.log(`[CPP] Fetching progress for student: ${studentId}`);
                     const res = await fetch(`/api/progress/cpp/${studentId}`, {
                         headers: { 'Authorization': `Bearer ${token}` }
                     });
                     if (res.ok) {
                         savedProgress = await res.json();
+                        console.log("[CPP] Progress loaded:", savedProgress);
+                    } else {
+                        console.error("[CPP] Failed to fetch progress:", res.status);
                     }
                 } catch (err) {
                     console.error("Failed to load progress", err);
                 }
+            } else {
+                console.warn("[CPP] No student ID found.");
             }
             renderModules();
         }
 
         function renderModules() {
+            console.log("[CPP] Rendering modules...");
             const container = document.getElementById("modulesContainer");
             container.innerHTML = "";
 
@@ -777,8 +787,13 @@
                 const lessonsHtml = mod.lessons.map(lesson => {
                     totalLessons++;
                     const isCompleted = savedProgress[lesson.id];
+                    // console.log(`[CPP Log] Lesson ${lesson.id}: Completed=${!!isCompleted}`); // Debug log
+
                     if (isCompleted) completedLessons++;
-                    else if (!firstIncomplete) firstIncomplete = lesson.id;
+                    else if (!firstIncomplete) {
+                        firstIncomplete = lesson.id;
+                        console.log(`[CPP Log] First incomplete found: ${firstIncomplete}`);
+                    }
 
                     return `
                         <li class="lesson-item">
@@ -814,29 +829,165 @@
             });
 
             // Update Stats
+            console.log(`[CPP] Total: ${totalLessons}, Completed: ${completedLessons}, Next: ${firstIncomplete}`);
             const percent = totalLessons === 0 ? 0 : Math.round((completedLessons / totalLessons) * 100);
             updateProgressCircle(percent);
             document.getElementById("completedCount").innerText = `${completedLessons}/${totalLessons}`;
 
-            // Update Assessment Button
-            const btnAssessment = document.getElementById("btnAssessment");
-            if (completedLessons === totalLessons && totalLessons > 0) {
-                btnAssessment.classList.add("unlocked");
-                btnAssessment.innerHTML = '<i class="fas fa-unlock"></i> Start Assessment';
-                btnAssessment.onclick = () => alert("Assessment Started! Good luck.");
-            }
+            // Update Assessment Card Logic
+            updateAssessmentCard(completedLessons, totalLessons);
 
             // Update Resume Button
             const btnResume = document.getElementById("btnResume");
             if (firstIncomplete) {
                 btnResume.href = `cpp-lesson?lessonId=${firstIncomplete}`;
                 btnResume.innerText = "Resume Learning";
+                btnResume.classList.replace('btn-success', 'btn-primary'); // Ensure correct style
             } else {
                 btnResume.href = "#";
                 btnResume.innerText = "Course Completed";
                 btnResume.classList.replace('btn-primary', 'btn-success');
             }
         }
+
+        // --- ASSESSMENT SYSTEM ---
+        const assessmentQuestions = [
+            { q: "Who invented C++?", options: ["Dennis Ritchie", "Bjarne Stroustrup", "James Gosling", "Guido van Rossum"], a: 1 },
+            { q: "Which symbol is used for single-line comments?", options: ["//", "/*", "#", "--"], a: 0 },
+            { q: "Which header file is required for input/output?", options: ["<stdio.h>", "<conio.h>", "<iostream>", "<stdlib.h>"], a: 2 },
+            { q: "int a = 10; What is sizeof(a) typically?", options: ["2 bytes", "4 bytes", "8 bytes", "1 byte"], a: 1 },
+            { q: "Which operator is used to access members of a structure/class through a pointer?", options: [".", "->", "::", "&"], a: 1 },
+            { q: "What is the correct syntax to output 'Hello'?", options: ["cout << 'Hello';", "print('Hello');", "System.out.println('Hello');", "Console.Write('Hello');"], a: 0 },
+            { q: "Which of these is NOT a valid loop in C++?", options: ["for", "while", "do-while", "repeat-until"], a: 3 },
+            { q: "How do you declare a reference variable?", options: ["int &x = y;", "int *x = y;", "int x = &y;", "ref int x = y;"], a: 0 },
+            { q: "What does 'break' do in a loop?", options: ["Restarts the loop", "Exits the loop", "Skips the current iteration", "Ends the program"], a: 1 },
+            { q: "What is the index of the first element in an array?", options: ["1", "0", "-1", "Depends on compiler"], a: 1 },
+            { q: "Which keyword is used to inherit a class?", options: ["extends", "implements", "public/private/protected", "inherits"], a: 2 },
+            { q: "What is polymorphism?", options: ["Hiding data", "Multiple forms", "Creating copies", "Memory management"], a: 1 },
+            { q: "Which operator is used for dynamic memory allocation?", options: ["malloc", "alloc", "new", "create"], a: 2 },
+            { q: "Which function is the entry point of a C++ program?", options: ["start()", "main()", "init()", "run()"], a: 1 },
+            { q: "What is a destructor?", options: ["Function to build objects", "Function called when object is destroyed", "Function to delete files", "Variable type"], a: 1 },
+            { q: "string s = \"App\"; s += \"le\"; What is s?", options: ["App le", "Apple", "Error", "App+le"], a: 1 },
+            { q: "What happens if you use a pointer without initializing it?", options: ["It works fine", "It points to null", "Undefined behavior", "Compilation error"], a: 2 },
+            { q: "Which concept allows a class to hide its data?", options: ["Polymorphism", "Encapsulation", "Inheritance", "Abstraction"], a: 1 },
+            { q: "What is 'friend' function?", options: ["A function that can access private data of a class", "A function in another file", "A mathematical function", "A subclass function"], a: 0 },
+            { q: "const int x = 10; x = 20;", options: ["x becomes 20", "Compilation Error", "Runtime Error", "Warning"], a: 1 }
+        ];
+
+        function updateAssessmentCard(completed, total) {
+            const btn = document.getElementById("btnAssessment");
+            const scoreKey = `algo_edu_cpp_assessment_${user.id}`;
+            const savedScore = localStorage.getItem(scoreKey);
+            const isUnlocked = completed === total && total > 0;
+
+            if (savedScore !== null) {
+                // Already taken
+                btn.className = "action-btn btn-completed";
+                btn.innerHTML = `<i class="fas fa-check-circle"></i> Score: ${savedScore}/20`;
+                btn.onclick = () => alert(`You have already completed the assessment.\nYour Score: ${savedScore}/20`);
+                btn.style.background = "rgba(16, 185, 129, 0.2)";
+                btn.style.color = "#10b981";
+                btn.style.borderColor = "#10b981";
+            } else if (isUnlocked) {
+                // Unlocked but not taken
+                btn.className = "action-btn btn-primary unlocked";
+                btn.innerHTML = `<i class="fas fa-unlock"></i> Take Assessment`;
+                btn.onclick = openAssessmentModal;
+            } else {
+                // Locked
+                btn.className = "action-btn";
+                btn.style.opacity = "0.5";
+                btn.style.cursor = "not-allowed";
+                btn.innerHTML = `<i class="fas fa-lock"></i> Locked (Complete Course)`;
+                btn.onclick = null;
+            }
+        }
+
+        // Modal Logic
+        let currentQuestionIndex = 0;
+        let userAnswers = new Array(20).fill(null);
+
+        function openAssessmentModal() {
+            const modal = document.getElementById("assessmentModal");
+            modal.style.display = "flex";
+            currentQuestionIndex = 0;
+            userAnswers.fill(null);
+            renderQuestion();
+        }
+
+        function closeAssessmentModal() {
+            if (confirm("Are you sure you want to exit? Your progress will be lost.")) {
+                document.getElementById("assessmentModal").style.display = "none";
+            }
+        }
+
+        function renderQuestion() {
+            const q = assessmentQuestions[currentQuestionIndex];
+            document.getElementById("questionText").innerText = `${currentQuestionIndex + 1}. ${q.q}`;
+
+            const optionsContainer = document.getElementById("optionsContainer");
+            optionsContainer.innerHTML = "";
+
+            q.options.forEach((opt, idx) => {
+                const btn = document.createElement("div");
+                btn.className = `option-btn ${userAnswers[currentQuestionIndex] === idx ? 'selected' : ''}`;
+                btn.innerText = opt;
+                btn.onclick = () => selectOption(idx);
+                optionsContainer.appendChild(btn);
+            });
+
+            // Buttons
+            document.getElementById("btnPrevQ").style.visibility = currentQuestionIndex === 0 ? "hidden" : "visible";
+            const btnNext = document.getElementById("btnNextQ");
+            if (currentQuestionIndex === 19) {
+                btnNext.innerText = "Submit";
+                btnNext.onclick = submitAssessment;
+            } else {
+                btnNext.innerText = "Next";
+                btnNext.onclick = nextQuestion;
+            }
+        }
+
+        function selectOption(idx) {
+            userAnswers[currentQuestionIndex] = idx;
+            renderQuestion();
+        }
+
+        function nextQuestion() {
+            if (currentQuestionIndex < 19) {
+                currentQuestionIndex++;
+                renderQuestion();
+            }
+        }
+
+        function prevQuestion() {
+            if (currentQuestionIndex > 0) {
+                currentQuestionIndex--;
+                renderQuestion();
+            }
+        }
+
+        function submitAssessment() {
+            if (userAnswers.includes(null)) {
+                if (!confirm("You haven't answered all questions. Submit anyway?")) return;
+            }
+
+            let score = 0;
+            userAnswers.forEach((ans, idx) => {
+                if (ans === assessmentQuestions[idx].a) score++;
+            });
+
+            // Save Score
+            const scoreKey = `algo_edu_cpp_assessment_${user.id}`;
+            localStorage.setItem(scoreKey, score);
+
+            // Close and Update UI
+            document.getElementById("assessmentModal").style.display = "none";
+            alert(`Assessment Completed!\nYour Score: ${score}/20`);
+            location.reload(); // Reload to update card state
+        }
+
+
 
         function updateProgressCircle(percent) {
             const circle = document.getElementById("overallProgressCircle");
@@ -847,7 +998,7 @@
             text.innerText = `${percent}%`;
         }
 
-        renderModules();
+        initDashboard();
     </script>
 </body>
 
