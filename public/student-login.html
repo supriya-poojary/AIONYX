@@ -19,116 +19,196 @@
 
     <style>
         :root {
-            --glass-bg: rgba(13, 13, 22, 0.45);
-            --glass-border: rgba(255, 255, 255, 0.08);
-            --auth-glow: rgba(139, 92, 246, 0.15);
-            --auth-bg: #0a0a0f;
-            --auth-text: #ffffff;
+            --primary: #a855f7;
+            --secondary: #ec4899;
+            --bg-dark: #050510;
+            --card-bg: rgba(20, 20, 35, 0.6);
+            --input-bg: #0f0f1a;
+            --text-main: #ffffff;
+            --text-muted: #94a3b8;
+            --glow-color: rgba(168, 85, 247, 0.5);
+            --star-color: white;
         }
 
         body.light-theme {
-            --glass-bg: rgba(255, 255, 255, 0.7);
-            --glass-border: rgba(0, 0, 0, 0.08);
-            --auth-glow: rgba(139, 92, 246, 0.1);
-            --auth-bg: #f8fafc;
-            --auth-text: #0f172a;
+            --bg-dark: #f0f9ff;
+            --card-bg: rgba(255, 255, 255, 0.9);
+            --input-bg: #e0f2fe;
+            --text-main: #0f172a;
+            --text-muted: #475569;
+            --star-color: #0ea5e9;
+            /* Blue stars for light mode */
+            --primary: #8b5cf6;
+            /* Slightly darker purple for contrast */
+            --border-color: rgba(139, 92, 246, 0.3);
         }
 
-        .auth-container {
-            min-height: 100vh;
+        /* Light mode specific overrides */
+        body.light-theme .auth-card {
+            border: 1px solid var(--border-color);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.1), 0 0 30px rgba(139, 92, 246, 0.15);
+        }
+
+        body.light-theme .auth-header h1 {
+            background: linear-gradient(to right, #1e293b, #475569);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        body.light-theme .auth-icon-wrapper {
+            background: linear-gradient(135deg, rgba(168, 85, 247, 0.15), rgba(236, 72, 153, 0.15));
+            border: 1px solid rgba(139, 92, 246, 0.3);
+        }
+
+        body.light-theme .form-input {
+            border: 1px solid rgba(139, 92, 246, 0.2);
+        }
+
+        body.light-theme .auth-footer {
+            border-top: 1px solid rgba(139, 92, 246, 0.2);
+        }
+
+        body.light-theme .back-link {
+            color: var(--text-muted) !important;
+        }
+
+        body.light-theme .back-link:hover {
+            color: var(--text-main) !important;
+        }
+
+        body {
+            background-color: var(--bg-dark);
+            font-family: 'Inter', sans-serif;
+            color: var(--text-main);
+            margin: 0;
+            overflow: hidden;
             display: flex;
             align-items: center;
             justify-content: center;
-            padding: 1.5rem;
-            position: relative;
-            overflow: hidden;
-            background: var(--auth-bg);
-            transition: background 0.5s ease;
+            min-height: 100vh;
         }
 
-        /* Cinematic Animated Background */
-        .auth-container::before {
+        /* Cosmic Background */
+        .cosmic-background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            background:
+                radial-gradient(circle at 15% 50%, rgba(76, 29, 149, 0.15) 0%, transparent 50%),
+                radial-gradient(circle at 85% 30%, rgba(236, 72, 153, 0.15) 0%, transparent 50%);
+        }
+
+        .stars {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background-image:
+                radial-gradient(var(--star-color) 1px, transparent 1px),
+                radial-gradient(var(--star-color) 1px, transparent 1px);
+            background-size: 50px 50px;
+            background-position: 0 0, 25px 25px;
+            opacity: 0.1;
+            animation: starsMove 100s linear infinite;
+        }
+
+        .circuit-lines {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background-image:
+                linear-gradient(rgba(168, 85, 247, 0.1) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(168, 85, 247, 0.1) 1px, transparent 1px);
+            background-size: 100px 100px;
+            opacity: 0.15;
+            mask-image: radial-gradient(circle at center, transparent 30%, black 100%);
+            -webkit-mask-image: radial-gradient(circle at center, transparent 30%, black 100%);
+        }
+
+        @keyframes starsMove {
+            from {
+                background-position: 0 0, 25px 25px;
+            }
+
+            to {
+                background-position: 1000px 1000px, 1025px 1025px;
+            }
+        }
+
+        /* Floating Icons */
+        .tech-icon {
+            position: absolute;
+            color: rgba(168, 85, 247, 0.2);
+            font-size: 2rem;
+            animation: floatIcon 6s ease-in-out infinite;
+            z-index: 1;
+        }
+
+        @keyframes floatIcon {
+
+            0%,
+            100% {
+                transform: translateY(0) rotate(0deg);
+            }
+
+            50% {
+                transform: translateY(-20px) rotate(5deg);
+            }
+        }
+
+        /* Login Card */
+        .auth-card {
+            background: var(--card-bg);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 30px;
+            padding: 3rem 2.5rem;
+            width: 100%;
+            max-width: 400px;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5), 0 0 30px rgba(168, 85, 247, 0.1);
+            position: relative;
+            z-index: 10;
+            overflow: hidden;
+        }
+
+        /* Top Glow Bar */
+        .auth-card::before {
             content: '';
             position: absolute;
             top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background-image: url('https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&q=80&w=2000');
-            background-size: 110% 110%;
-            background-position: center;
-            animation: cinematicMotion 30s ease-in-out infinite alternate;
-            opacity: 0.4;
-            z-index: 0;
-            transition: opacity 0.5s ease;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            box-shadow: 0 0 15px var(--primary);
+            border-radius: 0 0 10px 10px;
         }
 
-        body.light-theme .auth-container::before {
-            background-image: url('https://images.unsplash.com/photo-1635332122319-29f192ff7661?auto=format&fit=crop&q=80&w=2000');
-            opacity: 0.15;
+        @property --border-angle {
+            syntax: "<angle>";
+            initial-value: 0deg;
+            inherits: false;
         }
 
-        @keyframes cinematicMotion {
-            0% {
-                transform: scale(1) translate(0, 0);
-            }
-
-            100% {
-                transform: scale(1.15) translate(-1%, -1%);
-            }
-        }
-
-        .auth-header h1 {
-            font-size: 1.85rem;
-            font-weight: 800;
-            color: var(--auth-text);
-            letter-spacing: -0.025em;
-            margin-bottom: 0.5rem;
-            text-shadow: 0 0 15px rgba(255, 255, 255, 0.1);
-        }
-
-        .form-input {
-            width: 100%;
-            padding: 1rem 1.25rem;
-            background: var(--background-secondary);
-            border: 1px solid var(--border);
-            border-radius: 16px;
-            color: var(--text-primary);
-            font-size: 0.95rem;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-
-        .auth-card {
-            background: var(--glass-bg);
-            backdrop-filter: blur(25px);
-            -webkit-backdrop-filter: blur(25px);
-            border: 1px solid var(--glass-border);
-            border-radius: 28px;
-            padding: 2.5rem 2rem;
-            width: 100%;
-            max-width: 380px;
-            box-shadow:
-                0 25px 50px -12px rgba(0, 0, 0, 0.6),
-                inset 0 0 20px rgba(255, 255, 255, 0.02);
-            position: relative;
-            z-index: 10;
-            animation: cardAppear 1s cubic-bezier(0.16, 1, 0.3, 1);
-            overflow: hidden;
-        }
-
-        /* Premium Animated Border Highlight */
+        /* Thick Highlight Border */
         .auth-card::after {
             content: '';
             position: absolute;
             inset: 0;
-            border-radius: 32px;
-            padding: 3.5px;
+            border-radius: 30px;
+            padding: 6px;
+            /* Thick border */
             background: conic-gradient(from var(--border-angle),
-                    transparent 20%,
+                    transparent 25%,
                     var(--primary),
+                    #ffffff,
                     var(--secondary),
-                    var(--primary),
-                    transparent 80%);
+                    transparent 75%);
             -webkit-mask:
                 linear-gradient(#fff 0 0) content-box,
                 linear-gradient(#fff 0 0);
@@ -139,56 +219,13 @@
             mask-composite: exclude;
             pointer-events: none;
             z-index: 11;
-            animation: borderRotate 4s linear infinite;
-        }
-
-        @property --border-angle {
-            syntax: "<angle>";
-            initial-value: 0deg;
-            inherits: false;
+            animation: borderRotate 3s linear infinite;
+            filter: drop-shadow(0 0 5px var(--primary));
         }
 
         @keyframes borderRotate {
             to {
                 --border-angle: 360deg;
-            }
-        }
-
-        /* Scanning Line Effect */
-        .auth-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100px;
-            background: linear-gradient(to bottom,
-                    transparent,
-                    rgba(139, 92, 246, 0.08),
-                    transparent);
-            z-index: -1;
-            animation: scanLine 4s linear infinite;
-        }
-
-        @keyframes scanLine {
-            0% {
-                transform: translateY(-100px);
-            }
-
-            100% {
-                transform: translateY(600px);
-            }
-        }
-
-        @keyframes cardAppear {
-            0% {
-                opacity: 0;
-                transform: translateY(30px) scale(0.98);
-            }
-
-            100% {
-                opacity: 1;
-                transform: translateY(0) scale(1);
             }
         }
 
@@ -198,323 +235,275 @@
         }
 
         .auth-icon-wrapper {
-            width: 80px;
-            height: 80px;
-            background: rgba(139, 92, 246, 0.1);
-            border-radius: 24px;
+            width: 70px;
+            height: 70px;
+            background: linear-gradient(135deg, rgba(168, 85, 247, 0.2), rgba(236, 72, 153, 0.2));
+            border-radius: 20px;
             display: flex;
             align-items: center;
             justify-content: center;
             margin: 0 auto 1.5rem;
-            border: 1px solid rgba(139, 92, 246, 0.2);
-            position: relative;
-            animation: iconFloat 4s ease-in-out infinite;
-            box-shadow: 0 0 20px rgba(139, 92, 246, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 0 20px rgba(168, 85, 247, 0.2);
         }
 
-        @keyframes iconFloat {
-
-            0%,
-            100% {
-                transform: translateY(0) scale(1);
-            }
-
-            50% {
-                transform: translateY(-10px) scale(1.05);
-            }
-        }
-
-        .auth-header i {
-            font-size: 2.5rem;
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
+        .auth-icon-wrapper i {
+            font-size: 2rem;
+            background: linear-gradient(135deg, #e879f9, #f472b6);
             -webkit-background-clip: text;
             background-clip: text;
             -webkit-text-fill-color: transparent;
-            filter: drop-shadow(0 0 10px rgba(139, 92, 246, 0.3));
         }
 
         .auth-header h1 {
-            font-size: 1.85rem;
-            font-weight: 800;
-            color: var(--auth-text);
-            letter-spacing: -0.025em;
+            font-size: 1.75rem;
+            font-weight: 700;
             margin-bottom: 0.5rem;
-            text-shadow: 0 0 15px rgba(255, 255, 255, 0.1);
+            background: linear-gradient(to right, #fff, #cbd5e1);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
         }
 
         .auth-header p {
+            font-size: 0.85rem;
             color: var(--text-muted);
-            font-size: 0.9rem;
-            opacity: 0.8;
+            letter-spacing: 0.5px;
         }
 
         .form-group {
-            margin-bottom: 1.25rem;
-            opacity: 0;
-            animation: slideUp 0.6s ease forwards;
-        }
-
-        .form-group:nth-child(1) {
-            animation-delay: 0.2s;
-        }
-
-        .form-group:nth-child(2) {
-            animation-delay: 0.3s;
-        }
-
-        .form-group:nth-child(3) {
-            animation-delay: 0.4s;
-        }
-
-        @keyframes slideUp {
-            from {
-                opacity: 0;
-                transform: translateY(20px);
-            }
-
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+            margin-bottom: 1.5rem;
         }
 
         .form-label {
             display: block;
-            font-size: 0.75rem;
+            font-size: 0.7rem;
             font-weight: 700;
             color: var(--text-muted);
             margin-bottom: 0.5rem;
             text-transform: uppercase;
-            letter-spacing: 0.05em;
+            letter-spacing: 1px;
+        }
+
+        .input-wrapper {
+            position: relative;
         }
 
         .form-input {
             width: 100%;
             padding: 1rem 1.25rem;
-            background: var(--background-secondary);
-            border: 1px solid var(--border);
-            border-radius: 16px;
-            color: var(--text-primary);
+            background: var(--input-bg);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 12px;
+            color: var(--text-main);
             font-size: 0.95rem;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            transition: all 0.3s ease;
         }
 
         .form-input:focus {
             outline: none;
             border-color: var(--primary);
-            background: rgba(10, 10, 15, 0.8);
-            box-shadow: 0 0 0 4px var(--auth-glow), 0 0 20px rgba(139, 92, 246, 0.1);
-            transform: translateY(-2px);
+            box-shadow: 0 0 0 2px rgba(168, 85, 247, 0.2);
+            background: rgba(20, 20, 35, 0.8);
+        }
+
+        .form-input::placeholder {
+            color: rgba(148, 163, 184, 0.4);
         }
 
         .btn-login {
             width: 100%;
-            padding: 1.1rem;
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            padding: 1rem;
+            margin-top: 1rem;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
             color: white;
             border: none;
-            border-radius: 16px;
+            border-radius: 12px;
             font-size: 1rem;
-            font-weight: 700;
+            font-weight: 600;
             cursor: pointer;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            margin-top: 1rem;
-            box-shadow: 0 10px 20px -5px rgba(139, 92, 246, 0.4);
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 20px -5px rgba(168, 85, 247, 0.4);
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 12px;
-            position: relative;
-            overflow: hidden;
-        }
-
-        /* Button Shimmer */
-        .btn-login::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg,
-                    transparent,
-                    rgba(255, 255, 255, 0.2),
-                    transparent);
-            transition: 0.5s;
-            animation: shimmer 3s infinite;
-        }
-
-        @keyframes shimmer {
-            0% {
-                left: -100%;
-            }
-
-            100% {
-                left: 100%;
-            }
+            gap: 10px;
         }
 
         .btn-login:hover {
-            transform: translateY(-4px) scale(1.02);
-            box-shadow: 0 15px 30px -5px rgba(139, 92, 246, 0.6);
+            transform: translateY(-2px);
+            box-shadow: 0 15px 25px -5px rgba(168, 85, 247, 0.5);
             filter: brightness(1.1);
         }
 
         .auth-footer {
             margin-top: 2rem;
             text-align: center;
-            font-size: 0.85rem;
-            color: var(--text-muted);
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
             padding-top: 1.5rem;
-            border-top: 1px solid var(--glass-border);
-            opacity: 0;
-            animation: fadeIn 1s ease forwards 0.6s;
         }
 
-        @keyframes fadeIn {
-            to {
-                opacity: 1;
-            }
+        .auth-footer p {
+            color: var(--text-muted);
+            font-size: 0.85rem;
+            margin-bottom: 1rem;
         }
 
         .auth-footer a {
-            color: var(--primary);
+            color: #d8b4fe;
             text-decoration: none;
-            font-weight: 700;
-            transition: color 0.3s ease;
+            font-weight: 600;
+            transition: color 0.3s;
         }
 
         .auth-footer a:hover {
-            color: var(--secondary);
-            text-shadow: 0 0 10px rgba(236, 72, 153, 0.3);
+            color: #f472b6;
         }
 
         .back-link {
             display: inline-flex;
             align-items: center;
             gap: 8px;
-            margin-top: 1.25rem;
+            color: var(--text-muted) !important;
             font-size: 0.8rem;
-            color: var(--text-muted);
-            transition: all 0.3s ease;
+            opacity: 0.7;
         }
 
         .back-link:hover {
-            color: #fff;
-            transform: translateX(-5px);
+            opacity: 1;
+            color: #fff !important;
         }
 
-        .highlight-bar {
-            position: absolute;
-            top: 0;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 80px;
-            height: 4px;
-            background: linear-gradient(90deg, var(--primary), var(--secondary));
-            border-radius: 0 0 10px 10px;
-            box-shadow: 0 0 15px rgba(139, 92, 246, 0.5);
-            animation: barPulse 2s infinite ease-in-out;
+        /* Icon Positions */
+        .icon-py {
+            top: 15%;
+            left: 10%;
+            animation-delay: 0s;
+            color: rgba(56, 189, 248, 0.2);
         }
 
-        @keyframes barPulse {
+        .icon-js {
+            top: 20%;
+            right: 15%;
+            animation-delay: 1s;
+            color: rgba(250, 204, 21, 0.2);
+        }
 
-            0%,
-            100% {
-                opacity: 0.6;
-                width: 80px;
-            }
+        .icon-cpp {
+            bottom: 20%;
+            left: 15%;
+            animation-delay: 2s;
+            color: rgba(96, 165, 250, 0.2);
+        }
 
-            50% {
-                opacity: 1;
-                width: 120px;
-            }
+        .icon-react {
+            bottom: 25%;
+            right: 10%;
+            animation-delay: 3s;
+            color: rgba(45, 212, 191, 0.2);
+        }
+
+        .icon-code {
+            top: 50%;
+            left: 5%;
+            animation-delay: 1.5s;
+            font-size: 1.5rem;
+        }
+
+        .icon-term {
+            top: 60%;
+            right: 5%;
+            animation-delay: 3.5s;
+            font-size: 1.5rem;
+        }
+
+        .icon-book {
+            top: 8%;
+            right: 30%;
+            animation-delay: 2.5s;
+            font-size: 1.5rem;
+        }
+
+        .icon-atom {
+            bottom: 10%;
+            left: 40%;
+            animation-delay: 0.5s;
+            font-size: 1.8rem;
         }
 
         @media (max-width: 480px) {
-            .auth-container {
-                padding: 0.75rem;
-            }
-
             .auth-card {
-                padding: 2rem 1.25rem;
-                border-radius: 20px;
-                max-width: 100%;
+                padding: 2rem 1.5rem;
+                margin: 1rem;
             }
 
-            .auth-header h1 {
-                font-size: 1.4rem;
-            }
-
-            .auth-icon-wrapper {
-                width: 70px;
-                height: 70px;
-                margin-bottom: 1rem;
-            }
-
-            .auth-header i {
-                font-size: 2rem;
-            }
-
-            .btn-login {
-                padding: 0.9rem;
-                font-size: 0.95rem;
-            }
-
-            .form-input {
-                padding: 0.85rem 1rem;
-                font-size: 0.9rem;
-            }
-
-            .form-label {
-                font-size: 0.7rem;
+            .tech-icon {
+                opacity: 0.3;
+                /* Less distracting on mobile */
             }
         }
     </style>
 </head>
 
 <body>
-    <div class="auth-container">
+    <!-- Cosmic Background -->
+    <div class="cosmic-background">
+        <div class="stars"></div>
+        <div class="circuit-lines"></div>
 
-        <div class="auth-card">
-            <div class="highlight-bar"></div>
-            <div class="auth-header">
-                <div class="auth-icon-wrapper">
-                    <i class="fas fa-shield-halved"></i>
-                </div>
-                <h1>Academic Access</h1>
-                <p>Enter your credentials to continue</p>
+        <!-- Floating Icons -->
+        <i class="fab fa-python tech-icon icon-py"></i>
+        <i class="fab fa-js tech-icon icon-js"></i>
+        <i class="fas fa-code tech-icon icon-code"></i>
+        <i class="fab fa-react tech-icon icon-react"></i>
+        <i class="fas fa-terminal tech-icon icon-term"></i>
+        <i class="fas fa-book tech-icon icon-book"></i>
+        <i class="fas fa-atom tech-icon icon-atom"></i>
+        <div
+            style="position: absolute; bottom: 20%; left: 15%; font-family: monospace; font-size: 2rem; font-weight: bold; color: rgba(96, 165, 250, 0.2); animation: floatIcon 6s ease-in-out infinite; animation-delay: 2s; z-index: 1;">
+            C+</div>
+    </div>
+
+    <!-- Login Card -->
+    <div class="auth-card">
+        <div class="auth-header">
+            <div class="auth-icon-wrapper">
+                <i class="fas fa-shield-halved"></i>
             </div>
+            <h1>Academic Access</h1>
+            <p>Enter your credentials to continue</p>
+        </div>
 
-            <div id="errorMessage" class="error-message"></div>
-            <div id="successMessage" class="success-message"></div>
+        <div id="errorMessage" class="error-message"
+            style="display: none; background: rgba(239, 68, 68, 0.15); color: #fca5a5; padding: 0.75rem; border-radius: 8px; font-size: 0.85rem; margin-bottom: 1rem; border: 1px solid rgba(239, 68, 68, 0.3); text-align: center;">
+        </div>
+        <div id="successMessage" class="success-message"
+            style="display: none; background: rgba(34, 197, 94, 0.15); color: #86efac; padding: 0.75rem; border-radius: 8px; font-size: 0.85rem; margin-bottom: 1rem; border: 1px solid rgba(34, 197, 94, 0.3); text-align: center;">
+        </div>
 
-            <form id="loginForm">
-                <div class="form-group">
-                    <label class="form-label">Email Address</label>
-                    <div class="input-wrapper">
-                        <input type="email" id="email" class="form-input" required placeholder="name@example.com">
-                    </div>
+        <form id="loginForm">
+            <div class="form-group">
+                <label class="form-label">Email Address</label>
+                <div class="input-wrapper">
+                    <input type="email" id="email" class="form-input" required placeholder="name@example.com">
                 </div>
-                <div class="form-group">
-                    <label class="form-label">Secure Password</label>
-                    <div class="input-wrapper">
-                        <input type="password" id="password" class="form-input" required placeholder="••••••••">
-                    </div>
-                </div>
-                <div class="form-group">
-                    <button type="submit" class="btn-login" id="loginBtn">
-                        Verify Access <i class="fas fa-arrow-right-to-bracket"></i>
-                    </button>
-                </div>
-            </form>
-
-            <div class="auth-footer">
-                <p>New candidate? <a href="student-signup">Create an Account</a></p>
-                <a href="/" class="back-link">
-                    <i class="fas fa-chevron-left"></i> Return to Terminal
-                </a>
             </div>
+            <div class="form-group">
+                <label class="form-label">Secure Password</label>
+                <div class="input-wrapper">
+                    <input type="password" id="password" class="form-input" required placeholder="••••••••">
+                </div>
+            </div>
+            <button type="submit" class="btn-login" id="loginBtn">
+                Verify Access <i class="fas fa-arrow-right-to-bracket"></i>
+            </button>
+        </form>
+
+        <div class="auth-footer">
+            <p>New candidate? <a href="student-signup">Create an Account</a></p>
+            <a href="/" class="back-link">
+                <i class="fas fa-chevron-left"></i> Return to Terminal
+            </a>
         </div>
     </div>
 

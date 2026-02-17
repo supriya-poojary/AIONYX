@@ -10,393 +10,7 @@
         rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="css/theme.css">
-    <style>
-        body {
-            padding-top: 80px;
-        }
 
-        .profile-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 2rem;
-            display: grid;
-            grid-template-columns: 350px 1fr;
-            gap: 2rem;
-        }
-
-        @media (max-width: 1024px) {
-            .profile-container {
-                grid-template-columns: 1fr;
-            }
-        }
-
-        @media (max-width: 768px) {
-            body {
-                padding-top: 70px;
-            }
-
-            .profile-container {
-                padding: 1rem;
-                gap: 1.5rem;
-            }
-
-            .user-card {
-                padding: 1.5rem;
-            }
-
-            .user-avatar {
-                width: 80px;
-                height: 80px;
-                font-size: 2rem;
-            }
-
-            .stats-grid {
-                grid-template-columns: repeat(2, 1fr) !important;
-                gap: 1rem;
-            }
-
-            .stat-card {
-                padding: 1rem;
-            }
-
-            .stat-value {
-                font-size: 1.8rem !important;
-            }
-
-            .calendar-heatmap {
-                overflow-x: scroll;
-            }
-
-            .heatmap-day {
-                width: 10px;
-                height: 10px;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .profile-container {
-                padding: 0.75rem;
-            }
-
-            .stats-grid {
-                grid-template-columns: 1fr !important;
-            }
-
-            .stat-card {
-                padding: 1.25rem;
-            }
-
-            .user-card h2 {
-                font-size: 1.25rem;
-            }
-
-            .user-card p {
-                font-size: 0.85rem;
-            }
-        }
-
-        /* Left Column */
-        .profile-sidebar {
-            display: flex;
-            flex-direction: column;
-            gap: 1.5rem;
-        }
-
-        .user-card {
-            background: var(--surface);
-            border: 1px solid var(--border);
-            border-radius: var(--radius-lg);
-            padding: 2rem;
-            text-align: center;
-            box-shadow: var(--shadow-md);
-        }
-
-        /* Background Animation */
-        #bgCanvas {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: -1;
-            /* Behind everything */
-            background: linear-gradient(135deg, #0f172a 0%, #1e1b4b 100%);
-        }
-
-        /* Modal Styles */
-        .modal {
-            display: none;
-            position: fixed;
-            z-index: 1000;
-            left: 0;
-            top: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.5);
-            align-items: center;
-            justify-content: center;
-            backdrop-filter: blur(5px);
-        }
-
-        .modal-content {
-            background: var(--surface);
-            padding: 2rem;
-            border-radius: var(--radius-lg);
-            border: 1px solid var(--border);
-            width: 90%;
-            max-width: 500px;
-            box-shadow: var(--shadow-xl);
-            position: relative;
-            animation: slideIn 0.3s ease-out;
-        }
-
-        .modal-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 1.5rem;
-        }
-
-        .close-modal {
-            font-size: 1.5rem;
-            cursor: pointer;
-            color: var(--text-muted);
-            transition: color 0.2s;
-        }
-
-        .close-modal:hover {
-            color: var(--text-primary);
-        }
-
-        .form-group {
-            margin-bottom: 1.25rem;
-        }
-
-        .form-group label {
-            display: block;
-            margin-bottom: 0.5rem;
-            color: var(--text-secondary);
-            font-weight: 500;
-        }
-
-        .form-control {
-            width: 100%;
-            padding: 0.75rem;
-            border-radius: var(--radius-md);
-            border: 1px solid var(--border);
-            background: var(--background);
-            color: var(--text-primary);
-            font-size: 1rem;
-            transition: all 0.2s;
-        }
-
-        .form-control:focus {
-            outline: none;
-            border-color: var(--primary);
-            box-shadow: 0 0 0 3px rgba(139, 92, 246, 0.2);
-        }
-
-        @keyframes slideIn {
-            from {
-                opacity: 0;
-                transform: translateY(-20px);
-            }
-
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .user-avatar {
-            width: 120px;
-            height: 120px;
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-size: 3.5rem;
-            margin: 0 auto 1.5rem;
-            box-shadow: var(--glow-primary);
-        }
-
-        .user-name {
-            font-size: 1.8rem;
-            font-weight: 700;
-            margin-bottom: 0.5rem;
-        }
-
-        .user-rank {
-            color: var(--text-muted);
-            font-size: 0.9rem;
-            margin-bottom: 1.5rem;
-        }
-
-        .btn-edit-profile {
-            width: 100%;
-            padding: 0.8rem;
-            background: var(--surface-hover);
-            color: var(--text-primary);
-            border: 1px solid var(--border);
-            border-radius: var(--radius-md);
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s;
-        }
-
-        .btn-edit-profile:hover {
-            background: var(--border);
-        }
-
-        /* Right Column */
-        .stats-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 1.5rem;
-            margin-bottom: 2rem;
-        }
-
-        .stat-card {
-            background: var(--surface);
-            border: 1px solid var(--border);
-            border-radius: var(--radius-lg);
-            padding: 1.5rem;
-            display: flex;
-            flex-direction: column;
-            gap: 0.5rem;
-            transition: transform 0.3s;
-        }
-
-        .stat-card:hover {
-            transform: translateY(-5px);
-            border-color: var(--primary);
-        }
-
-        .stat-label {
-            color: var(--text-muted);
-            font-size: 0.9rem;
-            font-weight: 600;
-        }
-
-        .stat-value {
-            font-size: 2rem;
-            font-weight: 800;
-            background: linear-gradient(135deg, var(--text-primary), var(--text-secondary));
-            -webkit-background-clip: text;
-            background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        /* Heatmap Section */
-        .heatmap-card {
-            background: var(--surface);
-            border: 1px solid var(--border);
-            border-radius: var(--radius-lg);
-            padding: 2rem;
-            margin-bottom: 2rem;
-        }
-
-        .section-header {
-            font-size: 1.2rem;
-            font-weight: 700;
-            margin-bottom: 1.5rem;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .calendar-heatmap {
-            display: flex;
-            gap: 4px;
-            overflow-x: auto;
-            padding-bottom: 10px;
-        }
-
-        .heatmap-week {
-            display: flex;
-            flex-direction: column;
-            gap: 4px;
-        }
-
-        .heatmap-day {
-            width: 12px;
-            height: 12px;
-            background: var(--surface-hover);
-            border-radius: 2px;
-        }
-
-        .heatmap-day.level-1 {
-            background: rgba(16, 185, 129, 0.2);
-        }
-
-        .heatmap-day.level-2 {
-            background: rgba(16, 185, 129, 0.4);
-        }
-
-        .heatmap-day.level-3 {
-            background: rgba(16, 185, 129, 0.6);
-        }
-
-        .heatmap-day.level-4 {
-            background: rgba(16, 185, 129, 0.8);
-        }
-
-        .heatmap-day.level-5 {
-            background: #10b981;
-        }
-
-        /* Recent Activity */
-        .activity-list {
-            display: flex;
-            flex-direction: column;
-            gap: 1rem;
-        }
-
-        .activity-item {
-            background: var(--surface);
-            border: 1px solid var(--border);
-            border-radius: var(--radius-md);
-            padding: 1rem;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            transition: all 0.2s;
-        }
-
-        .activity-item:hover {
-            transform: translateX(5px);
-            border-color: var(--border-focus);
-        }
-
-        .activity-left {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-        }
-
-        .activity-icon {
-            width: 40px;
-            height: 40px;
-            border-radius: 8px;
-            background: rgba(59, 130, 246, 0.1);
-            color: #3b82f6;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .activity-info h4 {
-            font-size: 1rem;
-            margin-bottom: 0.2rem;
-        }
-
-        .activity-info span {
-            font-size: 0.8rem;
-            color: var(--text-muted);
-        }
-    </style>
 </head>
 
 <body>
@@ -415,8 +29,8 @@
         </div>
     </nav>
 
-    <!-- Background Animation -->
-    <canvas id="bgCanvas"></canvas>
+    <!-- Animated Background -->
+    <div class="animated-bg"></div>
 
     <div class="profile-container">
         <!-- Sidebar -->
@@ -440,16 +54,10 @@
 
             <div class="user-card" style="text-align: left;">
                 <h3 style="margin-bottom: 1rem;">Community Stats</h3>
-                <div
-                    style="display: flex; align-items: center; gap: 10px; margin-bottom: 0.8rem; color: var(--text-secondary);">
-                    <i class="fas fa-eye" style="color: var(--text-muted);"></i>
-                    <span>Views</span>
-                    <span style="flex: 1; text-align: right; font-weight: 600;">0</span>
-                </div>
                 <div style="display: flex; align-items: center; gap: 10px; color: var(--text-secondary);">
                     <i class="fas fa-check" style="color: var(--text-muted);"></i>
                     <span>Solutions</span>
-                    <span style="flex: 1; text-align: right; font-weight: 600;">0</span>
+                    <span id="totalSolutions" style="flex: 1; text-align: right; font-weight: 600;">0</span>
                 </div>
             </div>
         </aside>
@@ -475,6 +83,14 @@
                 <div class="stat-card">
                     <span class="stat-label">C++ Lessons</span>
                     <span class="stat-value" id="cppSolved">0</span>
+                    <div style="font-size: 0.8rem; color: var(--text-muted); margin-top: auto;">
+                        Modules mastered
+                    </div>
+                </div>
+                <!-- Python Card -->
+                <div class="stat-card">
+                    <span class="stat-label">Python Lessons</span>
+                    <span class="stat-value" id="pythonSolved">0</span>
                     <div style="font-size: 0.8rem; color: var(--text-muted); margin-top: auto;">
                         Modules mastered
                     </div>
@@ -564,7 +180,13 @@
                 document.getElementById('totalSolved').textContent = data.stats.totalSolved;
                 document.getElementById('dsaSolved').textContent = data.stats.dsaSolved;
                 document.getElementById('cppSolved').textContent = data.stats.cppCompleted;
+                document.getElementById('pythonSolved').textContent = data.stats.pythonCompleted;
                 document.getElementById('currentStreak').textContent = data.user.current_streak || 0;
+
+                // Update Community Stats
+                document.getElementById('totalSolutions').textContent = data.stats.totalSolved;
+                // Profile views - set to 0 for now (can be implemented later with a views tracking system)
+                document.getElementById('profileViews').textContent = '0';
 
                 // Render Heatmap with real activity data
                 renderHeatmap(data.activityMap || {}, data.user.created_at);
@@ -706,66 +328,763 @@
             }
         });
 
-        // --- BACKGROUND ANIMATION ---
-        const canvas = document.getElementById('bgCanvas');
-        const ctx = canvas.getContext('2d');
-        let width, height;
-
-        function resize() {
-            width = canvas.width = window.innerWidth;
-            height = canvas.height = window.innerHeight;
-        }
-
-        window.addEventListener('resize', resize);
-        resize();
-
-        const particles = [];
-        const particleCount = 50;
-
-        class Particle {
-            constructor() {
-                this.x = Math.random() * width;
-                this.y = Math.random() * height;
-                this.vx = (Math.random() - 0.5) * 0.5;
-                this.vy = (Math.random() - 0.5) * 0.5;
-                this.size = Math.random() * 2;
-                this.color = `rgba(${Math.random() > 0.5 ? '139, 92, 246' : '236, 72, 153'}, ${Math.random() * 0.5})`;
-            }
-
-            update() {
-                this.x += this.vx;
-                this.y += this.vy;
-
-                if (this.x < 0 || this.x > width) this.vx *= -1;
-                if (this.y < 0 || this.y > height) this.vy *= -1;
-            }
-
-            draw() {
-                ctx.beginPath();
-                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-                ctx.fillStyle = this.color;
-                ctx.fill();
-            }
-        }
-
-        for (let i = 0; i < particleCount; i++) {
-            particles.push(new Particle());
-        }
-
-        function animate() {
-            ctx.clearRect(0, 0, width, height);
-
-            particles.forEach(p => {
-                p.update();
-                p.draw();
-            });
-
-            requestAnimationFrame(animate);
-        }
-
-        animate();
+        // Background animation now handled by CSS
 
     </script>
 </body>
+
+<style>
+    body {
+        background: transparent !important;
+        /* Override theme.css */
+        overflow-y: auto !important;
+        overflow-x: hidden !important;
+        min-height: 100vh !important;
+        height: auto !important;
+    }
+
+    html {
+        overflow-y: auto !important;
+        height: auto !important;
+    }
+
+    /* Light Mode Overrides for Profile Page */
+    body.light-theme .user-card,
+    body.light-theme .stat-card,
+    body.light-theme .heatmap-card {
+        background: rgba(255, 255, 255, 0.95) !important;
+        background-image: linear-gradient(rgba(255, 255, 255, 0.95), rgba(255, 255, 255, 0.95)),
+            linear-gradient(135deg, #8b5cf6, #ec4899) !important;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1) !important;
+    }
+
+    body.light-theme .user-name,
+    body.light-theme .stat-label,
+    body.light-theme .stat-value,
+    body.light-theme .section-header {
+        color: #0f172a !important;
+    }
+
+    body.light-theme .user-rank {
+        color: #475569 !important;
+    }
+
+    body.light-theme .btn-edit-profile {
+        background: #f1f5f9;
+        color: #0f172a;
+        border: 1px solid rgba(139, 92, 246, 0.3);
+    }
+
+    body.light-theme .btn-edit-profile:hover {
+        background: #e2e8f0;
+    }
+
+    body.light-theme .stat-value {
+        color: #0f172a !important;
+        background: none !important;
+        -webkit-text-fill-color: #0f172a !important;
+    }
+
+    body.light-theme .heatmap-day {
+        background: #e2e8f0;
+    }
+
+    body.light-theme .heatmap-day.level-1 {
+        background: rgba(16, 185, 129, 0.3);
+    }
+
+    body.light-theme .heatmap-day.level-2 {
+        background: rgba(16, 185, 129, 0.5);
+    }
+
+    body.light-theme .heatmap-day.level-3 {
+        background: rgba(16, 185, 129, 0.7);
+    }
+
+    body.light-theme .heatmap-day.level-4 {
+        background: rgba(16, 185, 129, 0.85);
+    }
+
+    body.light-theme .heatmap-day.level-5 {
+        background: #10b981;
+    }
+
+    body.light-theme .animated-bg {
+        background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 25%, #ddd6fe 50%, #fae8ff 75%, #f0f9ff 100%);
+    }
+
+    body.light-theme .animated-bg::before {
+        background-image:
+            radial-gradient(circle at 15% 50%, rgba(139, 92, 246, 0.1) 0%, transparent 50%),
+            radial-gradient(circle at 85% 30%, rgba(236, 72, 153, 0.08) 0%, transparent 50%),
+            radial-gradient(circle at 50% 80%, rgba(6, 182, 212, 0.08) 0%, transparent 50%),
+            radial-gradient(#8b5cf6 1px, transparent 1px);
+        opacity: 0.6;
+    }
+
+    /* Hide default theme background elements */
+    body::before,
+    .particles-container {
+        display: none !important;
+    }
+
+    .profile-container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 6rem 2rem 4rem 2rem;
+        display: grid;
+        grid-template-columns: 350px 1fr;
+        gap: 2rem;
+        position: relative;
+        z-index: 2;
+        /* Content above background */
+    }
+
+    @media (max-width: 1024px) {
+        .profile-container {
+            grid-template-columns: 1fr;
+        }
+    }
+
+    @media (max-width: 768px) {
+        .profile-container {
+            padding: 1rem;
+            gap: 1.5rem;
+        }
+
+        .user-card {
+            padding: 1.5rem;
+        }
+
+        .user-avatar {
+            width: 80px;
+            height: 80px;
+            font-size: 2rem;
+        }
+
+        .stats-grid {
+            grid-template-columns: repeat(2, 1fr) !important;
+            gap: 1rem;
+        }
+
+        .stat-card {
+            padding: 1rem;
+        }
+
+        .stat-value {
+            font-size: 1.8rem !important;
+        }
+
+        .calendar-heatmap {
+            overflow-x: scroll;
+        }
+
+        .heatmap-day {
+            width: 10px;
+            height: 10px;
+        }
+    }
+
+    @media (max-width: 480px) {
+        .profile-container {
+            padding: 0.75rem;
+        }
+
+        .stats-grid {
+            grid-template-columns: 1fr !important;
+        }
+
+        .stat-card {
+            padding: 1.25rem;
+        }
+
+        .user-card h2 {
+            font-size: 1.25rem;
+        }
+
+        .user-card p {
+            font-size: 0.85rem;
+        }
+    }
+
+    /* Left Column */
+    .profile-sidebar {
+        display: flex;
+        flex-direction: column;
+        gap: 1.5rem;
+    }
+
+    /* User Card with Neon Effect */
+    @property --user-border-angle {
+        syntax: "<angle>";
+        initial-value: 0deg;
+        inherits: false;
+    }
+
+    .user-card {
+        background: #151520 !important;
+        border-radius: var(--radius-lg);
+        padding: 2.5rem 2rem;
+        text-align: center;
+        position: relative;
+        z-index: 1;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5) !important;
+        /* Thick Gradient Border */
+        border: 3px solid transparent !important;
+        background-image: linear-gradient(#151520, #151520),
+            linear-gradient(135deg, #FF00CC, #333399) !important;
+        background-origin: border-box;
+        background-clip: padding-box, border-box;
+        transition: transform 0.3s, box-shadow 0.3s;
+        overflow: hidden;
+    }
+
+    /* Animated Border for User Card */
+    .user-card::after {
+        content: '';
+        position: absolute;
+        inset: 0;
+        border-radius: var(--radius-lg);
+        padding: 3px;
+        background: conic-gradient(from var(--user-border-angle),
+                transparent 25%,
+                #FF00CC,
+                #ffffff,
+                #333399,
+                transparent 75%);
+        -webkit-mask:
+            linear-gradient(#fff 0 0) content-box,
+            linear-gradient(#fff 0 0);
+        mask:
+            linear-gradient(#fff 0 0) content-box,
+            linear-gradient(#fff 0 0);
+        -webkit-mask-composite: xor;
+        mask-composite: exclude;
+        pointer-events: none;
+        z-index: 10;
+        animation: userBorderRotate 3s linear infinite;
+        filter: drop-shadow(0 0 8px #FF00CC);
+    }
+
+    @keyframes userBorderRotate {
+        to {
+            --user-border-angle: 360deg;
+        }
+    }
+
+    .user-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 0 20px rgba(255, 0, 204, 0.4) !important;
+    }
+
+    /* Animated Gradient Background with Particles */
+    .animated-bg {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 0;
+        pointer-events: none;
+        background: linear-gradient(135deg, #1a0b2e 0%, #16213e 25%, #0f3460 50%, #533483 75%, #1a0b2e 100%);
+        background-size: 400% 400%;
+        animation: gradientShift 15s ease infinite;
+        overflow: hidden;
+    }
+
+    .animated-bg::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-image:
+            /* Glowing Orbs */
+            radial-gradient(circle at 15% 50%, rgba(168, 85, 247, 0.3) 0%, transparent 50%),
+            radial-gradient(circle at 85% 30%, rgba(236, 72, 153, 0.2) 0%, transparent 50%),
+            radial-gradient(circle at 50% 80%, rgba(6, 182, 212, 0.2) 0%, transparent 50%),
+            /* Grid Pattern */
+            radial-gradient(#8b5cf6 1px, transparent 1px);
+        background-size:
+            100% 100%,
+            100% 100%,
+            100% 100%,
+            30px 30px;
+        background-position:
+            0 0,
+            0 0,
+            0 0,
+            0 0;
+        opacity: 0.4;
+        animation: pulseGlow 8s ease-in-out infinite;
+    }
+
+    /* Floating Particles */
+    .animated-bg::after {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-image:
+            radial-gradient(circle, rgba(168, 85, 247, 0.4) 2px, transparent 2px),
+            radial-gradient(circle, rgba(236, 72, 153, 0.3) 1px, transparent 1px),
+            radial-gradient(circle, rgba(6, 182, 212, 0.3) 1.5px, transparent 1.5px);
+        background-size: 200px 200px, 150px 150px, 180px 180px;
+        background-position: 0 0, 40px 60px, 80px 30px;
+        animation: floatParticles 20s linear infinite;
+    }
+
+    @keyframes floatParticles {
+        0% {
+            transform: translateY(0) translateX(0);
+        }
+
+        100% {
+            transform: translateY(-100px) translateX(50px);
+        }
+    }
+
+    @keyframes gradientShift {
+
+        0%,
+        100% {
+            background-position: 0% 50%;
+        }
+
+        50% {
+            background-position: 100% 50%;
+        }
+    }
+
+    @keyframes pulseGlow {
+
+        0%,
+        100% {
+            opacity: 0.3;
+        }
+
+        50% {
+            opacity: 0.5;
+        }
+    }
+
+    /* Decorative Elements (+ signs) */
+    .profile-container::before {
+        content: '+';
+        position: absolute;
+        top: 15%;
+        left: 5%;
+        color: rgba(6, 182, 212, 0.5);
+        font-size: 2rem;
+        font-weight: bold;
+        z-index: -1;
+    }
+
+    .profile-container::after {
+        content: '+';
+        position: absolute;
+        bottom: 10%;
+        right: 20%;
+        color: rgba(168, 85, 247, 0.5);
+        font-size: 3rem;
+        font-weight: bold;
+        z-index: -1;
+    }
+
+    /* Modal Styles */
+    .modal {
+        display: none;
+        position: fixed;
+        z-index: 1000;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.5);
+        align-items: center;
+        justify-content: center;
+        backdrop-filter: blur(5px);
+    }
+
+    .modal-content {
+        background: var(--surface);
+        padding: 2rem;
+        border-radius: var(--radius-lg);
+        border: 1px solid var(--border);
+        width: 90%;
+        max-width: 500px;
+        box-shadow: var(--shadow-xl);
+        position: relative;
+        animation: slideIn 0.3s ease-out;
+    }
+
+    .modal-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 1.5rem;
+    }
+
+    .close-modal {
+        font-size: 1.5rem;
+        cursor: pointer;
+        color: var(--text-muted);
+        transition: color 0.2s;
+    }
+
+    .close-modal:hover {
+        color: var(--text-primary);
+    }
+
+    .form-group {
+        margin-bottom: 1.25rem;
+    }
+
+    .form-group label {
+        display: block;
+        margin-bottom: 0.5rem;
+        color: var(--text-secondary);
+        font-weight: 500;
+    }
+
+    .form-control {
+        width: 100%;
+        padding: 0.75rem;
+        border-radius: var(--radius-md);
+        border: 1px solid var(--border);
+        background: var(--background);
+        color: var(--text-primary);
+        font-size: 1rem;
+        transition: all 0.2s;
+    }
+
+    .form-control:focus {
+        outline: none;
+        border-color: var(--primary);
+        box-shadow: 0 0 0 3px rgba(139, 92, 246, 0.2);
+    }
+
+    @keyframes slideIn {
+        from {
+            opacity: 0;
+            transform: translateY(-20px);
+        }
+
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    .user-avatar {
+        width: 120px;
+        height: 120px;
+        background: linear-gradient(135deg, var(--primary), var(--secondary));
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        font-size: 3.5rem;
+        margin: 0 auto 1.5rem;
+        box-shadow: var(--glow-primary);
+    }
+
+    .user-name {
+        font-size: 1.8rem;
+        font-weight: 700;
+        margin-bottom: 0.5rem;
+    }
+
+    .user-rank {
+        color: var(--text-muted);
+        font-size: 0.9rem;
+        margin-bottom: 1.5rem;
+    }
+
+    .btn-edit-profile {
+        width: 100%;
+        padding: 0.8rem;
+        background: var(--surface-hover);
+        color: var(--text-primary);
+        border: 1px solid var(--border);
+        border-radius: var(--radius-md);
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.3s;
+    }
+
+    .btn-edit-profile:hover {
+        background: var(--border);
+    }
+
+    /* Right Column */
+    .stats-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 1.5rem;
+        margin-bottom: 2rem;
+    }
+
+    @property --stat-border-angle {
+        syntax: "<angle>";
+        initial-value: 0deg;
+        inherits: false;
+    }
+
+    .stat-card {
+        background: #151520 !important;
+        border-radius: var(--radius-lg);
+        padding: 1.75rem;
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+        position: relative;
+        /* Thick Gradient Border */
+        border: 3px solid transparent !important;
+        background-image: linear-gradient(#151520, #151520),
+            linear-gradient(135deg, #8B5CF6, #06b6d4) !important;
+        background-origin: border-box;
+        background-clip: padding-box, border-box;
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3) !important;
+        transition: transform 0.3s, box-shadow 0.3s;
+        overflow: hidden;
+    }
+
+    /* Animated Border for Stat Cards */
+    .stat-card::after {
+        content: '';
+        position: absolute;
+        inset: 0;
+        border-radius: var(--radius-lg);
+        padding: 3px;
+        background: conic-gradient(from var(--stat-border-angle),
+                transparent 25%,
+                currentColor,
+                #ffffff,
+                currentColor,
+                transparent 75%);
+        -webkit-mask:
+            linear-gradient(#fff 0 0) content-box,
+            linear-gradient(#fff 0 0);
+        mask:
+            linear-gradient(#fff 0 0) content-box,
+            linear-gradient(#fff 0 0);
+        -webkit-mask-composite: xor;
+        mask-composite: exclude;
+        pointer-events: none;
+        z-index: 10;
+        animation: statBorderRotate 4s linear infinite;
+    }
+
+    @keyframes statBorderRotate {
+        to {
+            --stat-border-angle: 360deg;
+        }
+    }
+
+    /* Specific border colors for variety */
+    .stat-card:nth-child(1) {
+        /* Total Solved */
+        background-image: linear-gradient(#151520, #151520), linear-gradient(135deg, #F43F5E, #FB923C) !important;
+    }
+
+    .stat-card:nth-child(2) {
+        /* DSA */
+        background-image: linear-gradient(#151520, #151520), linear-gradient(135deg, #8B5CF6, #C084FC) !important;
+    }
+
+    .stat-card:nth-child(3) {
+        /* C++ */
+        background-image: linear-gradient(#151520, #151520), linear-gradient(135deg, #3B82F6, #60A5FA) !important;
+    }
+
+    .stat-card:nth-child(4) {
+        /* Python */
+        background-image: linear-gradient(#151520, #151520), linear-gradient(135deg, #EAB308, #FACC15) !important;
+    }
+
+    .stat-card:nth-child(5) {
+        /* Streak */
+        background-image: linear-gradient(#151520, #151520), linear-gradient(135deg, #10B981, #34D399) !important;
+    }
+
+    .stat-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 0 20px rgba(139, 92, 246, 0.3) !important;
+    }
+
+    .stat-label {
+        color: var(--text-muted);
+        font-size: 0.9rem;
+        font-weight: 600;
+    }
+
+    .stat-value {
+        font-size: 2rem;
+        font-weight: 800;
+        background: linear-gradient(135deg, var(--text-primary), var(--text-secondary));
+        -webkit-background-clip: text;
+        background-clip: text;
+        -webkit-text-fill-color: transparent;
+    }
+
+    /* Heatmap Section */
+    @property --heatmap-border-angle {
+        syntax: "<angle>";
+        initial-value: 0deg;
+        inherits: false;
+    }
+
+    .heatmap-card {
+        background: #151520;
+        border-radius: var(--radius-lg);
+        padding: 2rem;
+        margin-bottom: 2rem;
+        border: 3px solid transparent;
+        background-image: linear-gradient(#151520, #151520),
+            linear-gradient(135deg, #6366f1, #a855f7);
+        background-origin: border-box;
+        background-clip: padding-box, border-box;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        position: relative;
+        overflow: hidden;
+    }
+
+    /* Animated Border for Heatmap Card */
+    .heatmap-card::after {
+        content: '';
+        position: absolute;
+        inset: 0;
+        border-radius: var(--radius-lg);
+        padding: 3px;
+        background: conic-gradient(from var(--heatmap-border-angle),
+                transparent 25%,
+                #6366f1,
+                #ffffff,
+                #a855f7,
+                transparent 75%);
+        -webkit-mask:
+            linear-gradient(#fff 0 0) content-box,
+            linear-gradient(#fff 0 0);
+        mask:
+            linear-gradient(#fff 0 0) content-box,
+            linear-gradient(#fff 0 0);
+        -webkit-mask-composite: xor;
+        mask-composite: exclude;
+        pointer-events: none;
+        z-index: 10;
+        animation: heatmapBorderRotate 5s linear infinite;
+        filter: drop-shadow(0 0 6px #a855f7);
+    }
+
+    @keyframes heatmapBorderRotate {
+        to {
+            --heatmap-border-angle: 360deg;
+        }
+    }
+
+    .section-header {
+        font-size: 1.2rem;
+        font-weight: 700;
+        margin-bottom: 1.5rem;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+
+    .calendar-heatmap {
+        display: flex;
+        gap: 4px;
+        overflow-x: auto;
+        padding-bottom: 10px;
+    }
+
+    .heatmap-week {
+        display: flex;
+        flex-direction: column;
+        gap: 4px;
+    }
+
+    .heatmap-day {
+        width: 12px;
+        height: 12px;
+        background: var(--surface-hover);
+        border-radius: 2px;
+    }
+
+    .heatmap-day.level-1 {
+        background: rgba(16, 185, 129, 0.2);
+    }
+
+    .heatmap-day.level-2 {
+        background: rgba(16, 185, 129, 0.4);
+    }
+
+    .heatmap-day.level-3 {
+        background: rgba(16, 185, 129, 0.6);
+    }
+
+    .heatmap-day.level-4 {
+        background: rgba(16, 185, 129, 0.8);
+    }
+
+    .heatmap-day.level-5 {
+        background: #10b981;
+    }
+
+    /* Recent Activity */
+    .activity-list {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+    }
+
+    .activity-item {
+        background: var(--surface);
+        border: 1px solid var(--border);
+        border-radius: var(--radius-md);
+        padding: 1rem;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        transition: all 0.2s;
+    }
+
+    .activity-item:hover {
+        transform: translateX(5px);
+        border-color: var(--border-focus);
+    }
+
+    .activity-left {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+    }
+
+    .activity-icon {
+        width: 40px;
+        height: 40px;
+        border-radius: 8px;
+        background: rgba(59, 130, 246, 0.1);
+        color: #3b82f6;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .activity-info h4 {
+        font-size: 1rem;
+        margin-bottom: 0.2rem;
+    }
+
+    .activity-info span {
+        font-size: 0.8rem;
+        color: var(--text-muted);
+    }
+</style>
 
 </html>
