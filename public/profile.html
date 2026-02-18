@@ -29,8 +29,13 @@
         </div>
     </nav>
 
-    <!-- Animated Background -->
-    <div class="animated-bg"></div>
+    <div class="animated-bg">
+        <div class="code-snippets">
+            <span>const</span><span>if(done)</span><span>{}</span><span>[]</span>
+            <span>function</span><span>let</span><span>=></span><span>while</span>
+            <span>async</span><span>await</span><span>return</span><span>class</span>
+        </div>
+    </div>
 
     <div class="profile-container">
         <!-- Sidebar -->
@@ -1084,6 +1089,145 @@
     .activity-info span {
         font-size: 0.8rem;
         color: var(--text-muted);
+    }
+
+    /* Floating Code Particles */
+    .code-snippets {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+        z-index: 0;
+        opacity: 0.15;
+        font-family: 'Fira Code', monospace;
+        pointer-events: none;
+    }
+
+    .code-snippets span {
+        position: absolute;
+        color: var(--primary);
+        font-weight: bold;
+        white-space: nowrap;
+        animation: floatSnippet linear infinite;
+        text-shadow: 0 0 10px var(--primary);
+    }
+
+    .code-snippets span:nth-child(1) {
+        left: 10%;
+        animation-duration: 15s;
+        font-size: 1.2rem;
+    }
+
+    .code-snippets span:nth-child(2) {
+        left: 30%;
+        animation-duration: 22s;
+        font-size: 1.5rem;
+        animation-delay: -5s;
+    }
+
+    .code-snippets span:nth-child(3) {
+        left: 50%;
+        animation-duration: 18s;
+        font-size: 1rem;
+        animation-delay: -2s;
+    }
+
+    .code-snippets span:nth-child(4) {
+        left: 70%;
+        animation-duration: 25s;
+        font-size: 2rem;
+        animation-delay: -10s;
+    }
+
+    .code-snippets span:nth-child(5) {
+        left: 85%;
+        animation-duration: 20s;
+        font-size: 1.3rem;
+        animation-delay: -7s;
+    }
+
+    .code-snippets span:nth-child(6) {
+        left: 20%;
+        animation-duration: 28s;
+        font-size: 0.9rem;
+        animation-delay: -12s;
+    }
+
+    .code-snippets span:nth-child(7) {
+        left: 40%;
+        animation-duration: 21s;
+        font-size: 1.4rem;
+        animation-delay: -3s;
+    }
+
+    .code-snippets span:nth-child(8) {
+        left: 60%;
+        animation-duration: 19s;
+        font-size: 1.1rem;
+        animation-delay: -8s;
+    }
+
+    .code-snippets span:nth-child(9) {
+        left: 80%;
+        animation-duration: 24s;
+        font-size: 1.6rem;
+        animation-delay: -15s;
+    }
+
+    .code-snippets span:nth-child(10) {
+        left: 5%;
+        animation-duration: 30s;
+        font-size: 1.2rem;
+        animation-delay: -1s;
+    }
+
+    .code-snippets span:nth-child(11) {
+        left: 95%;
+        animation-duration: 26s;
+        font-size: 1.3rem;
+        animation-delay: -6s;
+    }
+
+    .code-snippets span:nth-child(12) {
+        left: 45%;
+        animation-duration: 23s;
+        font-size: 1rem;
+        animation-delay: -9s;
+    }
+
+    @keyframes floatSnippet {
+        0% {
+            transform: translateY(110vh) rotate(0deg);
+            opacity: 0;
+        }
+
+        10% {
+            opacity: 1;
+        }
+
+        90% {
+            opacity: 1;
+        }
+
+        100% {
+            transform: translateY(-10vh) rotate(360deg);
+            opacity: 0;
+        }
+    }
+
+    /* Refined Gradients */
+    @keyframes gradientShift {
+        0% {
+            background-position: 0% 50%;
+        }
+
+        50% {
+            background-position: 100% 50%;
+        }
+
+        100% {
+            background-position: 0% 50%;
+        }
     }
 </style>
 
