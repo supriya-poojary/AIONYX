@@ -17,6 +17,7 @@
     <!-- Theme CSS -->
     <link rel="stylesheet" href="css/theme.css">
 
+
     <style>
         :root {
             --primary: #a855f7;
@@ -141,8 +142,8 @@
         /* Floating Icons */
         .tech-icon {
             position: absolute;
-            color: rgba(168, 85, 247, 0.2);
-            font-size: 2rem;
+            color: rgba(168, 85, 247, 0.4);
+            font-size: 3.5rem;
             animation: floatIcon 6s ease-in-out infinite;
             z-index: 1;
         }
@@ -166,13 +167,40 @@
             -webkit-backdrop-filter: blur(20px);
             border: 1px solid rgba(255, 255, 255, 0.1);
             border-radius: 30px;
+            padding: 2.25rem 2.25rem;
+            width: 100%;
+            max-width: 400px;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5), 0 0 30px rgba(168, 85, 247, 0.1);
+            position: relative;
+            z-index: 10;
+        }
+
+        .covering-eyes .right-hand {
+            opacity: 1;
+            transform: translate(-30px, -60px) rotate(-45deg);
+        }
+
+        .covering-eyes .digital-eye {
+            opacity: 0.3;
+            transform: scale(0.8);
+        }
+
+        /* Login Card - Reverted and Stable */
+        .auth-card {
+            background: var(--card-bg);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 30px;
             padding: 3rem 2.5rem;
             width: 100%;
             max-width: 400px;
             box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5), 0 0 30px rgba(168, 85, 247, 0.1);
             position: relative;
             z-index: 10;
-            overflow: hidden;
+            overflow: visible;
+            margin-top: 50px;
+            /* Space for the floating robot */
         }
 
         /* Top Glow Bar */
@@ -231,7 +259,7 @@
 
         .auth-header {
             text-align: center;
-            margin-bottom: 2.5rem;
+            margin-bottom: 2rem;
         }
 
         .auth-icon-wrapper {
@@ -272,7 +300,7 @@
         }
 
         .form-group {
-            margin-bottom: 1.5rem;
+            margin-bottom: 1.25rem;
         }
 
         .form-label {
@@ -337,10 +365,10 @@
         }
 
         .auth-footer {
-            margin-top: 2rem;
+            margin-top: 1.5rem;
             text-align: center;
             border-top: 1px solid rgba(255, 255, 255, 0.05);
-            padding-top: 1.5rem;
+            padding-top: 1.25rem;
         }
 
         .auth-footer p {
@@ -379,56 +407,98 @@
             top: 15%;
             left: 10%;
             animation-delay: 0s;
-            color: rgba(56, 189, 248, 0.2);
+            color: rgba(56, 189, 248, 0.4);
         }
 
         .icon-js {
             top: 20%;
             right: 15%;
             animation-delay: 1s;
-            color: rgba(250, 204, 21, 0.2);
+            color: rgba(250, 204, 21, 0.4);
         }
 
         .icon-cpp {
             bottom: 20%;
             left: 15%;
             animation-delay: 2s;
-            color: rgba(96, 165, 250, 0.2);
+            color: rgba(96, 165, 250, 0.4);
         }
 
         .icon-react {
             bottom: 25%;
             right: 10%;
             animation-delay: 3s;
-            color: rgba(45, 212, 191, 0.2);
+            color: rgba(45, 212, 191, 0.4);
         }
 
         .icon-code {
             top: 50%;
             left: 5%;
             animation-delay: 1.5s;
-            font-size: 1.5rem;
+            font-size: 2.5rem;
         }
 
         .icon-term {
             top: 60%;
             right: 5%;
             animation-delay: 3.5s;
-            font-size: 1.5rem;
+            font-size: 2.5rem;
         }
 
         .icon-book {
             top: 8%;
             right: 30%;
             animation-delay: 2.5s;
-            font-size: 1.5rem;
+            font-size: 2.5rem;
         }
 
         .icon-atom {
             bottom: 10%;
             left: 40%;
             animation-delay: 0.5s;
-            font-size: 1.8rem;
+            font-size: 2.8rem;
+        }
+
+        .error-message {
+            background: var(--error-bg);
+            color: var(--error);
+            padding: 1rem;
+            border-radius: 12px;
+            font-size: 0.85rem;
+            margin-bottom: 1.5rem;
+            display: none;
+            border: 1px solid var(--error);
+            animation: slideInDown 0.3s ease;
+        }
+
+        .success-message {
+            background: var(--success-bg);
+            color: var(--success);
+            padding: 1rem;
+            border-radius: 12px;
+            font-size: 0.85rem;
+            margin-bottom: 1.5rem;
+            display: none;
+            border: 1px solid var(--success);
+            animation: slideInDown 0.3s ease;
+        }
+
+        @keyframes slideInDown {
+            from {
+                transform: translateY(-10px);
+                opacity: 0;
+            }
+
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .auth-card {
+                margin: 1rem;
+            }
         }
 
         @media (max-width: 480px) {
@@ -460,50 +530,57 @@
         <i class="fas fa-book tech-icon icon-book"></i>
         <i class="fas fa-atom tech-icon icon-atom"></i>
         <div
-            style="position: absolute; bottom: 20%; left: 15%; font-family: monospace; font-size: 2rem; font-weight: bold; color: rgba(96, 165, 250, 0.2); animation: floatIcon 6s ease-in-out infinite; animation-delay: 2s; z-index: 1;">
-            C+</div>
+            style="position: absolute; bottom: 20%; left: 15%; font-family: monospace; font-size: 3.5rem; font-weight: bold; color: rgba(96, 165, 250, 0.4); animation: floatIcon 6s ease-in-out infinite; animation-delay: 2s; z-index: 1;">
+            C++</div>
     </div>
 
     <!-- Login Card -->
     <div class="auth-card">
+
         <div class="auth-header">
             <div class="auth-icon-wrapper">
-                <i class="fas fa-shield-halved"></i>
+                <i class="fa-solid fa-shield-halved"></i>
             </div>
             <h1>Academic Access</h1>
             <p>Enter your credentials to continue</p>
         </div>
 
-        <div id="errorMessage" class="error-message"
-            style="display: none; background: rgba(239, 68, 68, 0.15); color: #fca5a5; padding: 0.75rem; border-radius: 8px; font-size: 0.85rem; margin-bottom: 1rem; border: 1px solid rgba(239, 68, 68, 0.3); text-align: center;">
-        </div>
-        <div id="successMessage" class="success-message"
-            style="display: none; background: rgba(34, 197, 94, 0.15); color: #86efac; padding: 0.75rem; border-radius: 8px; font-size: 0.85rem; margin-bottom: 1rem; border: 1px solid rgba(34, 197, 94, 0.3); text-align: center;">
-        </div>
+        <div id="errorMessage" class="error-message"></div>
+        <div id="successMessage" class="success-message"></div>
 
-        <form id="loginForm">
+        <form class="auth-form" id="loginForm">
             <div class="form-group">
-                <label class="form-label">Email Address</label>
+                <label for="email" class="form-label">Email Address</label>
                 <div class="input-wrapper">
-                    <input type="email" id="email" class="form-input" required placeholder="name@example.com">
+                    <input type="email" id="email" class="form-input" placeholder="name@example.com" required>
                 </div>
             </div>
+
             <div class="form-group">
-                <label class="form-label">Secure Password</label>
+                <label for="password" class="form-label">SECURE PASSWORD</label>
                 <div class="input-wrapper">
-                    <input type="password" id="password" class="form-input" required placeholder="••••••••">
+                    <input type="password" id="password" class="form-input" placeholder="••••••••" required>
                 </div>
             </div>
+
+            <div class="remember-me">
+                <input type="checkbox" id="remember">
+                <label for="remember">Keep me logged in</label>
+            </div>
+
             <button type="submit" class="btn-login" id="loginBtn">
-                Verify Access <i class="fas fa-arrow-right-to-bracket"></i>
+                <span>Verify Access</span>
+                <i class="fa-solid fa-arrow-right-to-bracket"></i>
             </button>
         </form>
 
         <div class="auth-footer">
-            <p>New candidate? <a href="student-signup">Create an Account</a></p>
-            <a href="/" class="back-link">
-                <i class="fas fa-chevron-left"></i> Return to Terminal
-            </a>
+            <p>New candidate? <a href="/student-signup">Create an Account</a></p>
+            <div style="margin-top: 1.5rem;">
+                <a href="/" class="back-link">
+                    <i class="fas fa-chevron-left"></i> Return to Terminal
+                </a>
+            </div>
         </div>
     </div>
 
@@ -564,6 +641,7 @@
                 loginBtn.innerHTML = 'Verify Access';
             }
         });
+
 
         // Auto-redirect disabled - users must explicitly login
         // Uncomment below if you want auto-redirect for already authenticated users

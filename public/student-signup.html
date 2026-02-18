@@ -17,6 +17,7 @@
     <!-- Theme CSS -->
     <link rel="stylesheet" href="css/theme.css">
 
+
     <style>
         :root {
             --auth-bg: #0a0a0f;
@@ -91,7 +92,7 @@
 
         .auth-info {
             background: linear-gradient(135deg, var(--primary), var(--secondary));
-            padding: 4rem;
+            padding: 2.5rem;
             color: white;
             display: flex;
             flex-direction: column;
@@ -150,12 +151,12 @@
         }
 
         .auth-form {
-            padding: 4rem;
+            padding: 2.5rem;
             background: var(--surface);
         }
 
         .form-header {
-            margin-bottom: 2.5rem;
+            margin-bottom: 1.5rem;
         }
 
         .form-header h2 {
@@ -271,6 +272,7 @@
 <body>
     <div class="auth-container">
         <div class="auth-card">
+
             <div class="auth-info">
                 <h1>Join the Elite</h1>
                 <p>Access the most comprehensive algorithmic training platform and accelerate your engineering career.
@@ -293,33 +295,33 @@
 
                 <form id="signupForm">
                     <div class="form-group">
-                        <label class="form-label">Full Name</label>
+                        <label class="form-label">FULL NAME</label>
                         <input type="text" id="name" class="form-input" required placeholder="John Doe">
                     </div>
                     <div class="form-group">
-                        <label class="form-label">Email Address</label>
+                        <label class="form-label">EMAIL ADDRESS</label>
                         <input type="email" id="email" class="form-input" required placeholder="name@example.com">
                     </div>
                     <div class="form-group">
-                        <label class="form-label">Secure Password</label>
+                        <label class="form-label">SECURE PASSWORD</label>
                         <input type="password" id="password" class="form-input" required
                             placeholder="Minimum 6 characters" minlength="6">
                     </div>
                     <div class="form-group">
-                        <label class="form-label">Confirm Password</label>
+                        <label class="form-label">CONFIRM PASSWORD</label>
                         <input type="password" id="confirmPassword" class="form-input" required
                             placeholder="Repeat password">
                     </div>
                     <button type="submit" class="btn-signup" id="signupBtn">Apply for Access</button>
-                </form>
-
-                <div class="auth-footer">
-                    <p>Already registered? <a href="student-login">Sign In</a></p>
-                    <div style="margin-top: 1rem;">
+                    <div style="margin-top: 1rem; text-align: center;">
                         <a href="/" style="color: var(--text-muted); font-size: 0.85rem;">
                             <i class="fas fa-arrow-left"></i> Return to Terminal
                         </a>
                     </div>
+                </form>
+
+                <div class="auth-footer">
+                    <p>Already registered? <a href="/student-login">Sign In</a></p>
                 </div>
             </div>
         </div>
@@ -380,6 +382,7 @@
                 signupBtn.innerHTML = 'Apply for Access';
             }
         });
+        // Logic
     </script>
 </body>
 
