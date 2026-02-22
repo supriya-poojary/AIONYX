@@ -78,16 +78,22 @@
             color: var(--text-main) !important;
         }
 
+        html {
+            overflow-y: auto !important;
+        }
+
         body {
             background-color: var(--bg-dark);
             font-family: 'Inter', sans-serif;
             color: var(--text-main);
             margin: 0;
-            overflow-y: auto;
+            overflow-y: auto !important;
             display: flex;
-            align-items: center;
+            align-items: flex-start;
             justify-content: center;
             min-height: 100vh;
+            padding: 40px 16px;
+            box-sizing: border-box;
         }
 
         /* Cosmic Background */
