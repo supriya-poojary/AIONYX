@@ -1,0 +1,1348 @@
+LESSON 1.1: Introduction to Variables
+EXERCISE:
+Hands-on Exercise
+            Create three variables: city with the name of your favorite city, temp with its current temperature, and is_sunny set to True or False. Print all three.
+
+SOLUTION:
+# Step 1: Create a variable for city
+city = "Tokyo"
+
+# Step 2: Create a variable for temperature (float)
+
+
+# Step 3: Create a variable for 'is_sunny' (boolean)
+
+
+# Step 4: Print them all
+print(city)
+-----------------------------------
+
+LESSON 1.2: Variable Naming Rules
+EXERCISE:
+Hands-on Exercise
+            Correct the illegal variable names in the editor so the code runs without errors.
+
+SOLUTION:
+# FIX THESE NAMES:
+my_first_place = "Gold"
+my_salary = 50000
+my_class = "Math"
+
+print("Success!")
+-----------------------------------
+
+LESSON 1.3: Integer Data Type
+EXERCISE:
+Hands-on Exercise
+            Create a variable base and exponent. Calculate base raised to the power of exponent using ** and print the result. Use large numbers to see Python's power!
+
+SOLUTION:
+base = 2
+exponent = 100
+
+# Calculate power and print result
+result = base ** exponent
+print(result)
+-----------------------------------
+
+LESSON 1.4: Floating Point Data Type
+EXERCISE:
+Hands-on Exercise
+            Calculate the area of a circle with radius = 5.5. Use the formula: area = 3.14 * radius * radius. Print the area.
+
+SOLUTION:
+radius = 5.5
+pi = 3.14
+
+# Calculate area
+area = pi * radius * radius
+print("Area of circle:", area)
+-----------------------------------
+
+LESSON 1.5: String Data Type
+EXERCISE:
+Hands-on Exercise
+            Create a variable full_name and assign it your name. Create another variable greeting that combined "Hello " + full_name. Print the greeting.
+
+SOLUTION:
+first_name = "Guido"
+last_name = "van Rossum"
+
+# Join them with a space and add a greeting
+full_name = first_name + " " + last_name
+greeting = "Hello " + full_name
+print(greeting)
+-----------------------------------
+
+LESSON 1.6: Boolean Data Type
+EXERCISE:
+Hands-on Exercise
+            Compare two numbers: a = 15 and b = 20. Create a variable is_greater that stores if a is greater than b. Print is_greater.
+
+SOLUTION:
+a = 15
+b = 20
+
+# Compare and store result
+is_greater = a > b
+print("Is a > b?", is_greater)
+-----------------------------------
+
+LESSON 1.7: Checking Data Types
+EXERCISE:
+Hands-on Exercise
+            We have a list of variables below. Print the type() of each one to see how Python treats them differently.
+
+SOLUTION:
+a = 100
+b = 100.0
+c = "100"
+d = True
+
+# Print types of a, b, c, and d
+print(type(a))
+print(type(b))
+print(type(c))
+print(type(d))
+-----------------------------------
+
+LESSON 1.8: Type Casting
+EXERCISE:
+Hands-on Exercise
+            Convert the string s = "50" into an integer and add 10 to it. Print the result. If you don't cast, Python will give a TypeError!
+
+SOLUTION:
+s = "50"
+
+# Convert s to int and add 10
+num = int(s) + 10
+print(num)
+-----------------------------------
+
+LESSON 1.9: Multiple Assignment
+EXERCISE:
+Hands-on Exercise
+            Assign your first_name, age, and country in one single line. Print all three variables.
+
+SOLUTION:
+# Assign in one line
+name, age, country = "John", 30, "USA"
+
+print(name)
+print(age)
+print(country)
+-----------------------------------
+
+LESSON 2.1: Input Function
+EXERCISE:
+Hands-on Exercise
+            Ask the user for their name using input(). Then, print a message saying "Welcome to AIONYX, [name]!".
+
+SOLUTION:
+# Ask for name
+user_name = input("Enter your name: ")
+
+# Print welcome message
+print(f"Welcome to AIONYX, {user_name}!")
+-----------------------------------
+
+LESSON 2.2: Type Conversion with Input
+EXERCISE:
+Hands-on Exercise
+            Ask the user for two numbers (use float() for decimals). Calculate their sum and print "The total is: [sum]".
+
+SOLUTION:
+num1 = float(input("Enter first number: "))
+num2 = float(input("Enter second number: "))
+
+# Calculate sum and print
+total = num1 + num2
+print("The total is:", total)
+-----------------------------------
+
+LESSON 2.3: Output using print()
+EXERCISE:
+Hands-on Exercise
+            Print the phrase "Knowledge is power" but use three separate strings inside a single print() function call.
+
+SOLUTION:
+# Print using three separate strings in one function call
+print("Knowledge", "is", "power")
+-----------------------------------
+
+LESSON 2.4: Printing Multiple Values
+EXERCISE:
+Hands-on Exercise
+            Create variables item = "Python" and level = 1. Print them together in a sentence like "Item: Python, Level: 1" using the comma method.
+
+SOLUTION:
+item = "Python"
+level = 1
+
+# Print them together
+print("Item:", item, "Level:", level)
+-----------------------------------
+
+LESSON 2.5: sep and end Parameters
+EXERCISE:
+Hands-on Exercise
+            Print three words: "Apple", "Banana", "Cherry". Use sep=" + " to separate them and end=" = Fruit Salad" at the end.
+
+SOLUTION:
+# Use sep and end parameters
+print("Apple", "Banana", "Cherry", sep=" + ", end=" = Fruit Salad")
+-----------------------------------
+
+LESSON 2.6: Escape Characters
+EXERCISE:
+Hands-on Exercise
+            Print a "shopping list" with items on different lines using only one print() function call and \n. Item 1: Milk, Item 2: Bread, Item 3: Eggs.
+
+SOLUTION:
+# Print the list using 
+ inside one string
+print("Milk\nBread\nEggs")
+-----------------------------------
+
+LESSON 2.7: f-Strings
+EXERCISE:
+Hands-on Exercise
+            Create variables brand = "Tesla" and model = "Model 3". Use an f-string to print "I want to drive a Tesla Model 3."
+
+SOLUTION:
+brand = "Tesla"
+model = "Model 3"
+
+# Use f-string
+message = f"I want to drive a {brand} {model}."
+print(message)
+-----------------------------------
+
+LESSON 2.8: Number Formatting
+EXERCISE:
+Hands-on Exercise
+            Calculate 10 / 3. Store it in a variable val. Use an f-string to print it formatted to exactly 3 decimal places.
+
+SOLUTION:
+val = 10 / 3
+
+# Format to 3 decimal places
+print(f"Result: {val:.3f}")
+-----------------------------------
+
+LESSON 3.1: Arithmetic Operators
+EXERCISE:
+Hands-on Exercise
+            Calculate the remainder when 100 is divided by 7 using the modulus operator. Print the result.
+
+SOLUTION:
+# Calculate remainder of 100 / 7
+remainder = 100 % 7
+print("Remainder:", remainder)
+-----------------------------------
+
+LESSON 3.2: Relational Operators
+EXERCISE:
+Hands-on Exercise
+            Check if 4^2 (4 squared) is equal to 16. Use ** for the power and == for the comparison. Print the result.
+
+SOLUTION:
+# Compare 4 squared with 16
+result = (4 ** 2) == 16
+print("Is 4^2 equal to 16?", result)
+-----------------------------------
+
+LESSON 3.3: Logical Operators
+EXERCISE:
+Hands-on Exercise
+            Create a variable age = 25. Write a condition that checks if age is greater than 18 and less than 30. Print the result.
+
+SOLUTION:
+age = 25
+
+# Check if age is between 18 and 30
+is_eligible = age > 18 and age < 30
+print("Is eligible?", is_eligible)
+-----------------------------------
+
+LESSON 3.4: Assignment Operators
+EXERCISE:
+Hands-on Exercise
+            Start with balance = 500. Use += to add 100 and then use -= to subtract 50. Print the final balance.
+
+SOLUTION:
+balance = 500
+
+# Use += and -=
+balance += 100
+balance -= 50
+
+print("Final Balance:", balance)
+-----------------------------------
+
+LESSON 3.5: Identity & Membership Operators
+EXERCISE:
+Hands-on Exercise
+            Check if the letter "p" is in the word "python". Remember that Python is case-sensitive!
+
+SOLUTION:
+word = "python"
+
+# Use 'in' to check for "p"
+result = "p" in word
+print("Is 'p' in word?", result)
+-----------------------------------
+
+LESSON 4.1: if Statement
+EXERCISE:
+Hands-on Exercise
+            Create a variable score = 90. Write an if statement that prints "Excellent!" if the score is greater than or equal to 80.
+
+SOLUTION:
+score = 90
+
+# Write your if statement here
+if score >= 80:
+    print("Excellent!")
+-----------------------------------
+
+LESSON 4.2: if–else Statement
+EXERCISE:
+Hands-on Exercise
+            Ask for a number using input(). Inform the user if the number is "Positive" or "Not Positive" (0 or negative).
+
+SOLUTION:
+num = int(input("Enter number: "))
+
+if num > 0:
+    print("Positive")
+else:
+    print("Not Positive")
+-----------------------------------
+
+LESSON 4.3: if–elif–else Ladder
+EXERCISE:
+Hands-on Exercise
+            Create a simple traffic light logic. If light == "Green", print "Go". If light == "Yellow", print "Slow down". Otherwise, print "Stop".
+
+SOLUTION:
+light = "Yellow"
+
+# Use if-elif-else
+if light == "Green":
+    print("Go")
+elif light == "Yellow":
+    print("Slow down")
+else:
+    print("Stop")
+-----------------------------------
+
+LESSON 4.4: Nested if Statements
+EXERCISE:
+Hands-on Exercise
+            We are checking a user's age and has_ticket. If age >= 18, print "Entry permitted". Inside that block, check if has_ticket is True. If so, print "Enjoy the show!".
+
+SOLUTION:
+age = 20
+has_ticket = True
+
+# Nested If
+if age >= 18:
+    print("Entry permitted")
+    if has_ticket:
+        print("Enjoy the show!")
+-----------------------------------
+
+LESSON 5.1: While Loop
+EXERCISE:
+Hands-on Exercise
+            Create a countdown. Start timer = 10. Use a while loop to print the timer value and decrease it by 1 each time until it reaches 0. After the loop, print "Blast off!".
+
+SOLUTION:
+timer = 10
+
+# Write while loop here
+while timer > 0:
+    print(timer)
+    timer -= 1
+
+print("Blast off!")
+-----------------------------------
+
+LESSON 5.2: For Loop
+EXERCISE:
+Hands-on Exercise
+            Iterate through the string word = "AIONYX". Print each character on a new line.
+
+SOLUTION:
+word = "AIONYX"
+
+# Loop through the string
+for char in word:
+    print(char)
+-----------------------------------
+
+LESSON 5.3: range() Function
+EXERCISE:
+Hands-on Exercise
+            Use range() to print all even numbers from 2 to 20 (inclusive).
+
+SOLUTION:
+# Use range(start, stop, step)
+for i in range(2, 21, 2):
+    print(i)
+-----------------------------------
+
+LESSON 5.4: Nested Loops
+EXERCISE:
+Hands-on Exercise
+            Print a 3x3 square of stars (*) using nested loops. Use end=" " in the inner print to stay on the same line, and an empty print() in the outer loop to start a new row.
+
+SOLUTION:
+# Outer loop for rows
+for i in range(3):
+    # Inner loop for columns
+    for j in range(3):
+        print("*", end=" ")
+    # New row
+    print()
+-----------------------------------
+
+LESSON 5.5: Break Statement
+EXERCISE:
+Hands-on Exercise
+            We are searching for the number 7 in a loop from 1 to 10. Once you find it, print "Found it!" and use break.
+
+SOLUTION:
+for i in range(1, 11):
+    if i == 7:
+        print("Found it!")
+        break
+    print("Checking:", i)
+-----------------------------------
+
+LESSON 5.6: Continue Statement
+EXERCISE:
+Hands-on Exercise
+            Loop from 1 to 5. Use continue to skip the number 3. You should see 1, 2, 4, 5 in the output.
+
+SOLUTION:
+for i in range(1, 6):
+    if i == 3:
+        continue
+    print(i)
+-----------------------------------
+
+LESSON 5.7: Pass Statement
+EXERCISE:
+Hands-on Exercise
+            We have an empty loop below that causes an error. Add pass inside the loop to make the code run correctly.
+
+SOLUTION:
+for i in range(10):
+    # Add pass here to avoid error
+    pass
+
+print("Code executed successfully!")
+-----------------------------------
+
+LESSON 6.1: String Creation
+EXERCISE:
+Hands-on Exercise
+            Create a triple-quoted string that contains your favorite poem or a 3-line description of yourself. Print it.
+
+SOLUTION:
+my_story = """I am a developer.
+I love solving problems.
+AIONYX is my tool."""
+
+print(my_story)
+-----------------------------------
+
+LESSON 6.2: String Indexing
+EXERCISE:
+Hands-on Exercise
+            Given word = "Developer", print the first character using index 0 and the last character using index -1.
+
+SOLUTION:
+word = "Developer"
+
+# Print first and last characters
+print("First:", word[0])
+print("Last:", word[-1])
+-----------------------------------
+
+LESSON 6.3: String Slicing
+EXERCISE:
+Hands-on Exercise
+            Extract the word "Python" from phrase = "Learn Python Now" using slicing. Print it.
+
+SOLUTION:
+phrase = "Learn Python Now"
+
+# Slice out "Python"
+python_word = phrase[6:12]
+print(python_word)
+-----------------------------------
+
+LESSON 6.4: String Methods
+EXERCISE:
+Hands-on Exercise
+            Clean up the string data = "   apple,banana,cherry   ". First, use .strip() to remove spaces, then use .upper() to make it caps. Print the final result.
+
+SOLUTION:
+data = "   apple,banana,cherry   "
+
+# Clean and convert
+cleaned = data.strip().upper()
+print(cleaned)
+-----------------------------------
+
+LESSON 6.5: String Immutability
+EXERCISE:
+Hands-on Exercise
+            Try to change the first letter of fruit = "apple" to "A". Since you can't do it directly, create a new variable new_fruit using slicing and concatenation: "A" + fruit[1:]. Print new_fruit.
+
+SOLUTION:
+fruit = "apple"
+
+# Create new string with capital A
+new_fruit = "A" + fruit[1:]
+print(new_fruit)
+-----------------------------------
+
+LESSON 6.6: String Formatting (Review)
+EXERCISE:
+Hands-on Exercise
+            Create a variable price = 99.99 and tax_rate = 0.1. Use an f-string to print "Total: [price + price*tax_rate]" formatted to 2 decimal places.
+
+SOLUTION:
+price = 99.99
+tax_rate = 0.1
+
+# Calculate and print total in one f-string
+print(f"Total: {price * (1 + tax_rate):.2f}")
+-----------------------------------
+
+LESSON 7.1: Creating Lists
+EXERCISE:
+Hands-on Exercise
+            Create a list called my_hobbies with three of your favorite activities as strings. Print the list.
+
+SOLUTION:
+my_hobbies = ["Coding", "Gaming", "Reading"]
+print(my_hobbies)
+-----------------------------------
+
+LESSON 7.2: Accessing List Elements
+EXERCISE:
+Hands-on Exercise
+            Given colors = ["Red", "Green", "Blue", "Yellow"], print the second color in the list (index 1) and the total number of colors using len().
+
+SOLUTION:
+colors = ["Red", "Green", "Blue", "Yellow"]
+
+# Print the 2nd item and the length
+print("Second color:", colors[1])
+print("Total colors:", len(colors))
+-----------------------------------
+
+LESSON 7.3: List Methods
+EXERCISE:
+Hands-on Exercise
+            Start with fruits = ["apple", "banana"]. Use .append() to add "cherry". Then use .insert() to put "orange" at index 1. Print the final list.
+
+SOLUTION:
+fruits = ["apple", "banana"]
+
+# Add "cherry" to end
+fruits.append("cherry")
+
+# Insert "orange" at index 1
+fruits.insert(1, "orange")
+
+print(fruits)
+-----------------------------------
+
+LESSON 7.4: List Slicing
+EXERCISE:
+Hands-on Exercise
+            Extract the first three items from the list scores = [95, 88, 72, 91, 85] and store them in top_three. Print it.
+
+SOLUTION:
+scores = [95, 88, 72, 91, 85]
+
+# Get first three items
+top_three = scores[:3]
+print(top_three)
+-----------------------------------
+
+LESSON 7.5: Nested Lists (2D)
+EXERCISE:
+Hands-on Exercise
+            We have a grid below. Access and print the number 9 using double brackets.
+
+SOLUTION:
+grid = [
+    [1, 2, 3],
+    [4, 5, 6],
+    [7, 8, 9]
+]
+
+# Access number 9
+val = grid[2][2]
+print("Found:", val)
+-----------------------------------
+
+LESSON 8.1: Tuples
+EXERCISE:
+Hands-on Exercise
+            Create a tuple called dimensions with three numbers: 1920, 1080, and 60. Print the second item using indexing.
+
+SOLUTION:
+dimensions = (1920, 1080, 60)
+
+# Print the 2nd item
+print("Dimension:", dimensions[1])
+-----------------------------------
+
+LESSON 8.2: Tuple Methods
+EXERCISE:
+Hands-on Exercise
+            We have a tuple votes = ("Yes", "No", "Yes", "Yes", "No"). Use .count() to find out how many "Yes" votes are in the tuple. Print the result.
+
+SOLUTION:
+votes = ("Yes", "No", "Yes", "Yes", "No")
+
+# Count "Yes" votes
+yes_count = votes.count("Yes")
+print("Total Yes:", yes_count)
+-----------------------------------
+
+LESSON 8.3: Sets
+EXERCISE:
+Hands-on Exercise
+            Create a set called unique_ids with the numbers 101, 102, 103, 101. Print the set to see how it handles the duplicate 101.
+
+SOLUTION:
+unique_ids = {101, 102, 103, 101}
+
+# Print the set
+print(unique_ids)
+-----------------------------------
+
+LESSON 8.4: Set Operations
+EXERCISE:
+Hands-on Exercise
+            Find the common items between set_a = {1, 2, 3} and set_b = {2, 3, 4} using .intersection(). Print the result.
+
+SOLUTION:
+set_a = {1, 2, 3}
+set_b = {2, 3, 4}
+
+# Find intersection
+common = set_a.intersection(set_b)
+print("Common items:", common)
+-----------------------------------
+
+LESSON 9.1: Dictionary Basics
+EXERCISE:
+Hands-on Exercise
+            Create a dictionary called car with keys "make", "model", and "year". Set them to any values you like. Print the dictionary.
+
+SOLUTION:
+car = {
+    "make": "Ford",
+    "model": "Mustang",
+    "year": 1964
+}
+print(car)
+-----------------------------------
+
+LESSON 9.2: Accessing Dictionary Values
+EXERCISE:
+Hands-on Exercise
+            Given the user dictionary below, access the "email" using the square bracket method and print it.
+
+SOLUTION:
+user = {
+    "username": "coder123",
+    "email": "hello@aionyx.com",
+    "status": "active"
+}
+
+# Access and print email
+print("Email:", user["email"])
+-----------------------------------
+
+LESSON 9.3: Updating Dictionary
+EXERCISE:
+Hands-on Exercise
+            Update the car dictionary. Change the "year" to 2024 and add a new key "color" with the value "Red". Print the dictionary.
+
+SOLUTION:
+car = {"brand": "Tesla", "year": 2023}
+
+# Update year
+car["year"] = 2024
+
+# Add color
+car["color"] = "Red"
+
+print(car)
+-----------------------------------
+
+LESSON 9.4: Dictionary Methods
+EXERCISE:
+Hands-on Exercise
+            Use .pop() to remove the "model" from the bike dictionary. Then print all remaining keys using .keys().
+
+SOLUTION:
+bike = {"brand": "Yamaha", "model": "R1", "year": 2022}
+
+# Remove model
+bike.pop("model")
+
+# Print keys
+print("Remaining Keys:", bike.keys())
+-----------------------------------
+
+LESSON 9.5: Nested Dictionaries
+EXERCISE:
+Hands-on Exercise
+            Access and print the "year" of "child2" from the myfamily dictionary.
+
+SOLUTION:
+myfamily = {
+  "child1" : {"name" : "Emil", "year" : 2004},
+  "child2" : {"name" : "Tobias", "year" : 2007}
+}
+
+# Access child2's year
+print("Child 2 Year:", myfamily["child2"]["year"])
+-----------------------------------
+
+LESSON 10.1: Defining Functions
+EXERCISE:
+Hands-on Exercise
+            Define a function called greet() that prints "Welcome to Python!". Call the function after defining it.
+
+SOLUTION:
+def greet():
+    # Print welcome message
+    print("Welcome to Python!")
+
+# Call the function
+greet()
+-----------------------------------
+
+LESSON 10.2: Function Parameters
+EXERCISE:
+Hands-on Exercise
+            Create a function square_num(n) that takes a number and prints its square (n * n). Call it with the number 5.
+
+SOLUTION:
+def square_num(n):
+    print(n * n)
+
+# Call with 5
+square_num(5)
+-----------------------------------
+
+LESSON 10.3: The Return Statement
+EXERCISE:
+Hands-on Exercise
+            Write a function multiply(a, b) that returns the product of a and b. Store the result in a variable val and print it.
+
+SOLUTION:
+def multiply(a, b):
+    return a * b
+
+# Get returned value
+val = multiply(10, 5)
+print("Result:", val)
+-----------------------------------
+
+LESSON 10.4: Default Arguments
+EXERCISE:
+Hands-on Exercise
+            Create a function power(base, exponent=2). It should return base ** exponent. Call it once with only power(10) (should return 100) and once with power(2, 3) (should return 8).
+
+SOLUTION:
+def power(base, exponent=2):
+    return base ** exponent
+
+# Use default
+print("10 squared:", power(10))
+
+# Override default
+print("2 cubed:", power(2, 3))
+-----------------------------------
+
+LESSON 10.5: Keyword & Arbitrary Arguments
+EXERCISE:
+Hands-on Exercise
+            Write a function sum_all(*nums) that uses sum(nums) to return the total of any number of arguments. Call it with sum_all(1, 2, 3, 4) and print the result.
+
+SOLUTION:
+def sum_all(*nums):
+    return sum(nums)
+
+# Call with multiple numbers
+print("Total:", sum_all(1, 2, 3, 4, 5))
+-----------------------------------
+
+LESSON 10.6: Lambda Functions
+EXERCISE:
+Hands-on Exercise
+            Create a lambda function that takes one argument x and returns x * 10. Call it with 7 and print the result.
+
+SOLUTION:
+ten_times = lambda x : x * 10
+
+# Call lambda
+print("Result:", ten_times(7))
+-----------------------------------
+
+LESSON 11.1: Introduction to Recursion
+EXERCISE:
+Hands-on Exercise
+            Write a recursive function count_down(n) that prints the number n and then calls itself with n - 1, only if n is greater than 0. Call it with 3.
+
+SOLUTION:
+def count_down(n):
+    if n > 0:
+        print(n)
+        count_down(n - 1)
+
+# Call with 3
+count_down(3)
+-----------------------------------
+
+LESSON 11.2: The Base Case
+EXERCISE:
+Hands-on Exercise
+            Identify the base case in the factorial example: if n == 1: return 1. Now, write a recursive function sum_to(n) that returns the sum of all numbers from n down to 1. The base case should be if n == 1: return 1.
+
+SOLUTION:
+def sum_to(n):
+    # Base case
+    if n == 1:
+        return 1
+    # Recursive step
+    return n + sum_to(n - 1)
+
+print("Sum to 5:", sum_to(5))
+-----------------------------------
+
+LESSON 11.3: Recursive Function Flow
+EXERCISE:
+Hands-on Exercise
+            Trace the flow of sum_to(3). It calls sum_to(2), which calls sum_to(1). Then sum_to(1) returns 1, and the math starts happening: 2 + 1 = 3, then 3 + 3 = 6. Run the code below to see the result.
+
+SOLUTION:
+def sum_to(n):
+    if n == 1:
+        return 1
+    return n + sum_to(n - 1)
+
+result = sum_to(3)
+print("Final result:", result)
+-----------------------------------
+
+LESSON 12.1: Opening Files
+EXERCISE:
+Hands-on Exercise
+            Try to open a file named "test.txt" in write mode. Since we don't have real files in this browser environment, we'll use a try-except block to "simulate" the action and handle potential errors.
+
+SOLUTION:
+try:
+    f = open("test.txt", "w")
+    print("File opened successfully!")
+    f.close()
+except Exception as e:
+    print("Action simulated. In a real environment, this would create 'test.txt'.")
+-----------------------------------
+
+LESSON 12.2: Reading Files
+EXERCISE:
+Hands-on Exercise
+            Write out the code you would use to read exactly 10 characters from a file named "data.txt".
+
+SOLUTION:
+# Code to read 10 characters
+# f = open("data.txt", "r")
+# print(f.read(10))
+# f.close()
+print("To read 10 chars, use f.read(10)")
+-----------------------------------
+
+LESSON 12.3: Writing & Overwriting
+EXERCISE:
+Hands-on Exercise
+            Imagine you have a file "notes.txt". Use "w" mode to write "Hello World" into it. (Simulation below)
+
+SOLUTION:
+print("Opening in 'w' mode will overwrite the file.")
+# f = open("notes.txt", "w")
+# f.write("Hello World")
+# f.close()
+-----------------------------------
+
+LESSON 12.4: Appending Content
+EXERCISE:
+Hands-on Exercise
+            Simulate appending "End of file" to a file named "report.txt". Use \n to ensure it starts on a new line.
+
+SOLUTION:
+print("Appending text to report.txt...")
+# f = open("report.txt", "a")
+# f.write("\nEnd of file")
+# f.close()
+-----------------------------------
+
+LESSON 12.5: The 'with' Statement
+EXERCISE:
+Hands-on Exercise
+            Use the with block to write "Safe and sound" into a file named "secure.txt".
+
+SOLUTION:
+# Using 'with' for auto-closing
+with open("secure.txt", "w") as f:
+    f.write("Safe and sound")
+print("File written and closed safely!")
+-----------------------------------
+
+LESSON 13.1: Types of Errors
+EXERCISE:
+Hands-on Exercise
+            Look at the code below. It has a Runtime Error. Can you guess what will happen when you run it? (Hint: You can't divide by zero!)
+
+SOLUTION:
+x = 10
+# This will cause a ZeroDivisionError
+print(x / 0)
+-----------------------------------
+
+LESSON 13.2: Try–Except
+EXERCISE:
+Hands-on Exercise
+            We are trying to print a variable y that hasn't been defined yet. Wrap the print in a try-except block to catch the NameError and print "Variable y is not defined."
+
+SOLUTION:
+try:
+    # y is not defined
+    print(y)
+except NameError:
+    print("Variable y is not defined.")
+-----------------------------------
+
+LESSON 13.3: Else & Finally
+EXERCISE:
+Hands-on Exercise
+            Complete the code below. Add an else block that prints "Calculation successful" and a finally block that prints "Process complete".
+
+SOLUTION:
+try:
+    result = 10 / 2
+except ZeroDivisionError:
+    print("Error!")
+else:
+    print("Calculation successful")
+finally:
+    print("Process complete")
+-----------------------------------
+
+LESSON 13.4: Raising Exceptions
+EXERCISE:
+Hands-on Exercise
+            Write a condition that checks if score > 100. If it is, raise an Exception with the message "Invalid score".
+
+SOLUTION:
+score = 150
+
+# Raise exception if score > 100
+if score > 100:
+    raise Exception("Invalid score")
+-----------------------------------
+
+LESSON 14.1: Classes & Objects
+EXERCISE:
+Hands-on Exercise
+            Create a class named Car with a property brand = "Tesla". Create an object of this class and print its brand.
+
+SOLUTION:
+class Car:
+    brand = "Tesla"
+
+# Create object
+my_car = Car()
+print(my_car.brand)
+-----------------------------------
+
+LESSON 14.2: The __init__() Constructor
+EXERCISE:
+Hands-on Exercise
+            Create a Student class with an __init__ method that takes name and grade. Create a student "Alice" with grade "A" and print her name.
+
+SOLUTION:
+class Student:
+    def __init__(self, name, grade):
+        self.name = name
+        self.grade = grade
+
+# Create Alice
+s1 = Student("Alice", "A")
+print("Student Name:", s1.name)
+-----------------------------------
+
+LESSON 14.3: Instance & Class Methods
+EXERCISE:
+Hands-on Exercise
+            Add a method intro() to the Student class from before. It should print "My name is [name] and I am in grade [grade]". Call it for your student object.
+
+SOLUTION:
+class Student:
+    def __init__(self, name, grade):
+        self.name = name
+        self.grade = grade
+
+    def intro(self):
+        print(f"My name is {self.name} and I am in grade {self.grade}")
+
+s1 = Student("Alice", "A")
+s1.intro()
+-----------------------------------
+
+LESSON 14.4: Inheritance
+EXERCISE:
+Hands-on Exercise
+            Create a child class ElectricCar that inherits from Car. Add a method charge() that prints "Battery charging...".
+
+SOLUTION:
+class Car:
+    def drive(self):
+        print("Driving...")
+
+class ElectricCar(Car):
+    def charge(self):
+        print("Battery charging...")
+
+my_tesla = ElectricCar()
+my_tesla.drive()  # Inherited
+my_tesla.charge() # Unique to child
+-----------------------------------
+
+LESSON 14.5: Polymorphism
+EXERCISE:
+Hands-on Exercise
+            Create two classes, Cat and Dog. Both should have a method speak(). Cat should print "Meow" and Dog should print "Woof". Create a list of both and loop through them, calling speak() on each.
+
+SOLUTION:
+class Cat:
+    def speak(self): print("Meow")
+
+class Dog:
+    def speak(self): print("Woof")
+
+animals = [Cat(), Dog()]
+
+for animal in animals:
+    animal.speak()
+-----------------------------------
+
+LESSON 14.6: Encapsulation (Private Members)
+EXERCISE:
+Hands-on Exercise
+            Try to access the private __balance directly from a BankAccount object. See if it throws an error!
+
+SOLUTION:
+class BankAccount:
+    def __init__(self, balance):
+        self.__balance = balance
+
+acc = BankAccount(1000)
+
+try:
+    print(acc.__balance) # This should fail
+except AttributeError:
+    print("Cannot access private member directly!")
+-----------------------------------
+
+LESSON 15.1: Importing Modules
+EXERCISE:
+Hands-on Exercise
+            Import the platform module and print platform.system() to see your current Operating System.
+
+SOLUTION:
+import platform
+
+# Print OS name
+print("Operating System:", platform.system())
+-----------------------------------
+
+LESSON 15.2: Built-in Modules
+EXERCISE:
+Hands-on Exercise
+            Import random and print a random number between 1 and 100 using random.randint(1, 100).
+
+SOLUTION:
+import random
+
+# Generate random number
+num = random.randint(1, 100)
+print("Random Number:", num)
+-----------------------------------
+
+LESSON 15.3: Creating Custom Modules
+EXERCISE:
+Hands-on Exercise
+            Imagine you have a file calc.py with a function add(a, b). Write the code to import only the add function from calc using the from ... import ... syntax.
+
+SOLUTION:
+# Code to import specific function
+# from calc import add
+
+# result = add(5, 5)
+print("Use: from module import function")
+-----------------------------------
+
+LESSON 15.4: pip & External Packages
+EXERCISE:
+Hands-on Exercise
+            If you wanted to install the famous requests library for making web requests, what command would you type in your terminal?
+
+SOLUTION:
+# Type the command as a string to "answer"
+command = "pip install requests"
+print("Command to run:", command)
+-----------------------------------
+
+LESSON 16.1: List Comprehension
+EXERCISE:
+Hands-on Exercise
+            Given nums = [1, 2, 3, 4, 5], use list comprehension to create a new list squares containing the square of each number. Print it.
+
+SOLUTION:
+nums = [1, 2, 3, 4, 5]
+
+# Use list comprehension
+squares = [n**2 for n in nums]
+print(squares)
+-----------------------------------
+
+LESSON 16.2: Iterators & Generators
+EXERCISE:
+Hands-on Exercise
+            Create a generator even_gen(n) that yields even numbers from 0 up to n. Use it in a loop to print even numbers up to 6.
+
+SOLUTION:
+def even_gen(n):
+    for i in range(0, n + 1, 2):
+        yield i
+
+# Use the generator
+for num in even_gen(6):
+    print(num)
+-----------------------------------
+
+LESSON 16.3: Decorators
+EXERCISE:
+Hands-on Exercise
+            Think of a decorator as a "Custom Envelope" for a letter. Run the code below to see how the decorator adds extra behavior to the say_hi function.
+
+SOLUTION:
+def alert_decorator(func):
+    def wrapper():
+        print("[ALERT] Function is starting!")
+        func()
+        print("[ALERT] Function is finished!")
+    return wrapper
+
+@alert_decorator
+def run_task():
+    print("Task is running...")
+
+run_task()
+-----------------------------------
+
+LESSON 16.4: *args and **kwargs
+EXERCISE:
+Hands-on Exercise
+            Write a function show_info(**data) that prints each key and value from the kwargs dictionary. Call it with show_info(name="Aionyx", version="1.0").
+
+SOLUTION:
+def show_info(**data):
+    for key, value in data.items():
+        print(f"{key}: {value}")
+
+show_info(name="Aionyx", version="1.0")
+-----------------------------------
+
+LESSON 17.1: Stacks (LIFO)
+EXERCISE:
+Hands-on Exercise
+            Create a stack using a list. Push the numbers 10 and 20. Then pop the top item and print it. It should be 20.
+
+SOLUTION:
+stack = []
+
+# Push items
+stack.append(10)
+stack.append(20)
+
+# Pop top item
+top = stack.pop()
+print("Popped item:", top)
+print("Remaining stack:", stack)
+-----------------------------------
+
+LESSON 17.2: Queues (FIFO)
+EXERCISE:
+Hands-on Exercise
+            Create a queue customers = ["Alice", "Bob"]. Add "Charlie" to the end. Then pop(0) to serve the first customer and print their name.
+
+SOLUTION:
+customers = ["Alice", "Bob"]
+
+# Enqueue
+customers.append("Charlie")
+
+# Dequeue first customer
+first = customers.pop(0)
+print("Serving:", first)
+print("Remaining line:", customers)
+-----------------------------------
+
+LESSON 17.3: Linear Search
+EXERCISE:
+Hands-on Exercise
+            Search for the number 42 in the list [10, 23, 42, 55, 90]. Print the index where it's found.
+
+SOLUTION:
+nums = [10, 23, 42, 55, 90]
+target = 42
+
+def find_index(arr, x):
+    for i in range(len(arr)):
+        if arr[i] == x:
+            return i
+    return -1
+
+print("Found 42 at index:", find_index(nums, target))
+-----------------------------------
+
+LESSON 17.4: Sorting (Bubble Sort Intro)
+EXERCISE:
+Hands-on Exercise
+            Use Python's built-in sorted() function to sort [5, 2, 9, 1, 5, 6] in ascending order. Print the result.
+
+SOLUTION:
+unsorted_list = [5, 2, 9, 1, 5, 6]
+
+# Sort the list
+sorted_list = sorted(unsorted_list)
+print("Original:", unsorted_list)
+print("Sorted:", sorted_list)
+-----------------------------------
+
+LESSON 18.1: Project: Smart Calculator
+EXERCISE:
+Hands-on Exercise
+            Run the starter code below. Try adding your own function for multiply and call it within the main loop.
+
+SOLUTION:
+def add(x, y): return x + y
+def subtract(x, y): return x - y
+
+print("--- Smart Calc ---")
+print("1. Add\n2. Subtract")
+choice = input("Select (1/2): ")
+
+num1 = float(input("Enter first number: "))
+num2 = float(input("Enter second number: "))
+
+if choice == '1':
+    print("Result:", add(num1, num2))
+elif choice == '2':
+    print("Result:", subtract(num1, num2))
+-----------------------------------
+
+LESSON 18.2: Project: Number Guessing Game
+EXERCISE:
+Hands-on Exercise
+            Run the code and try to guess the number. Can you add a variable attempts that counts how many times the user guessed?
+
+SOLUTION:
+import random
+
+target = random.randint(1, 10)
+print("I'm thinking of a number between 1 and 10.")
+
+while True:
+    guess = int(input("Your guess: "))
+    if guess == target:
+        print("Correct! You won!")
+        break
+    else:
+        print("Try again!")
+-----------------------------------
+
+LESSON 18.3: Project: Student Management
+EXERCISE:
+Hands-on Exercise
+            The code below defines a Student and adds one to a list. Run it, then try adding another student called "Bob" with grade "B".
+
+SOLUTION:
+class Student:
+    def __init__(self, name, grade):
+        self.name = name
+        self.grade = grade
+
+students = []
+students.append(Student("Alice", "A"))
+
+# Display all
+print("Student List:")
+for s in students:
+    print(f"- {s.name}: {s.grade}")
+-----------------------------------
+
+LESSON 18.4: Project: Password Generator
+EXERCISE:
+Hands-on Exercise
+            Run the generator below. Can you modify it to make the password 12 characters long instead of 8?
+
+SOLUTION:
+import random
+
+chars = "abcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*"
+password = ""
+
+for i in range(8):
+    password += random.choice(chars)
+
+print("Your new password:", password)
+-----------------------------------
+
+LESSON 18.5: Project: To-Do List (CLI)
+EXERCISE:
+Hands-on Exercise
+            This is a complete loop-based app. Run it and try adding "Buy Milk". Then type show to see it.
+
+SOLUTION:
+tasks = []
+
+while True:
+    print("\n1. add [task]\n2. show\n3. exit")
+    action = input("> ").split()
+    
+    if action[0] == "add":
+        tasks.append(" ".join(action[1:]))
+        print("Task added!")
+    elif action[0] == "show":
+        print("Tasks:", tasks)
+    elif action[0] == "exit":
+        break
+-----------------------------------
+

@@ -372,6 +372,27 @@
     <div class="workspace">
         <!-- Content -->
         <div class="content-panel">
+            <div style="padding: 15px 30px 10px 30px; display:flex; justify-content: flex-end;">
+                <button id="btnShowSolution" class="btn-nav"
+                    style="padding: 6px 12px; font-size: 0.85rem; color: #fbbf24; border-color: rgba(251, 191, 36, 0.3);"><i
+                        class="fas fa-lightbulb"></i> View Solution</button>
+            </div>
+
+            <div id="solutionBox"
+                style="display: none; padding: 20px 30px; background: rgba(251, 191, 36, 0.05); border-bottom: 1px solid var(--border);">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
+                    <h4 style="margin:0; color: #fbbf24; font-size: 1rem;"><i class="fas fa-check-circle"></i> Solution
+                        Code</h4>
+                    <button
+                        onclick="document.getElementById('solutionBox').style.display = 'none'; document.getElementById('btnShowSolution').innerHTML = '<i class=\'fas fa-lightbulb\'></i> View Solution';"
+                        class="btn-nav" title="Close Solution"
+                        style="padding: 4px 8px; font-size: 1.2rem; border:none; background: transparent; color: #fbbf24; cursor: pointer;"><i
+                            class="fas fa-times"></i></button>
+                </div>
+                <pre id="solutionCodeDisplay"
+                    style="white-space: pre-wrap; font-family: 'Fira Code', monospace; font-size: 0.85rem; color: #d4d4d8; background: #000; padding: 15px; border-radius: 6px; border: 1px solid var(--border); overflow-x: auto; margin:0;"></pre>
+            </div>
+
             <div class="content-scroll" id="lessonContent">
                 <!-- Injected via JS -->
                 <div style="text-align: center; margin-top: 50px;">
@@ -467,6 +488,30 @@
             lessonTitleEl.textContent = data.title;
             lessonContentEl.innerHTML = data.content;
             if (editor) editor.setValue(data.code);
+
+            // Solution Box Logic
+            const solutionDisplay = document.getElementById('solutionCodeDisplay');
+            const btnShowSolution = document.getElementById('btnShowSolution');
+            const box = document.getElementById('solutionBox');
+
+            if (solutionDisplay && btnShowSolution && box) {
+                solutionDisplay.textContent = data.solutionCode || "# No solution provided for this lesson.";
+
+                // reset visibility when loading new lesson
+                box.style.display = 'none';
+                btnShowSolution.innerHTML = '<i class="fas fa-lightbulb"></i> View Solution';
+
+                btnShowSolution.onclick = () => {
+                    if (box.style.display === 'none') {
+                        box.style.display = 'block';
+                        btnShowSolution.innerHTML = '<i class="fas fa-eye-slash"></i> Hide Solution';
+                        try { box.scrollIntoView({ behavior: "smooth", block: "start" }); } catch (e) { }
+                    } else {
+                        box.style.display = 'none';
+                        btnShowSolution.innerHTML = '<i class="fas fa-lightbulb"></i> View Solution';
+                    }
+                };
+            }
 
             // Check completion status
             checkCompletion(id);
