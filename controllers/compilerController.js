@@ -37,7 +37,12 @@ exports.runCpp = (req, res) => {
                 fs.unlink(filePath, () => { });
 
                 // g++ not found — fall back to Piston
-                if (compileErr.code === 127 || (compileErr.message && compileErr.message.includes('ENOENT'))) {
+                const isNotFound = compileErr.code === 127 ||
+                    (compileErr.message && compileErr.message.includes('ENOENT')) ||
+                    (stderr && stderr.includes('is not recognized')) ||
+                    (compileErr.message && compileErr.message.includes('is not recognized'));
+
+                if (isNotFound) {
                     console.log('[Compiler] g++ not found locally, using Piston API...');
                     return runViaPiston(code, res);
                 }
