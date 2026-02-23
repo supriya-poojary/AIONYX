@@ -1,0 +1,712 @@
+/* ════════════════════════════════════════════════
+   ELITE COURSE SECTIONS STYLE
+════════════════════════════════════════════════ */
+
+/* ── Advanced Background System ── */
+.elite-mesh-bg {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    background-color: #030014;
+    background-image:
+        radial-gradient(at 0% 0%, rgba(139, 92, 246, 0.15) 0, transparent 50%),
+        radial-gradient(at 100% 100%, rgba(6, 182, 212, 0.1) 0, transparent 50%),
+        radial-gradient(at 50% 50%, rgba(236, 72, 153, 0.05) 0, transparent 50%);
+    animation: meshPulse 15s ease-in-out infinite alternate;
+}
+
+.elite-mesh-bg::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: url('data:image/svg+xml,%3Csvg viewBox=\"0 0 200 200\" xmlns=\"http://www.w3.org/2000/svg\"%3E%3Cfilter id=\"noiseFilter\"%3E%3CfeTurbulence type=\"fractalNoise\" baseFrequency=\"0.65\" numOctaves=\"3\" stitchTiles=\"stitch\"/%3E%3C/filter%3E%3Crect width=\"100%25\" height=\"100%25\" filter=\"url(%23noiseFilter)\"/%3E%3C/svg%3E');
+    opacity: 0.15;
+    mix-blend-mode: overlay;
+}
+
+@keyframes meshPulse {
+    0% {
+        transform: scale(1);
+        opacity: 0.8;
+    }
+
+    100% {
+        transform: scale(1.1);
+        opacity: 1;
+    }
+}
+
+/* ── Hero Banners ── */
+.extra-course-hero {
+    position: relative;
+    min-height: 580px;
+    display: flex;
+    align-items: center;
+    padding: 120px 0;
+    overflow: hidden;
+    background: #030014;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.extra-hero-bg {
+    position: absolute;
+    inset: 0;
+    background-size: cover;
+    background-position: center;
+    opacity: 0.3;
+    filter: saturate(1.2) brightness(0.5);
+    transform: scale(1.04);
+    transition: transform 10s linear;
+    z-index: 0;
+    mix-blend-mode: luminosity;
+}
+
+.extra-course-hero:hover .extra-hero-bg {
+    transform: scale(1.1);
+    opacity: 0.4;
+}
+
+.cpp-hero-img {
+    background-image: url('https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&q=80&w=2070');
+}
+
+.python-hero-img {
+    background-image: url('https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?auto=format&fit=crop&q=80&w=2070');
+}
+
+.extra-course-hero-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(3, 0, 20, 0.9) 0%, rgba(3, 0, 20, 0.6) 50%, rgba(3, 0, 20, 0.9) 100%);
+    z-index: 1;
+}
+
+.extra-course-hero-content {
+    position: relative;
+    z-index: 5;
+    max-width: 750px;
+}
+
+.extra-course-badge {
+    display: inline-block;
+    padding: 8px 20px;
+    border-radius: 100px;
+    font-size: 0.75rem;
+    font-weight: 800;
+    letter-spacing: 3px;
+    background: rgba(var(--badge-color-rgb, 139, 92, 246), 0.1);
+    color: var(--badge-color);
+    border: 1px solid rgba(var(--badge-color-rgb, 139, 92, 246), 0.3);
+    margin-bottom: 30px;
+    text-transform: uppercase;
+    box-shadow: 0 0 20px rgba(var(--badge-color-rgb, 139, 92, 246), 0.2);
+    backdrop-filter: blur(10px);
+}
+
+.extra-course-title {
+    font-size: clamp(2.5rem, 6vw, 4rem);
+    font-weight: 900;
+    line-height: 1.1;
+    letter-spacing: -0.04em;
+    color: #ffffff;
+    margin-bottom: 24px;
+    text-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+}
+
+.extra-course-subtitle {
+    font-size: 1.25rem;
+    line-height: 1.7;
+    color: rgba(255, 255, 255, 0.75);
+    margin-bottom: 40px;
+    max-width: 600px;
+}
+
+.extra-course-meta {
+    display: flex;
+    gap: 16px;
+    margin-bottom: 40px;
+    flex-wrap: wrap;
+}
+
+.meta-chip {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: rgba(255, 255, 255, 0.8);
+    padding: 8px 18px;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 100px;
+    backdrop-filter: blur(10px);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+.meta-chip i {
+    font-size: 1.1rem;
+}
+
+.extra-course-cta-btn {
+    display: inline-flex;
+    align-items: center;
+    padding: 18px 42px;
+    background: linear-gradient(135deg, var(--primary), var(--secondary));
+    color: white;
+    font-weight: 800;
+    font-size: 1.1rem;
+    border-radius: 14px;
+    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    box-shadow: 0 15px 35px rgba(139, 92, 246, 0.4), inset 0 2px 0 rgba(255, 255, 255, 0.2);
+    text-decoration: none;
+    position: relative;
+    overflow: hidden;
+}
+
+.extra-course-cta-btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transition: left 0.5s ease;
+}
+
+.extra-course-cta-btn:hover::before {
+    left: 100%;
+}
+
+.extra-course-cta-btn:hover {
+    transform: translateY(-5px) scale(1.02);
+    box-shadow: 0 25px 50px rgba(139, 92, 246, 0.6);
+}
+
+/* ── Elite Double Marquee ── */
+.elite-marquee-container {
+    padding: 40px 0;
+    background: #030014;
+    border-top: 1px solid rgba(255, 255, 255, 0.03);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.03);
+    position: relative;
+    overflow: hidden;
+}
+
+.elite-marquee-container::before,
+.elite-marquee-container::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    width: 15vw;
+    height: 100%;
+    z-index: 2;
+    pointer-events: none;
+}
+
+.elite-marquee-container::before {
+    left: 0;
+    background: linear-gradient(to right, #030014, transparent);
+}
+
+.elite-marquee-container::after {
+    right: 0;
+    background: linear-gradient(to left, #030014, transparent);
+}
+
+.courses-marquee-inner {
+    display: flex;
+    width: max-content;
+}
+
+.left-to-right {
+    animation: marqueeLtoR 35s linear infinite;
+}
+
+.right-to-left {
+    animation: marqueeRtoL 40s linear infinite;
+}
+
+@keyframes marqueeLtoR {
+    0% {
+        transform: translateX(-50%);
+    }
+
+    100% {
+        transform: translateX(0);
+    }
+}
+
+@keyframes marqueeRtoL {
+    0% {
+        transform: translateX(0);
+    }
+
+    100% {
+        transform: translateX(-50%);
+    }
+}
+
+.courses-marquee-tag {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 1rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    padding: 0 40px;
+    white-space: nowrap;
+    color: rgba(255, 255, 255, 0.4);
+    transition: color 0.3s ease;
+}
+
+.courses-marquee-tag i {
+    font-size: 1.4rem;
+    opacity: 0.7;
+}
+
+.courses-marquee-tag:hover {
+    color: #fff;
+}
+
+.courses-marquee-tag:hover i {
+    opacity: 1;
+    transform: scale(1.1);
+    transition: 0.3s;
+}
+
+.courses-mdot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.1);
+}
+
+/* ── Glassmorphic Features & Roadmaps ── */
+.extra-features-section,
+.extra-roadmap-section {
+    padding: 120px 0;
+    background: #050215;
+    position: relative;
+    overflow: hidden;
+}
+
+.extra-section-header {
+    max-width: 800px;
+    margin: 0 auto 80px;
+}
+
+.extra-badge-label {
+    font-size: 0.8rem;
+    font-weight: 800;
+    letter-spacing: 3px;
+    color: var(--primary);
+    background: rgba(139, 92, 246, 0.1);
+    padding: 8px 16px;
+    border-radius: 100px;
+    display: inline-block;
+    margin-bottom: 24px;
+    border: 1px solid rgba(139, 92, 246, 0.3);
+}
+
+.extra-section-header h2 {
+    font-size: 3.2rem;
+    font-weight: 900;
+    margin-bottom: 24px;
+    letter-spacing: -0.03em;
+}
+
+.extra-features-grid,
+.extra-roadmap-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 32px;
+    position: relative;
+    z-index: 2;
+}
+
+.extra-feature-card,
+.extra-roadmap-card {
+    background: rgba(20, 15, 40, 0.4);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 24px;
+    padding: 40px 32px;
+    transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+}
+
+.extra-feature-card:hover,
+.extra-roadmap-card:hover {
+    transform: translateY(-12px);
+    background: rgba(30, 25, 60, 0.5);
+    border-color: rgba(255, 255, 255, 0.15);
+    box-shadow: 0 30px 60px rgba(0, 0, 0, 0.4), 0 0 40px rgba(139, 92, 246, 0.15) inset;
+}
+
+.extra-feature-icon,
+.extra-roadmap-icon {
+    width: 64px;
+    height: 64px;
+    border-radius: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.8rem;
+    color: white;
+    margin-bottom: 32px;
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3), inset 0 2px 0 rgba(255, 255, 255, 0.3);
+}
+
+.extra-feature-card h3,
+.extra-roadmap-card h3 {
+    font-size: 1.5rem;
+    margin-bottom: 16px;
+    font-weight: 800;
+    color: var(--text-primary);
+}
+
+.extra-feature-card p,
+.extra-roadmap-card p {
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 1.05rem;
+    line-height: 1.7;
+}
+
+.extra-roadmap-num {
+    position: absolute;
+    top: -10px;
+    right: 20px;
+    font-size: 6rem;
+    font-weight: 900;
+    color: rgba(255, 255, 255, 0.02);
+    line-height: 1;
+    z-index: 0;
+    pointer-events: none;
+    transition: color 0.5s ease;
+}
+
+.extra-roadmap-card:hover .extra-roadmap-num {
+    color: rgba(255, 255, 255, 0.05);
+}
+
+/* ── Course Strip Modifiers ── */
+.extra-enroll-strip {
+    position: relative;
+    overflow: hidden;
+    padding: 100px 0;
+}
+
+.strip-bg-img {
+    position: absolute;
+    inset: 0;
+    background-size: cover;
+    background-position: center;
+    opacity: 0.15;
+    filter: grayscale(1) brightness(0.6);
+    z-index: 0;
+}
+
+.strip-overlay {
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse 90% 80% at 50% 50%, rgba(20, 20, 50, 0.88) 0%, rgba(10, 5, 25, 0.95) 100%);
+    z-index: 1;
+}
+
+.strip-content {
+    position: relative;
+    z-index: 5;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 40px;
+}
+
+.strip-text h3 {
+    font-size: 2.22rem;
+    font-weight: 800;
+    margin-bottom: 12px;
+}
+
+.strip-text p {
+    font-size: 1.1rem;
+    color: var(--text-secondary);
+    opacity: 0.8;
+}
+
+.strip-btn {
+    display: inline-flex;
+    align-items: center;
+    padding: 18px 40px;
+    color: white;
+    font-weight: 700;
+    border-radius: 12px;
+    text-decoration: none;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    white-space: nowrap;
+}
+
+.strip-btn:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+}
+
+/* ── All Courses Strip ── */
+.all-courses-strip {
+    padding: 120px 0;
+    background: radial-gradient(ellipse at bottom, rgba(30, 15, 60, 0.4) 0%, #030014 100%);
+}
+
+.all-course-card {
+    border-radius: 24px;
+    overflow: hidden;
+    background: rgba(20, 20, 35, 0.6);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.all-course-card:hover {
+    transform: translateY(-15px) scale(1.02);
+    box-shadow: 0 40px 80px rgba(0, 0, 0, 0.5);
+    border-color: rgba(255, 255, 255, 0.2);
+}
+
+.all-course-card-img {
+    height: 240px;
+    background-size: cover;
+    background-position: center;
+    position: relative;
+}
+
+.all-course-card-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(20, 20, 35, 1), transparent);
+}
+
+.all-course-card-label {
+    position: absolute;
+    bottom: 20px;
+    left: 20px;
+    font-size: 0.65rem;
+    font-weight: 900;
+    letter-spacing: 2px;
+    color: white;
+    background: var(--card-accent);
+    padding: 4px 10px;
+    border-radius: 4px;
+}
+
+.all-course-card-body {
+    padding: 40px;
+    text-align: left;
+}
+
+.all-course-card-body h3 {
+    font-size: 1.8rem;
+    font-weight: 900;
+    margin-bottom: 16px;
+}
+
+.all-course-card-body p {
+    font-size: 1.05rem;
+    color: rgba(255, 255, 255, 0.7);
+    line-height: 1.7;
+    margin-bottom: 30px;
+}
+
+.all-course-tags {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 30px;
+    flex-wrap: wrap;
+}
+
+.all-course-tags span {
+    font-size: 0.75rem;
+    color: rgba(255, 255, 255, 0.8);
+    background: rgba(255, 255, 255, 0.05);
+    padding: 6px 12px;
+    border-radius: 100px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.all-course-btn {
+    display: block;
+    text-align: center;
+    padding: 18px;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid var(--btn-color);
+    color: var(--btn-color);
+    border-radius: 14px;
+    font-weight: 800;
+    font-size: 1rem;
+    text-decoration: none;
+    transition: all 0.4s ease;
+}
+
+.all-course-btn:hover {
+    background: var(--btn-color);
+    color: white;
+    box-shadow: 0 10px 30px rgba(var(--btn-color-rgb), 0.4);
+    transform: translateY(-3px);
+}
+
+.course-glow-divider {
+    height: 1px;
+    width: 100%;
+    background: linear-gradient(90deg, transparent, rgba(139, 92, 246, 0.3), transparent);
+    position: relative;
+}
+
+.course-glow-divider::after {
+    content: '';
+    position: absolute;
+    top: -1px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 150px;
+    height: 3px;
+    background: var(--primary);
+    filter: blur(4px);
+    border-radius: 50%;
+}
+
+@media (max-width: 768px) {
+    .extra-course-hero {
+        padding: 80px 0;
+    }
+
+    .extra-course-title {
+        font-size: 2.2rem;
+    }
+
+    .extra-features-grid,
+    .extra-roadmap-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .strip-content {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .strip-btn {
+        width: 100%;
+    }
+
+    .courses-marquee-tag {
+        font-size: 0.8rem;
+        padding: 0 20px;
+    }
+}
+
+/* Topic Boxes for Roadmap Outline */
+.topic-box {
+    background: rgba(255, 255, 255, 0.03);
+    backdrop-filter: blur(10px);
+    padding: 20px 32px;
+    border-radius: 16px;
+    color: white;
+    font-weight: 700;
+    font-size: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.topic-box:hover {
+    transform: translateY(-8px) scale(1.05);
+    box-shadow: 0 15px 35px rgba(139, 92, 246, 0.3);
+    border-color: rgba(139, 92, 246, 0.5);
+    background: rgba(139, 92, 246, 0.1);
+}
+
+.topic-box i {
+    font-size: 1.2rem;
+}
+
+@media (max-width: 768px) {
+    .topic-level {
+        flex-wrap: wrap;
+        gap: 15px !important;
+    }
+
+    .topic-box {
+        font-size: 0.85rem;
+        padding: 14px 20px;
+    }
+}
+
+/* Pricing Card Elite Overhaul */
+.premium-card {
+    max-width: 420px;
+    margin: 0 auto;
+    padding: 2.5rem !important;
+    background: rgba(25, 20, 45, 0.6) !important;
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(139, 92, 246, 0.3);
+    border-radius: 24px;
+}
+
+.premium-card h3 {
+    font-size: 0.85rem !important;
+    margin-bottom: 0.5rem;
+}
+
+.premium-card .price-tag {
+    font-size: 3.5rem !important;
+    font-weight: 900;
+    margin: 1.5rem 0;
+    background: linear-gradient(135deg, #fff, #a78bfa);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.premium-card ul {
+    margin: 1.5rem 0 !important;
+    font-size: 0.95rem;
+}
+
+.premium-card ul li {
+    margin-bottom: 12px !important;
+}
+
+.btn-enroll {
+    padding: 1.1rem 2rem !important;
+    font-size: 1rem !important;
+}
+
+/* Additional Topics Formatting for Roadmap Cards */
+.extra-topic-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    position: relative;
+    z-index: 2;
+}
+
+.extra-topic-list li {
+    font-size: 0.8rem;
+    color: rgba(255, 255, 255, 0.7);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.extra-topic-list li::before {
+    content: '•';
+    color: var(--card-color);
+}

@@ -334,6 +334,661 @@
     <style>
         /* Responsive Fixes */
     </style>
+
+    <!-- Elite Styles for C++ and Python Sections -->
+    <style>
+        /* ════════════════════════════════════════════════
+           NEW COURSE SECTIONS STYLE (C++ & Python)
+           Level: Elite Premium Design
+        ════════════════════════════════════════════════ */
+
+        /* ── Hero Banners ── */
+        .extra-course-hero {
+            position: relative;
+            min-height: 520px;
+            display: flex;
+            align-items: center;
+            padding: 100px 0;
+            overflow: hidden;
+            background: #050510;
+        }
+
+        .extra-hero-bg {
+            position: absolute;
+            inset: 0;
+            background-size: cover;
+            background-position: center;
+            opacity: 0.25;
+            filter: saturate(1.2) brightness(0.5);
+            transform: scale(1.04);
+            transition: transform 10s linear;
+            z-index: 0;
+        }
+
+        .extra-course-hero:hover .extra-hero-bg {
+            transform: scale(1.1);
+        }
+
+        .cpp-hero-img {
+            background-image: url('https://images.unsplash.com/photo-1629654297299-c8506221ca97?auto=format&fit=crop&q=80&w=2070');
+        }
+
+        .python-hero-img {
+            background-image: url('https://images.unsplash.com/photo-1555949962-f93971239ed8?auto=format&fit=crop&q=80&w=2070');
+        }
+
+        .extra-course-hero-overlay {
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(ellipse 80% 60% at 30% 50%, rgba(20, 20, 50, 0.85) 0%, rgba(5, 5, 20, 0.93) 100%);
+            z-index: 1;
+        }
+
+        .extra-course-hero-content {
+            position: relative;
+            z-index: 5;
+            max-width: 700px;
+        }
+
+        .extra-course-badge {
+            display: inline-block;
+            padding: 6px 16px;
+            border-radius: 100px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            letter-spacing: 2px;
+            background: rgba(var(--badge-color-rgb, 139, 92, 246), 0.1);
+            color: var(--badge-color);
+            border: 1px solid rgba(var(--badge-color-rgb, 139, 92, 246), 0.25);
+            margin-bottom: 24px;
+            text-transform: uppercase;
+        }
+
+        .extra-course-title {
+            font-size: clamp(2.2rem, 5vw, 3.6rem);
+            font-weight: 900;
+            line-height: 1.1;
+            letter-spacing: -0.03em;
+            color: var(--text-primary);
+            margin-bottom: 20px;
+        }
+
+        .extra-course-subtitle {
+            font-size: 1.15rem;
+            line-height: 1.6;
+            color: var(--text-secondary);
+            margin-bottom: 32px;
+            opacity: 0.9;
+        }
+
+        .extra-course-meta {
+            display: flex;
+            gap: 20px;
+            margin-bottom: 40px;
+            flex-wrap: wrap;
+        }
+
+        .meta-chip {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            padding: 6px 14px;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 8px;
+        }
+
+        .meta-chip i {
+            color: var(--primary);
+        }
+
+        .extra-course-cta-btn {
+            display: inline-flex;
+            align-items: center;
+            padding: 16px 36px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            font-weight: 700;
+            border-radius: 12px;
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+            box-shadow: 0 10px 30px rgba(139, 92, 246, 0.3);
+            text-decoration: none;
+        }
+
+        .extra-course-cta-btn:hover {
+            transform: translateY(-4px) scale(1.02);
+            box-shadow: 0 15px 40px rgba(139, 92, 246, 0.5);
+            filter: brightness(1.1);
+        }
+
+        /* ── Features Section ── */
+        .extra-features-section {
+            padding: 100px 0;
+            background: linear-gradient(180deg, transparent 0%, rgba(20, 20, 40, 0.4) 50%, transparent 100%);
+        }
+
+        .extra-section-header {
+            max-width: 700px;
+            margin: 0 auto 60px;
+        }
+
+        .extra-badge-label {
+            font-size: 0.75rem;
+            font-weight: 700;
+            letter-spacing: 2px;
+            color: var(--primary);
+            background: rgba(139, 92, 246, 0.08);
+            padding: 4px 12px;
+            border-radius: 4px;
+            display: inline-block;
+            margin-bottom: 16px;
+            border: 1px solid rgba(139, 92, 246, 0.2);
+        }
+
+        .extra-section-header h2 {
+            font-size: 2.8rem;
+            font-weight: 800;
+            margin-bottom: 20px;
+        }
+
+        .extra-features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 24px;
+        }
+
+        .extra-feature-card {
+            background: linear-gradient(145deg, rgba(20, 20, 36, 0.96), rgba(14, 14, 26, 0.98));
+            border: 1px solid rgba(139, 92, 246, 0.12);
+            border-radius: var(--radius-xl);
+            padding: 36px 28px;
+            transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.35s ease, border-color 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .extra-feature-card:hover {
+            transform: translateY(-8px);
+            border-color: var(--primary);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3), 0 0 20px rgba(139, 92, 246, 0.1) inset;
+        }
+
+        .extra-feature-icon {
+            width: 50px;
+            height: 50px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.4rem;
+            color: white;
+            margin-bottom: 24px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+        }
+
+        .extra-feature-card h3 {
+            font-size: 1.3rem;
+            margin-bottom: 14px;
+            color: var(--text-primary);
+        }
+
+        .extra-feature-card p {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        /* ── Marquee Strip ── */
+        .elite-marquee-strip {
+            padding: 20px 0;
+            border-top: 1px solid;
+            border-bottom: 1px solid;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .elite-marquee-inner {
+            display: flex;
+            width: max-content;
+            animation: coursesMarquee 40s linear infinite;
+        }
+
+        @keyframes coursesMarquee {
+            0% {
+                transform: translateX(0);
+            }
+
+            100% {
+                transform: translateX(-50%);
+            }
+        }
+
+        .elite-marquee-tag {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 0.9rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            padding: 0 30px;
+            white-space: nowrap;
+        }
+
+        .elite-mdot {
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+        }
+
+        /* ── Roadmap Section ── */
+        .extra-roadmap-section {
+            padding: 100px 0;
+            background: #050510;
+        }
+
+        .extra-roadmap-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 24px;
+        }
+
+        .extra-roadmap-card {
+            background: linear-gradient(145deg, rgba(18, 18, 32, 0.97), rgba(12, 12, 22, 0.99));
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            border-radius: var(--radius-xl);
+            padding: 32px 26px;
+            position: relative;
+            overflow: hidden;
+            transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s ease, border-color 0.3s ease;
+        }
+
+        .extra-roadmap-card:hover {
+            transform: translateY(-6px) scale(1.01);
+            border-color: var(--card-color);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
+        }
+
+        .extra-roadmap-card::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 4px;
+            height: 100%;
+            background: var(--card-color);
+            opacity: 0.4;
+            transition: opacity 0.3s ease;
+        }
+
+        .extra-roadmap-card:hover::before {
+            opacity: 1;
+        }
+
+        .extra-roadmap-num {
+            position: absolute;
+            top: 10px;
+            right: 20px;
+            font-size: 4rem;
+            font-weight: 900;
+            color: rgba(255, 255, 255, 0.03);
+            line-height: 1;
+            z-index: 0;
+            pointer-events: none;
+            transition: color 0.3s ease;
+        }
+
+        .extra-roadmap-card:hover .extra-roadmap-num {
+            color: rgba(255, 255, 255, 0.06);
+        }
+
+        .extra-roadmap-icon {
+            width: 48px;
+            height: 48px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            color: white;
+            margin-bottom: 24px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .extra-roadmap-card h3 {
+            font-size: 1.25rem;
+            margin-bottom: 12px;
+            color: var(--text-primary);
+            position: relative;
+            z-index: 2;
+        }
+
+        .extra-roadmap-card p {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            line-height: 1.6;
+            margin-bottom: 20px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .extra-topic-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 8px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .extra-topic-list li {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .extra-topic-list li::before {
+            content: '•';
+            color: var(--card-color);
+        }
+
+        /* ── Enroll Strip ── */
+        .extra-enroll-strip {
+            position: relative;
+            overflow: hidden;
+            padding: 70px 0;
+        }
+
+        .strip-bg-img {
+            position: absolute;
+            inset: 0;
+            background-size: cover;
+            background-position: center;
+            opacity: 0.15;
+            filter: grayscale(1) brightness(0.6);
+            z-index: 0;
+        }
+
+        .strip-overlay {
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(ellipse 90% 80% at 50% 50%, rgba(20, 20, 50, 0.88) 0%, rgba(10, 5, 25, 0.95) 100%);
+            z-index: 1;
+        }
+
+        .strip-content {
+            position: relative;
+            z-index: 5;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 40px;
+        }
+
+        .strip-text h3 {
+            font-size: 2.22rem;
+            font-weight: 800;
+            margin-bottom: 12px;
+        }
+
+        .strip-text p {
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+            opacity: 0.8;
+        }
+
+        .strip-btn {
+            display: inline-flex;
+            align-items: center;
+            padding: 18px 40px;
+            color: white;
+            font-weight: 700;
+            border-radius: 12px;
+            text-decoration: none;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            white-space: nowrap;
+        }
+
+        .strip-btn:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+        }
+
+        /* ── All Courses Strip ── */
+        .all-courses-strip {
+            padding: 90px 0;
+            background: linear-gradient(180deg, transparent 0%, rgba(15, 5, 30, 0.5) 50%, transparent 100%);
+        }
+
+        .all-courses-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 30px;
+        }
+
+        .all-course-card {
+            border-radius: var(--radius-xl);
+            overflow: hidden;
+            background: rgba(18, 18, 30, 0.95);
+            border: 1px solid rgba(255, 255, 255, 0.07);
+            transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s ease;
+        }
+
+        .all-course-card:hover {
+            transform: translateY(-12px);
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.5);
+            border-color: rgba(255, 255, 255, 0.15);
+        }
+
+        .all-course-card-img {
+            height: 200px;
+            background-size: cover;
+            background-position: center;
+            position: relative;
+        }
+
+        .all-course-card-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to top, rgba(18, 18, 30, 1), transparent);
+        }
+
+        .all-course-card-label {
+            position: absolute;
+            bottom: 20px;
+            left: 20px;
+            font-size: 0.65rem;
+            font-weight: 900;
+            letter-spacing: 2px;
+            color: white;
+            background: var(--card-accent);
+            padding: 4px 10px;
+            border-radius: 4px;
+        }
+
+        .all-course-card-body {
+            padding: 30px;
+            text-align: left;
+        }
+
+        .all-course-card-body h3 {
+            font-size: 1.6rem;
+            font-weight: 800;
+            margin-bottom: 12px;
+        }
+
+        .all-course-card-body p {
+            font-size: 0.95rem;
+            color: var(--text-secondary);
+            line-height: 1.6;
+            margin-bottom: 24px;
+        }
+
+        .all-course-tags {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+        }
+
+        .all-course-tags span {
+            font-size: 0.7rem;
+            color: var(--text-muted);
+            background: rgba(255, 255, 255, 0.05);
+            padding: 4px 10px;
+            border-radius: 4px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .all-course-btn {
+            display: block;
+            text-align: center;
+            padding: 14px;
+            border: 1px solid var(--btn-color);
+            color: var(--btn-color);
+            border-radius: 10px;
+            font-weight: 700;
+            font-size: 0.85rem;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .all-course-btn:hover {
+            background: var(--btn-color);
+            color: white;
+            box-shadow: 0 0 20px rgba(var(--btn-color-rgb), 0.3);
+        }
+
+        /* ── Glow Divider ── */
+        .course-glow-divider {
+            height: 1px;
+            width: 100%;
+            background: linear-gradient(90deg, transparent, rgba(139, 92, 246, 0.3), transparent);
+            position: relative;
+        }
+
+        .course-glow-divider::after {
+            content: '';
+            position: absolute;
+            top: -1px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 150px;
+            height: 3px;
+            background: var(--primary);
+            filter: blur(4px);
+            border-radius: 50%;
+        }
+
+        @media (max-width: 600px) {
+            .extra-course-hero {
+                padding: 65px 0;
+                min-height: auto;
+            }
+
+            .extra-roadmap-grid,
+            .extra-features-grid,
+            .all-courses-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .strip-content {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .strip-btn {
+                width: 100%;
+                text-align: center;
+            }
+
+            .extra-course-title {
+                font-size: 1.95rem;
+            }
+
+            .extra-course-hero-content {
+                text-align: left !important;
+                margin-left: 0 !important;
+            }
+
+            .extra-course-meta {
+                justify-content: flex-start !important;
+            }
+        }
+
+        .topic-box {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            padding: 18px 30px;
+            border-radius: var(--radius-md);
+            color: white;
+            font-weight: 600;
+            font-size: 0.95rem;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            box-shadow: 0 4px 15px rgba(139, 92, 246, 0.3);
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .topic-box:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(139, 92, 246, 0.5);
+        }
+
+        .topic-box i {
+            font-size: 1.2rem;
+        }
+
+        @media (max-width: 768px) {
+            .topic-level {
+                flex-wrap: wrap;
+                gap: 15px !important;
+            }
+
+            .topic-box {
+                font-size: 0.85rem;
+                padding: 14px 20px;
+            }
+        }
+
+        .premium-card {
+            max-width: 400px;
+            margin: 0 auto;
+            padding: 1.5rem !important;
+        }
+
+        .premium-card h3 {
+            font-size: 0.8rem !important;
+            margin-bottom: 0.5rem;
+        }
+
+        .premium-card .price-tag {
+            font-size: 2.5rem !important;
+            margin: 1rem 0;
+        }
+
+        .premium-card ul {
+            margin: 1.5rem 0 !important;
+            font-size: 0.9rem;
+        }
+
+        .premium-card ul li {
+            margin-bottom: 8px !important;
+        }
+
+        .btn-enroll {
+            padding: 0.8rem 1.5rem !important;
+            font-size: 0.9rem !important;
+        }
+    </style>
 </head>
 
 <body class="dark-theme">
@@ -475,9 +1130,1169 @@
         </div>
     </section>
 
+    <!-- ΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉ
+         C++ MASTERY COURSE SECTION
+    ΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉ -->
+    <div class="course-glow-divider" style="margin:0;"></div>
+
+    <section class="extra-course-hero cpp-hero" id="cpp-course">
+        <div class="cpp-hero-img extra-hero-bg" aria-hidden="true"
+            style="background-image: url('https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&q=80&w=2070'); opacity: 0.35;">
+        </div>
+        <div class="extra-course-hero-overlay" aria-hidden="true"
+            style="background:radial-gradient(ellipse 80% 60% at 50% 50%, rgba(20, 20, 50, 0.75) 0%, rgba(5, 5, 20, 0.9) 100%);">
+        </div>
+        <div class="container">
+            <div class="extra-course-hero-content text-center" style="margin: 0 auto; text-align: center;">
+                <span class="extra-course-badge" style="--badge-color:#60a5fa;">C++ MASTERY PROGRAM</span>
+                <h2 class="extra-course-title">Master <span class="text-gradient">C++ Programming</span><br>From Zero to
+                    Advanced</h2>
+                <p class="extra-course-subtitle">Build a rock-solid foundation in systems programming. From memory
+                    management and pointers to STL, OOP, and competitive programming — this course takes you from
+                    beginner to industry-ready.</p>
+                <div class="extra-course-meta" style="justify-content:center;">
+                    <div class="meta-chip"><i class="fas fa-video"></i> 80+ Lessons</div>
+                    <div class="meta-chip"><i class="fas fa-clock"></i> Self-Paced</div>
+                    <div class="meta-chip"><i class="fas fa-certificate"></i> Certificate</div>
+                    <div class="meta-chip"><i class="fas fa-infinity"></i> Lifetime Access</div>
+                </div>
+                <a href="student-login" class="extra-course-cta-btn">Begin C++ Journey</a>
+            </div>
+        </div>
+    </section>
+
+    <section class="extra-features-section">
+        <div class="container">
+            <div class="extra-section-header text-center">
+                <span class="extra-badge-label">WHY LEARN C++</span>
+                <h2>Industry-Standard Skills <span class="text-gradient">Built for Engineers</span></h2>
+                <p>C++ powers operating systems, game engines, browsers, and financial systems. Learn the language the
+                    world runs on.</p>
+            </div>
+            <div class="extra-features-grid">
+                <div class="extra-feature-card anim-reveal from-left">
+                    <div class="extra-feature-icon" style="background:linear-gradient(135deg,#3b82f6,#06b6d4);"><i
+                            class="fas fa-memory"></i></div>
+                    <h3>Memory Management</h3>
+                    <p>Master pointers, references, stack vs heap, RAII, and smart pointers. Build intuition for
+                        low-level systems.</p>
+                </div>
+                <div class="extra-feature-card anim-reveal">
+                    <div class="extra-feature-icon" style="background:linear-gradient(135deg,#8b5cf6,#3b82f6);"><i
+                            class="fas fa-cubes"></i></div>
+                    <h3>Object-Oriented Design</h3>
+                    <p>Classes, inheritance, polymorphism, operator overloading. Write elegant and maintainable
+                        production-grade code.</p>
+                </div>
+                <div class="extra-feature-card anim-reveal">
+                    <div class="extra-feature-icon" style="background:linear-gradient(135deg,#06b6d4,#10b981);"><i
+                            class="fas fa-toolbox"></i></div>
+                    <h3>Standard Template Library</h3>
+                    <p>Vectors, maps, sets, queues, algorithms. Harness the full power of STL to write clean,
+                        competitive-ready code.</p>
+                </div>
+                <div class="extra-feature-card anim-reveal from-right">
+                    <div class="extra-feature-icon" style="background:linear-gradient(135deg,#ec4899,#8b5cf6);"><i
+                            class="fas fa-trophy"></i></div>
+                    <h3>Competitive Programming</h3>
+                    <p>Learn patterns used in ICPC, Codeforces, and FAANG interviews. Build speed and confidence under
+                        pressure.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="elite-marquee-container">
+        <div class="elite-marquee-strip">
+            <div class="elite-marquee-inner left-to-right">
+                <div style="display:flex;align-items:center;">
+                    <span class="elite-marquee-tag"><i class="fas fa-code"></i> Syntax &amp; Basics</span>
+                    <span class="elite-mdot"></span>
+                    <span class="elite-marquee-tag"><i class="fas fa-memory"></i> Pointers</span>
+                    <span class="elite-mdot"></span>
+                    <span class="elite-marquee-tag"><i class="fas fa-cubes"></i> Classes &amp; OOP</span>
+                    <span class="elite-mdot"></span>
+                    <span class="elite-marquee-tag"><i class="fas fa-toolbox"></i> STL</span>
+                    <span class="elite-mdot"></span>
+                    <span class="elite-marquee-tag"><i class="fas fa-file-code"></i> Templates</span>
+                    <span class="elite-mdot"></span>
+                    <span class="elite-marquee-tag"><i class="fas fa-bolt"></i> Move Semantics</span>
+                    <span class="elite-mdot"></span>
+                    <span class="elite-marquee-tag"><i class="fas fa-shield-alt"></i> Exception Handling</span>
+                </div>
+                <div style="display:flex;align-items:center;" aria-hidden="true">
+                    <span class="elite-marquee-tag"><i class="fas fa-code"></i> Syntax &amp; Basics</span>
+                    <span class="elite-mdot"></span>
+                    <span class="elite-marquee-tag"><i class="fas fa-memory"></i> Pointers</span>
+                    <span class="elite-mdot"></span>
+                    <span class="elite-marquee-tag"><i class="fas fa-cubes"></i> Classes &amp; OOP</span>
+                    <span class="elite-mdot"></span>
+                    <span class="elite-marquee-tag"><i class="fas fa-toolbox"></i> STL</span>
+                    <span class="elite-mdot"></span>
+                    <span class="elite-marquee-tag"><i class="fas fa-file-code"></i> Templates</span>
+                    <span class="elite-mdot"></span>
+                    <span class="elite-marquee-tag"><i class="fas fa-bolt"></i> Move Semantics</span>
+                    <span class="elite-mdot"></span>
+                    <span class="elite-marquee-tag"><i class="fas fa-shield-alt"></i> Exception Handling</span>
+                </div>
+            </div>
+        </div>
+        <div class="elite-marquee-strip" style="margin-top: 20px;">
+            <div class="elite-marquee-inner right-to-left">
+                <div style="display:flex;align-items:center;">
+                    <span class="elite-marquee-tag"><i class="fas fa-server"></i> Systems Programming</span>
+                    <span class="elite-mdot"></span>
+                    <span class="elite-marquee-tag"><i class="fas fa-microchip"></i> Memory Management</span>
+                    <span class="elite-mdot"></span>
+                    <span class="elite-marquee-tag"><i class="fas fa-project-diagram"></i> Data Structures</span>
+                    <span class="elite-mdot"></span>
+                    <span class="elite-marquee-tag"><i class="fas fa-fighter-jet"></i> High Performance</span>
+                    <span class="elite-mdot"></span>
+                    <span class="elite-marquee-tag"><i class="fas fa-trophy"></i> Competitive Coding</span>
+                    <span class="elite-mdot"></span>
+                    <span class="elite-marquee-tag"><i class="fas fa-gamepad"></i> Game Engines</span>
+                    <span class="elite-mdot"></span>
+                    <span class="elite-marquee-tag"><i class="fas fa-network-wired"></i> Networking</span>
+                </div>
+                <div style="display:flex;align-items:center;" aria-hidden="true">
+                    <span class="elite-marquee-tag"><i class="fas fa-server"></i> Systems Programming</span>
+                    <span class="elite-mdot"></span>
+                    <span class="elite-marquee-tag"><i class="fas fa-microchip"></i> Memory Management</span>
+                    <span class="elite-mdot"></span>
+                    <span class="elite-marquee-tag"><i class="fas fa-project-diagram"></i> Data Structures</span>
+                    <span class="elite-mdot"></span>
+                    <span class="elite-marquee-tag"><i class="fas fa-fighter-jet"></i> High Performance</span>
+                    <span class="elite-mdot"></span>
+                    <span class="elite-marquee-tag"><i class="fas fa-trophy"></i> Competitive Coding</span>
+                    <span class="elite-mdot"></span>
+                    <span class="elite-marquee-tag"><i class="fas fa-gamepad"></i> Game Engines</span>
+                    <span class="elite-mdot"></span>
+                    <span class="elite-marquee-tag"><i class="fas fa-network-wired"></i> Networking</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <section class="extra-roadmap-section cpp-roadmap-section">
+        <div class="container">
+            <div class="extra-section-header text-center">
+                <span class="extra-badge-label"
+                    style="color:#60a5fa;background:rgba(96,165,250,0.08);border-color:rgba(96,165,250,0.2);">STRUCTURED
+                    CURRICULUM</span>
+                <h2>C++ Learning <span class="text-gradient">Roadmap</span></h2>
+                <p>Six progressive modules designed to take you from first principles to system-level mastery.</p>
+            </div>
+            <div class="extra-roadmap-grid">
+                <div class="extra-roadmap-card anim-reveal from-left" style="--card-color:#3b82f6;">
+                    <div class="extra-roadmap-num">01</div>
+                    <div class="extra-roadmap-icon" style="background:linear-gradient(135deg,#3b82f6,#06b6d4);"><i
+                            class="fas fa-play-circle"></i></div>
+                    <h3>Foundations</h3>
+                    <p>Variables, types, control flow, functions, and input/output. Write your first programs with
+                        confidence.</p>
+                    <ul class="extra-topic-list">
+                        <li>Data Types &amp; Variables</li>
+                        <li>Loops &amp; Conditionals</li>
+                        <li>Functions &amp; Scope</li>
+                        <li>Arrays &amp; Strings</li>
+                    </ul>
+                </div>
+                <!-- More cards... -->
+                <div class="extra-roadmap-card anim-reveal" style="--card-color:#8b5cf6;">
+                    <div class="extra-roadmap-num">02</div>
+                    <div class="extra-roadmap-icon" style="background:linear-gradient(135deg,#8b5cf6,#3b82f6);"><i
+                            class="fas fa-memory"></i></div>
+                    <h3>Pointers &amp; Memory</h3>
+                    <p>Raw pointers, dynamic allocation, stack/heap, references, and memory safety with smart pointers.
+                    </p>
+                    <ul class="extra-topic-list">
+                        <li>Raw Pointers</li>
+                        <li>Dynamic Allocation</li>
+                        <li>unique_ptr / shared_ptr</li>
+                        <li>RAII Pattern</li>
+                    </ul>
+                </div>
+                <div class="extra-roadmap-card anim-reveal" style="--card-color:#06b6d4;">
+                    <div class="extra-roadmap-num">03</div>
+                    <div class="extra-roadmap-icon" style="background:linear-gradient(135deg,#06b6d4,#10b981);"><i
+                            class="fas fa-cubes"></i></div>
+                    <h3>OOP &amp; Design</h3>
+                    <p>Classes, constructors, destructors, operator overloading, and design patterns for real-world
+                        apps.</p>
+                    <ul class="extra-topic-list">
+                        <li>Classes &amp; Objects</li>
+                        <li>Inheritance</li>
+                        <li>Polymorphism</li>
+                        <li>Abstract Classes</li>
+                    </ul>
+                </div>
+                <div class="extra-roadmap-card anim-reveal" style="--card-color:#10b981;">
+                    <div class="extra-roadmap-num">04</div>
+                    <div class="extra-roadmap-icon" style="background:linear-gradient(135deg,#10b981,#06b6d4);"><i
+                            class="fas fa-toolbox"></i></div>
+                    <h3>STL Mastery</h3>
+                    <p>Vectors, maps, sets, priority queues, and algorithms. The STL is your biggest productivity
+                        multiplier.</p>
+                    <ul class="extra-topic-list">
+                        <li>Iterators</li>
+                        <li>Containers</li>
+                        <li>Algorithms Header</li>
+                        <li>Sorting &amp; Searching</li>
+                    </ul>
+                </div>
+                <div class="extra-roadmap-card anim-reveal from-right" style="--card-color:#f59e0b;">
+                    <div class="extra-roadmap-num">05</div>
+                    <div class="extra-roadmap-icon" style="background:linear-gradient(135deg,#f59e0b,#ec4899);"><i
+                            class="fas fa-file-code"></i></div>
+                    <h3>Templates &amp; Modern C++</h3>
+                    <p>Generic programming, lambda functions, auto, range-for, and C++17/20 features used in industry
+                        today.</p>
+                    <ul class="extra-topic-list">
+                        <li>Function Templates</li>
+                        <li>Lambda Functions</li>
+                        <li>Move Semantics</li>
+                        <li>Structured Bindings</li>
+                    </ul>
+                </div>
+                <div class="extra-roadmap-card anim-reveal from-right" style="--card-color:#ec4899;">
+                    <div class="extra-roadmap-num">06</div>
+                    <div class="extra-roadmap-icon" style="background:linear-gradient(135deg,#ec4899,#8b5cf6);"><i
+                            class="fas fa-trophy"></i></div>
+                    <h3>Competitive Programming</h3>
+                    <p>Complexity analysis, problem-solving patterns, and solutions to real competitive programming
+                        challenges.</p>
+                    <ul class="extra-topic-list">
+                        <li>Time Complexity</li>
+                        <li>Greedy Algorithms</li>
+                        <li>Graph Algorithms</li>
+                        <li>Interview Patterns</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="extra-enroll-strip cpp-enroll-strip">
+        <div class="strip-bg-img"
+            style="background-image:url('https://images.unsplash.com/photo-1629654297299-c8506221ca97?auto=format&fit=crop&q=80&w=2070');"
+            aria-hidden="true"></div>
+        <div class="strip-overlay" aria-hidden="true"></div>
+        <div class="container strip-content">
+            <div class="strip-text">
+                <h3>Ready to master C++?</h3>
+                <p>Join over 2,000 students already enrolled. Full lifetime access, no prerequisites required.</p>
+            </div>
+            <a href="student-login" class="strip-btn" style="background:linear-gradient(135deg,#3b82f6,#06b6d4);">Enroll
+                in C++ Course</a>
+        </div>
+    </div>
+
+    <!-- ΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉ
+         PYTHON MASTERY COURSE SECTION
+    ΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉ -->
+    <div class="course-glow-divider" style="margin:0;"></div>
+
+    <section class="extra-course-hero python-hero" id="python-course">
+        <div class="python-hero-img extra-hero-bg" aria-hidden="true"
+            style="background-image: url('https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?auto=format&fit=crop&q=80&w=2070'); opacity: 0.35;">
+        </div>
+        <div class="extra-course-hero-overlay" aria-hidden="true"
+            style="background:radial-gradient(ellipse 80% 60% at 50% 50%, rgba(10,35,20,0.65) 0%, rgba(5,15,10,0.85) 100%);">
+        </div>
+        <div class="container">
+            <div class="extra-course-hero-content text-center" style="margin: 0 auto; text-align: center;">
+                <span class="extra-course-badge" style="--badge-color:#4ade80;">PYTHON PROGRAM</span>
+                <h2 class="extra-course-title">Learn <span
+                        style="background:linear-gradient(135deg,#4ade80,#06b6d4);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">Python</span>
+                    the Right Way</h2>
+                <p class="extra-course-subtitle">From scripting basics to data structures, automation, and API
+                    development — Python is the most versatile language today. Our structured approach makes it fast and
+                    practical.</p>
+                <div class="extra-course-meta" style="justify-content:center;">
+                    <div class="meta-chip" style="border-color:rgba(74,222,128,0.3);"><i class="fas fa-video"
+                            style="color:#4ade80;"></i> 100+ Lessons</div>
+                    <div class="meta-chip" style="border-color:rgba(74,222,128,0.3);"><i class="fas fa-laptop-code"
+                            style="color:#4ade80;"></i> Hands-On Projects</div>
+                    <div class="meta-chip" style="border-color:rgba(74,222,128,0.3);"><i class="fas fa-robot"
+                            style="color:#4ade80;"></i> Automation</div>
+                    <div class="meta-chip" style="border-color:rgba(74,222,128,0.3);"><i class="fas fa-infinity"
+                            style="color:#4ade80;"></i> Lifetime Access</div>
+                </div>
+                <a href="student-login" class="extra-course-cta-btn"
+                    style="background:linear-gradient(135deg,#4ade80,#06b6d4);color:#0a0f0a;">Begin Python Journey</a>
+            </div>
+        </div>
+    </section>
+
+    <section class="extra-features-section"
+        style="background:linear-gradient(180deg,transparent 0%,rgba(10,30,15,0.4) 50%,transparent 100%);">
+        <div class="container">
+            <div class="extra-section-header text-center">
+                <span class="extra-badge-label"
+                    style="color:#4ade80;background:rgba(74,222,128,0.08);border-color:rgba(74,222,128,0.2);">WHY LEARN
+                    PYTHON</span>
+                <h2>The Language of <span
+                        style="background:linear-gradient(135deg,#4ade80,#06b6d4);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">Modern
+                        Development</span></h2>
+                <p>Python reads like English, runs everywhere, and powers AI, automation, and web backends.</p>
+            </div>
+            <div class="extra-features-grid">
+                <div class="extra-feature-card anim-reveal from-left">
+                    <div class="extra-feature-icon" style="background:linear-gradient(135deg,#4ade80,#059669);"><i
+                            class="fas fa-feather-alt"></i></div>
+                    <h3>Clean Syntax</h3>
+                    <p>Python's readable syntax lets you focus on solving problems, not fighting the language. Perfect
+                        for beginners and experts alike.</p>
+                </div>
+                <div class="extra-feature-card anim-reveal">
+                    <div class="extra-feature-icon" style="background:linear-gradient(135deg,#06b6d4,#4ade80);"><i
+                            class="fas fa-robot"></i></div>
+                    <h3>Automation &amp; Scripting</h3>
+                    <p>Automate repetitive tasks, parse data, and build tools. Python is the go-to automation language
+                        for engineers worldwide.</p>
+                </div>
+                <div class="extra-feature-card anim-reveal">
+                    <div class="extra-feature-icon" style="background:linear-gradient(135deg,#8b5cf6,#4ade80);"><i
+                            class="fas fa-database"></i></div>
+                    <h3>Data Structures in Python</h3>
+                    <p>Master lists, dictionaries, sets, and tuples. Solve DSA problems in Python for data science and
+                        ML engineering roles.</p>
+                </div>
+                <div class="extra-feature-card anim-reveal from-right">
+                    <div class="extra-feature-icon" style="background:linear-gradient(135deg,#f59e0b,#4ade80);"><i
+                            class="fas fa-plug"></i></div>
+                    <h3>API &amp; Web Development</h3>
+                    <p>Build REST API clients, process JSON, and interact with services. Python powers backends at
+                        Instagram, Dropbox, and Netflix.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="elite-marquee-container">
+        <div class="elite-marquee-strip">
+            <div class="elite-marquee-inner right-to-left">
+                <div style="display:flex;align-items:center;">
+                    <span class="elite-marquee-tag"><i class="fas fa-terminal"></i> Python Basics</span>
+                    <span class="elite-mdot"></span>
+                    <span class="elite-marquee-tag"><i class="fas fa-list"></i> Lists &amp; Tuples</span>
+                    <span class="elite-mdot"></span>
+                    <span class="elite-marquee-tag"><i class="fas fa-book"></i> Dictionaries</span>
+                    <span class="elite-mdot"></span>
+                    <span class="elite-marquee-tag"><i class="fas fa-object-group"></i> OOP in Python</span>
+                    <span class="elite-mdot"></span>
+                    <span class="elite-marquee-tag"><i class="fas fa-file-import"></i> File I/O</span>
+                    <span class="elite-mdot"></span>
+                    <span class="elite-marquee-tag"><i class="fas fa-robot"></i> Automation</span>
+                    <span class="elite-mdot"></span>
+                    <span class="elite-marquee-tag"><i class="fas fa-plug"></i> REST APIs</span>
+                </div>
+                <div style="display:flex;align-items:center;" aria-hidden="true">
+                    <span class="elite-marquee-tag"><i class="fas fa-terminal"></i> Python Basics</span>
+                    <span class="elite-mdot"></span>
+                    <span class="elite-marquee-tag"><i class="fas fa-list"></i> Lists &amp; Tuples</span>
+                    <span class="elite-mdot"></span>
+                    <span class="elite-marquee-tag"><i class="fas fa-book"></i> Dictionaries</span>
+                    <span class="elite-mdot"></span>
+                    <span class="elite-marquee-tag"><i class="fas fa-object-group"></i> OOP in Python</span>
+                    <span class="elite-mdot"></span>
+                    <span class="elite-marquee-tag"><i class="fas fa-file-import"></i> File I/O</span>
+                    <span class="elite-mdot"></span>
+                    <span class="elite-marquee-tag"><i class="fas fa-robot"></i> Automation</span>
+                    <span class="elite-mdot"></span>
+                    <span class="elite-marquee-tag"><i class="fas fa-plug"></i> REST APIs</span>
+                </div>
+            </div>
+        </div>
+        <div class="elite-marquee-strip" style="margin-top: 20px;">
+            <div class="elite-marquee-inner left-to-right">
+                <div style="display:flex;align-items:center;">
+                    <span class="elite-marquee-tag"><i class="fas fa-brain"></i> Artificial Intelligence</span>
+                    <span class="elite-mdot"></span>
+                    <span class="elite-marquee-tag"><i class="fas fa-chart-bar"></i> Data Science</span>
+                    <span class="elite-mdot"></span>
+                    <span class="elite-marquee-tag"><i class="fas fa-spider"></i> Web Scraping</span>
+                    <span class="elite-mdot"></span>
+                    <span class="elite-marquee-tag"><i class="fas fa-server"></i> Django &amp; Flask</span>
+                    <span class="elite-mdot"></span>
+                    <span class="elite-marquee-tag"><i class="fas fa-laptop-code"></i> Scripting</span>
+                    <span class="elite-mdot"></span>
+                    <span class="elite-marquee-tag"><i class="fas fa-cogs"></i> Machine Learning</span>
+                    <span class="elite-mdot"></span>
+                    <span class="elite-marquee-tag"><i class="fas fa-database"></i> SQL Integration</span>
+                </div>
+                <div style="display:flex;align-items:center;" aria-hidden="true">
+                    <span class="elite-marquee-tag"><i class="fas fa-brain"></i> Artificial Intelligence</span>
+                    <span class="elite-mdot"></span>
+                    <span class="elite-marquee-tag"><i class="fas fa-chart-bar"></i> Data Science</span>
+                    <span class="elite-mdot"></span>
+                    <span class="elite-marquee-tag"><i class="fas fa-spider"></i> Web Scraping</span>
+                    <span class="elite-mdot"></span>
+                    <span class="elite-marquee-tag"><i class="fas fa-server"></i> Django &amp; Flask</span>
+                    <span class="elite-mdot"></span>
+                    <span class="elite-marquee-tag"><i class="fas fa-laptop-code"></i> Scripting</span>
+                    <span class="elite-mdot"></span>
+                    <span class="elite-marquee-tag"><i class="fas fa-cogs"></i> Machine Learning</span>
+                    <span class="elite-mdot"></span>
+                    <span class="elite-marquee-tag"><i class="fas fa-database"></i> SQL Integration</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <section class="extra-roadmap-section python-roadmap-section">
+        <div class="container">
+            <div class="extra-section-header text-center">
+                <span class="extra-badge-label"
+                    style="color:#4ade80;background:rgba(74,222,128,0.08);border-color:rgba(74,222,128,0.2);">STRUCTURED
+                    CURRICULUM</span>
+                <h2>Python Learning <span
+                        style="background:linear-gradient(135deg,#4ade80,#06b6d4);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">Roadmap</span>
+                </h2>
+                <p>Five progressive modules from hello world to building real-world applications and solving interview
+                    problems.</p>
+            </div>
+            <div class="extra-roadmap-grid">
+                <div class="extra-roadmap-card anim-reveal from-left" style="--card-color:#4ade80;">
+                    <div class="extra-roadmap-num" style="color:rgba(74,222,128,0.12);">01</div>
+                    <div class="extra-roadmap-icon" style="background:linear-gradient(135deg,#4ade80,#059669);"><i
+                            class="fas fa-terminal"></i></div>
+                    <h3>Python Fundamentals</h3>
+                    <p>Variables, data types, operators, conditionals, loops, and your first Python programs.</p>
+                    <ul class="extra-topic-list">
+                        <li>Print, Input, Variables</li>
+                        <li>If / Elif / Else</li>
+                        <li>For &amp; While Loops</li>
+                        <li>Type Casting</li>
+                    </ul>
+                </div>
+                <div class="extra-roadmap-card anim-reveal" style="--card-color:#06b6d4;">
+                    <div class="extra-roadmap-num" style="color:rgba(6,182,212,0.12);">02</div>
+                    <div class="extra-roadmap-icon" style="background:linear-gradient(135deg,#06b6d4,#4ade80);"><i
+                            class="fas fa-list"></i></div>
+                    <h3>Data Structures</h3>
+                    <p>Lists, tuples, dictionaries, sets, and comprehensions. Build efficient in-memory data solutions.
+                    </p>
+                    <ul class="extra-topic-list">
+                        <li>Lists &amp; Tuples</li>
+                        <li>Dictionaries &amp; Sets</li>
+                        <li>List Comprehensions</li>
+                        <li>Nested Structures</li>
+                    </ul>
+                </div>
+                <div class="extra-roadmap-card anim-reveal" style="--card-color:#8b5cf6;">
+                    <div class="extra-roadmap-num" style="color:rgba(139,92,246,0.12);">03</div>
+                    <div class="extra-roadmap-icon" style="background:linear-gradient(135deg,#8b5cf6,#4ade80);"><i
+                            class="fas fa-object-group"></i></div>
+                    <h3>Functions &amp; OOP</h3>
+                    <p>Functions, lambda expressions, decorators, and object-oriented programming in Python.</p>
+                    <ul class="extra-topic-list">
+                        <li>Def &amp; Lambda</li>
+                        <li>Classes &amp; Objects</li>
+                        <li>Inheritance</li>
+                        <li>Dunder Methods</li>
+                    </ul>
+                </div>
+                <div class="extra-roadmap-card anim-reveal" style="--card-color:#f59e0b;">
+                    <div class="extra-roadmap-num" style="color:rgba(245,158,11,0.12);">04</div>
+                    <div class="extra-roadmap-icon" style="background:linear-gradient(135deg,#f59e0b,#4ade80);"><i
+                            class="fas fa-file-import"></i></div>
+                    <h3>File Handling &amp; Modules</h3>
+                    <p>Read/write files, work with JSON and CSV, and build modular programs with packages.</p>
+                    <ul class="extra-topic-list">
+                        <li>File I/O</li>
+                        <li>JSON &amp; CSV</li>
+                        <li>Modules &amp; Packages</li>
+                        <li>Virtual Environments</li>
+                    </ul>
+                </div>
+                <div class="extra-roadmap-card anim-reveal from-right" style="--card-color:#ec4899;">
+                    <div class="extra-roadmap-num" style="color:rgba(236,72,153,0.12);">05</div>
+                    <div class="extra-roadmap-icon" style="background:linear-gradient(135deg,#ec4899,#4ade80);"><i
+                            class="fas fa-plug"></i></div>
+                    <h3>APIs &amp; Real Projects</h3>
+                    <p>Build REST API clients, automate web requests, and complete portfolio-worthy Python projects.</p>
+                    <ul class="extra-topic-list">
+                        <li>requests Library</li>
+                        <li>JSON APIs</li>
+                        <li>Automation Scripts</li>
+                        <li>Project: Price Tracker</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="extra-enroll-strip">
+        <div class="strip-bg-img"
+            style="background-image:url('https://images.unsplash.com/photo-1555949963-ff9fe0c870eb?auto=format&fit=crop&q=80&w=2070');"
+            aria-hidden="true"></div>
+        <div class="strip-overlay" aria-hidden="true"
+            style="background:radial-gradient(ellipse 90% 80% at 50% 50%,rgba(10,40,20,0.88) 0%,rgba(5,15,10,0.95) 100%);">
+        </div>
+        <div class="container strip-content">
+            <div class="strip-text">
+                <h3>Start your Python journey today</h3>
+                <p>100+ hands-on lessons, real projects, and a community of 3,500+ learners. No experience needed.</p>
+            </div>
+            <a href="student-login" class="strip-btn"
+                style="background:linear-gradient(135deg,#4ade80,#06b6d4);color:#0a0f0a;">Enroll in Python Course</a>
+        </div>
+    </div>
+
+    <div class="course-glow-divider" style="margin:0;"></div>
+
+    <!-- All Courses Overview -->
+    <section class="all-courses-strip">
+        <div class="container">
+            <div class="extra-section-header text-center">
+                <span class="extra-badge-label">OUR PROGRAMS</span>
+                <h2>Three <span class="text-gradient">Elite Courses</span> — One Platform</h2>
+                <p>Every course is built with a pattern-first methodology, practitioner-built curriculum, and a
+                    commitment to getting you interview-ready.</p>
+            </div>
+            <div class="all-courses-grid">
+                <div class="all-course-card anim-reveal from-left">
+                    <div class="all-course-card-img"
+                        style="background-image:url('https://images.unsplash.com/photo-1516116216624-53e697fedbea?auto=format&fit=crop&q=80&w=800');--card-accent:#8b5cf6;">
+                        <div class="all-course-card-overlay"></div>
+                        <div class="all-course-card-label">DSA MASTERCLASS</div>
+                    </div>
+                    <div class="all-course-card-body">
+                        <h3>Advanced DSA</h3>
+                        <p>500+ problems. 4 Phases. Pattern-based interview mastery for FAANG and top product companies.
+                        </p>
+                        <div class="all-course-tags">
+                            <span>Arrays</span><span>Graphs</span><span>Dynamic Programming</span>
+                        </div>
+                        <a href="student-login" class="all-course-btn" style="--btn-color:#8b5cf6;">Enroll Now</a>
+                    </div>
+                </div>
+                <div class="all-course-card anim-reveal">
+                    <div class="all-course-card-img"
+                        style="background-image:url('https://images.unsplash.com/photo-1629654297299-c8506221ca97?auto=format&fit=crop&q=80&w=800');--card-accent:#3b82f6;">
+                        <div class="all-course-card-overlay"></div>
+                        <div class="all-course-card-label">C++ PROGRAM</div>
+                    </div>
+                    <div class="all-course-card-body">
+                        <h3>C++ Mastery</h3>
+                        <p>80+ lessons on memory management, OOP, STL, and competitive programming in modern C++.</p>
+                        <div class="all-course-tags">
+                            <span>Pointers</span><span>OOP</span><span>STL</span>
+                        </div>
+                        <a href="student-login" class="all-course-btn" style="--btn-color:#3b82f6;">Enroll Now</a>
+                    </div>
+                </div>
+                <div class="all-course-card anim-reveal from-right">
+                    <div class="all-course-card-img"
+                        style="background-image:url('https://images.unsplash.com/photo-1555949963-ff9fe0c870eb?auto=format&fit=crop&q=80&w=800');--card-accent:#4ade80;">
+                        <div class="all-course-card-overlay"></div>
+                        <div class="all-course-card-label">PYTHON PROGRAM</div>
+                    </div>
+                    <div class="all-course-card-body">
+                        <h3>Python Mastery</h3>
+                        <p>100+ lessons from Python basics to real-world projects, APIs, automation and OOP design.</p>
+                        <div class="all-course-tags">
+                            <span>OOP</span><span>APIs</span><span>Automation</span>
+                        </div>
+                        <a href="student-login" class="all-course-btn" style="--btn-color:#4ade80;">Enroll Now</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="course-glow-divider" style="margin:0;"></div>
+
 
 
     <style>
+        /* ΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉ
+           NEW COURSE SECTIONS STYLE (C++ & Python)
+           Level: Elite Premium Design
+        ΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉ */
+
+        /* ΓöÇΓöÇ Hero Banners ΓöÇΓöÇ */
+        .extra-course-hero {
+            position: relative;
+            min-height: 520px;
+            display: flex;
+            align-items: center;
+            padding: 100px 0;
+            overflow: hidden;
+            background: #050510;
+        }
+
+        .extra-hero-bg {
+            position: absolute;
+            inset: 0;
+            background-size: cover;
+            background-position: center;
+            opacity: 0.25;
+            filter: saturate(1.2) brightness(0.5);
+            transform: scale(1.04);
+            transition: transform 10s linear;
+            z-index: 0;
+        }
+
+        .extra-course-hero:hover .extra-hero-bg {
+            transform: scale(1.1);
+        }
+
+        .cpp-hero-img {
+            background-image: url('https://images.unsplash.com/photo-1629654297299-c8506221ca97?auto=format&fit=crop&q=80&w=2070');
+        }
+
+        .python-hero-img {
+            background-image: url('https://images.unsplash.com/photo-1555949962-f93971239ed8?auto=format&fit=crop&q=80&w=2070');
+        }
+
+        .extra-course-hero-overlay {
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(ellipse 80% 60% at 30% 50%, rgba(20, 20, 50, 0.85) 0%, rgba(5, 5, 20, 0.93) 100%);
+            z-index: 1;
+        }
+
+        .extra-course-hero-content {
+            position: relative;
+            z-index: 5;
+            max-width: 700px;
+        }
+
+        .extra-course-badge {
+            display: inline-block;
+            padding: 6px 16px;
+            border-radius: 100px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            letter-spacing: 2px;
+            background: rgba(var(--badge-color-rgb, 139, 92, 246), 0.1);
+            color: var(--badge-color);
+            border: 1px solid rgba(var(--badge-color-rgb, 139, 92, 246), 0.25);
+            margin-bottom: 24px;
+            text-transform: uppercase;
+        }
+
+        .extra-course-title {
+            font-size: clamp(2.2rem, 5vw, 3.6rem);
+            font-weight: 900;
+            line-height: 1.1;
+            letter-spacing: -0.03em;
+            color: var(--text-primary);
+            margin-bottom: 20px;
+        }
+
+        .extra-course-subtitle {
+            font-size: 1.15rem;
+            line-height: 1.6;
+            color: var(--text-secondary);
+            margin-bottom: 32px;
+            opacity: 0.9;
+        }
+
+        .extra-course-meta {
+            display: flex;
+            gap: 20px;
+            margin-bottom: 40px;
+            flex-wrap: wrap;
+        }
+
+        .meta-chip {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            padding: 6px 14px;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 8px;
+        }
+
+        .meta-chip i {
+            color: var(--primary);
+        }
+
+        .extra-course-cta-btn {
+            display: inline-flex;
+            align-items: center;
+            padding: 16px 36px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            font-weight: 700;
+            border-radius: 12px;
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+            box-shadow: 0 10px 30px rgba(139, 92, 246, 0.3);
+            text-decoration: none;
+        }
+
+        .extra-course-cta-btn:hover {
+            transform: translateY(-4px) scale(1.02);
+            box-shadow: 0 15px 40px rgba(139, 92, 246, 0.5);
+            filter: brightness(1.1);
+        }
+
+        /* ΓöÇΓöÇ Features Section ΓöÇΓöÇ */
+        .extra-features-section {
+            padding: 100px 0;
+            background: linear-gradient(180deg, transparent 0%, rgba(20, 20, 40, 0.4) 50%, transparent 100%);
+        }
+
+        .extra-section-header {
+            max-width: 700px;
+            margin: 0 auto 60px;
+        }
+
+        .extra-badge-label {
+            font-size: 0.75rem;
+            font-weight: 700;
+            letter-spacing: 2px;
+            color: var(--primary);
+            background: rgba(139, 92, 246, 0.08);
+            padding: 4px 12px;
+            border-radius: 4px;
+            display: inline-block;
+            margin-bottom: 16px;
+            border: 1px solid rgba(139, 92, 246, 0.2);
+        }
+
+        .extra-section-header h2 {
+            font-size: 2.8rem;
+            font-weight: 800;
+            margin-bottom: 20px;
+        }
+
+        .extra-features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 24px;
+        }
+
+        .extra-feature-card {
+            background: linear-gradient(145deg, rgba(20, 20, 36, 0.96), rgba(14, 14, 26, 0.98));
+            border: 1px solid rgba(139, 92, 246, 0.12);
+            border-radius: var(--radius-xl);
+            padding: 36px 28px;
+            transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.35s ease, border-color 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .extra-feature-card:hover {
+            transform: translateY(-8px);
+            border-color: var(--primary);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3), 0 0 20px rgba(139, 92, 246, 0.1) inset;
+        }
+
+        .extra-feature-icon {
+            width: 50px;
+            height: 50px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.4rem;
+            color: white;
+            margin-bottom: 24px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+        }
+
+        .extra-feature-card h3 {
+            font-size: 1.3rem;
+            margin-bottom: 14px;
+            color: var(--text-primary);
+        }
+
+        .extra-feature-card p {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        /* ΓöÇΓöÇ Marquee Strip ΓöÇΓöÇ */
+        .elite-marquee-strip {
+            padding: 20px 0;
+            border-top: 1px solid;
+            border-bottom: 1px solid;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .elite-marquee-inner {
+            display: flex;
+            width: max-content;
+            animation: coursesMarquee 40s linear infinite;
+        }
+
+        @keyframes coursesMarquee {
+            0% {
+                transform: translateX(0);
+            }
+
+            100% {
+                transform: translateX(-50%);
+            }
+        }
+
+        .elite-marquee-tag {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 0.9rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            padding: 0 30px;
+            white-space: nowrap;
+        }
+
+        .elite-mdot {
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+        }
+
+        /* ΓöÇΓöÇ Roadmap Section ΓöÇΓöÇ */
+        .extra-roadmap-section {
+            padding: 100px 0;
+            background: #050510;
+        }
+
+        .extra-roadmap-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 24px;
+        }
+
+        .extra-roadmap-card {
+            background: linear-gradient(145deg, rgba(18, 18, 32, 0.97), rgba(12, 12, 22, 0.99));
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            border-radius: var(--radius-xl);
+            padding: 32px 26px;
+            position: relative;
+            overflow: hidden;
+            transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s ease, border-color 0.3s ease;
+        }
+
+        .extra-roadmap-card:hover {
+            transform: translateY(-6px) scale(1.01);
+            border-color: var(--card-color);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
+        }
+
+        .extra-roadmap-card::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 4px;
+            height: 100%;
+            background: var(--card-color);
+            opacity: 0.4;
+            transition: opacity 0.3s ease;
+        }
+
+        .extra-roadmap-card:hover::before {
+            opacity: 1;
+        }
+
+        .extra-roadmap-num {
+            position: absolute;
+            top: 10px;
+            right: 20px;
+            font-size: 4rem;
+            font-weight: 900;
+            color: rgba(255, 255, 255, 0.03);
+            line-height: 1;
+            z-index: 0;
+            pointer-events: none;
+            transition: color 0.3s ease;
+        }
+
+        .extra-roadmap-card:hover .extra-roadmap-num {
+            color: rgba(255, 255, 255, 0.06);
+        }
+
+        .extra-roadmap-icon {
+            width: 48px;
+            height: 48px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            color: white;
+            margin-bottom: 24px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .extra-roadmap-card h3 {
+            font-size: 1.25rem;
+            margin-bottom: 12px;
+            color: var(--text-primary);
+            position: relative;
+            z-index: 2;
+        }
+
+        .extra-roadmap-card p {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            line-height: 1.6;
+            margin-bottom: 20px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .extra-topic-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 8px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .extra-topic-list li {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .extra-topic-list li::before {
+            content: '•';
+            color: var(--card-color);
+        }
+
+        /* ΓöÇΓöÇ Enroll Strip ΓöÇΓöÇ */
+        .extra-enroll-strip {
+            position: relative;
+            overflow: hidden;
+            padding: 70px 0;
+        }
+
+        .strip-bg-img {
+            position: absolute;
+            inset: 0;
+            background-size: cover;
+            background-position: center;
+            opacity: 0.15;
+            filter: grayscale(1) brightness(0.6);
+            z-index: 0;
+        }
+
+        .strip-overlay {
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(ellipse 90% 80% at 50% 50%, rgba(20, 20, 50, 0.88) 0%, rgba(10, 5, 25, 0.95) 100%);
+            z-index: 1;
+        }
+
+        .strip-content {
+            position: relative;
+            z-index: 5;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 40px;
+        }
+
+        .strip-text h3 {
+            font-size: 2.22rem;
+            font-weight: 800;
+            margin-bottom: 12px;
+        }
+
+        .strip-text p {
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+            opacity: 0.8;
+        }
+
+        .strip-btn {
+            display: inline-flex;
+            align-items: center;
+            padding: 18px 40px;
+            color: white;
+            font-weight: 700;
+            border-radius: 12px;
+            text-decoration: none;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            white-space: nowrap;
+        }
+
+        .strip-btn:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+        }
+
+        /* ΓöÇΓöÇ All Courses Strip ΓöÇΓöÇ */
+        .all-courses-strip {
+            padding: 90px 0;
+            background: linear-gradient(180deg, transparent 0%, rgba(15, 5, 30, 0.5) 50%, transparent 100%);
+        }
+
+        .all-courses-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 30px;
+        }
+
+        .all-course-card {
+            border-radius: var(--radius-xl);
+            overflow: hidden;
+            background: rgba(18, 18, 30, 0.95);
+            border: 1px solid rgba(255, 255, 255, 0.07);
+            transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s ease;
+        }
+
+        .all-course-card:hover {
+            transform: translateY(-12px);
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.5);
+            border-color: rgba(255, 255, 255, 0.15);
+        }
+
+        .all-course-card-img {
+            height: 200px;
+            background-size: cover;
+            background-position: center;
+            position: relative;
+        }
+
+        .all-course-card-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to top, rgba(18, 18, 30, 1), transparent);
+        }
+
+        .all-course-card-label {
+            position: absolute;
+            bottom: 20px;
+            left: 20px;
+            font-size: 0.65rem;
+            font-weight: 900;
+            letter-spacing: 2px;
+            color: white;
+            background: var(--card-accent);
+            padding: 4px 10px;
+            border-radius: 4px;
+        }
+
+        .all-course-card-body {
+            padding: 30px;
+            text-align: left;
+        }
+
+        .all-course-card-body h3 {
+            font-size: 1.6rem;
+            font-weight: 800;
+            margin-bottom: 12px;
+        }
+
+        .all-course-card-body p {
+            font-size: 0.95rem;
+            color: var(--text-secondary);
+            line-height: 1.6;
+            margin-bottom: 24px;
+        }
+
+        .all-course-tags {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+        }
+
+        .all-course-tags span {
+            font-size: 0.7rem;
+            color: var(--text-muted);
+            background: rgba(255, 255, 255, 0.05);
+            padding: 4px 10px;
+            border-radius: 4px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .all-course-btn {
+            display: block;
+            text-align: center;
+            padding: 14px;
+            border: 1px solid var(--btn-color);
+            color: var(--btn-color);
+            border-radius: 10px;
+            font-weight: 700;
+            font-size: 0.85rem;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .all-course-btn:hover {
+            background: var(--btn-color);
+            color: white;
+            box-shadow: 0 0 20px rgba(var(--btn-color-rgb), 0.3);
+        }
+
+        /* ΓöÇΓöÇ Glow Divider ΓöÇΓöÇ */
+        .course-glow-divider {
+            height: 1px;
+            width: 100%;
+            background: linear-gradient(90deg, transparent, rgba(139, 92, 246, 0.3), transparent);
+            position: relative;
+        }
+
+        .course-glow-divider::after {
+            content: '';
+            position: absolute;
+            top: -1px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 150px;
+            height: 3px;
+            background: var(--primary);
+            filter: blur(4px);
+            border-radius: 50%;
+        }
+
+        @media (max-width: 600px) {
+            .extra-course-hero {
+                padding: 65px 0;
+                min-height: auto;
+            }
+
+            .extra-roadmap-grid,
+            .extra-features-grid,
+            .all-courses-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .strip-content {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .strip-btn {
+                width: 100%;
+                text-align: center;
+            }
+
+            .extra-course-title {
+                font-size: 1.95rem;
+            }
+
+            .extra-course-hero-content {
+                text-align: left !important;
+                margin-left: 0 !important;
+            }
+
+            .extra-course-meta {
+                justify-content: flex-start !important;
+            }
+        }
+
         .topic-box {
             background: linear-gradient(135deg, var(--primary), var(--secondary));
             padding: 18px 30px;
@@ -545,6 +2360,8 @@
         }
     </style>
 
+
+
     <section id="pricing" class="pricing-section section-reveal active">
         <div class="container">
             <h2 style="font-size: 3rem; margin-bottom: 40px;">Ready to <span class="text-gradient">Ascend?</span></h2>
@@ -564,7 +2381,9 @@
                             style="color: var(--success); margin-right: 10px;"></i> Exclusive Discord Engineer Community
                     </li>
                 </ul>
-                <button class="btn-enroll">ENROLL IN COURSE</button>
+                <a href="student-login" class="btn btn-primary btn-lg"
+                    style="margin-top: 20px; width: 100%; text-align: center; display: inline-block;">ENROLL IN
+                    COURSE</a>
             </div>
         </div>
     </section>

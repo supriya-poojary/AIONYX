@@ -502,6 +502,476 @@
             }
         }
     </style>
+
+    <!-- ═══════════════════════════════════════════════════════════
+         PREMIUM UI ENHANCEMENT STYLES — About Us
+         Inspired by: Stripe, Apple, Udemy, Coursera, Linear
+         Rules: NO position/content/layout changes. Visual only.
+    ═══════════════════════════════════════════════════════════ -->
+    <style>
+        /* ─────────────────────────────────────────────
+           1. PLATFORM INTRO SECTION — Rich Background
+        ───────────────────────────────────────────── */
+        .container.section-reveal:has(.platform-intro),
+        section:has(.platform-intro) {
+            position: relative;
+        }
+
+        .platform-intro-section-bg {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .platform-intro-section-bg::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background:
+                radial-gradient(ellipse 60% 50% at 80% 50%, rgba(139, 92, 246, 0.08) 0%, transparent 70%),
+                radial-gradient(ellipse 40% 60% at 10% 60%, rgba(6, 182, 212, 0.06) 0%, transparent 70%);
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        /* ─────────────────────────────────────────────
+           2. MARQUEE / TICKER STRIP
+        ───────────────────────────────────────────── */
+        .about-marquee-strip {
+            width: 100%;
+            overflow: hidden;
+            background: rgba(139, 92, 246, 0.06);
+            border-top: 1px solid rgba(139, 92, 246, 0.15);
+            border-bottom: 1px solid rgba(139, 92, 246, 0.15);
+            padding: 16px 0;
+            position: relative;
+        }
+
+        .about-marquee-strip::before,
+        .about-marquee-strip::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            width: 120px;
+            height: 100%;
+            z-index: 2;
+        }
+
+        .about-marquee-strip::before {
+            left: 0;
+            background: linear-gradient(90deg, var(--background) 0%, transparent 100%);
+        }
+
+        .about-marquee-strip::after {
+            right: 0;
+            background: linear-gradient(270deg, var(--background) 0%, transparent 100%);
+        }
+
+        .marquee-inner {
+            display: flex;
+            gap: 0;
+            width: max-content;
+            animation: marqueeScroll 28s linear infinite;
+        }
+
+        .marquee-segment {
+            display: flex;
+            align-items: center;
+            gap: 0;
+            white-space: nowrap;
+        }
+
+        .marquee-tag {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 0 36px;
+            font-size: 0.82rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--text-muted);
+        }
+
+        .marquee-tag i {
+            color: var(--primary);
+            font-size: 0.9rem;
+        }
+
+        .marquee-dot {
+            width: 4px;
+            height: 4px;
+            border-radius: 50%;
+            background: rgba(139, 92, 246, 0.4);
+            display: inline-block;
+        }
+
+        @keyframes marqueeScroll {
+            0% {
+                transform: translateX(0);
+            }
+
+            100% {
+                transform: translateX(-50%);
+            }
+        }
+
+        /* ─────────────────────────────────────────────
+           3. VISION/MISSION SECTION — Gradient Background
+        ───────────────────────────────────────────── */
+        .vision-mission-section-enhanced {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .vision-mission-section-enhanced::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background:
+                radial-gradient(ellipse 70% 60% at 20% 40%, rgba(139, 92, 246, 0.07) 0%, transparent 65%),
+                radial-gradient(ellipse 50% 60% at 90% 70%, rgba(236, 72, 153, 0.06) 0%, transparent 65%),
+                linear-gradient(180deg, transparent 0%, rgba(139, 92, 246, 0.03) 50%, transparent 100%);
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        /* Animated grid dots overlay */
+        .vision-mission-section-enhanced::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background-image: radial-gradient(rgba(139, 92, 246, 0.12) 1px, transparent 1px);
+            background-size: 32px 32px;
+            opacity: 0.4;
+            pointer-events: none;
+            mask-image: radial-gradient(ellipse 80% 80% at 50% 50%, black 30%, transparent 100%);
+            -webkit-mask-image: radial-gradient(ellipse 80% 80% at 50% 50%, black 30%, transparent 100%);
+            z-index: 0;
+        }
+
+        /* ─────────────────────────────────────────────
+           4. TEAM SECTION — Dark Premium Background
+        ───────────────────────────────────────────── */
+        .team-section-enhanced {
+            position: relative;
+            overflow: hidden;
+            background: linear-gradient(180deg,
+                    transparent 0%,
+                    rgba(10, 10, 20, 0.6) 15%,
+                    rgba(15, 10, 30, 0.7) 50%,
+                    rgba(10, 10, 20, 0.6) 85%,
+                    transparent 100%);
+        }
+
+        .team-section-enhanced::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background-image:
+                linear-gradient(rgba(139, 92, 246, 0.05) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(139, 92, 246, 0.05) 1px, transparent 1px);
+            background-size: 60px 60px;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        /* Large glowing orb behind team section */
+        .team-section-enhanced::after {
+            content: '';
+            position: absolute;
+            width: 800px;
+            height: 800px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(139, 92, 246, 0.08) 0%, transparent 70%);
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            pointer-events: none;
+            z-index: 0;
+            animation: teamOrbPulse 8s ease-in-out infinite;
+        }
+
+        @keyframes teamOrbPulse {
+
+            0%,
+            100% {
+                opacity: 0.6;
+                transform: translate(-50%, -50%) scale(1);
+            }
+
+            50% {
+                opacity: 1;
+                transform: translate(-50%, -50%) scale(1.1);
+            }
+        }
+
+        /* Online image strip for team section */
+        .team-visual-strip {
+            position: relative;
+            width: 100%;
+            height: 3px;
+            background: linear-gradient(90deg, transparent 0%, var(--primary) 30%, var(--secondary) 60%, var(--accent) 85%, transparent 100%);
+            margin-bottom: 60px;
+            overflow: hidden;
+        }
+
+        .team-visual-strip::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 60%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.6), transparent);
+            animation: lineShine 3s ease-in-out infinite;
+        }
+
+        @keyframes lineShine {
+            0% {
+                left: -60%;
+            }
+
+            100% {
+                left: 160%;
+            }
+        }
+
+        /* ─────────────────────────────────────────────
+           5. FAQ SECTION — Subtle Warm Background
+        ───────────────────────────────────────────── */
+        .faq-section-enhanced {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .faq-section-enhanced::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background:
+                radial-gradient(ellipse 60% 40% at 80% 20%, rgba(236, 72, 153, 0.05) 0%, transparent 70%),
+                radial-gradient(ellipse 50% 50% at 10% 80%, rgba(139, 92, 246, 0.06) 0%, transparent 70%);
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        /* ─────────────────────────────────────────────
+           6. SECTION DIVIDERS — Glowing Gradient Lines
+        ───────────────────────────────────────────── */
+        .glow-divider {
+            width: 100%;
+            height: 1px;
+            background: linear-gradient(90deg,
+                    transparent 0%,
+                    rgba(139, 92, 246, 0.4) 20%,
+                    rgba(236, 72, 153, 0.5) 50%,
+                    rgba(139, 92, 246, 0.4) 80%,
+                    transparent 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .glow-divider::after {
+            content: '';
+            position: absolute;
+            top: -1px;
+            left: -100%;
+            width: 40%;
+            height: 3px;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.8), transparent);
+            animation: dividerShine 4s ease-in-out infinite;
+        }
+
+        @keyframes dividerShine {
+            0% {
+                left: -40%;
+            }
+
+            100% {
+                left: 140%;
+            }
+        }
+
+        /* ─────────────────────────────────────────────
+           7. ONLINE IMAGE BANNER — Between Sections
+        ───────────────────────────────────────────── */
+        .about-image-banner {
+            width: 100%;
+            height: 300px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .about-image-banner img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center 30%;
+            filter: brightness(0.35) saturate(1.2);
+            transform: scale(1.05);
+            transition: transform 8s ease;
+        }
+
+        .about-image-banner:hover img {
+            transform: scale(1.0);
+        }
+
+        .about-image-banner-overlay {
+            position: absolute;
+            inset: 0;
+            background:
+                linear-gradient(180deg, var(--background) 0%, transparent 20%, transparent 80%, var(--background) 100%),
+                linear-gradient(90deg, transparent 30%, rgba(139, 92, 246, 0.15) 60%, transparent 90%);
+            z-index: 1;
+        }
+
+        .about-image-banner-text {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 2;
+            text-align: center;
+            color: white;
+        }
+
+        .about-image-banner-text h3 {
+            font-size: clamp(1.2rem, 3vw, 2rem);
+            font-weight: 800;
+            letter-spacing: -0.02em;
+            text-shadow: 0 2px 20px rgba(0, 0, 0, 0.5);
+            background: linear-gradient(135deg, #fff, rgba(167, 139, 250, 0.9));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .about-image-banner-text p {
+            font-size: clamp(0.8rem, 1.5vw, 1rem);
+            color: rgba(203, 213, 225, 0.85);
+            margin-top: 8px;
+            letter-spacing: 0.02em;
+        }
+
+        /* ─────────────────────────────────────────────
+           8. ENHANCED dev-card backgrounds
+        ───────────────────────────────────────────── */
+        .dev-card {
+            background: linear-gradient(145deg, rgba(26, 26, 36, 0.95) 0%, rgba(18, 18, 28, 0.98) 100%) !important;
+        }
+
+        /* ─────────────────────────────────────────────
+           9. Animated highlight ring on platform image
+        ───────────────────────────────────────────── */
+        .platform-image {
+            position: relative;
+        }
+
+        .platform-image::after {
+            content: '';
+            position: absolute;
+            inset: -8px;
+            border-radius: calc(var(--radius-xl) + 8px);
+            background: conic-gradient(from 0deg,
+                    transparent 0%,
+                    rgba(139, 92, 246, 0.3) 25%,
+                    rgba(236, 72, 153, 0.3) 50%,
+                    rgba(6, 182, 212, 0.3) 75%,
+                    transparent 100%);
+            z-index: -1;
+            animation: imageRingRotate 8s linear infinite;
+            opacity: 0.7;
+            filter: blur(12px);
+        }
+
+        @keyframes imageRingRotate {
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        /* ─────────────────────────────────────────────
+           10. Platform content — animated accent line
+        ───────────────────────────────────────────── */
+        .platform-content h2::after {
+            content: none !important;
+            /* handled by the existing sweep */
+        }
+
+        .platform-content p {
+            border-left: 2px solid rgba(139, 92, 246, 0.2);
+            padding-left: 16px;
+            transition: border-color 0.4s ease;
+        }
+
+        .platform-content p:hover {
+            border-color: rgba(139, 92, 246, 0.5);
+        }
+
+        /* ─────────────────────────────────────────────
+           11. Stats strip image background
+        ───────────────────────────────────────────── */
+        .stats-strip {
+            background: linear-gradient(135deg, rgba(139, 92, 246, 0.06) 0%, rgba(236, 72, 153, 0.04) 50%, rgba(6, 182, 212, 0.04) 100%) !important;
+        }
+
+        /* ─────────────────────────────────────────────
+           12. FAQ items hover improvement
+        ───────────────────────────────────────────── */
+        .faq-item {
+            background: rgba(26, 26, 36, 0.6) !important;
+            backdrop-filter: blur(10px);
+        }
+
+        /* ─────────────────────────────────────────────
+           13. CTA Section image background enhancement
+        ───────────────────────────────────────────── */
+        .cta-section {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-section-bg-img {
+            position: absolute;
+            inset: 0;
+            background-image: url('https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?auto=format&fit=crop&q=80&w=2070');
+            background-size: cover;
+            background-position: center;
+            opacity: 0.06;
+            filter: saturate(0) brightness(0.5);
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        /* ─────────────────────────────────────────────
+           14. Responsive adjustments
+        ───────────────────────────────────────────── */
+        @media (max-width: 768px) {
+            .about-marquee-strip {
+                padding: 12px 0;
+            }
+
+            .about-image-banner {
+                height: 180px;
+            }
+
+            .marquee-tag {
+                padding: 0 20px;
+                font-size: 0.75rem;
+            }
+
+            .about-marquee-strip::before,
+            .about-marquee-strip::after {
+                width: 50px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .about-image-banner {
+                height: 140px;
+            }
+        }
+    </style>
 </head>
 
 <body class="dark-theme">
@@ -633,6 +1103,48 @@
         </div>
     </header>
 
+    <!-- Marquee Strip -->
+    <div class="about-marquee-strip">
+        <div class="marquee-inner">
+            <div class="marquee-segment">
+                <span class="marquee-tag"><i class="fas fa-layer-group"></i> Data Structures</span><span
+                    class="marquee-dot"></span>
+                <span class="marquee-tag"><i class="fas fa-code-branch"></i> Algorithms</span><span
+                    class="marquee-dot"></span>
+                <span class="marquee-tag"><i class="fas fa-brain"></i> Pattern-Based Learning</span><span
+                    class="marquee-dot"></span>
+                <span class="marquee-tag"><i class="fas fa-bolt"></i> Dynamic Programming</span><span
+                    class="marquee-dot"></span>
+                <span class="marquee-tag"><i class="fas fa-tree"></i> Trees &amp; Graphs</span><span
+                    class="marquee-dot"></span>
+                <span class="marquee-tag"><i class="fas fa-rocket"></i> Interview Mastery</span><span
+                    class="marquee-dot"></span>
+                <span class="marquee-tag"><i class="fas fa-trophy"></i> FAANG Prep</span><span
+                    class="marquee-dot"></span>
+                <span class="marquee-tag"><i class="fas fa-graduation-cap"></i> Lifetime Access</span><span
+                    class="marquee-dot"></span>
+            </div>
+            <div class="marquee-segment" aria-hidden="true">
+                <span class="marquee-tag"><i class="fas fa-layer-group"></i> Data Structures</span><span
+                    class="marquee-dot"></span>
+                <span class="marquee-tag"><i class="fas fa-code-branch"></i> Algorithms</span><span
+                    class="marquee-dot"></span>
+                <span class="marquee-tag"><i class="fas fa-brain"></i> Pattern-Based Learning</span><span
+                    class="marquee-dot"></span>
+                <span class="marquee-tag"><i class="fas fa-bolt"></i> Dynamic Programming</span><span
+                    class="marquee-dot"></span>
+                <span class="marquee-tag"><i class="fas fa-tree"></i> Trees &amp; Graphs</span><span
+                    class="marquee-dot"></span>
+                <span class="marquee-tag"><i class="fas fa-rocket"></i> Interview Mastery</span><span
+                    class="marquee-dot"></span>
+                <span class="marquee-tag"><i class="fas fa-trophy"></i> FAANG Prep</span><span
+                    class="marquee-dot"></span>
+                <span class="marquee-tag"><i class="fas fa-graduation-cap"></i> Lifetime Access</span><span
+                    class="marquee-dot"></span>
+            </div>
+        </div>
+    </div>
+
     <section class="container section-reveal active">
         <div class="platform-intro">
             <div class="platform-image reveal-left">
@@ -655,8 +1167,21 @@
         </div>
     </section>
 
+    <!-- Glow Divider + Image Banner -->
+    <div class="glow-divider"></div>
+    <div class="about-image-banner">
+        <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&q=80&w=2070"
+            alt="Team Collaboration" loading="lazy">
+        <div class="about-image-banner-overlay"></div>
+        <div class="about-image-banner-text">
+            <h3>Building Tomorrow's Engineers</h3>
+            <p>Pattern-first learning. Real interview preparation. Lifetime access.</p>
+        </div>
+    </div>
+    <div class="glow-divider"></div>
+
     <!-- Vision & Mission Section -->
-    <section class="container section-reveal active" style="padding-bottom: 80px;">
+    <section class="container section-reveal active vision-mission-section-enhanced" style="padding-bottom: 80px;">
         <div class="text-center" style="margin-bottom: 50px;">
             <h2 style="font-size: 2.5rem; font-weight: 800; margin-bottom: 1rem;">Our <span
                     class="text-gradient">Mission & Vision</span></h2>
@@ -1006,7 +1531,11 @@
         </style>
     </section>
 
-    <section class="container section-reveal active" style="padding-bottom: 100px;">
+    <!-- Glow Divider before team -->
+    <div class="glow-divider"></div>
+
+    <section class="container section-reveal active team-section-enhanced" style="padding-bottom: 100px;">
+        <div class="team-visual-strip"></div>
         <div class="dev-section-container">
             <!-- Left Side: Text Content -->
             <div class="dev-info-side reveal-right">
@@ -1314,8 +1843,11 @@
         </style>
     </section>
 
+    <!-- Glow Divider before FAQ -->
+    <div class="glow-divider"></div>
+
     <!-- FAQ Section -->
-    <section class="container section-reveal active" style="padding: 20px 0 100px;">
+    <section class="container section-reveal active faq-section-enhanced" style="padding: 20px 0 100px;">
         <div class="text-center" style="margin-bottom: 60px;">
             <span class="section-badge"
                 style="margin-bottom: 1.5rem; background: rgba(139, 92, 246, 0.1); border-color: rgba(139, 92, 246, 0.2); color: var(--primary);">FREQUENTLY
@@ -1559,26 +2091,52 @@
         .cta-section {
             padding: 100px 0;
             position: relative;
-            background:
-                radial-gradient(circle at 15% 50%, rgba(139, 92, 246, 0.08), transparent 25%),
-                radial-gradient(circle at 85% 30%, rgba(236, 72, 153, 0.08), transparent 25%);
+            background: transparent;
             overflow: hidden;
         }
 
+        /* Background image layer */
+        .cta-section-bg-img {
+            position: absolute;
+            inset: 0;
+            background-image: url('https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&q=80&w=2071');
+            background-size: cover;
+            background-position: center 30%;
+            opacity: 0.35;
+            filter: saturate(1.1) brightness(0.6);
+            transform: scale(1.04);
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        /* Dark purple/navy colour wash on top of image */
         .cta-section::before {
             content: '';
             position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
+            inset: 0;
+            background:
+                radial-gradient(ellipse 90% 70% at 50% 50%, rgba(40, 10, 80, 0.45) 0%, rgba(10, 5, 25, 0.85) 100%);
+            z-index: 1;
+            pointer-events: none;
+        }
+
+        /* Subtle grid on top of colour wash */
+        .cta-section-grid-overlay {
+            position: absolute;
+            inset: 0;
             background-image:
                 linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
                 linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
             background-size: 40px 40px;
-            opacity: 0.3;
-            z-index: 0;
+            opacity: 0.4;
+            z-index: 2;
             pointer-events: none;
+        }
+
+        /* Ensure text content is above all overlays */
+        .cta-section .container {
+            position: relative;
+            z-index: 5;
         }
 
         .cta-section::after {
@@ -1622,8 +2180,13 @@
         }
     </script>
 
+    <!-- Glow Divider before CTA -->
+    <div class="glow-divider"></div>
+
     <!-- CTA Section -->
     <section class="cta-section">
+        <div class="cta-section-bg-img" aria-hidden="true"></div>
+        <div class="cta-section-grid-overlay" aria-hidden="true"></div>
         <div class="container">
             <div class="cta-container">
                 <div class="cta-content">
@@ -1758,6 +2321,522 @@
 
     <script src="js/theme.js"></script>
     <script src="js/hero-animation.js"></script>
+
+    <!-- ════════════════════════════════════════════════
+         ADVANCED ANIMATIONS — About Us Page
+         Inspired by: Apple, Stripe, Vercel, Linear
+    ════════════════════════════════════════════════ -->
+    <style>
+        /* ── 1. Custom Cursor Glow ── */
+        .cursor-glow {
+            position: fixed;
+            width: 400px;
+            height: 400px;
+            border-radius: 50%;
+            pointer-events: none;
+            background: radial-gradient(circle, rgba(139, 92, 246, 0.12) 0%, transparent 70%);
+            transform: translate(-50%, -50%);
+            z-index: 9999;
+            transition: opacity 0.3s ease;
+            mix-blend-mode: screen;
+        }
+
+        /* ── 2. Magnetic Button Pulse ── */
+        .magnetic-btn {
+            transition: transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+                box-shadow 0.3s ease;
+        }
+
+        .magnetic-btn:hover {
+            box-shadow: 0 0 40px rgba(139, 92, 246, 0.5), 0 0 80px rgba(236, 72, 153, 0.2);
+        }
+
+        /* ── 3. Scroll-Reveal Base ── */
+        .anim-reveal {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1),
+                transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .anim-reveal.from-left {
+            transform: translateX(-60px);
+        }
+
+        .anim-reveal.from-right {
+            transform: translateX(60px);
+        }
+
+        .anim-reveal.scale-in {
+            transform: scale(0.85);
+        }
+
+        .anim-reveal.visible {
+            opacity: 1;
+            transform: translate(0) scale(1);
+        }
+
+        /* ── 4. Stagger children ── */
+        .stagger-children .anim-reveal:nth-child(1) {
+            transition-delay: 0s;
+        }
+
+        .stagger-children .anim-reveal:nth-child(2) {
+            transition-delay: 0.1s;
+        }
+
+        .stagger-children .anim-reveal:nth-child(3) {
+            transition-delay: 0.2s;
+        }
+
+        .stagger-children .anim-reveal:nth-child(4) {
+            transition-delay: 0.3s;
+        }
+
+        /* ── 5. Spotlight Card ── */
+        .dev-card {
+            --mouse-x: 50%;
+            --mouse-y: 50%;
+        }
+
+        .dev-card::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(circle 180px at var(--mouse-x) var(--mouse-y),
+                    rgba(139, 92, 246, 0.15), transparent 70%);
+            border-radius: inherit;
+            opacity: 0;
+            transition: opacity 0.4s ease;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .dev-card:hover::before {
+            opacity: 1;
+        }
+
+        /* ── 6. Stats Counter Block ── */
+        .stats-strip {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 60px;
+            flex-wrap: wrap;
+            padding: 60px 40px;
+            background: rgba(139, 92, 246, 0.04);
+            border-top: 1px solid var(--border);
+            border-bottom: 1px solid var(--border);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .stats-strip::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background-image:
+                linear-gradient(rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+            background-size: 40px 40px;
+            pointer-events: none;
+        }
+
+        .stat-item {
+            text-align: center;
+            position: relative;
+        }
+
+        .stat-number {
+            font-size: 3.5rem;
+            font-weight: 900;
+            line-height: 1;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            display: block;
+        }
+
+        .stat-label {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-weight: 600;
+            margin-top: 8px;
+            display: block;
+        }
+
+        .stat-divider {
+            width: 1px;
+            height: 60px;
+            background: var(--border);
+        }
+
+        @media (max-width: 600px) {
+            .stat-divider {
+                display: none;
+            }
+
+            .stats-strip {
+                gap: 30px;
+            }
+
+            .stat-number {
+                font-size: 2.5rem;
+            }
+        }
+
+        /* ── 7. Floating Orbs (Hero Enhancement) ── */
+        .hero-orb {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(80px);
+            pointer-events: none;
+            animation: orbFloat 8s ease-in-out infinite;
+        }
+
+        .hero-orb-1 {
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(139, 92, 246, 0.25), transparent 70%);
+            top: -100px;
+            right: -100px;
+            animation-delay: 0s;
+        }
+
+        .hero-orb-2 {
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, rgba(236, 72, 153, 0.2), transparent 70%);
+            bottom: -80px;
+            left: -80px;
+            animation-delay: -3s;
+        }
+
+        @keyframes orbFloat {
+
+            0%,
+            100% {
+                transform: translate(0, 0) scale(1);
+            }
+
+            33% {
+                transform: translate(30px, -20px) scale(1.05);
+            }
+
+            66% {
+                transform: translate(-20px, 30px) scale(0.97);
+            }
+        }
+
+        /* ── 8. Vision card entrance ── */
+        .vision-card {
+            transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1),
+                box-shadow 0.6s ease,
+                background 0.4s ease !important;
+        }
+
+        /* ── 9. FAQ entrance animation ── */
+        .faq-item {
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1) !important;
+        }
+
+        /* ── 10. Section heading underline sweep ── */
+        .sweep-underline {
+            position: relative;
+            display: inline-block;
+        }
+
+        .sweep-underline::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0%;
+            height: 3px;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            border-radius: 2px;
+            transition: width 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .sweep-underline.visible::after {
+            width: 100%;
+        }
+
+        /* ── 11. Shine sweep on dev cards ── */
+        @keyframes shineSwipe {
+            0% {
+                left: -100%;
+            }
+
+            100% {
+                left: 200%;
+            }
+        }
+
+        .dev-card:hover .dev-image-space::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 60%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.12), transparent);
+            animation: shineSwipe 0.8s ease;
+        }
+
+        /* ── 12. CTA section text shimmer ── */
+        .cta-section h2 {
+            background: linear-gradient(90deg, var(--text-primary) 0%, var(--primary) 50%, var(--secondary) 75%, var(--text-primary) 100%);
+            background-size: 200% auto;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: textShimmer 4s linear infinite;
+        }
+
+        @keyframes textShimmer {
+            0% {
+                background-position: 0% center;
+            }
+
+            100% {
+                background-position: 200% center;
+            }
+        }
+    </style>
+
+    <script>
+        (function () {
+            'use strict';
+
+            // ── 1. Custom Cursor Glow ──────────────────────────────
+            const cursorGlow = document.createElement('div');
+            cursorGlow.className = 'cursor-glow';
+            document.body.appendChild(cursorGlow);
+            let cx = window.innerWidth / 2, cy = window.innerHeight / 2;
+            let tx = cx, ty = cy;
+            document.addEventListener('mousemove', e => { tx = e.clientX; ty = e.clientY; });
+            function animateCursor() {
+                cx += (tx - cx) * 0.1;
+                cy += (ty - cy) * 0.1;
+                cursorGlow.style.left = cx + 'px';
+                cursorGlow.style.top = cy + 'px';
+                requestAnimationFrame(animateCursor);
+            }
+            animateCursor();
+
+            // ── 2. Floating Orbs in Hero ──────────────────────────────
+            const hero = document.querySelector('.about-hero');
+            if (hero) {
+                ['hero-orb-1', 'hero-orb-2'].forEach(cls => {
+                    const orb = document.createElement('div');
+                    orb.className = 'hero-orb ' + cls;
+                    hero.appendChild(orb);
+                });
+                // Parallax on hero
+                window.addEventListener('scroll', () => {
+                    const s = window.scrollY;
+                    const bg = hero.querySelector('.hero-bg-animate');
+                    if (bg) bg.style.transform = `scale(1.05) translateY(${s * 0.15}px)`;
+                }, { passive: true });
+            }
+
+            // ── 3. Stats Strip ──────────────────────────────────────
+            const aboutHeroSection = document.querySelector('.about-hero');
+            const platformIntro = document.querySelector('.platform-intro')?.closest('section');
+            if (platformIntro) {
+                const strip = document.createElement('div');
+                strip.className = 'stats-strip';
+                strip.innerHTML = `
+                <div class="stat-item anim-reveal scale-in">
+                    <span class="stat-number" data-target="500">0</span>
+                    <span class="stat-label">LeetCode Problems</span>
+                </div>
+                <div class="stat-divider"></div>
+                <div class="stat-item anim-reveal scale-in" style="transition-delay:0.1s">
+                    <span class="stat-number" data-target="4">0</span>
+                    <span class="stat-label">Learning Phases</span>
+                </div>
+                <div class="stat-divider"></div>
+                <div class="stat-item anim-reveal scale-in" style="transition-delay:0.2s">
+                    <span class="stat-number" data-target="3">0</span>
+                    <span class="stat-label">Languages Supported</span>
+                </div>
+                <div class="stat-divider"></div>
+                <div class="stat-item anim-reveal scale-in" style="transition-delay:0.3s">
+                    <span class="stat-number" data-target="1">0</span>
+                    <span class="stat-label">Lifetime Access</span>
+                </div>
+            `;
+                platformIntro.parentNode.insertBefore(strip, platformIntro.nextSibling);
+            }
+
+            // ── 4. Scroll-Reveal Observer ─────────────────────────────
+            const revealCandidates = [
+                { sel: '.platform-image', cls: 'from-left' },
+                { sel: '.platform-content', cls: 'from-right' },
+                { sel: '.vision-card', cls: '' },
+                { sel: '.vm-illustration', cls: 'from-right' },
+                { sel: '.dev-card', cls: '' },
+                { sel: '.dev-info-side', cls: 'from-left' },
+                { sel: '.faq-item', cls: '' },
+                { sel: '.stats-strip .anim-reveal', cls: 'scale-in' },
+                { sel: '.cta-container', cls: '' },
+            ];
+
+            revealCandidates.forEach(({ sel, cls }) => {
+                document.querySelectorAll(sel).forEach((el, i) => {
+                    el.classList.add('anim-reveal');
+                    if (cls) el.classList.add(cls);
+                    el.style.transitionDelay = el.style.transitionDelay || (i * 0.08) + 's';
+                });
+            });
+
+            const io = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                        // Also trigger sweep-underline
+                        entry.target.querySelectorAll('.sweep-underline').forEach(el => el.classList.add('visible'));
+                        io.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.12, rootMargin: '0px 0px -60px 0px' });
+
+            document.querySelectorAll('.anim-reveal').forEach(el => io.observe(el));
+
+            // Also observe sweep-underlines inside non-reveal parents
+            const suIO = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                        suIO.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.3 });
+            document.querySelectorAll('.sweep-underline').forEach(el => suIO.observe(el));
+
+            // ── 5. Animated Counter ──────────────────────────────────
+            function animateCount(el, target, duration) {
+                const start = performance.now();
+                const isSuffix = target === 1; // Lifetime
+                el.textContent = 0;
+                function step(now) {
+                    const p = Math.min((now - start) / duration, 1);
+                    const ease = 1 - Math.pow(1 - p, 3);
+                    const val = Math.round(ease * target);
+                    el.textContent = target === 1 ? '∞' : val + (target === 500 ? '+' : (target === 3 ? '' : ''));
+                    if (p < 1) requestAnimationFrame(step);
+                }
+                requestAnimationFrame(step);
+            }
+
+            const counterObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const nums = entry.target.querySelectorAll('[data-target]');
+                        nums.forEach(num => {
+                            const target = +num.dataset.target;
+                            animateCount(num, target, 1800);
+                        });
+                        counterObserver.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.4 });
+            const statsStrip = document.querySelector('.stats-strip');
+            if (statsStrip) counterObserver.observe(statsStrip);
+
+            // ── 6. Spotlight Card Effect ──────────────────────────────
+            document.querySelectorAll('.dev-card').forEach(card => {
+                card.addEventListener('mousemove', e => {
+                    const rect = card.getBoundingClientRect();
+                    const x = ((e.clientX - rect.left) / rect.width * 100).toFixed(1) + '%';
+                    const y = ((e.clientY - rect.top) / rect.height * 100).toFixed(1) + '%';
+                    card.style.setProperty('--mouse-x', x);
+                    card.style.setProperty('--mouse-y', y);
+                });
+            });
+
+            // ── 7. Magnetic Button Effect ─────────────────────────────
+            document.querySelectorAll('.btn, .btn-enroll, .nav-btn').forEach(btn => {
+                btn.classList.add('magnetic-btn');
+                btn.addEventListener('mousemove', e => {
+                    const rect = btn.getBoundingClientRect();
+                    const x = (e.clientX - rect.left - rect.width / 2) * 0.3;
+                    const y = (e.clientY - rect.top - rect.height / 2) * 0.3;
+                    btn.style.transform = `translate(${x}px, ${y}px)`;
+                });
+                btn.addEventListener('mouseleave', () => {
+                    btn.style.transform = '';
+                });
+            });
+
+            // ── 8. Sweep Underline on Section Headings ────────────────
+            document.querySelectorAll('h2 .text-gradient').forEach(el => {
+                el.classList.add('sweep-underline');
+            });
+
+            // ── 9. FAQ stagger entrance ──────────────────────────────
+            document.querySelectorAll('.faq-item').forEach((item, i) => {
+                item.style.transitionDelay = (i * 0.07) + 's';
+            });
+
+            // ── 10. Vision cards — tilt on hover ─────────────────────
+            document.querySelectorAll('.vision-card').forEach(card => {
+                card.addEventListener('mousemove', e => {
+                    const rect = card.getBoundingClientRect();
+                    const cx = rect.left + rect.width / 2;
+                    const cy = rect.top + rect.height / 2;
+                    const rx = ((e.clientY - cy) / rect.height) * -12;
+                    const ry = ((e.clientX - cx) / rect.width) * 12;
+                    card.style.transform = `translateY(-10px) rotateX(${rx}deg) rotateY(${ry}deg) scale(1.02)`;
+                    card.style.perspective = '1000px';
+                });
+                card.addEventListener('mouseleave', () => {
+                    card.style.transform = '';
+                });
+            });
+
+            // ── 11. Team card — tilt on hover ────────────────────────
+            document.querySelectorAll('.dev-card').forEach(card => {
+                card.addEventListener('mousemove', e => {
+                    const rect = card.getBoundingClientRect();
+                    const cx = rect.left + rect.width / 2;
+                    const cy = rect.top + rect.height / 2;
+                    const rx = ((e.clientY - cy) / rect.height) * -8;
+                    const ry = ((e.clientX - cx) / rect.width) * 8;
+                    card.style.transform = `translateY(-8px) rotateX(${rx}deg) rotateY(${ry}deg)`;
+                    card.style.perspective = '800px';
+                });
+                card.addEventListener('mouseleave', () => {
+                    card.style.transform = '';
+                });
+            });
+
+            // ── 12. Roadmap line draw animation ──────────────────────
+            const roadmapLine = document.querySelector('.roadmap-line');
+            if (roadmapLine) {
+                roadmapLine.style.transformOrigin = 'top';
+                roadmapLine.style.transition = 'transform 0s';
+                const rl = new IntersectionObserver(entries => {
+                    entries.forEach(e => {
+                        if (e.isIntersecting) {
+                            roadmapLine.style.transition = 'transform 1.5s cubic-bezier(0.16,1,0.3,1)';
+                            roadmapLine.style.transform = 'translateX(-50%) scaleY(1)';
+                            rl.unobserve(e.target);
+                        }
+                    });
+                }, { threshold: 0.1 });
+                roadmapLine.style.transform = 'translateX(-50%) scaleY(0)';
+                rl.observe(roadmapLine);
+            }
+
+        })();
+    </script>
+
 </body>
 
 </html>

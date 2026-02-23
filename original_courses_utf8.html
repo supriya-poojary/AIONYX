@@ -1,0 +1,687 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Courses - AIONYX</title>
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="css/theme.css?v=1.1">
+    <style>
+        .courses-hero {
+            padding: 160px 0 100px;
+            background: radial-gradient(circle at top right, rgba(139, 92, 246, 0.15), transparent),
+                radial-gradient(circle at bottom left, rgba(236, 72, 153, 0.15), transparent);
+            text-align: center;
+            overflow: hidden;
+        }
+
+        .dsa-card-bg {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 120%;
+            height: 120%;
+            background: url('https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&q=80&w=2070') center/cover no-repeat;
+            opacity: 0.1;
+            z-index: -1;
+            filter: blur(40px);
+        }
+
+        .roadmap-section {
+            padding: 100px 0;
+            background: var(--background);
+            position: relative;
+        }
+
+        .roadmap-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            position: relative;
+            padding: 40px 0;
+        }
+
+        .roadmap-line {
+            position: absolute;
+            left: 50%;
+            top: 0;
+            bottom: 0;
+            width: 4px;
+            background: linear-gradient(180deg, var(--primary), var(--secondary), var(--accent));
+            transform: translateX(-50%);
+            border-radius: 2px;
+            box-shadow: 0 0 15px var(--primary);
+        }
+
+        .roadmap-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+            margin-bottom: 80px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .roadmap-item:nth-child(even) {
+            flex-direction: row-reverse;
+        }
+
+        .roadmap-content {
+            width: 450px;
+            min-height: 250px;
+            padding: 40px;
+            border-radius: 24px;
+            background: rgba(26, 26, 36, 0.8);
+            border: 1px solid var(--border);
+            backdrop-filter: blur(20px);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            cursor: default;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        .roadmap-item:hover .roadmap-content {
+            transform: translateY(-10px);
+            border-color: var(--primary);
+            box-shadow: var(--glow-primary);
+        }
+
+        .roadmap-image {
+            width: 350px;
+            height: 350px;
+            border-radius: 24px;
+            overflow: hidden;
+            border: 1px solid var(--border);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+            transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            flex-shrink: 0;
+        }
+
+        .roadmap-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .roadmap-item:hover .roadmap-image {
+            transform: scale(1.05) rotate(2deg);
+            border-color: var(--primary);
+            box-shadow: var(--glow-primary);
+        }
+
+        .roadmap-dot {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            width: 24px;
+            height: 24px;
+            background: var(--background);
+            border: 4px solid var(--primary);
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 3;
+            box-shadow: 0 0 10px var(--primary);
+            transition: all 0.3s ease;
+        }
+
+        .roadmap-item:hover .roadmap-dot {
+            background: var(--primary);
+            transform: translate(-50%, -50%) scale(1.5);
+        }
+
+
+        /* Sliding Sections Animation */
+        .slider-container {
+            padding: 60px 0;
+            overflow: hidden;
+            background: var(--background-secondary);
+            border-top: 1px solid var(--border);
+            border-bottom: 1px solid var(--border);
+        }
+
+        .infinite-slider {
+            display: flex;
+            gap: 40px;
+            width: max-content;
+            animation: slide 30s linear infinite;
+        }
+
+        @keyframes slide {
+            0% {
+                transform: translateX(0);
+            }
+
+            100% {
+                transform: translateX(-50%);
+            }
+        }
+
+        .slide-item {
+            padding: 20px 40px;
+            background: var(--surface-elevated);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-md);
+            font-weight: 700;
+            color: var(--text-primary);
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            white-space: nowrap;
+            transition: all 0.3s ease;
+        }
+
+        .slide-item i {
+            color: var(--primary);
+            font-size: 1.5rem;
+        }
+
+        .slide-item:hover {
+            border-color: var(--primary);
+            transform: translateY(-5px);
+            background: var(--surface-hover);
+        }
+
+        /* Pricing Card */
+        .pricing-section {
+            padding: 100px 0;
+            text-align: center;
+        }
+
+        .premium-card {
+            max-width: 500px;
+            margin: 0 auto;
+            padding: 60px;
+            border-radius: var(--radius-xl);
+            background: linear-gradient(135deg, var(--surface), var(--background-secondary));
+            border: 2px solid var(--primary);
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+        }
+
+        .premium-card::before {
+            content: 'PREMIUM';
+            position: absolute;
+            top: 30px;
+            right: -50px;
+            background: var(--secondary);
+            color: white;
+            padding: 5px 60px;
+            transform: rotate(45deg);
+            font-weight: 900;
+            font-size: 0.8rem;
+            letter-spacing: 2px;
+        }
+
+        .price-tag {
+            font-size: 5rem;
+            font-weight: 900;
+            margin: 30px 0;
+            color: var(--text-primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .price-tag span {
+            font-size: 2rem;
+            color: var(--text-muted);
+            margin-right: 10px;
+        }
+
+        .btn-enroll {
+            width: 100%;
+            padding: 20px;
+            font-size: 1.2rem;
+            font-weight: 800;
+            margin-top: 30px;
+            border-radius: 50px;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            color: white;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .btn-enroll:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 30px rgba(139, 92, 246, 0.4);
+        }
+
+        /* Hero Slider */
+        .hero-slider {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            display: flex;
+            gap: 20px;
+            padding: 20px;
+            opacity: 0.15;
+            filter: grayscale(100%) contrast(120%);
+            animation: slideBG 60s linear infinite;
+        }
+
+        .slider-img {
+            min-width: 400px;
+            height: 100%;
+            border-radius: var(--radius-lg);
+            object-fit: cover;
+        }
+
+        @media (max-width: 768px) {
+            .courses-hero {
+                padding: 120px 0 60px;
+            }
+
+            .courses-hero h1 {
+                font-size: 2.5rem !important;
+                /* Override inline style if not removed */
+            }
+
+            .courses-hero p {
+                font-size: 1rem !important;
+                padding: 0 20px;
+            }
+
+            .dsa-card-bg {
+                width: 100%;
+                height: 100%;
+                opacity: 0.15;
+            }
+
+            .roadmap-item {
+                flex-direction: column !important;
+                margin-bottom: 60px;
+                gap: 40px;
+            }
+
+            .roadmap-item:nth-child(even) {
+                flex-direction: column !important;
+            }
+
+            .roadmap-content {
+                width: 100%;
+                min-height: auto;
+                padding: 30px;
+                text-align: center;
+            }
+
+            .roadmap-image {
+                width: 100%;
+                height: 250px;
+            }
+
+            .roadmap-line,
+            .roadmap-dot {
+                display: none;
+            }
+
+            .container {
+                padding: 0 1.5rem;
+            }
+        }
+    </style>
+    <style>
+        /* Responsive Fixes */
+    </style>
+</head>
+
+<body class="dark-theme">
+    <nav class="navbar">
+        <a href="/" class="logo">
+            <i class="fas fa-code"></i>
+            <span class="logo-text">AIONYX</span>
+        </a>
+        <div class="nav-links">
+            <a href="courses" class="nav-item">Courses</a>
+            <a href="about" class="nav-item">About Us</a>
+            <a href="contact" class="nav-item">Contact</a>
+            <a href="student-login" class="nav-btn btn-login">Login</a>
+            <a href="student-signup" class="nav-btn btn-signup">Get Started</a>
+        </div>
+        <div class="mobile-menu-btn">
+            <i class="fas fa-bars"></i>
+        </div>
+    </nav>
+
+    <header class="courses-hero" style="position: relative; overflow: hidden;">
+        <div class="hero-slider">
+            <img src="https://images.unsplash.com/photo-1516116216624-53e697fedbea?auto=format&fit=crop&q=80&w=2070"
+                class="slider-img" alt="">
+            <img src="https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&q=80&w=2070"
+                class="slider-img" alt="">
+            <img src="https://images.unsplash.com/photo-1542831371-29b0f74f9713?auto=format&fit=crop&q=80&w=2070"
+                class="slider-img" alt="">
+            <img src="https://images.unsplash.com/photo-1516116216624-53e697fedbea?auto=format&fit=crop&q=80&w=2070"
+                class="slider-img" alt="">
+        </div>
+        <div class="dsa-card-bg"></div>
+        <div class="container section-reveal active">
+            <span class="hero-badge reveal-up active" style="position: relative;">ELITE ENGINEERING</span>
+            <h1 class="reveal-up active" style="font-weight: 900; margin-bottom: 20px; position: relative;">
+                Advanced <span class="text-gradient">DSA Masterclass</span>
+            </h1>
+            <p class="reveal-up active"
+                style="max-width: 800px; margin: 0 auto 40px; color: var(--text-secondary); position: relative;">
+                Master the architectural patterns of data structures and algorithms. Go beyond codingΓÇölearn to architect
+                solutions that scale for the world's most demanding tech companies.
+            </p>
+            <div class="reveal-up active" style="position: relative;">
+                <a href="#roadmap" class="btn btn-primary btn-lg">Explore Roadmap</a>
+            </div>
+        </div>
+    </header>
+
+    <div class="slider-container">
+        <div class="infinite-slider">
+            <!-- Repeated items for seamless loop -->
+            <div class="slide-item"><i class="fas fa-layer-group"></i> Arrays & Strings</div>
+            <div class="slide-item"><i class="fas fa-link"></i> Linked Lists</div>
+            <div class="slide-item"><i class="fas fa-arrows-split-up-and-left"></i> Two Pointers</div>
+            <div class="slide-item"><i class="fas fa-window-maximize"></i> Sliding Window</div>
+            <div class="slide-item"><i class="fas fa-tree"></i> Trees & Graphs</div>
+            <div class="slide-item"><i class="fas fa-bolt"></i> Dynamic Programming</div>
+            <div class="slide-item"><i class="fas fa-undo"></i> Backtracking</div>
+            <div class="slide-item"><i class="fas fa-microchip"></i> Bit Manipulation</div>
+            <!-- Duplicates -->
+            <div class="slide-item"><i class="fas fa-layer-group"></i> Arrays & Strings</div>
+            <div class="slide-item"><i class="fas fa-link"></i> Linked Lists</div>
+            <div class="slide-item"><i class="fas fa-arrows-split-up-and-left"></i> Two Pointers</div>
+            <div class="slide-item"><i class="fas fa-window-maximize"></i> Sliding Window</div>
+            <div class="slide-item"><i class="fas fa-tree"></i> Trees & Graphs</div>
+            <div class="slide-item"><i class="fas fa-bolt"></i> Dynamic Programming</div>
+            <div class="slide-item"><i class="fas fa-undo"></i> Backtracking</div>
+            <div class="slide-item"><i class="fas fa-microchip"></i> Bit Manipulation</div>
+        </div>
+    </div>
+
+    <section id="roadmap" class="roadmap-section">
+        <div class="container">
+            <h2 class="text-center section-reveal active" style="font-size: 3rem; margin-bottom: 60px;">DSA <span
+                    class="text-gradient">Roadmap</span></h2>
+            <div class="roadmap-container">
+                <div class="roadmap-line"></div>
+
+                <!-- Phase 01 -->
+                <div class="roadmap-item section-reveal active">
+                    <div class="roadmap-content reveal-left active">
+                        <h3 style="color: var(--primary); font-size: 1.8rem; font-weight: 800; margin-bottom: 15px;">
+                            Phase 01: Foundations</h3>
+                        <p style="font-size: 1.1rem; line-height: 1.7;">Master time and space complexity with Big O
+                            notation. Deep dive into Memory Management and
+                            core Array/String patterns.</p>
+                    </div>
+                    <div class="roadmap-dot"></div>
+                    <div class="roadmap-image reveal-right active">
+                        <img src="images/hero_coding_workspace.png?v=fixed_local_final" alt="Foundations">
+                    </div>
+                </div>
+
+                <!-- Phase 02 -->
+                <div class="roadmap-item section-reveal active">
+                    <div class="roadmap-content reveal-right active">
+                        <h3 style="color: var(--secondary); font-size: 1.8rem; font-weight: 800; margin-bottom: 15px;">
+                            Phase 02: Structural Mastery</h3>
+                        <p style="font-size: 1.1rem; line-height: 1.7;">Advanced Linked Lists, Two Pointers, and Sliding
+                            Window techniques. Learn to handle stream
+                            data with ease.</p>
+                    </div>
+                    <div class="roadmap-dot"></div>
+                    <div class="roadmap-image reveal-left active">
+                        <img src="images/dsa_roadmap.png?v=fixed_local_final" alt="Structural Mastery">
+                    </div>
+                </div>
+
+                <!-- Phase 03 -->
+                <div class="roadmap-item section-reveal active">
+                    <div class="roadmap-content reveal-left active">
+                        <h3 style="color: var(--accent); font-size: 1.8rem; font-weight: 800; margin-bottom: 15px;">
+                            Phase 03: The Tree Architect</h3>
+                        <p style="font-size: 1.1rem; line-height: 1.7;">Recursion, BFS, and DFS. Master Binary Search
+                            Trees and Graph traversal algorithms used in
+                            social networks.</p>
+                    </div>
+                    <div class="roadmap-dot"></div>
+                    <div class="roadmap-image reveal-right active">
+                        <img src="images/dsa_hero.png?v=fixed_local_final" alt="Tree Architect">
+                    </div>
+                </div>
+
+                <!-- Phase 04 -->
+                <div class="roadmap-item section-reveal active">
+                    <div class="roadmap-content reveal-right active">
+                        <h3 style="color: var(--primary); font-size: 1.8rem; font-weight: 800; margin-bottom: 15px;">
+                            Phase 04: Elite Optimization</h3>
+                        <p style="font-size: 1.1rem; line-height: 1.7;">Dynamic Programming and Backtracking. Solve
+                            NP-hard problems using Memoization and Tabulation
+                            patterns.</p>
+                    </div>
+                    <div class="roadmap-dot"></div>
+                    <div class="roadmap-image reveal-left active">
+                        <img src="images/admin_dashboard_hero.png?v=fixed_local_final" alt="Elite Optimization">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+
+    <style>
+        .topic-box {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            padding: 18px 30px;
+            border-radius: var(--radius-md);
+            color: white;
+            font-weight: 600;
+            font-size: 0.95rem;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            box-shadow: 0 4px 15px rgba(139, 92, 246, 0.3);
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .topic-box:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(139, 92, 246, 0.5);
+        }
+
+        .topic-box i {
+            font-size: 1.2rem;
+        }
+
+        @media (max-width: 768px) {
+            .topic-level {
+                flex-wrap: wrap;
+                gap: 15px !important;
+            }
+
+            .topic-box {
+                font-size: 0.85rem;
+                padding: 14px 20px;
+            }
+        }
+
+        .premium-card {
+            max-width: 400px;
+            margin: 0 auto;
+            padding: 1.5rem !important;
+        }
+
+        .premium-card h3 {
+            font-size: 0.8rem !important;
+            margin-bottom: 0.5rem;
+        }
+
+        .premium-card .price-tag {
+            font-size: 2.5rem !important;
+            margin: 1rem 0;
+        }
+
+        .premium-card ul {
+            margin: 1.5rem 0 !important;
+            font-size: 0.9rem;
+        }
+
+        .premium-card ul li {
+            margin-bottom: 8px !important;
+        }
+
+        .btn-enroll {
+            padding: 0.8rem 1.5rem !important;
+            font-size: 0.9rem !important;
+        }
+    </style>
+
+    <section id="pricing" class="pricing-section section-reveal active">
+        <div class="container">
+            <h2 style="font-size: 3rem; margin-bottom: 40px;">Ready to <span class="text-gradient">Ascend?</span></h2>
+            <div class="premium-card floating active">
+                <h3 style="color: var(--text-muted); letter-spacing: 2px;">LIFETIME ACCESS</h3>
+                <div class="price-tag"><span>$</span>50</div>
+                <ul style="text-align: left; list-style: none; margin: 30px 0; color: var(--text-secondary);">
+                    <li style="margin-bottom: 10px;"><i class="fas fa-check-circle"
+                            style="color: var(--success); margin-right: 10px;"></i> 500+ Curated Elite Problems</li>
+                    <li style="margin-bottom: 10px;"><i class="fas fa-check-circle"
+                            style="color: var(--success); margin-right: 10px;"></i> Video Walkthroughs for Every Section
+                    </li>
+                    <li style="margin-bottom: 10px;"><i class="fas fa-check-circle"
+                            style="color: var(--success); margin-right: 10px;"></i> Multi-Language Solutions (Python,
+                        Java, C++)</li>
+                    <li style="margin-bottom: 10px;"><i class="fas fa-check-circle"
+                            style="color: var(--success); margin-right: 10px;"></i> Exclusive Discord Engineer Community
+                    </li>
+                </ul>
+                <button class="btn-enroll">ENROLL IN COURSE</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <!-- Desktop Footer -->
+            <div class="footer-desktop">
+                <div class="footer-content">
+                    <!-- Brand -->
+                    <div class="footer-brand">
+                        <a href="/" class="logo">
+                            <i class="fas fa-code"></i>
+                            <span class="logo-text"><strong class="text-gradient">AIONYX</strong></span>
+                        </a>
+                        <p
+                            style="color: var(--text-secondary); line-height: 1.7; margin-bottom: 2rem; margin-top: 1rem;">
+                            Empowering developers to master coding interviews with AI-powered learning and expert
+                            guidance.
+                        </p>
+                        <div class="footer-social">
+                            <a href="https://www.linkedin.com/company/algoorbit/" target="_blank" class="social-link"><i
+                                    class="fab fa-linkedin-in"></i></a>
+                            <a href="https://www.instagram.com/algoorbit_official/" target="_blank"
+                                class="social-link"><i class="fab fa-instagram"></i></a>
+                            <a href="https://www.facebook.com/people/Aionyx-AI/pfbid026ZtArzFeEPxSGu9tgG6QXsxkiYUmw4LMGqCgV87sP3ufxCVPPv7BFCoxc5jF7JvMl/"
+                                target="_blank" class="social-link"><i class="fab fa-facebook-f"></i></a>
+                            <a href="https://www.whatsapp.com/channel/0029VbBktvfAYlUS6kToth1B" target="_blank"
+                                class="social-link"><i class="fab fa-whatsapp"></i></a>
+                        </div>
+                    </div>
+
+                    <!-- Quick links -->
+                    <div class="footer-section">
+                        <h4>Quick links</h4>
+                        <ul class="footer-links">
+                            <li><a href="/">Home</a></li>
+                            <li><a href="about">About Us</a></li>
+                            <li><a href="courses">Courses</a></li>
+                            <li><a href="contact">Contact</a></li>
+                            <li><a href="courses#pricing">Pricing</a></li>
+                        </ul>
+                    </div>
+
+                    <!-- Legal -->
+                    <div class="footer-section">
+                        <h4>Legal</h4>
+                        <ul class="footer-links">
+                            <li><a href="privacy-policy">Privacy Policy</a></li>
+                            <li><a href="#">Terms of Service</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="footer-bottom">
+                    <p>&copy; 2026 <strong class="text-gradient">AIONYX</strong>. All rights reserved. Built for
+                        developers.</p>
+                </div>
+            </div>
+
+            <!-- Mobile Footer -->
+            <div class="footer-mobile">
+                <div class="footer-brand">
+                    <h2><strong class="text-gradient">AIONYX</strong></h2>
+                    <p>Empowering developers to master coding interviews with AI-powered learning and expert guidance.
+                    </p>
+                </div>
+
+                <div class="footer-section">
+                    <h4>Quick links</h4>
+                    <ul class="footer-links">
+                        <li><a href="/">Home</a></li>
+                        <li><a href="about">About Us</a></li>
+                        <li><a href="courses">Courses</a></li>
+                        <li><a href="contact">Contact</a></li>
+                        <li><a href="courses#pricing">Pricing</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-section">
+                    <h4>Legal</h4>
+                    <ul class="footer-links">
+                        <li><a href="privacy-policy">Privacy Policy</a></li>
+                        <li><a href="#">Terms of Service</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-section">
+                    <h4>Connect</h4>
+                    <div class="footer-social">
+                        <a href="https://www.linkedin.com/company/algoorbit/" target="_blank" class="social-link">
+                            <i class="fab fa-linkedin-in"></i>
+                        </a>
+                        <a href="https://www.instagram.com/algoorbit_official/" target="_blank" class="social-link">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="https://www.facebook.com/people/Aionyx-AI/pfbid026ZtArzFeEPxSGu9tgG6QXsxkiYUmw4LMGqCgV87sP3ufxCVPPv7BFCoxc5jF7JvMl/"
+                            target="_blank" class="social-link">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="https://www.whatsapp.com/channel/0029VbBktvfAYlUS6kToth1B" target="_blank"
+                            class="social-link">
+                            <i class="fab fa-whatsapp"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="footer-bottom"
+                    style="text-align: left; padding-top: 2rem; border-top: 1px solid var(--border);">
+                    <p>&copy; 2026 <strong class="text-gradient">Aionyx Innovations Pvt. Ltd.</strong> All rights
+                        reserved.</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/theme.js"></script>
+</body>
+
+</html>
