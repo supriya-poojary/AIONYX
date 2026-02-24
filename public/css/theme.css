@@ -1587,3 +1587,75 @@ body.light-theme .glass-card {
         justify-content: center;
     }
 }
+
+/* ========================================
+   LIGHT THEME OVERRIDES FOR HARDCODED SECTIONS
+   Ensures text readability across Home, Courses, and About Us pages
+   ======================================== */
+
+/* General Card Backgrounds */
+body.light-theme .roadmap-content,
+body.light-theme .dev-card,
+body.light-theme .vision-card,
+body.light-theme .mission-card,
+body.light-theme .extra-feature-card,
+body.light-theme .extra-roadmap-card,
+body.light-theme .all-course-card,
+body.light-theme .feature-card,
+body.light-theme .stat-card,
+body.light-theme .review-card {
+    background: rgba(255, 255, 255, 0.85) !important;
+    border-color: rgba(0, 0, 0, 0.1) !important;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+}
+
+/* Section Backgrounds */
+body.light-theme .team-section-enhanced,
+body.light-theme .vision-mission-section-enhanced,
+body.light-theme .extra-course-hero,
+body.light-theme .extra-roadmap-section,
+body.light-theme .extra-features-section,
+body.light-theme .all-courses-strip,
+body.light-theme .roadmap-section {
+    background: #f8fafc !important;
+}
+
+/* Overlays with hardcoded dark gradients */
+body.light-theme .extra-course-hero-overlay {
+    background: radial-gradient(ellipse 80% 60% at 30% 50%, rgba(255, 255, 255, 0.85) 0%, rgba(240, 240, 245, 0.93) 100%) !important;
+}
+
+body.light-theme .strip-overlay {
+    background: radial-gradient(ellipse 90% 80% at 50% 50%, rgba(255, 255, 255, 0.88) 0%, rgba(245, 245, 250, 0.95) 100%) !important;
+}
+
+body.light-theme .all-course-card-overlay {
+    background: linear-gradient(to top, rgba(255, 255, 255, 1), transparent) !important;
+}
+
+/* Specific text fixes */
+body.light-theme .extra-roadmap-num {
+    color: rgba(0, 0, 0, 0.05) !important;
+}
+
+body.light-theme .extra-roadmap-card:hover .extra-roadmap-num {
+    color: rgba(0, 0, 0, 0.08) !important;
+}
+
+body.light-theme .extra-roadmap-card::before {
+    background: var(--primary) !important;
+    opacity: 0.1 !important;
+}
+
+body.light-theme .extra-roadmap-card:hover::before {
+    opacity: 0.2 !important;
+}
+
+/* Dev card specific fix for about.html */
+body.light-theme .dev-image-space {
+    background: #f1f5f9 !important;
+}
+
+body.light-theme .card-social-footer {
+    border-top-color: rgba(0, 0, 0, 0.05) !important;
+}
