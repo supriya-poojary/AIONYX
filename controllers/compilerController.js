@@ -43,8 +43,8 @@ exports.runCpp = (req, res) => {
                     (compileErr.message && compileErr.message.includes('is not recognized'));
 
                 if (isNotFound) {
-                    console.log('[Compiler] g++ not found locally, using Piston API...');
-                    return runViaPiston(code, res);
+                    console.log('[Compiler] g++ not found locally, using Wandbox API...');
+                    return runViaWandbox(code, res);
                 }
 
                 // Real compilation error — show it in terminal
@@ -73,26 +73,25 @@ exports.runCpp = (req, res) => {
         compileProcess.on('error', (spawnErr) => {
             fs.unlink(filePath, () => { });
             if (!res.headersSent) {
-                console.log('[Compiler] g++ spawn failed, using Piston API...');
-                runViaPiston(code, res);
+                console.log('[Compiler] g++ spawn failed, using Wandbox API...');
+                runViaWandbox(code, res);
             }
         });
     });
 };
 
 // -----------------------------------------------
-// Piston API — free online C++ compiler, no API key required
+// Wandbox API — free online C++ compiler, no API key required
 // -----------------------------------------------
-function runViaPiston(code, res) {
+function runViaWandbox(code, res) {
     const payload = JSON.stringify({
-        language: 'c++',
-        version: '*',
-        files: [{ name: 'main.cpp', content: code }]
+        compiler: 'gcc-head',
+        code: code
     });
 
     const options = {
-        hostname: 'emkc.org',
-        path: '/api/v2/piston/execute',
+        hostname: 'wandbox.org',
+        path: '/api/compile.json',
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
@@ -106,37 +105,35 @@ function runViaPiston(code, res) {
         apiRes.on('end', () => {
             try {
                 const data = JSON.parse(body);
-                const run = data.run || {};
-                const compile = data.compile || {};
 
-                // Piston compile error
-                if (compile.code !== undefined && compile.code !== 0) {
+                // Compilation error or runtime error
+                if (data.status !== "0") {
                     return res.json({
                         run: {
-                            stdout: '',
-                            stderr: compile.stderr || compile.output || 'Compilation failed.',
-                            code: compile.code
+                            stdout: data.program_output || '',
+                            stderr: data.compiler_error || data.program_error || 'Execution failed.',
+                            code: 1
                         }
                     });
                 }
 
-                // Success or runtime error
+                // Success
                 return res.json({
                     run: {
-                        stdout: run.stdout || '',
-                        stderr: run.stderr || '',
-                        code: run.code !== undefined ? run.code : 0
+                        stdout: data.program_output || '',
+                        stderr: data.compiler_error || data.program_error || '',
+                        code: 0
                     }
                 });
             } catch (e) {
-                console.error('[Compiler] Piston parse error:', e.message);
+                console.error('[Compiler] Wandbox parse error:', e.message);
                 res.json({ run: { stdout: '', stderr: 'Online compiler returned an invalid response.', code: 1 } });
             }
         });
     });
 
     apiReq.on('error', (e) => {
-        console.error('[Compiler] Piston API request error:', e.message);
+        console.error('[Compiler] Wandbox API request error:', e.message);
         if (!res.headersSent) {
             res.json({
                 run: {
