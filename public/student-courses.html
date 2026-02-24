@@ -10,7 +10,7 @@
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap"
         rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;900&display=swap" rel="stylesheet">
 
 
     <!-- Icons -->
@@ -22,124 +22,322 @@
     <style>
         body {
             padding-top: 80px;
-            background: radial-gradient(circle at 50% 0%, rgba(139, 92, 246, 0.15), transparent 70%), var(--background);
+            background: var(--background);
             min-height: 100vh;
             position: relative;
             overflow-x: hidden;
         }
 
-        .dashboard-container {
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 2rem;
-            animation: fadeIn 0.8s ease-out;
+        /* Hero Slider Background (Restored) */
+        .hero-slider {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            display: flex;
+            gap: 20px;
+            padding: 20px;
+            opacity: 0.15;
+            filter: grayscale(40%) contrast(120%) brightness(1.1);
+            animation: slideBG 80s linear infinite;
+            pointer-events: none;
         }
 
-        .welcome-header {
-            margin-bottom: 4rem;
-            position: relative;
-            padding: 3rem;
-            background: rgba(26, 26, 36, 0.6);
-            backdrop-filter: blur(10px);
+        .slider-img {
+            min-width: 600px;
+            height: 100%;
             border-radius: var(--radius-xl);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
-            overflow: hidden;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            gap: 3rem;
+            object-fit: cover;
         }
 
-        .welcome-content {
-            flex: 1;
-            z-index: 2;
-            text-align: left;
+        @keyframes slideBG {
+            0% {
+                transform: translateX(0);
+            }
+
+            100% {
+                transform: translateX(-50%);
+            }
         }
 
-        .welcome-visual {
-            flex: 1;
-            display: flex;
-            justify-content: flex-end;
-            position: relative;
-            z-index: 2;
-        }
-
-        .hero-img-container {
-            position: relative;
-            width: 100%;
-            max-width: 500px;
-            border-radius: var(--radius-lg);
-            overflow: hidden;
-            box-shadow: var(--shadow-xl);
-            transform: perspective(1000px) rotateY(-5deg);
-            transition: transform 0.3s ease;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-        }
-
-        .hero-img-container:hover {
-            transform: perspective(1000px) rotateY(0deg);
-        }
-
-        .hero-img-container img {
-            width: 100%;
-            height: auto;
-            display: block;
-        }
-
-        .welcome-header::before {
-            content: '';
+        /* Advanced Hero Modern Design */
+        .hero-bg-container {
             position: absolute;
             top: 0;
             left: 0;
             right: 0;
-            height: 4px;
-            background: linear-gradient(90deg, var(--primary), var(--secondary), var(--accent));
+            height: 700px;
+            overflow: hidden;
+            z-index: 0;
+            pointer-events: none;
         }
 
-        .welcome-header h1 {
-            font-size: 3.5rem;
-            font-weight: 800;
-            margin-bottom: 1rem;
-            line-height: 1.2;
-            letter-spacing: -1px;
-        }
-
-        .welcome-subtitle {
-            font-size: 1.25rem;
-            color: var(--text-secondary);
-            max-width: 600px;
-            margin: 0;
-            line-height: 1.6;
-        }
-
-        .hero-decoration {
+        .glow-orb {
             position: absolute;
+            border-radius: 50%;
+            filter: blur(80px);
+            opacity: 0.5;
+            animation: orbFloat 10s ease-in-out infinite alternate;
+        }
+
+        .orb-1 {
+            width: 400px;
+            height: 400px;
+            background: rgba(139, 92, 246, 0.4);
+            top: -100px;
+            left: -100px;
+        }
+
+        .orb-2 {
             width: 500px;
             height: 500px;
-            background: radial-gradient(circle, rgba(139, 92, 246, 0.15) 0%, transparent 70%);
-            border-radius: 50%;
-            top: -50%;
-            left: -10%;
+            background: rgba(6, 182, 212, 0.3);
+            bottom: -150px;
+            right: -100px;
+            animation-delay: -5s;
+        }
+
+        body.light-theme .orb-1 {
+            background: rgba(139, 92, 246, 0.2);
+        }
+
+        body.light-theme .orb-2 {
+            background: rgba(6, 182, 212, 0.15);
+        }
+
+        @keyframes orbFloat {
+            0% {
+                transform: translateY(0) scale(1);
+            }
+
+            100% {
+                transform: translateY(50px) scale(1.1);
+            }
+        }
+
+        .marquee-wrapper {
+            position: absolute;
+            width: 100%;
+            top: 50%;
+            transform: translateY(-50%) rotate(-3deg);
+            opacity: 0.03;
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
             pointer-events: none;
-            z-index: 1;
         }
 
-        /* Light Theme Adjustments for Hero */
-        body.light-theme .welcome-header {
-            background: rgba(255, 255, 255, 0.7);
-            border-color: rgba(0, 0, 0, 0.1);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.05);
+        body.light-theme .marquee-wrapper {
+            opacity: 0.08;
         }
 
-        body.light-theme .hero-img-container {
-            border-color: rgba(0, 0, 0, 0.1);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+        .marquee {
+            display: flex;
+            white-space: nowrap;
+            overflow: hidden;
+            font-family: 'Fira Code', monospace;
+            font-size: 5.5rem;
+            font-weight: 900;
+            letter-spacing: 5px;
+            text-transform: uppercase;
+            color: var(--text-primary);
         }
 
-        body.light-theme .welcome-subtitle {
+        .marquee span {
+            display: inline-block;
+            padding-left: 100%;
+            animation: scrollMarqueeLeft 40s linear infinite;
+        }
+
+        .marquee.marquee-right span {
+            animation: scrollMarqueeRight 40s linear infinite;
+        }
+
+        @keyframes scrollMarqueeLeft {
+            0% {
+                transform: translateX(0);
+            }
+
+            100% {
+                transform: translateX(-100%);
+            }
+        }
+
+        @keyframes scrollMarqueeRight {
+            0% {
+                transform: translateX(-100%);
+            }
+
+            100% {
+                transform: translateX(0);
+            }
+        }
+
+        .hero-modern {
+            position: relative;
+            z-index: 10;
+            width: 100vw;
+            margin-left: calc(-50vw + 50%);
+            margin-right: calc(-50vw + 50%);
+            margin-bottom: 5rem;
+            margin-top: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            /* Highlighting Gradient Background (Full Width) */
+            background: linear-gradient(-45deg,
+                    rgba(139, 92, 246, 0.4),
+                    rgba(30, 27, 75, 0.8),
+                    rgba(219, 39, 119, 0.4),
+                    rgba(6, 182, 212, 0.4));
+            background-size: 300% 300%;
+            animation: gradientBG 15s ease infinite, fadeInUp 1s ease-out;
+            backdrop-filter: blur(20px);
+            padding: 6rem 10%;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        @keyframes gradientBG {
+            0% {
+                background-position: 0% 50%;
+            }
+
+            50% {
+                background-position: 100% 50%;
+            }
+
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+
+        .hero-modern-inner {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 4rem;
+            width: 100%;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        body.light-theme .hero-modern {
+            background: linear-gradient(-45deg,
+                    rgba(139, 92, 246, 0.15),
+                    rgba(240, 240, 255, 0.8),
+                    rgba(219, 39, 119, 0.15),
+                    rgba(6, 182, 212, 0.1));
+            background-size: 300% 300%;
+            animation: gradientBG 15s ease infinite, fadeInUp 1s ease-out;
+            border-bottom-color: rgba(0, 0, 0, 0.05);
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.05);
+        }
+
+        .hero-content-modern {
+            flex: 1;
+            min-width: 50%;
+        }
+
+        .hero-visual-modern {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            position: relative;
+            perspective: 1000px;
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            padding: 0.5rem 1.25rem;
+            background: rgba(139, 92, 246, 0.15);
+            border: 1px solid rgba(139, 92, 246, 0.3);
+            border-radius: 50px;
+            font-size: 0.95rem;
+            font-weight: 600;
+            color: var(--primary-light);
+            margin-bottom: 1.5rem;
+            box-shadow: 0 8px 16px rgba(139, 92, 246, 0.1);
+        }
+
+        body.light-theme .hero-badge {
+            color: var(--primary-dark);
+            background: rgba(139, 92, 246, 0.1);
+            border-color: rgba(139, 92, 246, 0.2);
+        }
+
+        .hero-title-modern {
+            font-size: 4rem;
+            font-weight: 900;
+            line-height: 1.15;
+            margin-bottom: 1.5rem;
+            letter-spacing: -1.5px;
+        }
+
+        .hero-subtitle-modern {
+            font-size: 1.15rem;
             color: var(--text-secondary);
-            /* Ensure it uses the dark theme variable */
+            line-height: 1.7;
+            max-width: 90%;
+            margin-bottom: 2rem;
+        }
+
+        .floating-image-wrapper {
+            position: relative;
+            width: 100%;
+            max-width: 480px;
+            height: 380px;
+            transform-style: preserve-3d;
+        }
+
+        .floating-image {
+            position: absolute;
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-xl);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .main-float {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transform: rotateY(-10deg) rotateX(5deg);
+            animation: floatFloat 6s ease-in-out infinite alternate;
+        }
+
+        .secondary-float {
+            width: 55%;
+            height: auto;
+            bottom: -30px;
+            right: -40px;
+            transform: translateZ(50px);
+            animation: floatFloatReverse 7s ease-in-out infinite alternate;
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            border-radius: var(--radius-md);
+        }
+
+        @keyframes floatFloat {
+            0% {
+                transform: translateY(0) rotateY(-10deg) rotateX(5deg);
+            }
+
+            100% {
+                transform: translateY(-20px) rotateY(-5deg) rotateX(2deg);
+            }
+        }
+
+        @keyframes floatFloatReverse {
+            0% {
+                transform: translateY(0) translateZ(50px);
+            }
+
+            100% {
+                transform: translateY(15px) translateZ(70px);
+            }
         }
 
         /* Course Grid */
@@ -170,7 +368,6 @@
             border-color: var(--primary);
             border-width: 2px;
             margin: -1px;
-            /* Compensate for border width change to prevent layout shift */
         }
 
         .course-card:hover .course-image img {
@@ -247,7 +444,6 @@
 
         .course-meta {
             display: none;
-            /* Hide meta to save space in square cards */
         }
 
         .meta-item {
@@ -265,7 +461,6 @@
             padding: 0;
             margin: 0 0 0.75rem 0;
             display: none;
-            /* Hide skills list to save space */
         }
 
         .skills-list li {
@@ -329,41 +524,6 @@
             background: var(--border);
         }
 
-
-        /* Hero Slider Background */
-        .hero-slider {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: 0;
-            display: flex;
-            gap: 20px;
-            padding: 20px;
-            opacity: 0.15;
-            filter: grayscale(40%) contrast(120%) brightness(1.1);
-            animation: slideBG 80s linear infinite;
-            pointer-events: none;
-        }
-
-        .slider-img {
-            min-width: 600px;
-            height: 100%;
-            border-radius: var(--radius-xl);
-            object-fit: cover;
-        }
-
-        @keyframes slideBG {
-            0% {
-                transform: translateX(0);
-            }
-
-            100% {
-                transform: translateX(-50%);
-            }
-        }
-
         .dashboard-container {
             max-width: 1400px;
             margin: 0 auto;
@@ -373,52 +533,62 @@
             z-index: 1;
         }
 
-        @media (max-width: 768px) {
-            .welcome-header {
+        @media (max-width: 1024px) {
+            .hero-modern {
+                padding: 4rem 5%;
+            }
+
+            .hero-modern-inner {
                 flex-direction: column;
                 text-align: center;
-                padding: 2rem 1.5rem;
-                gap: 2rem;
+                gap: 3rem;
+            }
+
+            .hero-content-modern {
+                min-width: 100%;
+            }
+
+            .hero-subtitle-modern {
+                max-width: 100%;
+                margin: 0 auto;
                 margin-bottom: 2rem;
             }
 
-            .welcome-content {
-                text-align: center;
-                order: 2;
+            .hero-title-modern {
+                font-size: 3.5rem;
             }
 
-            .welcome-visual {
-                justify-content: center;
-                width: 100%;
-                order: 1;
+            .secondary-float {
+                right: -10px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .marquee {
+                font-size: 3rem;
             }
 
-            .hero-img-container {
+            .hero-title-modern {
+                font-size: 2.5rem;
+            }
+
+            .hero-modern {
+                padding: 2rem 1.5rem;
+            }
+
+            .floating-image-wrapper {
+                height: 260px;
                 max-width: 100%;
-                transform: none !important;
-                /* Disable 3D effect on mobile for better performance */
             }
 
-            .hero-img-container:hover {
-                transform: none !important;
+            .main-float {
+                transform: none;
+                animation: none;
+                object-fit: contain;
             }
 
-            .welcome-header h1 {
-                font-size: 2rem;
-                margin-bottom: 0.5rem;
-            }
-
-            .welcome-subtitle {
-                font-size: 1rem;
-            }
-
-            .hero-decoration {
-                left: 50%;
-                top: 50%;
-                transform: translate(-50%, -50%);
-                width: 300px;
-                height: 300px;
-                opacity: 0.5;
+            .secondary-float {
+                display: none;
             }
 
             .courses-grid {
@@ -429,7 +599,6 @@
 
             .course-card {
                 width: 100%;
-                /* Full width on mobile */
                 height: auto;
                 min-height: 320px;
             }
@@ -441,29 +610,12 @@
             .section-separator {
                 margin: 2rem 0 1.5rem;
             }
-
-            /* Adjust navbar for mobile if needed, though it seems handled globally */
-        }
-
-        /* Word Animation */
-        .word {
-            display: inline-block;
-            opacity: 0;
-            transform: translateY(20px);
-            animation: fadeWord 0.5s ease-out forwards;
-        }
-
-        @keyframes fadeWord {
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
         }
     </style>
 </head>
 
 <body>
-    <!-- Animated Background Slider -->
+    <!-- Animated Background Slider (Restored) -->
     <div class="hero-slider">
         <img src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&q=80&w=2000" alt=""
             class="slider-img">
@@ -484,39 +636,23 @@
             class="slider-img">
     </div>
 
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            // Function to wrap words in spans
-            const animateText = (element, delayStart = 0) => {
-                if (!element) return;
-                const text = element.innerText;
-                const words = text.split(' ');
-                element.innerHTML = words.map((word, index) => {
-                    const delay = delayStart + (index * 0.1); // 0.1s delay between words
-                    return `<span class="word" style="animation-delay: ${delay}s; margin-right: 0.25em;">${word}</span>`;
-                }).join('');
-            };
-
-            // Animate Subtitle
-            const subtitle = document.querySelector('.welcome-subtitle');
-            // Slight delay after title would normally appear
-            setTimeout(() => {
-                animateText(subtitle, 0.5);
-            }, 100);
-
-            // Note: We are keeping the Title as is because it has complex HTML (spans/br)
-            // but we can animate the whole title block or specific parts if needed.
-            // For now, animating subtitle word-by-word as requested for "sentences".
-
-            // If user wants title too, we have to be careful not to break the <span class="text-gradient"> inside it.
-            // Let's add a simple slide-in for the title to match the word-by-word effect of subtitle
-            const title = document.getElementById('welcomeTitle');
-            if (title) {
-                title.style.opacity = '0';
-                title.style.animation = 'fadeInUp 0.8s ease-out forwards';
-            }
-        });
-    </script>
+    <!-- Advanced Marquee Background -->
+    <div class="hero-bg-container">
+        <div class="glow-orb orb-1"></div>
+        <div class="glow-orb orb-2"></div>
+        <div class="marquee-wrapper">
+            <div class="marquee marquee-left">
+                <span>FRONTEND DEVELOPMENT • SYSTEM DESIGN • ALGORITHMS • DATA STRUCTURES • BACKEND ARCHITECTURE
+                    •</span>
+                <span>FRONTEND DEVELOPMENT • SYSTEM DESIGN • ALGORITHMS • DATA STRUCTURES • BACKEND ARCHITECTURE
+                    •</span>
+            </div>
+            <div class="marquee marquee-right">
+                <span>ARTIFICIAL INTELLIGENCE • COMPETITIVE PROGRAMMING • WEB3 • CLOUD COMPUTING • MODERN UI/UX •</span>
+                <span>ARTIFICIAL INTELLIGENCE • COMPETITIVE PROGRAMMING • WEB3 • CLOUD COMPUTING • MODERN UI/UX •</span>
+            </div>
+        </div>
+    </div>
 
     <!-- Navigation -->
     <nav class="navbar">
@@ -537,22 +673,43 @@
     </nav>
 
     <div class="dashboard-container">
-        <div class="welcome-header">
-            <div class="hero-decoration"></div>
-            <div class="welcome-content">
-                <h1 id="welcomeTitle">Welcome Back, <br><span class="text-gradient">Student</span></h1>
-                <p class="welcome-subtitle">Your journey to mastery continues here. Select a course to dive back into
-                    advanced concepts and practical challenges.</p>
-            </div>
-            <div class="welcome-visual">
-                <div class="hero-img-container">
-                    <img src="https://images.unsplash.com/photo-1555099962-4199c345e5dd?auto=format&fit=crop&q=80&w=1000"
-                        alt="Coding Setup">
+        <!-- New Hero Modern Banner (Full Width) -->
+        <div class="hero-modern">
+            <div class="hero-modern-inner">
+                <div class="hero-content-modern">
+                    <div class="hero-badge"
+                        style="background: rgba(0,0,0,0.2); border: 1px solid rgba(255,255,255,0.1); color: #fff;">
+                        <i class="fas fa-user-astronaut" style="margin-right: 8px;"></i>
+                        Welcome Back, <span id="userNamePrefix" style="margin-left: 4px;">Student</span>
+                    </div>
+                    <h1 class="hero-title-modern">
+                        Master <span class="text-gradient">Advanced Tech</span><br>
+                        Build the Future.
+                    </h1>
+                    <p class="hero-subtitle-modern">
+                        Your journey to absolute mastery continues here. Select a specific course below to dive back
+                        into
+                        advanced concepts, real-world projects, and practical coding challenges.
+                    </p>
+                    <a href="#courses" class="btn btn-primary"
+                        style="padding: 1rem 2rem; border-radius: 50px; background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2); backdrop-filter: blur(10px);">
+                        Explore Dashboard <i class="fas fa-arrow-down" style="margin-left: 8px;"></i>
+                    </a>
+                </div>
+                <div class="hero-visual-modern">
+                    <div class="floating-image-wrapper">
+                        <!-- Professional coding image -->
+                        <img src="https://images.unsplash.com/photo-1555099962-4199c345e5dd?auto=format&fit=crop&q=80&w=1200"
+                            alt="Tech Setup" class="floating-image main-float">
+                        <!-- Abstract code elements overlay -->
+                        <img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&q=80&w=600"
+                            alt="Code Elements" class="floating-image secondary-float">
+                    </div>
                 </div>
             </div>
         </div>
 
-        <div class="section-separator">
+        <div class="section-separator" id="courses">
             <span>Enrolled Courses</span>
         </div>
 
@@ -735,7 +892,8 @@
         // Update user info
         if (user.name) {
             document.getElementById('userName').textContent = user.name;
-            document.getElementById('welcomeTitle').textContent = `Welcome Back, ${user.name.split(' ')[0]}`;
+            const prefixEl = document.getElementById('userNamePrefix');
+            if (prefixEl) prefixEl.textContent = user.name.split(' ')[0];
         }
 
         // Logout
@@ -747,18 +905,6 @@
         // Module Buttons Logic
         document.querySelectorAll('.btn-outline').forEach(btn => {
             btn.addEventListener('click', () => {
-                // For now, these modules also redirect to the main dashboard
-                // or we could show a "Module specific view" if that existed.
-                // Per user request, "when they clcik on tht dsa course it then only next student dahdboard with dsa questions should open"
-                // So I will make the other buttons just alert or also go to dashboard for now?
-                // The prompt says "retain other all features same".
-                // I'll make them all go to dashboard for now to avoid broken links, or maybe just an alert "Module content coming soon"
-                // except the Main DSA one.
-                // Let's make them alert for now to strictly follow "when they click on THAT dsa course".
-                // Actually the user said "do it like tht..as abv img.". The image has specific modules.
-                // But the main request is the flow.
-                // I'll redirect the main DSA one to student-dashboard.
-                // I'll make the others alert feature not available.
                 alert('This specific module view is coming soon. Please access via the main DSA Pathways course.');
             });
         });
